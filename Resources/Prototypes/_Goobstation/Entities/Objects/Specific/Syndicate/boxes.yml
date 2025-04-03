@@ -5,14 +5,14 @@
   id: BoxSkibidiRizz
   description: A box with 3 dehydrated Skibidi Toilet cubes.
   components:
-    - type: StorageFill
-      contents:
-        - id: SkibidiCube
-          amount: 3
-        # - id: DrinkSigmaJuiceBase
-          # amount: 3
-    - type: Sprite
-      sprite: _Goobstation/Objects/Storage/boxes.rsi
-      layers:
-        - state: box_of_doom
-        - state: brainrot
+  - type: StorageFill
+    contents:
+      - id: SkibidiCube
+        amount: 3
+      # - id: DrinkSigmaJuiceBase
+        # amount: 3
+   - type: Sprite
+    sprite: _Goobstation/Objects/Storage/boxes.rsi
+    layers:
+      - state: box_of_doom
+      - state: brainrot
