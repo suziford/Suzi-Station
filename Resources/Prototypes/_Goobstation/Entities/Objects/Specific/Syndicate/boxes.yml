@@ -17,34 +17,19 @@
 #      - state: brainrot
 
 - type: entity
-  id: BoxSkibidiRizz
-  parent: BaseStorage
   name: Box of Skibidi Rizz
+  parent: BoxCardboard
+  id: BoxSkibidiRizz
   description: A box with 3 dehydrated Skibidi Toilet cubes.
   components:
-    - type: Item
-      sprite: Objects/Specific/Syndicate/boxes.rsi
-      iconState: skibidi
-    - type: Storage
-      whitelist:
-        - id: SkibidiToiletCube
+    - type: StorageFill
+      contents:
+        - id: SkibidiCube
+          amount: 3
         # - id: DrinkSigmaJuiceBase
-      maxSlots: 6
-      maxSize: 100
-      quickInsert: true
-      area: 6
-      pickup: true
-      insertSound: /Audio/Items/weapons/thudswoosh.ogg
-      removeSound: /Audio/Items/weapons/thudswoosh.ogg
-    - type: ItemSlots
-      slots:
-        - name: storage
-          whitelist:
-            - id: SkibidiToiletCube
-            # - id: DrinkSigmaJuiceBase
-          maxSize: 100
-          quickInsert: true
-          area: 6
-          pickup: true
-          insertSound: /Audio/Items/weapons/thudswoosh.ogg
-          removeSound: /Audio/Items/weapons/thudswoosh.ogg
+          # amount: 3
+    - type: Sprite
+      sprite: _Goobstation/Objects/Storage/boxes.rsi
+      layers:
+        - state: box_of_doom
+        - state: brainrot
