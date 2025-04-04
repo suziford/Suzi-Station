@@ -4430,8 +4430,6 @@ entities:
     - type: Transform
       pos: 9.5,12.5
       parent: 2
-<<<<<<< HEAD
-=======
 - proto: CrewMonitoringServer
   entities:
   - uid: 1269
@@ -4450,7 +4448,6 @@ entities:
       linearDamping: 0
       canCollide: False
     - type: InsideEntityStorage
->>>>>>> 38c6f918769a01f7fc55d94840f7b239992b85fe
 - proto: DisposalBend
   entities:
   - uid: 1275
