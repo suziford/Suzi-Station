@@ -28,16 +28,11 @@
 - type: latheRecipePack
   id: SecurityWeaponsGoob
   recipes:
-  - Terminus
   - WeaponSubMachineSmart
-  - WeaponEnergyRifle
 
 - type: latheRecipePack
   id: SecurityAmmoGoob
   recipes:
-  - EnergyMagRifleIon
-  - EnergyMagRifleDisabler
-  - EnergyMagRifleLethal
   - MagazineSmart
   - MagazineBoxShotgunIncendiaryHighCaliber
   - MagazineBoxShotgunBeanbagHighCaliber

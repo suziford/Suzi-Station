@@ -10,6 +10,7 @@ namespace Content.Server._Lavaland.Weapons.Ranged.Upgrades;
 public sealed class GunUpgradeSystem : SharedGunUpgradeSystem
 {
     [Dependency] private readonly PressureEfficiencyChangeSystem _pressure = default!;
+    private const float PelletPenalty = 0.5f; // How much of the damage boost is penalized by virtue of being a multi-projectile weapon.
     public override void Initialize()
     {
         base.Initialize();
@@ -44,6 +45,7 @@ public sealed class GunUpgradeSystem : SharedGunUpgradeSystem
             && _pressure.ApplyModifier((Transform(ent).ParentUid, pressure)))
             multiplier = pressure.AppliedModifier;
 
-        projectile.Damage += ent.Comp.Damage * multiplier * ent.Comp.PelletModifier;
+        projectile.Damage += ent.Comp.Damage * multiplier * PelletPenalty;
     }
+
 }

@@ -5,5 +5,3 @@ collective-mind-blobmind = Blobmind
 collective-mind-mansus-link = Mansus Link
 collective-mind-abductormind = Glorpmind
 collective-mind-binary = Binary
-collective-mind-mousemind = Piepmind
-collective-mind-dronemind = Dronemind

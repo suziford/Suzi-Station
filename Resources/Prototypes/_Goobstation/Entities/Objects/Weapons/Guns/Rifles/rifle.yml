@@ -46,9 +46,6 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  - type: Item
-    shape:
-    - 0,0,5,2
 
 - type: entity
   name: M-90
@@ -95,9 +92,6 @@
   - type: Appearance
   - type: Gun
     fireRate: 6
-  - type: Item
-    shape:
-    - 0,0,4,2
 
 - type: entity
   name: Annie
@@ -156,9 +150,6 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  - type: Item
-    shape:
-    - 0,0,4,2
 
 - type: entity
   name: WSPR
@@ -182,7 +173,7 @@
     selectedMode: Burst
     burstFireRate: 18
     burstCooldown: 0.5
-    projectileSpeed: 35
+    projectileSpeed: 20
     soundGunshot:
       path: /Audio/_Goobstation/Weapons/Guns/Gunshots/bwuh.ogg
   - type: ItemSlots
@@ -209,6 +200,3 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  - type: Item
-    shape:
-    - 0,0,4,2

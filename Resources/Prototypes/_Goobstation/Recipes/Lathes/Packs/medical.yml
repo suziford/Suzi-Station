@@ -45,6 +45,7 @@
   - EnergyScalpel
   - EnergyCautery
   - AdvancedRetractor
+  - OmnimedTool
 
 - type: latheRecipePack
   id: MedicalCybernetics

@@ -19,13 +19,4 @@
   alwaysAllowed: true
 
 - type: statusEffect
-  id: Centered
-  alert: Centered
-  alwaysAllowed: true
-
-- type: statusEffect
   id: Dementia
-
-- type: statusEffect
-  id: MansusGraspAffected
-  alwaysAllowed: true

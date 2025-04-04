@@ -47,11 +47,10 @@
   - type: MedievalAccent
 
 - type: trait
-  id: Tide
-  name: trait-tide-accent-name
-  description: trait-tide-accent-desc
+  id: OhioAccent
+  name: Огайский Акцент
+  description: Акцент прям как из Огайо
   category: SpeechTraits
   cost: 1
   components:
-  - type: ReplacementAccent
-    accent: tide
+  - type: OhioAccent

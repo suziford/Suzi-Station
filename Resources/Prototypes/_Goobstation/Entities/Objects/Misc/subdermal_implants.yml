@@ -8,7 +8,6 @@
   - type: SubdermalImplant
     permanent: true
     implantAction: ActionActivateBluespaceLifeline
-  - type: MansusGraspBlockTrigger
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
@@ -52,12 +51,17 @@
 
 - type: entity
   parent: BaseSubdermalImplant
-  id: KravMagaImplant
-  name: krav maga implant
-  description: This implant allows the user to perform various Krav Maga moves.
+  id: SyndicateJaunterImplant
+  name: syndicate jaunter implant
+  description: This implants allows the user to swap positions with a target individual. Recharges over time.
   categories: [ HideSpawnMenu ]
   components:
-  - type: KravMagaImplant
+  - type: SubdermalImplant
+    implantAction: ActionSwapImplant
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
 
 # Admeme
 

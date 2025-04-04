@@ -42,7 +42,6 @@
   recipes:
   - BorgModuleAdvancedSurgery
   - BorgModuleLollipop
-  - BorgModuleAdvancedMining
 
 - type: latheRecipePack
   id: PowerCages

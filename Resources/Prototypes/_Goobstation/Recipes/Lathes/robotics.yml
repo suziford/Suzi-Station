@@ -61,8 +61,3 @@
   parent: BaseBorgModuleRecipe
   id: BorgModuleLollipop
   result: BorgModuleLollipop
-
-- type: latheRecipe
-  parent: BaseGoldBorgModuleRecipe
-  id: BorgModuleAdvancedMining
-  result: BorgModuleAdvancedMining

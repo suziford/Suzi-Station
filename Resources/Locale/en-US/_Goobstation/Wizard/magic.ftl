@@ -50,4 +50,3 @@ spell-summon-simians-maxed-out-message = Your simian power has reached maximum c
 
 ghosts-summoned-message = Ghosts have been summoned!
 dimension-shift-message = Dimensions shift!
-global-tile-movement-message = An ominous beat starts playing!

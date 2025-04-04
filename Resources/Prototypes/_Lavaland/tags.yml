@@ -17,9 +17,6 @@
   id: LavalandGateway
 
 - type: Tag
-  id: LavalandStationGateway
-
-- type: Tag
   id: LavalandInterior5x5
 
 - type: Tag

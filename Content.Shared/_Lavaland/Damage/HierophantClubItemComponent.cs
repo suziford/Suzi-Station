@@ -16,8 +16,6 @@ public sealed partial class HierophantClubItemComponent : Component
     public EntProtoId TeleportToMarkerActionId = "ActionHierophantTeleport";
 
     [DataField]
-    public EntProtoId ToggleTileMovementActionId = "ActionHierophantTileMovement";
-    [DataField]
     public EntityUid? CreateCrossActionEntity;
 
     [DataField]
@@ -27,13 +25,7 @@ public sealed partial class HierophantClubItemComponent : Component
     public EntityUid? TeleportToMarkerActionEntity;
 
     [DataField]
-    public EntityUid? ToggleTileMovementActionEntity;
-
-    [DataField]
     public EntityUid? TeleportMarker;
-
-    [DataField]
-    public EntProtoId TeleportMarkerPrototype = "LavalandHierophantClubTeleportMarker";
 
     [DataField]
     public float CrossRange = 5f;

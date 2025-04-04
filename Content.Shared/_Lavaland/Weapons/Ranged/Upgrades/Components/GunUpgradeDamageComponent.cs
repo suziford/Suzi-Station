@@ -11,10 +11,4 @@ public sealed partial class GunUpgradeDamageComponent : Component
 {
     [DataField]
     public DamageSpecifier Damage = new();
-
-    /// <summary>
-    /// How much of damage applies if the weapon shoots pellets (shotgun)
-    /// </summary>
-    [DataField]
-    public float PelletModifier = 1f;
 }

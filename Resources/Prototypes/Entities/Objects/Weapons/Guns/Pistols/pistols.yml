@@ -161,7 +161,7 @@
       path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
       params:
         volume: -14
-    projectileSpeed: 35 # Goobstation
+    projectileSpeed: 20 # Goobstation
     availableModes:
     - SemiAuto
   - type: ItemSlots

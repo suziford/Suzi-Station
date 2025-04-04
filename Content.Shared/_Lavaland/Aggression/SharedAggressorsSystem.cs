@@ -1,5 +1,4 @@
 ﻿using Content.Shared._Lavaland.Audio;
-using Content.Shared._Lavaland.Components;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Mobs;
@@ -28,8 +27,7 @@ public abstract class SharedAggressorsSystem : EntitySystem
 
     private void OnBeforeDamageChanged(Entity<AggressiveComponent> ent, ref BeforeDamageChangedEvent args)
     {
-        if (args.Origin == null
-            || HasComp<UnmannedWeaponryComponent>(args.Origin.Value))
+        if (args.Origin == null)
             args.Cancelled = true;
     }
 

@@ -54,7 +54,7 @@
   completetime: 2.4
   materials:
     Steel: 100
-    Glass: 300
+    Glass: 500
 
 - type: latheRecipe
   id: Mousetrap

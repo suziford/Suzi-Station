@@ -6,25 +6,21 @@
   - MechThruster
 
 - type: latheRecipePack
-  id: MechWeaponsSecurityStatic
+  id: MechWeaponsStatic
   recipes:
   - WeaponMechCombatFlashbangLauncher
 
 ## Dynamic
 - type: latheRecipePack
-  id: MechWeaponsSecurityLight
-  recipes:
-  - WeaponMechCombatFiredartLaser
-  - WeaponMechCombatShotgunIncendiary
-  - WeaponMechCombatDisabler
-
-- type: latheRecipePack
-  id: MechWeaponsSecurityHeavy
+  id: MechWeapons
   recipes:
   - WeaponMechCombatImmolationGun
   - WeaponMechCombatSolarisLaser
+  - WeaponMechCombatFiredartLaser
   - WeaponMechCombatUltraRifle
   - WeaponMechCombatShotgun
+  - WeaponMechCombatShotgunIncendiary
+  - WeaponMechCombatDisabler
   - WeaponMechCombatMissileRack8
 
 - type: latheRecipePack
@@ -49,49 +45,37 @@
   - GygaxLLeg
   - GygaxRArm
   - GygaxRLeg
+  - MechEquipmentDrill
+  - MechEquipmentDrillDiamond
+  - MechEquipmentKineticAccelerator
+  - MechEquipmentHonkerBananaMortar
+  - MechEquipmentHonkerMousetrapMortar
   - RipleyUpgradeKit
   - RipleyMKIIHarness
 
 - type: latheRecipePack
-  id: MechWeaponsSalvage
+  id: MechElectronicsGoob
   recipes:
-  - MechEquipmentDrill
-  - MechEquipmentDrillDiamond
-  - MechEquipmentKineticAccelerator
+  - HonkerCentralElectronics
+  - HonkerPeripheralsElectronics
+  - HonkerTargetingElectronics
+  - HamtrCentralElectronics
+  - HamtrPeripheralsElectronics
 
 - type: latheRecipePack
-  id: MechWeaponsCivilian
+  id: CargoMechElectronicsGoob
   recipes:
-  - MechEquipmentHonkerBananaMortar
-  - MechEquipmentHonkerMousetrapMortar
+  - ClarkeCentralElectronics
+  - ClarkePeripheralsElectronics
 
 - type: latheRecipePack
-  id: MechBoardsSecurity
+  id: SecurityMechElectronicsGoob
   recipes:
+  - ClarkeCentralElectronics
+  - ClarkePeripheralsElectronics
   - GygaxCentralElectronics
   - GygaxPeripheralsElectronics
   - GygaxTargetingElectronics
   - DurandCentralElectronics
   - DurandPeripheralsElectronics
   - DurandTargetingElectronics
-
-- type: latheRecipePack
-  id: MechBoardsCargo
-  recipes:
-  - RipleyCentralElectronics
-  - RipleyPeripheralsElectronics
-  - ClarkeCentralElectronics
-  - ClarkePeripheralsElectronics
-
-- type: latheRecipePack
-  id: MechBoardsCivilian
-  recipes:
-  - HonkerCentralElectronics
-  - HonkerPeripheralsElectronics
-  - HonkerTargetingElectronics
-
-- type: latheRecipePack
-  id: MechBoardsScience
-  recipes:
-  - HamtrCentralElectronics
-  - HamtrPeripheralsElectronics

@@ -172,7 +172,7 @@ public sealed class InternalsSystem : EntitySystem
 
     private void OnInternalsStartup(Entity<InternalsComponent> ent, ref ComponentStartup args)
     {
-        //_alerts.ShowAlert(ent, ent.Comp.InternalsAlert, GetSeverity(ent)); Goobstation - Hide O2 Alert
+        _alerts.ShowAlert(ent, ent.Comp.InternalsAlert, GetSeverity(ent));
     }
 
     private void OnInternalsShutdown(Entity<InternalsComponent> ent, ref ComponentShutdown args)
@@ -200,7 +200,7 @@ public sealed class InternalsSystem : EntitySystem
         if (ent.Comp.BreathTools.Count == 0)
             DisconnectTank(ent);
 
-        _alerts.ClearAlert(ent, ent.Comp.InternalsAlert); // Goobstation - Hide O2 Alert
+        _alerts.ShowAlert(ent, ent.Comp.InternalsAlert, GetSeverity(ent));
     }
 
     public void ConnectBreathTool(Entity<InternalsComponent> ent, EntityUid toolEntity)
