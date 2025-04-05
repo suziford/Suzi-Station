@@ -102,7 +102,7 @@ public sealed class AmeControllerSystem : EntitySystem
                 var availableInject = Math.Min(controller.InjectionAmount, fuelContainer.FuelAmount);
                 var powerOutput = group.InjectFuel(availableInject, out var overloading);
                 if (TryComp<PowerSupplierComponent>(uid, out var powerOutlet))
-                    powerOutlet.MaxSupply = powerOutput;
+                    powerOutlet.MaxSupply = powerOutput*1000; // Reserve
                 fuelContainer.FuelAmount -= availableInject;
                 // only play audio if we actually had an injection
                 if (availableInject > 0)
@@ -149,7 +149,7 @@ public sealed class AmeControllerSystem : EntitySystem
 
         // set current power statistics in kW
         float currentPowerSupply = 0;
-        if (TryComp<PowerSupplierComponent>(uid, out var powerOutlet) && coreCount > 0)
+        if (TryComp<PowerSupplierComponent>(uid, out var powerOutlet) && coreCount > 0) // Reserve
         {
             currentPowerSupply = powerOutlet.CurrentSupply / 1000;
         }
