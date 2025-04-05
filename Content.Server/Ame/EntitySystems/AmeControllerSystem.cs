@@ -144,7 +144,7 @@ public sealed class AmeControllerSystem : EntitySystem
         if (TryGetAMENodeGroup(uid, out var group))
         {
             coreCount = group.CoreCount;
-            targetedPowerSupply = group.CalculatePower(controller.InjectionAmount, group.CoreCount) / 1000;
+            targetedPowerSupply = group.CalculatePower(controller.InjectionAmount, group.CoreCount);
         }
 
         // set current power statistics in kW
