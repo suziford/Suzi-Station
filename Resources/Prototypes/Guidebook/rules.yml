@@ -544,4 +544,18 @@
   priority: 17
   text: "/ServerInfo/Guidebook/ServerRules/ReserveRul10.xml"
 
+- type: guideEntry
+  id: ReserveRul31
+  name: "Победкаёбство"
+  ruleEntry: true
+  priority: 18
+  text: "/ServerInfo/Guidebook/ServerRules/ReserveRul31.xml"
+
+- type: guideEntry
+  id: ReserveRul33
+  name: "Ограничение на профессиональные навыки"
+  ruleEntry: true
+  priority: 19
+  text: "/ServerInfo/Guidebook/ServerRules/ReserveRul33.xml"
+
 # Reserve-Rule-End
