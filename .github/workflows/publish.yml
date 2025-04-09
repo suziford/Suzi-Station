@@ -1,12 +1,15 @@
 name: Publish
 
-concurrency:
-  group: publish
+name: Publish
 
 on:
   workflow_dispatch:
   # schedule:
    # - cron: '0 10 * * *'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -15,6 +18,18 @@ jobs:
     steps:
     - name: Install dependencies
       run: sudo apt-get install -y python3-paramiko python3-lxml
+<<<<<<< HEAD
+=======
+
+    - name: Check .NET Installation
+      id: check-dotnet
+      run: |
+        if dotnet --info > /dev/null 2>&1; then
+          echo "skip=true" >> $GITHUB_ENV
+        else
+          echo "skip=false" >> $GITHUB_ENV
+        fi
+>>>>>>> e90a91ab2b66a1411cbcde9096557c1f28107ee7
 
     - uses: actions/checkout@v3.6.0
       with:
