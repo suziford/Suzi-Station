@@ -70,7 +70,7 @@
       color: "#678AD9"
     - type: ItemTogglePointLight
     - type: Blocking
-      passiveBlockFraction: 0.7
+      passiveBlockFraction: 0.5 # Reserve balance: 0.7 -> 0.5
       passiveBlockModifier:
         coefficients:
           Blunt: 1
