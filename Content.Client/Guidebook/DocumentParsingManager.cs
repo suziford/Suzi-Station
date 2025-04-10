@@ -170,7 +170,7 @@ public sealed partial class DocumentParsingManager
         }
 	return text;
     }
-    / Reserve parse fix
+    // Reserve parse fix
 
     private Parser<char, Control> CreateTagControlParser(string tagId, Type tagType, ISandboxHelper sandbox)
     {
