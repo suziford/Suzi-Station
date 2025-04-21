@@ -458,10 +458,10 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 LogImpact.Medium,
                 $"{ToPrettyString(converter.Value)} converted {ToPrettyString(target)} into a Revolutionary");
 
-            if (_mind.TryGetMind(converter.Value, out var revMindId, out _))
+        if (_mind.TryGetMind(converter.Value, out var revMindId, out _))
             {
-                if (_role.MindHasRole<RevolutionaryRoleComponent>(revMindId, out _, out var role))
-                    role.Value.Comp.ConvertedCount++;
+                if (_role.MindHasRole<RevolutionaryRoleComponent>(revMindId, out var role))
+                    role.Value.Comp2.ConvertedCount++;
             }
         }
 
