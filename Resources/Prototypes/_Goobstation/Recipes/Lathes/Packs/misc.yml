@@ -9,18 +9,21 @@
 - type: latheRecipePack
   id: SyndicateAmmoLightStatic
   recipes:
-  - MagazinePistolCaselessRifleEmpty
-  - MagazinePistolCaselessRifle
+#  - MagazinePistolCaselessRifleEmpty
+#  - MagazinePistolCaselessRifle
   - MagazineBoxCaselessRifle
-  - MagazineCaselessRifleEmpty
-  - MagazineCaselessRifle
-  - MagazineLowCaliberM7S
+#  - MagazineCaselessRifleEmpty
+#  - MagazineCaselessRifle
+  - MagazinePistolHighCapacityEmpty
+  - MagazinePistolHighCapacity
+  - MagazineCaselessMagnum
+  - MagazinePistolCaselessMagnum
+  - MagazinePistolCaselessMagnumMinusP
+  - MagazineCaselessRifleM7S
 
 - type: latheRecipePack
   id: SyndicateAmmoHeavyStatic
   recipes:
-  - MagazinePistolHighCapacityEmpty
-  - MagazinePistolHighCapacity
   - MagazineLightRifleBoxEmpty
   - MagazineLightRifleBox
   - MagazineHighCaliberEmpty
