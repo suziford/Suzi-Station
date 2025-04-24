@@ -4,3 +4,5 @@ ent-WeaponRifleAnnie = Annie
     .desc = A beast designed to shoulder the weight of impossible missions. Uses .30 rifle ammo.
 ent-WeaponRifleWSPR = WSPR
     .desc = A cutting-edge rifle from Cybersun, versatile, reliable, and Syndicate-approved. Uses .30 rifle subsonic ammo.
+ent-WeaponRifleBurner = Burner
+    .desc = A high caliber syndicate gun chambered in .50 caliber, capable of firing anti-materiel and high explosive rounds.
