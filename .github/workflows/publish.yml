@@ -26,7 +26,8 @@ concurrency:
 
 jobs:
   build:
-    runs-on: hosted #Reserve edit. No self-hosted sadly
+    runs-on: ubuntu-latest #Reserve edit. No self-hosted sadly
+
 
     steps:
     - name: Install dependencies
