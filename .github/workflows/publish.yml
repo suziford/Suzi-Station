@@ -26,7 +26,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: hosted #Reserve edit. No self-hosted sadly
 
     steps:
     - name: Install dependencies
