@@ -1,9 +1,12 @@
 # Changeling
+
+
 store-ling-category-combat = Бой
 store-ling-category-sting = Укусы
 store-ling-category-utility = Утилиты
 # Боевое
-evolutionmenu-combat-armhammer-name = Рука-клинок
+
+evolutionmenu-combat-armhammer-name = Рука-молот
 evolutionmenu-combat-armhammer-desc =
     Преобразуйте одну из своих рук в гротескный молот, состоящий из костей и плоти, способный сокрушать противников, сбивая их с ног и отправляя в полет. Сбивает с ног только при легкой атаке.
     Затрачивает 15 химикатов.
@@ -113,10 +116,28 @@ evolutionmenu-utility-fleshmend-desc =
     Быстро исцеляет все царапины и ожоги.
     Затрачивает 35 химикатов.
 evolutionmenu-utility-chameleon-name = Кожа хамелеона
-evolutionmenu-utility-chameleon-desc = Изменяет пигмент вашей кожи в соответствии с окружающей обстановкой, делая вас практически невидимым.
+evolutionmenu-utility-chameleon-desc =
+    Изменяет пигмент вашей кожи в соответствии с окружающей обстановкой, делая вас практически невидимым.
+    Поддержание формы хамелеона замедляет выработку химикатов.
+    Затрачивает 20 химикатов.
+evolutionmenu-utility-voidadapt-name = Адаптация к пустоте
+evolutionmenu-utility-voidadapt-desc =
+    Измените свои клетки и органы, чтобы они сопротивлялись холоду, низкому давлению и потребности в кислороде.
+    Поддержание данной формы замедляет выработку химикатов.
+    ВНИМАНИЕ: Для использования способности требуется поглотить как минимум 2 органики.
+    Без затрат.
+evolutionmenu-utility-stims-name = Запасы адреналина
+evolutionmenu-utility-stims-desc =
+    Высвобождает дополнительный адреналин в кровь, делая вас практически неуязвимым к усталости, нокдауну и оглушению.
+    Продолжительная инъекция ядовита.
+    Затрачивает 30 химикатов.
 evolutionmenu-utility-lesserform-name = Меньшая форма
 evolutionmenu-utility-lesserform-desc =
     Откажитесь от своей текущей формы и превратитесь в разумную обезьяну.
+    Затрачивает 20 химикатов.
+evolutionmenu-utility-spacesuit-name = Адаптация к космосу
+evolutionmenu-utility-spacesuit-desc =
+    Избавьтесь от бесполезных тканей, чтобы облегчить космические путешествия. Для выхода в космос по-прежнему необходим источник кислорода.
     Затрачивает 20 химикатов.
 evolutionmenu-utility-hivemindaccess-name = Разум улья
 evolutionmenu-utility-hivemindaccess-desc =
