@@ -139,6 +139,12 @@
   name: admin observer
   categories: [ HideSpawnMenu ]
   components:
+  - type: Eye
+    visMask:
+    - Ghost
+    - Normal
+    - Ethereal
+    - AGhost # WD EDIT
   - type: ContentEye
     maxZoom: 8.916104, 8.916104
   - type: Tag

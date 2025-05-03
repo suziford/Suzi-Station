@@ -17,5 +17,7 @@ namespace Content.Shared.Eye
         Normal = 1 << 0,
         Ghost  = 1 << 1,
         Abductor  = 1 << 2, // Shitmed Change - Starlight Abductors
+        Ethereal = 1 << 3,
+        AGhost = 1 << 4, // WD EDIT
     }
 }
