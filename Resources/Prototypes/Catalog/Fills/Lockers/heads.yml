@@ -159,6 +159,7 @@
     - id: CargoTechFabCircuitboard # Goobstation - Cargo Techfab
     - id: MailTeleporterMachineCircuitboard # GoobStation port of DeltaV mail
     - id: ClothingHandsKnucklesQuartermaster # Goobstation - ROCK THAT MF!!
+    - id: PrinterDocFlatpack # Corvax-Printer
 
 - type: entity
   id: LockerQuarterMasterFilled
@@ -277,6 +278,7 @@
     - id: WeaponDisabler
     - id: ClothingEyesHudCommand
     - id: ServiceTechFabCircuitboard # Goobstation - Service Techfab
+    - id: PrinterDocFlatpack # Corvax-Printer
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
