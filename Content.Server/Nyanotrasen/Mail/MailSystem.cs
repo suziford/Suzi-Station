@@ -18,7 +18,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Damage.Components;
 using Content.Server._DV.Cargo.Components;
 using Content.Server._DV.Cargo.Systems;
-using Content.Server._DV.Mail.Components;
+using Content.Server.Mail.Components;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.Destructible.Thresholds.Triggers;
 using Content.Server.Destructible.Thresholds;
@@ -34,7 +34,7 @@ using Content.Shared.Access.Systems;
 using Content.Shared.Access;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
-using Content.Shared._DV.Mail;
+using Content.Shared.Mail;
 using Content.Shared.Destructible;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
@@ -160,7 +160,7 @@ namespace Content.Server.Mail
                 {
                     mailTeleporter.Accumulator -= (float)mailTeleporter.TeleportInterval.TotalSeconds;
                     var timeUntilNextMail = TimeSpan.FromSeconds(double.Round(mailTeleporter.TeleportInterval.TotalSeconds - mailTeleporter.Accumulator));
-                    SpawnMail(uid, timeUntilNextMail, mailTeleporter);
+                    SpawnMail(mailTeleporter.Owner, timeUntilNextMail, mailTeleporter);
                 }
             }
         }
@@ -218,7 +218,7 @@ namespace Content.Server.Mail
                 return;
 
             // This is a successful delivery. Keep the failure timer from triggering.
-            component.PriorityCancelToken?.Cancel();
+            component.priorityCancelToken?.Cancel();
 
             // The priority tape is visually considered to be a part of the
             // anti-tamper lock, so remove that too.

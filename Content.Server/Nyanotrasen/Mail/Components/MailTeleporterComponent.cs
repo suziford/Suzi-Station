@@ -109,8 +109,8 @@ namespace Content.Server.Mail.Components
         /// How long until a priority delivery is considered as having failed
         /// if not delivered?
         /// </summary>
-        [DataField("priorityDuration")]
-        public TimeSpan priorityDuration = TimeSpan.FromMinutes(5);
+        [DataField("PriorityDuration")]
+        public TimeSpan PriorityDuration = TimeSpan.FromMinutes(5);
 
         /// <summary>
         /// What's the bonus for delivering a priority package on time?
