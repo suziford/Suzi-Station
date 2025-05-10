@@ -1657,8 +1657,8 @@
   description: New Sandy-Cat plastic sword! Comes with realistic sound and full color! Looks almost like the real thing!
   components:
     - type: EnergySword
-      colorOptions:
-        - DodgerBlue
+    #  colorOptions: reserve toy sword all colors
+    #    - DodgerBlue reserve toy sword all colors
     - type: ItemToggle
       soundActivate:
         path: /Audio/Weapons/ebladeon.ogg
@@ -1723,6 +1723,12 @@
     - type: Tag
       tags:
       - ToySword #Goobstation
+    #reserve toy sword tweaks begin
+    - type: Construction
+      deconstructionTarget: null
+      graph: DoubleToySwordGraph
+      node: esword
+    #reserve toy sword tweaks end
 
 - type: entity
   parent: BasePlushie
