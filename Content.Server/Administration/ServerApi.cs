@@ -114,6 +114,7 @@ public sealed partial class ServerApi : IPostInjectInit
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/force_preset", ActionForcePreset);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/set_motd", ActionForceMotd);
         RegisterActorHandler(HttpMethod.Patch, "/admin/actions/panic_bunker", ActionPanicPunker);
+        RegisterHandler(HttpMethod.Post, "/admin/actions/send_bwoink", ActionSendBwoink); // Frontier - Discord Ahelp Reply
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/a_chat", ActionAdminChat);                // ADT Tweak
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/play_time_addjob", ActionPlayAddTimeJob); // ADT Tweak
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/server_ban", ActionServerBan);            // ADT Tweak
