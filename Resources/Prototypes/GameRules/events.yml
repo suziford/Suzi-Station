@@ -381,6 +381,7 @@
         nameSegments:
         - NamesNinjaTitle
         - NamesNinja
+        nameFormat: name-format-ninja
       mindRoles:
       - MindRoleNinja
 
@@ -395,6 +396,9 @@
     reoccurrenceDelay: 20
     minimumPlayers: 15
   - type: ParadoxCloneRule
+    objectiveBlacklist:
+      tags:
+      - ParadoxCloneObjectiveBlacklist
   - type: AntagObjectives
     objectives:
     - ParadoxCloneKillObjective
@@ -409,7 +413,7 @@
       pickPlayer: false
       startingGear: ParadoxCloneGear
       roleLoadout:
-      - RoleSurvivalStandard # give vox something to breath in case they don't get a copy
+      - RoleSurvivalVoxTank # give vox something to breath in case they don't get a copy
       briefing:
         text: paradox-clone-role-greeting
         color: lightblue
@@ -719,6 +723,7 @@
         nameSegments:
         - NamesSyndicatePrefix #Reserve datasets fix
         - NamesSyndicateNormal
+        nameFormat: name-format-nukie-generic
       - type: NpcFactionMember
         factions:
         - Syndicate
