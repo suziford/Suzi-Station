@@ -5,25 +5,20 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-- type: dataset
+- type: localizedDataset
   id: NamesMilitaryFirstHighRank
   values:
-  - Адмирал
-  - Адмирал флота
-  - Капитан
+    prefix: names-military-first-high-rank-dataset-
+    count: 3
 
-- type: dataset
+- type: localizedDataset
   id: NamesMilitaryFirstPolitical
   values:
-  - Амбассадор
-  - Советник
-  - Советник-посланник
+    prefix: names-military-first-political-dataset-
+    count: 3
 
-- type: dataset
-  id: NamesInspectorFirst #Reserve datasets fix
+- type: localizedDataset
+  id: NamesFirstInspector
   values:
-  - Аудитор
-  - Старший аудитор
-  - Инспектор
-  - Старший инспектор
-
+    prefix: names-first-inspector-dataset-
+    count: 4

@@ -36,6 +36,7 @@ public sealed partial class GhostGui : UIWidget
     public event Action? GhostRolesPressed;
     public event Action? GhostBarPressed; // Goobstation - Ghost Bar
     public event Action? ReturnToRoundPressed; // Reserve - Respawn
+    private int _prevNumberRoles;
 
     public GhostGui()
     {
@@ -73,14 +74,13 @@ public sealed partial class GhostGui : UIWidget
         if (roles != null)
         {
             GhostRolesButton.Text = Loc.GetString("ghost-gui-ghost-roles-button", ("count", roles));
-            if (roles > 0)
+
+            if (roles > _prevNumberRoles)
             {
                 GhostRolesButton.StyleClasses.Add(StyleBase.ButtonCaution);
             }
-            else
-            {
-                GhostRolesButton.StyleClasses.Remove(StyleBase.ButtonCaution);
-            }
+
+            _prevNumberRoles = (int)roles;
         }
 
         TargetWindow.Populate();
