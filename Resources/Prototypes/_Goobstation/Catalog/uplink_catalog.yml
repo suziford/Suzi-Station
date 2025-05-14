@@ -18,10 +18,10 @@
 # SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
 # SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
 # SPDX-FileCopyrightText: 2025 Armok <155400926+ARMOKS@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 August Eymann <august.eymann@gmail.com>
 # SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
 # SPDX-FileCopyrightText: 2025 Creatorbot01 <creatorbot02@gmail.com>
-# SPDX-FileCopyrightText: 2025 Creatorbot01 <creatorbot20@gmail.com>
 # SPDX-FileCopyrightText: 2025 Fishbait <Fishbait@git.ml>
 # SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
 # SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
@@ -31,6 +31,7 @@
 # SPDX-FileCopyrightText: 2025 PunishedJoe <PunishedJoeseph@proton.me>
 # SPDX-FileCopyrightText: 2025 Scruq445 <storchdamien@gmail.com>
 # SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
+# SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
 # SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Theodore Lukin <66275205+pheenty@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Weide <64257676+Lyacs@users.noreply.github.com>
@@ -75,6 +76,16 @@
     Telecrystal: 8
   categories:
     -  UplinkDisruption
+
+#- type: listing #Reserve remove sigma begin
+#  id: UplinkBoxSkibidiRizz
+#  name: Box of Skibidi Rizz
+#  description: Contains 3 Skibidi Toilet cubes and 3 glasses of SigmaJuice... Chat, is this real?
+#  productEntity: BoxSkibidiRizz
+#  cost:
+#    Telecrystal: 30
+#  categories:
+#    - UplinkDisruption #Reserve remove sigma end
 
 - type: listing
   id: UplinkSarinGasGrenade
@@ -276,7 +287,7 @@
   name: uplink-hardsuit-cybersun-dreadnought-name
   description: uplink-hardsuit-cybersun-dreadnought-desc
   icon: { sprite: _Goobstation/Clothing/OuterClothing/Hardsuits/dreadnought.rsi, state: icon }
-  productEntity: CrateSyndicateDreadnought
+  productEntity: SupplyPodCircleCybersunDreadnoughtBundle #Reserve supplypods
   cost:
     Telecrystal: 150
   categories:
@@ -440,6 +451,52 @@
     Telecrystal: 30
   categories:
     - UplinkAllies
+
+
+- type: listing
+  id: UplinkJermovCircuitBoard
+  name: jermov circuit board
+  description: A very un-dangerous Lawset to use when you want to cause the A.I. to get brainrot, use when bored.
+  productEntity: JermovCircuitBoard
+  cost:
+    Telecrystal: 15
+  categories:
+    -  UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+    - Passenger
+
+- type: listing
+  id: UplinkChudimovCircuitBoard
+  name: chudimov circuit board
+  description: Nothing ever happens.
+  productEntity: ChudimovCircuitBoard
+  cost:
+    Telecrystal: 40
+  categories:
+  -  UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+    - Passenger
+
+- type: listing
+  id: UplinkZooimovCircuitBoard
+  name: zooimov circuit board
+  description: A lawset for when you wanna keep all the stations animals safe and protected.
+  productEntity: ZooimovCircuitBoard
+  cost:
+    Telecrystal: 15
+  categories:
+    -  UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Zookeeper
+  saleLimit: 1
 
 - type: listing
   id: uplinkBeeNades    #goob - bee update
@@ -800,7 +857,7 @@
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: icon-slug }
   productEntity: MagazineBoxShotgunSlugHighCaliber
   cost:
-    Telecrystal: 8
+    Telecrystal: 6 # 12% cheaper than the bundle, coherency with china
   categories:
   - UplinkAmmo
 
@@ -857,21 +914,21 @@
       - ContravendUplink
 
 # Martial Arts
-- type: listing
-  id: UplinkCQCManual
-  name: uplink-cqc-name
-  description: uplink-cqc-desc
-  productEntity: CQCManual
-  cost:
-    Telecrystal: 60
-  categories:
-  - UplinkWeaponry
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-      - ContravendUplink
+#- type: listing #Reserve - no CQC begin
+#  id: UplinkCQCManual
+#  name: uplink-cqc-name
+#  description: uplink-cqc-desc
+#  productEntity: CQCManual
+#  cost:
+#    Telecrystal: 60
+#  categories:
+#  - UplinkWeaponry
+#  conditions:
+#  - !type:StoreWhitelistCondition
+#    whitelist:
+#      tags:
+#      - NukeOpsUplink
+#      - ContravendUplink #Reserve - no CQC end
 
 - type: listing
   id: UplinkMysteriousScroll

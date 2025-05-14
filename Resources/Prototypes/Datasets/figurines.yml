@@ -324,7 +324,7 @@
   id: FigurinesMouse
   values:
     prefix: figurines-mouse-
-    count: 7
+    count: 9 #Reserve Mouse figurine meme phrases
 
 - type: localizedDataset
   id: FigurinesSlime

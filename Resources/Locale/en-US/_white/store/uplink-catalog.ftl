@@ -15,3 +15,9 @@ uplink-betrayal-knife-desc =
     Betrayal knife allows the user to blink a short distance, knocking down people in a small radius around blink position.
     Deals significant damage when target is lying down or facing away from you.
     Use it in your hand to toggle blink mode.
+
+uplink-experimental-syndicate-teleporter-name = Experimental syndicate teleporter
+uplink-experimental-syndicate-teleporter-desc = Syndicate Teleporter, when used, teleports the user 3-8 metres forward. In case of teleportation into a wall, uses emergency teleportation. Has 4 charges and automatically recharges.
+
+uplink-ebow-name = Small energy crossbow
+uplink-ebow-desc = A fairly quiet weapon that automatically reloads and stuns. It goes well with other types of weapons.

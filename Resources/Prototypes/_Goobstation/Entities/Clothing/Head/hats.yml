@@ -244,7 +244,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatTrainer
   name: NCT's hat
-  description: A hat issued to Nanotrasen Career Trainers. Makes you feel stylish.
+  description: A hat issued to Nanotrasen Career Trainers. Makes you feel stylish
   components:
   - type: Sprite
     sprite: _Goobstation/Clothing/Head/Hats/trainer.rsi
@@ -255,7 +255,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadBeretTrainer
   name: NCT's beret
-  description: A beret issued to Nanotrasen Career Trainers. Makes you feel stylish.
+  description: A beret issued to Nanotrasen Career Trainers. Makes you feel stylish
   components:
   - type: Sprite
     sprite: _Goobstation/Clothing/Head/Hats/trainer_beret.rsi

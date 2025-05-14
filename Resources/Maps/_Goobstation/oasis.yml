@@ -140266,20 +140266,6 @@ entities:
     - type: Transform
       pos: 32.61045,-20.506159
       parent: 2
-- proto: MagazinePistolSubMachineGunTopMounted
-  entities:
-  - uid: 15715
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 42.7493,-41.037598
-      parent: 2
-  - uid: 15716
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 42.702423,-41.412598
-      parent: 2
 - proto: MagicDiceBag
   entities:
   - uid: 15717
@@ -165813,12 +165799,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 41.5,-40.5
       parent: 2
-  - uid: 19300
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 42.5,-41.5
-      parent: 2
   - uid: 19301
     components:
     - type: Transform
@@ -187957,14 +187937,6 @@ entities:
     components:
     - type: Transform
       pos: 32.609486,-26.580791
-      parent: 2
-- proto: WeaponSubMachineGunWt550
-  entities:
-  - uid: 22295
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 42.421173,-41.240723
       parent: 2
 - proto: WeaponTurretSyndicateBroken
   entities:

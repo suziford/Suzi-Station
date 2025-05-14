@@ -52,6 +52,7 @@
   - BorgModuleAdvancedSurgery
   - BorgModuleLollypop
   - BorgModuleAdvancedMining
+  - BorgModuleFireAxe #Reserve Fireaxe Borg Modules
 
 - type: latheRecipePack
   id: PowerCages

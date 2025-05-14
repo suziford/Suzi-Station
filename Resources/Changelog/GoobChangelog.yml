@@ -4054,7 +4054,7 @@ Entries:
         Ashen passage now deals heat damage to the user on activation. Ashen
         path heretics receive less damage from this, the higher their path stage
         is, the lower the damage will be. Flesh stalkers and raw prophets will
-        not take damage when jaunting 
+        not take damage when jaunting
   id: 455
   time: '2025-01-11T14:09:57.0000000+00:00'
 - author: Piras314
@@ -4080,7 +4080,7 @@ Entries:
     - type: Tweak
       message: >-
         Lethargic sting doesn't inject mute toxin but slowly drains victim's
-        stamina. 
+        stamina.
     - type: Tweak
       message: Toggling of ling equipment doesn't cost any chemicals anymore.
   id: 457
@@ -6841,7 +6841,7 @@ Entries:
     - type: Tweak
       message: >-
         Alert icons for separate (OG) layout now start from the top right of
-        your screen instead of the middle right, just like in MRP. 
+        your screen instead of the middle right, just like in MRP.
     - type: Tweak
       message: >-
         Ore redemption/processing machines now display if you will obtain points
@@ -7216,7 +7216,7 @@ Entries:
     - type: Add
       message: >-
         The firefighter backpack and attached nozzle can now be found in atmos
-        lockers or ordered through cargo. 
+        lockers or ordered through cargo.
     - type: Tweak
       message: 'RPD crates can now be ordered through cargo. '
   id: 841
@@ -7564,7 +7564,7 @@ Entries:
     - type: Add
       message: >-
         Added the Holo-Cigar, a new syndicate uplink item, that turns you into
-        Big Boss. It allows you to dual wield any firearms effectively 
+        Big Boss. It allows you to dual wield any firearms effectively
   id: 881
   time: '2025-04-16T08:44:31.0000000+00:00'
 - author: Aviu
@@ -7950,7 +7950,7 @@ Entries:
       message: >-
         Radiation now uses 2D propagation system, standing on top of or holding
         radiation sources in your hand is extremely ill advised. doubly more so
-        than before. 
+        than before.
     - type: Tweak
       message: >-
         Radiation propagation now takes into account distance traveled through
@@ -8166,7 +8166,7 @@ Entries:
     - type: Add
       message: >-
         Moths move slightly slower but can dash with their wings with 65%
-        chance. 
+        chance.
     - type: Tweak
       message: Voxes now do not rot, but you can't clone them.
     - type: Tweak
@@ -9162,103 +9162,3 @@ Entries:
         usually do.
   id: 1035
   time: '2025-05-13T14:37:39.0000000+00:00'
-- author: IrisTheAmped
-  changes:
-    - type: Tweak
-      message: Wizards are now an around 3.1% chance spawn.
-  id: 1036
-  time: '2025-05-13T19:20:29.0000000+00:00'
-- author: deltanedas
-  changes:
-    - type: Add
-      message: Added a guidebook for automation.
-  id: 1037
-  time: '2025-05-13T20:11:08.0000000+00:00'
-- author: Armok
-  changes:
-    - type: Remove
-      message: All the tide stuff
-    - type: Remove
-      message: Welder Eswords
-    - type: Remove
-      message: Chudimov
-    - type: Remove
-      message: Tile suit
-    - type: Remove
-      message: Surplus rolling surplus
-  id: 1038
-  time: '2025-05-13T20:44:10.0000000+00:00'
-- author: ARMOKS
-  changes:
-    - type: Remove
-      message: Remove stupid fucking singulo / tesla / SM names
-    - type: Remove
-      message: Remove stupid fucking skibidi toilet
-    - type: Remove
-      message: Remove stupid fucking admin sportikus, mariah carry, and OSRS NPC
-    - type: Remove
-      message: Remove stupid fucking mao accent
-    - type: Remove
-      message: Remove stupid fucking sigma juice
-  id: 1039
-  time: '2025-05-13T21:25:52.0000000+00:00'
-- author: Armok
-  changes:
-    - type: Remove
-      message: Jermov lawboard
-    - type: Remove
-      message: Zooimov lawboard
-    - type: Remove
-      message: Tide accent
-  id: 1040
-  time: '2025-05-13T21:37:14.0000000+00:00'
-- author: Armok
-  changes:
-    - type: Remove
-      message: Temporarly remove lavaland due to lag
-    - type: Add
-      message: Tiders get -50 GC per round (due to unfixable bug)
-    - type: Remove
-      message: Remove heretic pending rework
-    - type: Remove
-      message: Remove slipping pending rework
-    - type: Tweak
-      message: Laying down does knee damage, get to medbay
-    - type: Tweak
-      message: Patreons get 10X goob coin and a daily antag token
-    - type: Tweak
-      message: Wizard is only rollable via antag token
-  id: 1041
-  time: '2025-05-13T22:55:20.0000000+00:00'
-- author: rotundfan
-  changes:
-    - type: Add
-      message: Bingle Moneyspread Lobby Art
-  id: 1042
-  time: '2025-05-14T01:21:43.0000000+00:00'
-- author: kipdotnet
-  changes:
-    - type: Tweak
-      message: Resprited the Robotic Arm, Storage Bin and Constructor.
-  id: 1043
-  time: '2025-05-14T06:05:22.0000000+00:00'
-- author: deltanedas
-  changes:
-    - type: Remove
-      message: Bananium ORE is no longer radioactive.
-  id: 1044
-  time: '2025-05-14T07:02:18.0000000+00:00'
-- author: SolsticeOfTheWinter, PETA
-  changes:
-    - type: Add
-      message: >-
-        You can now skin pun-pun alive or dead with a sharp object. Maybe next
-        time, you stay in the fucking bar.
-  id: 1045
-  time: '2025-05-14T07:08:15.0000000+00:00'
-- author: Ilya246
-  changes:
-    - type: Fix
-      message: 1x1 tesla setups should no longer loose.
-  id: 1046
-  time: '2025-05-14T10:47:20.0000000+00:00'
