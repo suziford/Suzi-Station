@@ -118,7 +118,6 @@
         visible: true
         map: [ "enum.PowerDeviceVisualLayers.Powered" ]
   - type: Item
-    heldPrefix: analyzer
     storedRotation: -90
   - type: ActivatableUI
     key: enum.HealthAnalyzerUiKey.Key

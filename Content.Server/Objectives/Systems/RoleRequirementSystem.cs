@@ -10,7 +10,7 @@
 
 using Content.Server.Objectives.Components;
 using Content.Shared.Objectives.Components;
-using Content.Shared.Roles;
+using Content.Shared.Whitelist;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -19,7 +19,7 @@ namespace Content.Server.Objectives.Systems;
 /// </summary>
 public sealed class RoleRequirementSystem : EntitySystem
 {
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -32,19 +32,7 @@ public sealed class RoleRequirementSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        foreach (var role in comp.Roles)
-        {
-            if (!EntityManager.ComponentFactory.TryGetRegistration(role, out var roleReg))
-            {
-                Log.Error($"Role component not found for RoleRequirementComponent: {role}");
-                continue;
-            }
-
-            if (_roles.MindHasRole(args.MindId, roleReg.Type, out _))
-                return; // whitelist pass
-        }
-
-        // whitelist fail
-        args.Cancelled = true;
+        if (_whitelistSystem.IsWhitelistFail(comp.Roles, args.MindId))
+            args.Cancelled = true;
     }
 }

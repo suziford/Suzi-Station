@@ -303,7 +303,6 @@ public sealed class AdminSystem : EntitySystem
         var name = data.UserName;
         var entityName = string.Empty;
         var identityName = string.Empty;
-        var sortWeight = 0;
 
         // Visible (identity) name can be different from real name
         if (session?.AttachedEntity != null)
@@ -317,10 +316,8 @@ public sealed class AdminSystem : EntitySystem
         // Starting role, antagonist status and role type
         RoleTypePrototype roleType = new();
         var startingRole = string.Empty;
-        if (_minds.TryGetMind(session, out var mindId, out var mindComp) && mindComp is not null)
+        if (_minds.TryGetMind(session, out var mindId, out var mindComp))
         {
-            sortWeight = _role.GetRoleCompByTime(mindComp)?.Comp.SortWeight ?? 0;
-
             if (_proto.TryIndex(mindComp.RoleType, out var role))
                 roleType = role;
             else
@@ -344,19 +341,8 @@ public sealed class AdminSystem : EntitySystem
             overallPlaytime = playTime;
         }
 
-        return new PlayerInfo(
-            name,
-            entityName,
-            identityName,
-            startingRole,
-            antag,
-            roleType,
-            sortWeight,
-            GetNetEntity(session?.AttachedEntity),
-            data.UserId,
-            connected,
-            _roundActivePlayers.Contains(data.UserId),
-            overallPlaytime);
+        return new PlayerInfo(name, entityName, identityName, startingRole, antag, roleType, GetNetEntity(session?.AttachedEntity), data.UserId,
+            connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime);
     }
 
     private void OnPanicBunkerChanged(bool enabled)

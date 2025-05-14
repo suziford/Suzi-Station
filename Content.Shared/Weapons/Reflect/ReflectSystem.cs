@@ -182,8 +182,13 @@ public sealed class ReflectSystem : EntitySystem
             !_toggle.IsActivated(reflector) ||
             !reflect.InRightPlace ||
             !TryComp<ReflectiveComponent>(projectile, out var reflective) ||
-            (reflect.Reflects & reflective.Reflective) == 0x0 ||
-            !_random.Prob(reflect.ReflectProb) ||
+            // Goob edit start
+            !((reflect.Reflects & reflective.Reflective) != 0x0 &&
+                _random.Prob(reflect.ReflectProb) ||
+                reflective.Reflective != ReflectType.None &&
+                (reflect.Reflects & reflective.Reflective) == 0x0 &&
+                _random.Prob(reflect.OtherTypeReflectProb)) ||
+            // Goob edit end
             !TryComp<PhysicsComponent>(projectile, out var physics))
         {
             return false;
@@ -217,7 +222,7 @@ public sealed class ReflectSystem : EntitySystem
             if (reflect.DamageOnReflectModifier != 0)
             {
                 _damageable.TryChangeDamage(reflector, projectileComp.Damage * reflect.DamageOnReflectModifier,
-                    projectileComp.IgnoreResistances, origin: projectileComp.Shooter);
+                    projectileComp.IgnoreResistances, origin: projectileComp.Shooter, armorPenetration: projectileComp.ArmorPenetration);
             }
             // WD EDIT END
 
@@ -263,7 +268,11 @@ public sealed class ReflectSystem : EntitySystem
             !_toggle.IsActivated(reflector) ||
             !reflect.InRightPlace ||
             // Goob edit start
-            !((reflect.Reflects & reflective) != 0x0 && _random.Prob(reflect.ReflectProb)))
+            !((reflect.Reflects & reflective) != 0x0 &&
+                _random.Prob(reflect.ReflectProb) ||
+                reflective != ReflectType.None &&
+                (reflect.Reflects & reflective) == 0x0 &&
+                _random.Prob(reflect.OtherTypeReflectProb)))
             // Goob edit end
         {
             newDirection = null;

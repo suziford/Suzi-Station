@@ -415,7 +415,6 @@
   parent: VisitorCivilian
   components:
     - type: BibleUser
-    - type: CanEnchant
     - type: GhostRole
       name: job-name-chaplain
     - type: Loadout
@@ -596,7 +595,6 @@
       nameSegments:
       - NamesFirst
       - NamesLast
-      nameFormat: name-format-standard
 
 - type: randomHumanoidSettings
   id: ChallengeVictimChiefEngineer
@@ -616,7 +614,6 @@
       nameSegments:
       - NamesFirst
       - NamesLast
-      nameFormat: name-format-standard
 
 - type: randomHumanoidSettings
   id: ChallengeVictimCMO
@@ -636,7 +633,6 @@
       nameSegments:
       - NamesFirst
       - NamesLast
-      nameFormat: name-format-standard
 
 - type: randomHumanoidSettings
   id: ChallengeVictimHeadOfPersonnel
@@ -656,7 +652,6 @@
       nameSegments:
       - NamesFirst
       - NamesLast
-      nameFormat: name-format-standard
 
 - type: randomHumanoidSettings
   id: ChallengeVictimHeadOfSecurity
@@ -676,7 +671,6 @@
       nameSegments:
       - NamesFirst
       - NamesLast
-      nameFormat: name-format-standard
 
 - type: randomHumanoidSettings
   id: ChallengeVictimResearchDirector
@@ -696,7 +690,6 @@
       nameSegments:
       - NamesFirst
       - NamesLast
-      nameFormat: name-format-standard
 
 - type: randomHumanoidSettings
   id: ChallengeVictimQuartermaster
@@ -716,7 +709,6 @@
       nameSegments:
       - NamesFirst
       - NamesLast
-      nameFormat: name-format-standard
 
 # Security
 # Following use EventHumanoidMindShielded since they are heads and probably should have mindshields
@@ -741,7 +733,6 @@
       nameSegments:
       - NamesFirst
       - NamesLast
-      nameFormat: name-format-standard
 
 # Engineering
 
@@ -767,8 +758,6 @@
       name: ghost-role-information-syndie-soldier-teamlead-name
       description: ghost-role-information-syndie-soldier-teamlead-description
       rules: ghost-role-information-rules-team-antagonist
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
     - type: Loadout
@@ -787,8 +776,6 @@
       name: ghost-role-information-syndie-soldier-name
       description: ghost-role-information-syndie-soldier-description
       rules: ghost-role-information-rules-team-antagonist
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
     - type: Loadout
@@ -825,8 +812,6 @@
       name: ghost-role-information-pirate-name
       description: ghost-role-information-pirate-description
       rules: ghost-role-information-rules-team-antagonist
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
     - type: Loadout
@@ -844,8 +829,6 @@
       name: ghost-role-information-pirate-captain-name
       description: ghost-role-information-pirate-captain-description
       rules: ghost-role-information-rules-team-antagonist
-      mindRoles:
-      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
     - type: Loadout
@@ -862,8 +845,6 @@
       name: ghost-role-information-blackmarketeer-name
       description: ghost-role-information-blackmarketeer-description
       rules: ghost-role-information-freeagent-rules
-      mindRoles:
-      - MindRoleGhostRoleFreeAgent
       raffle:
         settings: default
     - type: Loadout
@@ -882,8 +863,6 @@
       name: ghost-role-information-cossack-name
       description: ghost-role-information-cossack-description
       rules: ghost-role-information-freeagent-rules
-      mindRoles:
-      - MindRoleGhostRoleFreeAgent
       raffle:
         settings: default
     - type: Loadout

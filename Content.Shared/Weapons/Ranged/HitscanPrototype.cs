@@ -20,7 +20,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Weapons.Ranged;
 
-[Prototype]
+[Prototype("hitscan")]
 public sealed partial class HitscanPrototype : IPrototype, IShootable
 {
     [ViewVariables]

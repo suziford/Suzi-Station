@@ -11,7 +11,7 @@ namespace Content.Server.Ghost.Roles.Raffles;
 /// <summary>
 /// Allows getting a <see cref="IGhostRoleRaffleDecider"/> as prototype.
 /// </summary>
-[Prototype]
+[Prototype("ghostRoleRaffleDecider")]
 public sealed partial class GhostRoleRaffleDeciderPrototype : IPrototype
 {
     /// <inheritdoc />

@@ -12,7 +12,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Speech
 {
-    [Prototype]
+    [Prototype("speechSounds")]
     public sealed partial class SpeechSoundsPrototype : IPrototype
     {
         [ViewVariables]

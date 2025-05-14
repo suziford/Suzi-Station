@@ -15,7 +15,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Guidebook;
 
-[Prototype]
+[Prototype("guideEntry")]
 public sealed partial class GuideEntryPrototype : GuideEntry, IPrototype
 {
     public string ID => Id;

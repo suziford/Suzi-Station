@@ -5,8 +5,6 @@
 // SPDX-FileCopyrightText: 2023 keronshb <keronshb@live.com>
 // SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
 //
 // SPDX-License-Identifier: MIT
 
@@ -25,12 +23,6 @@ public sealed partial class DoAfterComponent : Component
 
     [DataField("doAfters")]
     public Dictionary<ushort, DoAfter> DoAfters = new();
-
-    /// <summary>
-    /// Goobstation - Whether to raise <c>DoAfterEndedEvent</c> on the user after it ends.
-    /// </summary>
-    [DataField]
-    public bool RaiseEndedEvent;
 
     // Used by obsolete async do afters
     public readonly Dictionary<ushort, TaskCompletionSource<DoAfterStatus>> AwaitedDoAfters = new();

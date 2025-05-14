@@ -214,9 +214,7 @@
         state: idle
   - type: RandomMetadata
     nameSegments:
-    - NamesFirst
-    - NamesLast
-    nameFormat: name-format-standard
+    - names_first_male
   - type: Grammar
     attributes:
       gender: male

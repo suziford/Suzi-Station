@@ -51,8 +51,7 @@ public sealed class GameGlobalSoundEvent : GlobalSoundEvent
 
 public enum StationEventMusicType : byte
 {
-    Nuke,
-    CosmicCult, // DeltaV - Cosmic Cult
+    Nuke
 }
 
 /// <summary>

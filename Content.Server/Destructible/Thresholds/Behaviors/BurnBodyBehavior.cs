@@ -6,13 +6,10 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Body.Part; // Shitmed Change
-using Content.Shared.Body.Components;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
-using Content.Shared.IdentityManagement;
 
 namespace Content.Server.Destructible.Thresholds.Behaviors;
 
@@ -35,8 +32,16 @@ public sealed partial class BurnBodyBehavior : IThresholdBehavior
             }
         }
 
-        var bodyIdentity = Identity.Entity(bodyId, system.EntityManager);
-        sharedPopupSystem.PopupCoordinates(Loc.GetString("bodyburn-text-others", ("name", bodyIdentity)), transformSystem.GetMoverCoordinates(bodyId), PopupType.LargeCaution);
-        system.EntityManager.QueueDeleteEntity(bodyId);
+        if (system.EntityManager.TryGetComponent<BodyPartComponent>(bodyId, out var bodyPart))
+        {
+            if (bodyPart.CanSever
+                && system.BodySystem.BurnPart(bodyId, bodyPart))
+                sharedPopupSystem.PopupCoordinates(Loc.GetString("bodyburn-text-others", ("name", bodyId)), transformSystem.GetMoverCoordinates(bodyId), PopupType.LargeCaution);
+        }
+        else
+        {
+            sharedPopupSystem.PopupCoordinates(Loc.GetString("bodyburn-text-others", ("name", bodyId)), transformSystem.GetMoverCoordinates(bodyId), PopupType.LargeCaution);
+            system.EntityManager.QueueDeleteEntity(bodyId);
+        }
     }
 }

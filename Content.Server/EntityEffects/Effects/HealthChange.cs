@@ -40,14 +40,12 @@
 // SPDX-FileCopyrightText: 2023 moonheart08 <moonheart08@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2024 KrasnoshchekovPavel <119816022+KrasnoshchekovPavel@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
+// SPDX-FileCopyrightText: 2024 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2024 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Aidenkrz <aiden@djkraz.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
 // SPDX-FileCopyrightText: 2025 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
 // SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
@@ -55,12 +53,11 @@
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.EntityEffects;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Content.Shared.Localizations;
 using Content.Shared._Shitmed.EntityEffects.Effects; // Shitmed Change
 using Content.Shared._Shitmed.Targeting; // Shitmed Change
 using Content.Server.Temperature.Components; // Shitmed Change
-using Content.Shared._Shitmed.Medical.Surgery.Wounds.Systems; // Shitmed Change
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using System.Linq;
@@ -71,8 +68,6 @@ namespace Content.Server.EntityEffects.Effects
     /// <summary>
     /// Default metabolism used for medicine reagents.
     /// </summary>
-
-
     [UsedImplicitly]
     public sealed partial class HealthChange : EntityEffect
     {
@@ -103,14 +98,6 @@ namespace Content.Server.EntityEffects.Effects
         [JsonPropertyName("ignoreResistances")]
         public bool IgnoreResistances = true;
 
-        [DataField]
-        [JsonPropertyName("healingDamageMultiplier")]
-        public float HealingDamageMultiplier = 11f; // Shitmed Change
-
-        [DataField]
-        [JsonPropertyName("damageMultiplier")]
-        public float DamageMultiplier = 1f; // Shitmed Change
-
         protected override string ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         {
             var damages = new List<string>();
@@ -129,12 +116,12 @@ namespace Content.Server.EntityEffects.Effects
                 {
                     if (val < 0f)
                     {
-                        damageSpec.DamageDict[type] = val * universalReagentHealModifier * HealingDamageMultiplier;
+                        damageSpec.DamageDict[type] = val * universalReagentHealModifier;
                     }
 
                     if (val > 0f)
                     {
-                        damageSpec.DamageDict[type] = val * universalReagentDamageModifier * DamageMultiplier;
+                        damageSpec.DamageDict[type] = val * universalReagentDamageModifier;
                     }
                 }
             }
@@ -232,13 +219,20 @@ namespace Content.Server.EntityEffects.Effects
             var universalReagentHealModifier =
                 args.EntityManager.System<DamageableSystem>().UniversalReagentHealModifier;
 
-            foreach (var (type, val) in damageSpec.DamageDict)
+            if (Math.Abs(universalReagentDamageModifier - 1) > 1 || Math.Abs(universalReagentHealModifier - 1) > 1)
             {
-                if (val < 0f)
-                    damageSpec.DamageDict[type] = val * universalReagentHealModifier * HealingDamageMultiplier;
+                foreach (var (type, val) in damageSpec.DamageDict)
+                {
+                    if (val < 0f)
+                    {
+                        damageSpec.DamageDict[type] = val * universalReagentHealModifier;
+                    }
 
-                if (val > 0f)
-                    damageSpec.DamageDict[type] = val * universalReagentDamageModifier * DamageMultiplier;
+                    if (val > 0f)
+                    {
+                        damageSpec.DamageDict[type] = val * universalReagentDamageModifier;
+                    }
+                }
             }
 
             args.EntityManager.System<DamageableSystem>()
@@ -247,8 +241,11 @@ namespace Content.Server.EntityEffects.Effects
                     damageSpec * scale,
                     IgnoreResistances,
                     interruptsDoAfters: false,
+                    // Shitmed Change Start
                     targetPart: TargetBodyPart.All,
-                    ignoreBlockers: true); // Shitmed Change
+                    partMultiplier: 0.5f,
+                    canSever: false);
+            // Shitmed Change End
 
         }
     }

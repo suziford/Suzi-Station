@@ -55,13 +55,3 @@
   #- HandHeldMassScanner - Goobstation - Removed by Lavaland
   - ClothingMaskWeldingGas
   - SignallerAdvanced
-
-- type: latheRecipePack
-  id: SalvageSecurityBoards
-  recipes:
-  - ShuttleGunKineticCircuitboard
-
-- type: latheRecipePack
-  id: SalvageSecurityWeapons
-  recipes:
-  - WeaponProtoKineticAccelerator

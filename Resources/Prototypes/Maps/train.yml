@@ -96,7 +96,7 @@
 - type: gameMap
   id: Train
   mapName: 'Train'
-  mapPath: /Maps/_Goobstation/train.yml
+  mapPath: /Maps/train.yml
   maxRandomOffset: 0
   randomRotation: false
   minPlayers: 30

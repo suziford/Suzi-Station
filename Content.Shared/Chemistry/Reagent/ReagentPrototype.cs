@@ -119,7 +119,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.EntityEffects;
 using Content.Shared.Database;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Content.Shared.Nutrition;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
@@ -131,7 +131,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Chemistry.Reagent
 {
-    [Prototype]
+    [Prototype("reagent")]
     [DataDefinition]
     public sealed partial class ReagentPrototype : IPrototype, IInheritingPrototype
     {

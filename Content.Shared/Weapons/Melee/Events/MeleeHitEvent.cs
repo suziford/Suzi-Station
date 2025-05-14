@@ -14,9 +14,8 @@
 
 using System.Numerics;
 using Content.Shared.Damage;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
-using Robust.Shared.Map;
 
 namespace Content.Shared.Weapons.Melee.Events;
 
@@ -81,20 +80,13 @@ public sealed class MeleeHitEvent : HandledEntityEventArgs
     /// </remarks>
     public bool IsHit = true;
 
-    /// <summary>
-    /// Goobstation
-    /// The coordinates of an attack.
-    /// </summary>
-    public readonly EntityCoordinates Coords;
-
-    public MeleeHitEvent(List<EntityUid> hitEntities, EntityUid user, EntityUid weapon, DamageSpecifier baseDamage, Vector2? direction, EntityCoordinates coords) // Goob edit
+    public MeleeHitEvent(List<EntityUid> hitEntities, EntityUid user, EntityUid weapon, DamageSpecifier baseDamage, Vector2? direction)
     {
         HitEntities = hitEntities;
         User = user;
         Weapon = weapon;
         BaseDamage = baseDamage;
         Direction = direction;
-        Coords = coords; // Goobstation
     }
 }
 

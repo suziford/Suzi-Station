@@ -323,11 +323,6 @@
   - type: TechnologyDatabase
   - type: Speech # Goobstation - Lathe message on recipes update
     speechSounds: Lathe
-  - type: AutomationSlots # Goobstation
-    slots:
-    - !type:AutomatedMaterialStorage
-      input: AutomationSlotMaterials
-      output: null
 
 # a lathe that can be sped up with space lube / slowed down with glue
 - type: entity
@@ -500,7 +495,6 @@
     - SpecOpsGoogles
     - MedicalMisc
     - MedicalVehiclesAdvanced
-    - UpgradeKits
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityAmmo
@@ -613,7 +607,7 @@
     - BorgLimbsStatic
     # Goobstation Packs
     - MechPartsStatic
-    # - BorgModulesStaticGoob #Removes surgery module, medical cyborgs start with them
+    - BorgModulesStaticGoob
     - IPCPartsStatic
     - PowerCagesStatic
     - PartsStatic
@@ -732,8 +726,6 @@
     - ScienceExplosives
     - GrenadeTriggersStatic
     dynamicPacks:
-    - SalvageSecurityBoards
-    - SalvageSecurityWeapons
     - SecurityEquipment
     - SecurityBoards
     - SecurityExplosives

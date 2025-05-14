@@ -84,8 +84,6 @@
 using System.Linq;
 using System.Numerics;
 using Content.Goobstation.Common.Changeling;
-using Content.Goobstation.Common.Religion;
-using Content.Goobstation.Common.Religion.Events;
 using Content.Shared._Goobstation.Wizard;
 using Content.Shared._Goobstation.Wizard.BindSoul;
 using Content.Shared._Goobstation.Wizard.Chuuni;
@@ -98,7 +96,7 @@ using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
 using Content.Shared.Gibbing.Events;
 using Content.Shared.Hands.Components;
@@ -164,7 +162,6 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!; // Goobstation
@@ -174,8 +171,6 @@ public abstract class SharedMagicSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<MagicComponent, BeforeCastSpellEvent>(OnBeforeCastSpell);
-
-        SubscribeLocalEvent<BeforeCastTouchSpellEvent>(OnTouchSpellAttempt);
 
         SubscribeLocalEvent<InstantSpawnSpellEvent>(OnInstantSpawn);
         SubscribeLocalEvent<TeleportSpellEvent>(OnTeleportSpell);
@@ -187,7 +182,6 @@ public abstract class SharedMagicSystem : EntitySystem
         SubscribeLocalEvent<ChargeSpellEvent>(OnChargeSpell);
         SubscribeLocalEvent<RandomGlobalSpawnSpellEvent>(OnRandomGlobalSpawnSpell);
         SubscribeLocalEvent<MindSwapSpellEvent>(OnMindSwapSpell);
-
 
         // Spell wishlist
         //  A wishlish of spells that I'd like to implement or planning on implementing in a future PR
@@ -333,40 +327,6 @@ public abstract class SharedMagicSystem : EntitySystem
         RaiseLocalEvent(spell, ref ev);
         return !ev.Cancelled;
     }
-
-    //goobstation start
-    private void OnTouchSpellAttempt(ref BeforeCastTouchSpellEvent args)
-    {
-        if (!TryComp<HandsComponent>(args.Target, out var handsComp))
-            return;
-
-        var held = _hands.EnumerateHeld(args.Target.Value, handsComp);
-        foreach (var heldEnt in held)
-        {
-            if (!TryComp<DivineInterventionComponent>(heldEnt, out var comp))
-                continue;
-
-            args.Cancelled = true;
-
-            if (_net.IsClient)
-                return;
-
-            _popupSystem.PopupEntity(Loc.GetString("nullrod-spelldenial-popup"),
-                args.Target.Value,
-                type: PopupType.MediumCaution);
-            _audio.PlayPvs(comp.DenialSound, args.Target.Value);
-            Spawn(comp.EffectProto, Transform(args.Target.Value).Coordinates);
-            break;
-        }
-    }
-
-    public bool SpellDenied(EntityUid target)
-    {
-        var beforeTouchSpellEvent = new BeforeCastTouchSpellEvent(target);
-        RaiseLocalEvent(target, ref beforeTouchSpellEvent, true);
-        return beforeTouchSpellEvent.Cancelled;
-    }
-    //goobstation end
 
     #region Spells
     #region Instant Spawn Spells
@@ -538,7 +498,7 @@ public abstract class SharedMagicSystem : EntitySystem
         var ent = Spawn(ev.Prototype, spawnCoords);
         var direction = toCoords.ToMapPos(EntityManager, _transform) -
                         spawnCoords.ToMapPos(EntityManager, _transform);
-        _gunSystem.ShootProjectile(ent, direction, userVelocity, ev.Performer, ev.Performer, ev.Speed); // Goob edit
+        _gunSystem.ShootProjectile(ent, direction, userVelocity, ev.Performer, ev.Performer);
 
         if (ev.Entity != null) // Goobstation
             _gunSystem.SetTarget(ent, ev.Entity.Value, out _);
@@ -551,14 +511,6 @@ public abstract class SharedMagicSystem : EntitySystem
     {
         if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer))
             return;
-
-        if (SpellDenied(ev.Target))
-        {
-            if (ev.DoSpeech)
-                Speak(ev);
-            ev.Handled = true;
-            return;
-        }
 
         ev.Handled = true;
         if (ev.DoSpeech)
@@ -642,13 +594,6 @@ public abstract class SharedMagicSystem : EntitySystem
     {
         if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer))
             return;
-
-        if (SpellDenied(ev.Target))
-        {
-            Speak(ev);
-            ev.Handled = true;
-            return;
-        }
 
         ev.Handled = true;
         Speak(ev);
@@ -763,13 +708,6 @@ public abstract class SharedMagicSystem : EntitySystem
     {
         if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer))
             return;
-
-        if (SpellDenied(ev.Target))
-        {
-            Speak(ev);
-            ev.Handled = true;
-            return;
-        }
 
         // Goobstation start
         if (_mobState.IsIncapacitated(ev.Target) || HasComp<ZombieComponent>(ev.Target))
@@ -979,10 +917,11 @@ public abstract class SharedMagicSystem : EntitySystem
             if (invocationEv.ToHeal.GetTotal() > FixedPoint2.Zero)
             {
                 _damageable.TryChangeDamage(args.Performer,
-                    -invocationEv.ToHeal * 11f,
+                    -invocationEv.ToHeal,
                     true,
                     false,
-                    targetPart: TargetBodyPart.All); // Shitmed Change
+                    canSever: false,
+                    targetPart: TargetBodyPart.All);
             }
         }
 

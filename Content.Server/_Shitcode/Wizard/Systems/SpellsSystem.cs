@@ -42,7 +42,7 @@ using Content.Shared.Actions;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Coordinates.Helpers;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Content.Shared.Gibbing.Events;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
@@ -587,17 +587,19 @@ public sealed class SpellsSystem : SharedSpellsSystem
         {
             // Heal both caster and speaker
             Damageable.TryChangeDamage(casterUid,
-                -invocationEv.ToHeal * 11f,
+                -invocationEv.ToHeal,
                 true,
                 false,
+                canSever: false,
                 targetPart: TargetBodyPart.All);
 
             if (speakerUid != casterUid)
             {
                 Damageable.TryChangeDamage(speakerUid,
-                    -invocationEv.ToHeal * 11f,
+                    -invocationEv.ToHeal,
                     true,
                     false,
+                    canSever: false,
                     targetPart: TargetBodyPart.All);
             }
         }

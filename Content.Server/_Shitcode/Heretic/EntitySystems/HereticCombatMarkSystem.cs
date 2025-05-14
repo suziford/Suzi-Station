@@ -26,14 +26,13 @@ using Content.Shared.Humanoid;
 using Content.Server.Body.Components;
 using Content.Server._Goobstation.Heretic.EntitySystems.PathSpecific;
 using Content.Server.Medical;
-using Content.Shared._Shitcode.Heretic.Systems;
 using Content.Shared._Shitmed.Targeting;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Heretic.EntitySystems;
 
-public sealed class HereticCombatMarkSystem : SharedHereticCombatMarkSystem
+public sealed partial class HereticCombatMarkSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedDoorSystem _door = default!;
@@ -47,10 +46,10 @@ public sealed class HereticCombatMarkSystem : SharedHereticCombatMarkSystem
     [Dependency] private readonly VomitSystem _vomit = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
 
-    public override bool ApplyMarkEffect(EntityUid target, HereticCombatMarkComponent mark, string? path, EntityUid user)
+    public void ApplyMarkEffect(EntityUid target, HereticCombatMarkComponent mark, string? path, EntityUid user)
     {
-        if (!base.ApplyMarkEffect(target, mark, path, user))
-            return false;
+        if (string.IsNullOrWhiteSpace(path))
+            return;
 
         switch (path)
         {
@@ -97,35 +96,35 @@ public sealed class HereticCombatMarkSystem : SharedHereticCombatMarkSystem
                 break;
 
             case "Void":
-                _voidcurse.DoCurse(target, 3);
+                // set target's temperature to -40C
+                // is really OP with the new temperature slowing thing :godo:
+                _voidcurse.DoCurse(target);
                 break;
 
             default:
-                return false;
+                return;
         }
 
         var repetitions = mark.Repetitions - 1;
+        RemComp(target, mark);
         if (repetitions <= 0)
-            return true;
+            return;
 
         // transfers the mark to the next nearby person
         var look = _lookup.GetEntitiesInRange(target, 5f, flags: LookupFlags.Dynamic)
             .Where(x => x != target && HasComp<HumanoidAppearanceComponent>(x) && !HasComp<HereticComponent>(x) && !HasComp<GhoulComponent>(x))
             .ToList();
         if (look.Count == 0)
-            return true;
+            return;
 
         _random.Shuffle(look);
         var lookent = look.First();
         if (!HasComp<HumanoidAppearanceComponent>(lookent) || HasComp<HereticComponent>(lookent))
-            return true;
+            return;
 
         var markComp = EnsureComp<HereticCombatMarkComponent>(lookent);
-        markComp.DisappearTime = markComp.MaxDisappearTime;
         markComp.Path = path;
         markComp.Repetitions = repetitions;
-        Dirty(lookent, markComp);
-        return true;
     }
 
     public override void Initialize()

@@ -38,13 +38,13 @@ public abstract class DevicePortPrototype
     public string Description = default!;
 }
 
-[Prototype]
+[Prototype("sinkPort")]
 [Serializable, NetSerializable]
 public sealed partial class SinkPortPrototype : DevicePortPrototype, IPrototype
 {
 }
 
-[Prototype]
+[Prototype("sourcePort")]
 [Serializable, NetSerializable]
 public sealed partial class SourcePortPrototype : DevicePortPrototype, IPrototype
 {

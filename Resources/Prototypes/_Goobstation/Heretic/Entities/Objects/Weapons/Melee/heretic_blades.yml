@@ -16,12 +16,10 @@
 
 - type: entity
   parent: [ BaseItem, BaseMagicContraband ]
-  id: HereticBladeBaseNoTeleport
-  abstract: true
+  id: HereticBladeBase
   name: eldritch blade
   description: A sickly green crescent blade, decorated with an ornamental eye. You feel like you're being watched...
   components:
-  - type: UnholyItem
   - type: HereticBlade
   - type: Sharp
   - type: Sprite
@@ -32,7 +30,7 @@
     slots:
     - Belt
   - type: MeleeWeapon
-    armorPenetration: 0.3
+    armorPenetration: 0.35
     wideAnimationRotation: -125
     damage:
       types:
@@ -41,7 +39,11 @@
       path: /Audio/Weapons/bladeslice.ogg
   - type: Item
     size: Normal
-    sprite: _Goobstation/Heretic/Blades/eldritch_blade-inhands.rsi
+    sprite: _Goobstation/Heretic/Blades/eldritch_blade-inhand.rsi
+  - type: RandomTeleport
+    radius:
+      min: 10
+      max: 100
   - type: Scalpel
     speed: 1.5
   - type: BoneSaw
@@ -50,19 +52,6 @@
     tags:
     - HereticItem
     - HereticBlade
-
-- type: entity
-  id: BaseRandomTeleportBlade
-  abstract: true
-  components:
-  - type: RandomTeleport
-    radius:
-      min: 10
-      max: 100
-
-- type: entity
-  parent: [ HereticBladeBaseNoTeleport, BaseRandomTeleportBlade ]
-  id: HereticBladeBase
 
 - type: entity
   parent: HereticBladeBase
@@ -78,6 +67,11 @@
     state: icon
   - type: Item
     sprite: _Goobstation/Heretic/Blades/blade_ash-inhand.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Heat: 10
+        Slash: 10
   - type: Cautery
     speed: 1.5
 
@@ -119,13 +113,12 @@
           False: { state: icon }
           True: { state: infused }
 
-# Ghoul blade (cannot teleport)
 - type: entity
-  parent: HereticBladeBaseNoTeleport
-  id: HereticBladeFleshGhoul
-  name: ghoul blade
+  parent: HereticBladeBase
+  id: HereticBladeFlesh
+  name: bloody blade
   description: A crescent blade born from a fleshwarped creature. Keenly aware, it seeks to spread to others the suffering it has endured from its dreadful origins.
-  suffix: Flesh ghoul
+  suffix: Flesh
   components:
   - type: HereticBlade
     path: Flesh
@@ -134,12 +127,6 @@
     state: icon
   - type: Item
     sprite: _Goobstation/Heretic/Blades/blade_flesh-inhand.rsi
-
-- type: entity
-  parent: [HereticBladeFleshGhoul, BaseRandomTeleportBlade]
-  id: HereticBladeFlesh
-  name: bloody blade
-  suffix: Flesh
 
 - type: entity
   parent: HereticBladeBase
@@ -185,3 +172,8 @@
     state: icon
   - type: Item
     sprite: _Goobstation/Heretic/Blades/blade_void-inhand.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Cold: 10
+        Slash: 10

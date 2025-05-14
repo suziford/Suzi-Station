@@ -571,12 +571,7 @@ public enum LogType
     AntagSelection = 99,
 
     /// <summary>
-    /// Logs related to botany, such as planting and harvesting crops
-    /// </summary>
-    Botany = 100,
-
-    /// <summary>
     /// GameDirector related game interactions.
     /// </summary>
-    GameDirector = 101, // Goobstation
+    GameDirector = 100, // Goobstation
 }

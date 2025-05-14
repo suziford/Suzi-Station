@@ -60,7 +60,6 @@
     - ShuttleBoards
     - BluespaceTheory
     - ScienceClothing
-    - UpgradeKits
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityBoards # TF2 reference, go build fucking turrets

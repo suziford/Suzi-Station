@@ -63,7 +63,7 @@ namespace Content.Server.GameTicking
                 if (args.NewStatus != SessionStatus.Disconnected)
                 {
                     mind.Session = session;
-                    _pvsOverride.AddSessionOverride(mindId.Value, session);
+                    _pvsOverride.AddSessionOverride(GetNetEntity(mindId.Value), session);
                 }
 
                 DebugTools.Assert(mind.Session == session);
@@ -75,7 +75,6 @@ namespace Content.Server.GameTicking
             {
                 case SessionStatus.Connected:
                 {
-                    _userDb.ClientConnected(session); // Surely moving this here won't break anything? :clueless:
                     AddPlayerToDb(args.Session.UserId.UserId);
 
                     // Always make sure the client has player data.
@@ -112,6 +111,8 @@ namespace Content.Server.GameTicking
 
                 case SessionStatus.InGame:
                 {
+                    _userDb.ClientConnected(session);
+
                     if (mind == null)
                     {
                         if (LobbyEnabled)

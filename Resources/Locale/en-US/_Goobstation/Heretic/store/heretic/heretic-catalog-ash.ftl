@@ -28,7 +28,7 @@ knowledge-path-ash-s1-desc =
     The City Guard know their watch. If you ask them at night, they may tell you about the ashy lantern.
 
     Opens up the Path of Ash to you.
-    Allows you to transmute a match and a knife into an Ashen Blade. Limit of two at a time.
+    Allows you to transmute a match and a knife into an Ashen Blade.
 
 knowledge-path-ash-s2-name = Grasp of Ash
 knowledge-path-ash-s2-desc =

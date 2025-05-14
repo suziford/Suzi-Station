@@ -40,6 +40,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Client.Chat.UI;
 using Content.Client.LateJoin;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.ContentPack;
@@ -54,6 +55,7 @@ public sealed class UiControlTest
     // You should not be adding to this.
     private Type[] _ignored = new Type[]
     {
+        typeof(EmotesMenu),
         typeof(LateJoinGui),
     };
 

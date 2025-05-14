@@ -5,14 +5,12 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-- type: localizedDataset
-  id: NamesGman
+- type: dataset
+  id: names_gman
   values:
-    prefix: names-gman-dataset-
-    count: 1
+  - Джи-мэн
 
-- type: localizedDataset
-  id: NamesConquest
+- type: dataset
+  id: names_conquest
   values:
-    prefix: names-conquest-dataset-
-    count: 1
+  - Завоеватель

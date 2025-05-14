@@ -74,8 +74,6 @@
     price: 215
   - type: RadiationBlocker
     resistance: 20
-  - type: CosmicCorruptible # DeltaV - Cosmic Cult
-    convertTo: WindowCosmicCult
 
 - type: entity
   id: UraniumReinforcedWindowDirectional

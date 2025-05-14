@@ -3,8 +3,10 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-- type: localizedDataset
-  id: GoobGeneratorsNamesTeslaLast
+- type: dataset
+  id: goob_generators_names_tesla_last
   values:
-    prefix: goob-generators-names-tesla-last-dataset-
-    count: 5
+  - Тесла
+  - Фанат Франциска Юинга
+  - Сверкающий Риззлер
+  - ХочетГулять

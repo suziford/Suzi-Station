@@ -27,7 +27,7 @@ public sealed partial class CriminalRecordsHackerComponent : Component
     /// Dataset of random reasons to use.
     /// </summary>
     [DataField]
-    public ProtoId<LocalizedDatasetPrototype> Reasons = "CriminalRecordsWantedReasonPlaceholders";
+    public ProtoId<DatasetPrototype> Reasons = "CriminalRecordsWantedReasonPlaceholders";
 
     /// <summary>
     /// Announcement made after the console is hacked.

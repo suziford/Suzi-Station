@@ -194,15 +194,6 @@ public abstract partial class SharedStationAiSystem
            (!TryComp(ev.Target, out StationAiWhitelistComponent? whitelistComponent) ||
             !ValidateAi((ev.Actor, aiComp))))
         {
-            // Don't allow the AI to interact with anything that isn't powered.
-            if (!PowerReceiver.IsPowered(ev.Target))
-            {
-                ShowDeviceNotRespondingPopup(ev.Actor);
-                ev.Cancel();
-                return;
-            }
-
-            // Don't allow the AI to interact with anything that it isn't allowed to (ex. AI wire is cut)
             if (whitelistComponent is { Enabled: false })
             {
                 ShowDeviceNotRespondingPopup(ev.Actor);
@@ -227,8 +218,7 @@ public abstract partial class SharedStationAiSystem
     private void OnTargetVerbs(Entity<StationAiWhitelistComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanComplexInteract
-            || !HasComp<StationAiHeldComponent>(args.User)
-            || !args.CanInteract)
+            || !HasComp<StationAiHeldComponent>(args.User))
         {
             return;
         }
@@ -244,6 +234,13 @@ public abstract partial class SharedStationAiSystem
             Text = isOpen ? Loc.GetString("ai-close") : Loc.GetString("ai-open"),
             Act = () =>
             {
+                // no need to show menu if device is not powered.
+                if (!PowerReceiver.IsPowered(ent.Owner))
+                {
+                    ShowDeviceNotRespondingPopup(user);
+                    return;
+                }
+
                 if (isOpen)
                 {
                     _uiSystem.CloseUi(ent.Owner, AiUi.Key, user);

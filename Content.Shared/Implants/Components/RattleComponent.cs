@@ -23,6 +23,6 @@ public sealed partial class RattleComponent : Component
     public LocId CritMessage = "deathrattle-implant-critical-message";
 
     // The message that the implant will send when dead
-    [DataField]
+    [DataField("deathMessage")]
     public LocId DeathMessage = "deathrattle-implant-dead-message";
 }

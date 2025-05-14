@@ -22,7 +22,6 @@ public sealed partial class DropItemsEntityEffect : EntityEffect
 
     public override void Effect(EntityEffectBaseArgs args)
     {
-        var ev = new DropHandItemsEvent();
-        args.EntityManager.EventBus.RaiseLocalEvent(args.TargetEntity, ref ev);
+        args.EntityManager.EventBus.RaiseLocalEvent(args.TargetEntity, new DropHandItemsEvent());
     }
 }

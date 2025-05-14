@@ -41,12 +41,6 @@ public sealed class UseDelayBlockKnockdownSystem : EntitySystem
             return;
         foreach (var coords in args.KnockedDown.Select(knocked => Transform(knocked).Coordinates))
         {
-            if (comp.DoCustom)
-            {
-                Spawn(comp.CustomEffect, coords);
-                return;
-            }
-
             _sparks.DoSparks(coords, playSound: false);
         }
     }

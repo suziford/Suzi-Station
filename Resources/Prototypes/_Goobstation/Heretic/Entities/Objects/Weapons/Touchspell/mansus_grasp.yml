@@ -17,7 +17,6 @@
   components:
   - type: Unremoveable
   - type: Item
-  - type: UnholyItem
   - type: MansusGrasp
     blacklist:
       components:

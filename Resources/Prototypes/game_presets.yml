@@ -226,14 +226,13 @@
   description: traitor-description
   showInVote: false
   rules:
-  - DummyNonAntagChance
-  - Traitor
-  - SubGamemodesRule
-  - BasicStationEventScheduler
-  #- MeteorSwarmScheduler Goobstation - nuh uh
-  - SpaceTrafficControlEventScheduler
-  - BasicRoundstartVariation
-  - LavalandStormScheduler # Lavaland Change
+    - Traitor
+    - SubGamemodesRule
+    - BasicStationEventScheduler
+  #  - MeteorSwarmScheduler Goobstation - nuh uh
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Deathmatch
@@ -259,7 +258,6 @@
     - Nukeops
   #  - SubGamemodesRule #Reserve edit - no thieves on nukeops
     - BasicStationEventScheduler
-    - DummyNonAntagChance
   #  - MeteorSwarmScheduler Goobstation - nuh uh
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
@@ -275,14 +273,13 @@
   description: rev-description
   showInVote: false
   rules:
-  - DummyNonAntagChance
-  - Revolutionary
-  - SubGamemodesRule
-  - BasicStationEventScheduler
+    - Revolutionary
+    - SubGamemodesRule
+    - BasicStationEventScheduler
   #  - MeteorSwarmScheduler Goobstation - nuh uh
-  - SpaceTrafficControlEventScheduler
-  - BasicRoundstartVariation
-  - LavalandStormScheduler # Lavaland Change
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
+    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Zombie

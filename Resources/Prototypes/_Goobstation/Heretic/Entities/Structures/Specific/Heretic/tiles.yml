@@ -165,8 +165,8 @@
   sprite: /Textures/_Goobstation/Heretic/tiles.rsi/plating_rust.png
   baseTurf: Plating
   isSubfloor: true
-  deconstructTools: [ Welding ]
-  deconstructTimeMultiplier: 2.5 # 5 seconds
+  deconstructTools: [ Prying ]
+  deconstructTimeMultiplier: 5
   footstepSounds:
     collection: FootstepPlating
   friction: 0.3

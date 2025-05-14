@@ -36,4 +36,5 @@
       collection: AlienClaw
     damage:
       types:
-        Blunt: 3
+        Holy: 25
+        Slash: 1

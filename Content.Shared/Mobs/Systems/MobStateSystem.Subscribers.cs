@@ -89,7 +89,6 @@
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Damage;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Emoting;
 using Content.Shared.Hands;
@@ -132,7 +131,6 @@ public partial class MobStateSystem
         SubscribeLocalEvent<MobStateComponent, TryingToSleepEvent>(OnSleepAttempt);
         SubscribeLocalEvent<MobStateComponent, CombatModeShouldHandInteractEvent>(OnCombatModeShouldHandInteract);
         SubscribeLocalEvent<MobStateComponent, AttemptPacifiedAttackEvent>(OnAttemptPacifiedAttack);
-        SubscribeLocalEvent<MobStateComponent, DamageModifyEvent>(OnDamageModify);
 
         SubscribeLocalEvent<MobStateComponent, UnbuckleAttemptEvent>(OnUnbuckleAttempt);
     }
@@ -186,7 +184,6 @@ public partial class MobStateSystem
             return;
 
         _blocker.UpdateCanMove(target); //update movement anytime a state changes
-        var ev = new DropHandItemsEvent(); // Goobstation
         switch (state)
         {
             case MobState.Alive:
@@ -195,13 +192,13 @@ public partial class MobStateSystem
                 break;
             case MobState.Critical:
                 _standing.Down(target);
-                RaiseLocalEvent(target, ref ev); // Goobstation
+                RaiseLocalEvent(target, new DropHandItemsEvent()); // Goobstation
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Critical);
                 break;
             case MobState.Dead:
                 EnsureComp<CollisionWakeComponent>(target);
                 _standing.Down(target);
-                RaiseLocalEvent(target, ref ev); // Goobstation
+                RaiseLocalEvent(target, new DropHandItemsEvent()); // Goobstation
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Dead);
                 break;
             case MobState.Invalid:
@@ -276,11 +273,6 @@ public partial class MobStateSystem
     private void OnAttemptPacifiedAttack(Entity<MobStateComponent> ent, ref AttemptPacifiedAttackEvent args)
     {
         args.Cancelled = true;
-    }
-
-    private void OnDamageModify(Entity<MobStateComponent> ent, ref DamageModifyEvent args)
-    {
-        args.Damage *= _damageable.UniversalMobDamageModifier;
     }
 
     #endregion

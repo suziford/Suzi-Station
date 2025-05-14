@@ -84,7 +84,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Roles;
 
-[Prototype]
+[Prototype("department")]
 public sealed partial class DepartmentPrototype : IPrototype
 {
     [IdDataField]

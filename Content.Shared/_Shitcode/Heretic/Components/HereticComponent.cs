@@ -20,60 +20,48 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Heretic;
 
-// TODO: Move all of this to mind components, heretics should be safely polymorphable
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class HereticComponent : Component
 {
-    [DataField]
-    public List<ProtoId<HereticKnowledgePrototype>> BaseKnowledge = new()
+    #region Prototypes
+
+    [DataField] public List<ProtoId<HereticKnowledgePrototype>> BaseKnowledge = new()
     {
         "BreakOfDawn",
         "HeartbeatOfMansus",
         "AmberFocus",
         "LivingHeart",
         "CodexCicatrix",
-        "CloakOfShadow",
-        "Reminiscence",
-        "FeastOfOwls",
     };
 
-    [DataField, AutoNetworkedField]
-    public List<ProtoId<HereticRitualPrototype>> KnownRituals = new();
+    #endregion
 
-    [DataField]
-    public ProtoId<HereticRitualPrototype>? ChosenRitual;
+    [DataField, AutoNetworkedField] public List<ProtoId<HereticRitualPrototype>> KnownRituals = new();
+    [DataField] public ProtoId<HereticRitualPrototype>? ChosenRitual;
 
     /// <summary>
     ///     Contains the list of targets that are eligible for sacrifice.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public List<SacrificeTargetData> SacrificeTargets = new();
+    [DataField, AutoNetworkedField] public List<SacrificeTargetData> SacrificeTargets = new();
 
     /// <summary>
     ///     How much targets can a heretic have?
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public int MaxTargets = 6;
+    [DataField, AutoNetworkedField] public int MaxTargets = 6;
 
     // hardcoded paths because i hate it
     // "Ash", "Lock", "Flesh", "Void", "Blade", "Rust"
     /// <summary>
     ///     Indicates a path the heretic is on.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public string? CurrentPath;
+    [DataField, AutoNetworkedField] public string? CurrentPath = null;
 
     /// <summary>
     ///     Indicates a stage of a path the heretic is on. 0 is no path, 10 is ascension
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public int PathStage;
+    [DataField, AutoNetworkedField] public int PathStage = 0;
 
-    [DataField, AutoNetworkedField]
-    public bool Ascended;
-
-    [DataField, AutoNetworkedField]
-    public bool CanAscend = true;
+    [DataField, AutoNetworkedField] public bool Ascended = false;
 
     [DataField]
     public ProtoId<DatasetPrototype> KnowledgeDataset = "EligibleTags";
@@ -87,17 +75,15 @@ public sealed partial class HereticComponent : Component
     /// <summary>
     ///     Used to prevent double casting mansus grasp.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public EntityUid MansusGrasp = EntityUid.Invalid;
+    [ViewVariables(VVAccess.ReadOnly)] public EntityUid MansusGrasp = EntityUid.Invalid;
 
-    [DataField]
-    public List<EntityUid> OurBlades = new();
+    /// <summary>
+    ///     Indicates if a heretic is able to cast advanced spells.
+    ///     Requires wearing focus, codex cicatrix, hood or anything else that allows him to do so.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)] public bool CanCastSpells = false;
 
-    public int MaxBlades => CurrentPath switch
-    {
-        "Blade" => 4,
-        _ => 2,
-    };
+    [ViewVariables(VVAccess.ReadWrite)] public bool CanShootGuns = true;
 }
 
 [DataDefinition, Serializable, NetSerializable]

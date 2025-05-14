@@ -22,7 +22,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Shared.VendingMachines
 {
-    [Serializable, NetSerializable, Prototype]
+    [Serializable, NetSerializable, Prototype("vendingMachineInventory")]
     public sealed partial class VendingMachineInventoryPrototype : IPrototype
     {
         [ViewVariables]

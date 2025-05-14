@@ -3,14 +3,28 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-- type: localizedDataset
+- type: dataset
   id: TiderNamesFirst
   values:
-    prefix: names-tider-first-
-    count: 8
+  - Серый
+  - Техтуннельный
+  - Робастный
+  - Крадущийся
+  - Туннельный
+  - Джон
+  - Изолированный
+  - Избитый
 
-- type: localizedDataset
+- type: dataset
   id: TiderNamesLast
   values:
-    prefix: names-tider-last-
-    count: 10
+  - Тайд
+  - Обходчик
+  - Король
+  - Тулбокс
+  - Взломщик
+  - Похититель
+  - Ключ
+  - Монтировка
+  - Говнюк
+  - Пояс

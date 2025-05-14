@@ -43,9 +43,8 @@
       - type: RandomMetadata
       - type: CanEnchant
         nameSegments:
-        - WizardFirst
-        - WizardLast
-        nameFormat: name-format-standard
+        - wizard_first
+        - wizard_last
       - type: NpcFactionMember
         factions:
         - Wizard
@@ -94,9 +93,8 @@
       - type: RandomMetadata
       - type: CanEnchant
         nameSegments:
-        - WizardFirst
-        - WizardLast
-        nameFormat: name-format-standard
+        - wizard_first
+        - wizard_last
       - type: NpcFactionMember
         factions:
         - Wizard

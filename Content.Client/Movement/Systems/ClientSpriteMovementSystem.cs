@@ -6,6 +6,7 @@
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Client.GameObjects;
+using Robust.Shared.Timing;
 
 namespace Content.Client.Movement.Systems;
 
@@ -14,6 +15,8 @@ namespace Content.Client.Movement.Systems;
 /// </summary>
 public sealed class ClientSpriteMovementSystem : SharedSpriteMovementSystem
 {
+    [Dependency] private readonly IGameTiming _timing = default!;
+
     private EntityQuery<SpriteComponent> _spriteQuery;
 
     public override void Initialize()

@@ -32,6 +32,7 @@ using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Content.Server.Chat.Managers;
@@ -41,7 +42,7 @@ namespace Content.Server.Tabletop
     [UsedImplicitly]
     public sealed partial class TabletopSystem : SharedTabletopSystem
     {
-        [Dependency] private readonly SharedMapSystem _map = default!;
+        [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly EyeSystem _eye = default!;
         [Dependency] private readonly ViewSubscriberSystem _viewSubscriberSystem = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;

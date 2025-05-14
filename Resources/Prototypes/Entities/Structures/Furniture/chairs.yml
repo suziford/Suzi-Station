@@ -137,9 +137,6 @@
           collection: MetalBreak
   - type: StaticPrice
     price: 50
-  - type: Tag # goob edit
-    tags:
-    - Chair
 
 #Starts unanchored, cannot be rotated while anchored
 - type: entity
@@ -266,8 +263,6 @@
   components:
   - type: Sprite
     state: chair-greyscale
-  - type: CosmicCorruptible # DeltaV - Cosmic Cult
-    convertTo: CosmicChair
 
 - type: entity
   name: stool
@@ -302,8 +297,6 @@
   - type: Construction
     graph: Seat
     node: chairBrass
-  - type: CosmicCorruptible # DeltaV - Cosmic Cult
-    convertTo: CosmicChair
 
 - type: entity
   name: white office chair
@@ -338,8 +331,6 @@
   - type: Construction
     graph: Seat
     node: chairComfy
-  - type: CosmicCorruptible # DeltaV - Cosmic Cult
-    convertTo: CosmicChair
 
 - type: entity
   name: pilot seat
@@ -352,8 +343,6 @@
   - type: Construction
     graph: Seat
     node: chairPilotSeat
-  - type: CosmicCorruptible # DeltaV - Cosmic Cult
-    convertTo: CosmicChair
 
 - type: entity
   name: wooden chair
@@ -386,7 +375,6 @@
   - type: Tag
     tags:
     - Wooden
-    - Chair # Goob
   - type: StaticPrice
     price: 75
 

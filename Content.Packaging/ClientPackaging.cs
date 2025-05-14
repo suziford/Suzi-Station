@@ -9,7 +9,6 @@
 
 using System.Diagnostics;
 using System.IO.Compression;
-using Content.ModuleManager;
 using Robust.Packaging;
 using Robust.Packaging.AssetProcessing;
 using Robust.Packaging.AssetProcessing.Passes;
@@ -97,27 +96,23 @@ public static class ClientPackaging
         if (string.IsNullOrEmpty(path))
             path = ".";
 
-        var modules = new List<string> { "Content.Client", "Content.Shared", "Content.Shared.Database", "Content.ModuleManager" };
-        // Goobstation - Modular Packaging
-        modules.AddRange(ModuleDiscovery.DiscoverModules(path)
-            .Where(m => m.Type is not ModuleType.Server)
-            .Select(m => m.Name)
-            .Distinct()
-        );
+        var modules = new List<string> { "Content.Client", "Content.Shared", "Content.Shared.Database" };
 
-        // Basic Directory Scanning
         var directories = Directory.GetDirectories(path, "Content.*");
         foreach (var dir in directories)
         {
             var dirName = Path.GetFileName(dir);
 
-            // Throw out anything that does not end with ".Client" or ".Shared"
-            if (!dirName.EndsWith(".Client") && !dirName.EndsWith(".Shared") || modules.Contains(dirName))
-                continue;
-
-            var projectPath = Path.Combine(dir, $"{dirName}.csproj");
-            if (File.Exists(projectPath))
-                modules.Add(dirName);
+            // Throw in anything that ends with ".Client", ".Shared" or ".Common"
+            if ((dirName.EndsWith(".Client") || dirName.EndsWith(".Shared") || dir.EndsWith(".Common")) &&
+                !modules.Contains(dirName))
+            {
+                var projectPath = Path.Combine(dir, $"{dirName}.csproj");
+                if (File.Exists(projectPath))
+                {
+                    modules.Add(dirName);
+                }
+            }
         }
 
         return modules;

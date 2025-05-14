@@ -16,7 +16,7 @@ namespace Content.Shared.Xenoarchaeology.XenoArtifacts;
 /// <summary>
 /// This is a prototype for...
 /// </summary>
-[Prototype]
+[Prototype("artifactEffect")]
 [DataDefinition]
 public sealed partial class ArtifactEffectPrototype : IPrototype
 {

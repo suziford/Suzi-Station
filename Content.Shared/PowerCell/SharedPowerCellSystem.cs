@@ -40,8 +40,6 @@
 // SPDX-FileCopyrightText: 2024 stellar-novas <stellar_novas@riseup.net>
 // SPDX-FileCopyrightText: 2024 themias <89101928+themias@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Perry Fraser <perryprog@users.noreply.github.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -73,7 +71,7 @@ public abstract class SharedPowerCellSystem : EntitySystem
 
     private void OnMapInit(Entity<PowerCellDrawComponent> ent, ref MapInitEvent args)
     {
-        ent.Comp.NextUpdateTime = Timing.CurTime + ent.Comp.Delay;
+        QueueUpdate((ent, ent.Comp));
     }
 
     private void OnRejuvenate(EntityUid uid, PowerCellSlotComponent component, RejuvenateEvent args)
@@ -118,13 +116,19 @@ public abstract class SharedPowerCellSystem : EntitySystem
         RaiseLocalEvent(uid, new PowerCellChangedEvent(true), false);
     }
 
+    /// <summary>
+    /// Makes the draw logic update in the next tick.
+    /// </summary>
+    public void QueueUpdate(Entity<PowerCellDrawComponent?> ent)
+    {
+        if (Resolve(ent, ref ent.Comp))
+            ent.Comp.NextUpdateTime = Timing.CurTime;
+    }
+
     public void SetDrawEnabled(Entity<PowerCellDrawComponent?> ent, bool enabled)
     {
         if (!Resolve(ent, ref ent.Comp, false) || ent.Comp.Enabled == enabled)
             return;
-
-        if (enabled)
-            ent.Comp.NextUpdateTime = Timing.CurTime;
 
         ent.Comp.Enabled = enabled;
         Dirty(ent, ent.Comp);

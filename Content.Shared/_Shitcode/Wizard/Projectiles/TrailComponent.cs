@@ -57,9 +57,6 @@ public sealed partial class TrailComponent : Component
     [DataField, AutoNetworkedField]
     public EntityUid? RenderedEntity;
 
-    [DataField]
-    public bool NoRenderIfRenderedEntityDeleted = true;
-
     /// <summary>
     /// Whether to use <see cref="RenderedEntity"/> rotation (if it is not null), trail entity rotation,
     /// or particle rotation.

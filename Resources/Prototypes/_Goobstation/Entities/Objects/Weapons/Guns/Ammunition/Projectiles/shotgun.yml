@@ -1,8 +1,6 @@
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Aviu00 <aviu00@protonmail.com>
 # SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 PunishedJoe <PunishedJoeseph@proton.me>
 # SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
@@ -12,7 +10,7 @@
 
 - type: entity
   id: HighCaliberPelletShotgun
-  name: pellet (8 Gauge carpshot)
+  name: pellet (.75 carpshot)
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:
@@ -38,7 +36,7 @@
 
 - type: entity
   id: HighCaliberPelletShotgunIncendiary
-  name: pellet (8 Gauge incendiary)
+  name: pellet (.75 incendiary)
   categories: [ HideSpawnMenu ]
   parent: BaseBulletIncendiary
   components:
@@ -67,7 +65,7 @@
 
 - type: entity
   id: HighCaliberPelletShotgunPractice
-  name: pellet (8 Gauge practice)
+  name: pellet (.75 practice)
   categories: [ HideSpawnMenu ]
   parent: BaseBulletPractice
   components:
@@ -93,7 +91,7 @@
 
 - type: entity
   id: HighCaliberPelletShotgunUranium
-  name: pellet (8 Gauge uranium)
+  name: pellet (.75 uranium)
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:
@@ -120,7 +118,7 @@
 
 - type: entity
   id: PelletShotgunSlugHighCaliber
-  name: pellet (8 Gauge slug)
+  name: pellet (.75 slug)
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:
@@ -134,7 +132,7 @@
 
 - type: entity
   id: BulletSlugEnsnaring
-  name: bullet (8 Gauge caliber ensnaring slug)
+  name: bullet (.75 caliber ensnaring slug)
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
@@ -158,7 +156,7 @@
 
 - type: entity
   id: BulletSlugEMP
-  name: bullet (8 Gauge caliber EMP slug)
+  name: bullet (.75 caliber EMP slug)
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
@@ -185,7 +183,7 @@
 
 - type: entity
   id: BulletSlugFlash
-  name: bullet (8 Gauge caliber flash slug)
+  name: bullet (.75 caliber flash slug)
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
@@ -212,7 +210,7 @@
 
 - type: entity
   id: BulletSlugBeanbagHighCaliber
-  name: beanbag (8 Gauge)
+  name: beanbag (.75)
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:
@@ -225,25 +223,3 @@
         Blunt: 20 # ye-OUCH
   - type: StaminaDamageOnCollide
     damage: 80 # ye-OW
-
-- type: entity
-  id: BulletShotgunHeavySlugSarin
-  name: bullet (8 Gauge Sarin)
-  parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SmokeOnTrigger
-    duration: 5
-    smokePrototype: Smoke
-    solution:
-      reagents:
-      - ReagentId: Sarin
-        Quantity: 20
-    spreadAmount: 1
-  - type: ActiveTimerTrigger
-    timeRemaining: 1
-  - type: DeleteOnTrigger
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 15

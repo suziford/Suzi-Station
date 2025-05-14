@@ -299,11 +299,11 @@
     isFragile: true
     isPriority: true
     contents:
-    - id: ChemistryBottleRobustHarvest
+    - id: RobustHarvestChemistryBottle
       orGroup: Chemical
     - id: WeedSpray
       orGroup: Chemical
-    - id: ChemistryBottleUnstableMutagen
+    - id: UnstableMutagenChemistryBottle
       orGroup: Chemical
 
 - type: entity

@@ -37,7 +37,6 @@
     - prefRoles: [ Changeling ]
       max: 4
       playerRatio: 12
-      jobBlacklist: [ Chaplain ] # GOOBSTATION
       lateJoinAdditional: true
       mindRoles:
       - MindRoleChangeling
@@ -100,8 +99,8 @@
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - NamesSyndicateElite
-        nameFormat: name-format-nukie-commander
+        - nukeops-role-commander
+        - NamesSyndicateElite #Reserve datasets fix
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -117,8 +116,8 @@
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - NamesSyndicateElite
-        nameFormat: name-format-nukie-agent
+        - nukeops-role-agent
+        - NamesSyndicateNormal #Reserve datasets fix
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -135,8 +134,8 @@
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - NamesSyndicateElite
-        nameFormat: name-format-nukie-operator
+        - nukeops-role-operator
+        - NamesSyndicateNormal #Reserve datasets fix
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -189,7 +188,6 @@
     definitions:
     - prefRoles: [ Blob ]
       allowNonHumans: true
-      jobBlacklist: [ Chaplain ] # GOOBSTATION
       blacklist:
         components:
         - AntagImmune
@@ -231,9 +229,8 @@
   # Reserve-HonkOps-MinPlayers-End
   - type: RandomMetadata # this generates the random operation name cuz it's cool.
     nameSegments:
-    - OperationPrefixHonkops
-    - OperationSuffixHonkops
-    nameFormat: name-format-standard
+    - operationPrefixHonkops
+    - operationSuffixHonkops
   - type: NukeopsRule
     localePrefix: "honkops-"
   - type: LoadMapRule
@@ -251,9 +248,8 @@
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - NamesHonkopsPrefix
-        - NamesHonkopsElite
-        nameFormat: name-format-standard
+        - HonkopsNamesPrefix
+        - HonkopsNamesElite
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -269,9 +265,8 @@
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - NamesHonkopsPrefix
-        - NamesHonkopsElite
-        nameFormat: name-format-standard
+        - HonkopsNamesPrefix
+        - HonkopsNamesElite
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -289,9 +284,8 @@
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - NamesHonkopsPrefix
-        - NamesHonkopsElite
-        nameFormat: name-format-standard
+        - HonkopsNamesPrefix
+        - HonkopsNamesElite
       - type: NpcFactionMember
         factions:
         - Syndicate

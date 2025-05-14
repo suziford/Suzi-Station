@@ -28,7 +28,6 @@ using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Utility;
 using System.Linq;
 using Robust.Server.GameObjects;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Payload.EntitySystems;
 
@@ -40,8 +39,6 @@ public sealed class PayloadSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly ISerializationManager _serializationManager = default!;
-
-    private static readonly ProtoId<TagPrototype> PayloadTag = "Payload";
 
     public override void Initialize()
     {
@@ -64,7 +61,7 @@ public sealed class PayloadSystem : EntitySystem
         {
             foreach (var entity in container.ContainedEntities)
             {
-                if (_tagSystem.HasTag(entity, PayloadTag))
+                if (_tagSystem.HasTag(entity, "Payload"))
                     yield return entity;
             }
         }
@@ -91,7 +88,7 @@ public sealed class PayloadSystem : EntitySystem
             return;
 
         // Ensure we don't enter a trigger-loop
-        DebugTools.Assert(!_tagSystem.HasTag(uid, PayloadTag));
+        DebugTools.Assert(!_tagSystem.HasTag(uid, "Payload"));
 
         RaiseLocalEvent(parent, args, false);
     }

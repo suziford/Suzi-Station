@@ -6,7 +6,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Goobstation.Heretic.Components;
@@ -15,12 +15,12 @@ namespace Content.Shared._Goobstation.Heretic.Components;
 public sealed partial class EntropicPlumeComponent : Component
 {
     [DataField]
-    public float Duration = 7.5f;
+    public float Duration = 10f;
 
     [DataField]
     public Dictionary<string, FixedPoint2> Reagents = new()
     {
-        { "Mold", 7.5f },
+        { "Mold", 10f },
     };
 
     [DataField]

@@ -20,12 +20,7 @@ public sealed class GasPressurePumpSystem : SharedGasPressurePumpSystem
 
     private void OnPumpUpdate(Entity<GasPressurePumpComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        UpdateUi(ent);
-    }
-
-    protected override void UpdateUi(Entity<GasPressurePumpComponent> ent)
-    {
-        if (UserInterfaceSystem.TryGetOpenUi(ent.Owner, GasPressurePumpUiKey.Key, out var bui))
+        if (UserInterfaceSystem.TryGetOpenUi<GasPressurePumpBoundUserInterface>(ent.Owner, GasPressurePumpUiKey.Key, out var bui))
         {
             bui.Update();
         }

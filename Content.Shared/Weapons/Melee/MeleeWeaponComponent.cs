@@ -29,7 +29,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Shared.Damage;
-using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -40,7 +40,7 @@ namespace Content.Shared.Weapons.Melee;
 /// <summary>
 /// When given to a mob lets them do unarmed attacks, or when given to an item lets someone wield it to do attacks.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class MeleeWeaponComponent : Component
 {
     // TODO: This is becoming bloated as shit.
@@ -48,26 +48,28 @@ public sealed partial class MeleeWeaponComponent : Component
     /// <summary>
     /// Does this entity do a disarm on alt attack.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public bool AltDisarm = true;
 
     /// <summary>
     /// Should the melee weapon's damage stats be examinable.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public bool Hidden;
 
     /// <summary>
     /// Next time this component is allowed to light attack. Heavy attacks are wound up and never have a cooldown.
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
     [AutoPausedField]
     public TimeSpan NextAttack;
 
     /// <summary>
     /// Starts attack cooldown when equipped if true.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public bool ResetOnHandSelected = true;
 
     /*
@@ -79,48 +81,50 @@ public sealed partial class MeleeWeaponComponent : Component
     /// <summary>
     /// How many times we can attack per second.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public float AttackRate = 1f;
 
     /// <summary>
     /// Are we currently holding down the mouse for an attack.
     /// Used so we can't just hold the mouse button and attack constantly.
     /// </summary>
-    [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public bool Attacking = false;
 
     /// <summary>
     /// If true, attacks will be repeated automatically without requiring the mouse button to be lifted.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public bool AutoAttack;
 
     /// <summary>
     /// If true, attacks will bypass armor resistances.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public bool ResistanceBypass = false;
 
     /// <summary>
     /// Base damage for this weapon. Can be modified via heavy damage or other means.
     /// </summary>
-    [DataField(required: true), AutoNetworkedField]
+    [DataField(required: true)]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public DamageSpecifier Damage = default!;
 
-    [DataField, AutoNetworkedField]
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public FixedPoint2 BluntStaminaDamageFactor = FixedPoint2.New(0.5f);
 
     /// <summary>
     /// Multiplies damage by this amount for single-target attacks.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public FixedPoint2 ClickDamageModifier = FixedPoint2.New(1);
 
     // TODO: Temporarily 1.5 until interactionoutline is adjusted to use melee, then probably drop to 1.2
     /// <summary>
     /// Nearest edge range to hit an entity.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public float Range = 1.5f;
 
     // goob edit - stunmeta
@@ -133,10 +137,10 @@ public sealed partial class MeleeWeaponComponent : Component
     /// <summary>
     /// Total width of the angle for wide attacks.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public Angle Angle = Angle.FromDegrees(60);
 
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public EntProtoId Animation = "WeaponArcThrust"; // Goob Edit
 
     [DataField, AutoNetworkedField]
@@ -145,7 +149,7 @@ public sealed partial class MeleeWeaponComponent : Component
     [DataField, AutoNetworkedField]
     public bool FlipAnimation = true; // Goob Edit
 
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public EntProtoId WideAnimation = "WeaponArcSlash";
 
     // WD EDIT START
@@ -168,10 +172,10 @@ public sealed partial class MeleeWeaponComponent : Component
     /// Rotation of the animation.
     /// 0 degrees means the top faces the attacker.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public Angle WideAnimationRotation = Angle.Zero;
 
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public bool SwingLeft;
 
 
@@ -222,7 +226,7 @@ public sealed partial class MeleeWeaponComponent : Component
     ///     Shitmed Change: Part damage is multiplied by this amount for heavy swings
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float HeavyPartDamageMultiplier = 0.75f;
+    public float HeavyPartDamageMultiplier = 0.5f;
 
     // Shitmed Change End
 

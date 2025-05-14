@@ -18,7 +18,7 @@ using Content.Shared.StatusEffect;
 
 namespace Content.Server._Goobstation.Heretic.EntitySystems.PathSpecific;
 
-public sealed class VoidCurseSystem : SharedVoidCurseSystem
+public sealed partial class VoidCurseSystem : SharedVoidCurseSystem
 {
     [Dependency] private readonly TemperatureSystem _temp = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
@@ -28,13 +28,11 @@ public sealed class VoidCurseSystem : SharedVoidCurseSystem
         base.Update(frameTime);
 
         var eqe = EntityQueryEnumerator<VoidCurseComponent>();
+        var deletionqueue = new List<EntityUid>();
         while (eqe.MoveNext(out var uid, out var comp))
         {
             if (comp.Lifetime <= 0)
-            {
-                RemCompDeferred(uid, comp);
-                continue;
-            }
+                deletionqueue.Add(uid);
 
             comp.Timer -= frameTime;
             if (comp.Timer > 0)
@@ -45,6 +43,9 @@ public sealed class VoidCurseSystem : SharedVoidCurseSystem
 
             Cycle((uid, comp));
         }
+
+        foreach (var q in deletionqueue)
+            RemComp<VoidCurseComponent>(q);
     }
 
     protected override void Cycle(Entity<VoidCurseComponent> ent)
@@ -52,7 +53,7 @@ public sealed class VoidCurseSystem : SharedVoidCurseSystem
         if (TryComp<TemperatureComponent>(ent, out var temp))
         {
             // temperaturesystem is not idiotproof :(
-            var t = temp.CurrentTemperature - 2f * ent.Comp.Stacks;
+            var t = temp.CurrentTemperature - (2f * ent.Comp.Stacks);
             _temp.ForceChangeTemperature(ent, Math.Clamp(t, Atmospherics.TCMB, Atmospherics.Tmax), temp);
         }
 

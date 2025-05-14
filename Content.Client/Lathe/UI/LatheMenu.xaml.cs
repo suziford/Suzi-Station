@@ -147,8 +147,6 @@ public sealed partial class LatheMenu : DefaultWindow
             {
                 ServerListButton.Visible = false;
             }
-
-            AmountLineEdit.SetText(latheComponent.DefaultProductionAmount.ToString());
         }
 
         // Begin DeltaV Additions: Mining points UI
@@ -216,6 +214,16 @@ public sealed partial class LatheMenu : DefaultWindow
             warning = Loc.GetString("lathe-menu-mining-points-no-connection-warning");
 
         return silo != null;
+    }
+
+    protected override void Opened()
+    {
+        base.Opened();
+
+        if (_entityManager.TryGetComponent<LatheComponent>(Entity, out var latheComp))
+        {
+            AmountLineEdit.SetText(latheComp.DefaultProductionAmount.ToString());
+        }
     }
 
     /// <summary>

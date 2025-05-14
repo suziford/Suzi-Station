@@ -75,8 +75,6 @@
   - Zombie
   - Xeno
   - AllHostile
-  - Wizard
-  - Dragon
   - Blob # Goobstation - Blob
 
 - type: npcFaction
@@ -89,7 +87,6 @@
   - Zombie
   - Revolutionary
   - AllHostile
-  - Dragon
   - Heretic # goob edit - heretics
   - Blob # Goobstation - Blob
   - PirateFaction # goob - pirates
@@ -127,7 +124,6 @@
   - Zombie
   - Revolutionary
   - AllHostile
-  - Dragon
   - Heretic # goob edit - heretics
   - Blob # Goobstation - Blob
   - PirateFaction # goob - pirates
@@ -146,7 +142,6 @@
   - PetsNT
   - Revolutionary
   - AllHostile
-  - Dragon
   - Changeling # goob edit - changelings
   - Heretic # goob edit - heretics
   - Blob # Goobstation - Blob

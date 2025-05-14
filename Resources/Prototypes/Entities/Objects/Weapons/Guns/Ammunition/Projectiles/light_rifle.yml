@@ -25,8 +25,6 @@
 # SPDX-FileCopyrightText: 2024 plykiya <plykiya@protonmail.com>
 # SPDX-FileCopyrightText: 2024 shibe <95730644+shibechef@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-# SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -39,8 +37,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 19
-    armorPenetration: 0.4 # Goobstation
+        Piercing: 24
 
 - type: entity
   id: BulletLightRiflePractice
@@ -74,5 +71,5 @@
   - type: Projectile
     damage:
       types:
-        Radiation: 10
-        Piercing: 11
+        Radiation: 11
+        Piercing: 13

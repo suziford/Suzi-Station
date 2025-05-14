@@ -1,13 +1,10 @@
 // SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
-// SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
 // SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
 using Content.Goobstation.Shared.Traits.Components;
 using Content.Shared.Examine;
-using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Hands;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Movement.Systems;
@@ -37,7 +34,9 @@ public sealed partial class MovementImpairedSystem : EntitySystem
     private void OnExamined(Entity<MovementImpairedComponent> comp, ref ExaminedEvent args)
     {
         if (args.IsInDetailsRange && !_net.IsClient)
+        {
             args.PushMarkup(Loc.GetString("movement-impaired-trait-examined", ("target", Identity.Entity(comp, EntityManager))));
+        }
     }
 
     private void OnItemEquip(EntityUid uid, MovementImpairedComponent comp, DidEquipHandEvent args)
@@ -47,7 +46,7 @@ public sealed partial class MovementImpairedSystem : EntitySystem
 
         if (correctionComp.SpeedCorrection == 0)
         {
-            comp.CorrectionCounter++;
+            comp.CorrectionCounter++; // Track how many "full correction" items are equipped
             if (comp.CorrectionCounter == 1)
             {
                 comp.BaseImpairedSpeedMultiplier = comp.ImpairedSpeedMultiplier;
@@ -56,41 +55,36 @@ public sealed partial class MovementImpairedSystem : EntitySystem
         }
         else
         {
-            var baseMultiplier = comp.ImpairedSpeedMultiplier + correctionComp.SpeedCorrection;
-            if (baseMultiplier > 1)
-                comp.SpeedCorrectionOverflow[args.Equipped] = baseMultiplier - 1;
-
-            var totalOverflow = comp.SpeedCorrectionOverflow.Values.Aggregate((FixedPoint2)0, (a,b) => a + b);
-            comp.ImpairedSpeedMultiplier = Math.Clamp((baseMultiplier + totalOverflow).Float(), 0, 1);
+            var multiplier = Math.Clamp(comp.ImpairedSpeedMultiplier + correctionComp.SpeedCorrection, 0f, 1f);
+            comp.ImpairedSpeedMultiplier = multiplier;
         }
 
         _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
     }
 
-    private void OnItemUnequip(EntityUid uid, MovementImpairedComponent comp, ref DidUnequipHandEvent args)
+    private void OnItemUnequip(EntityUid uid, MovementImpairedComponent comp, DidUnequipHandEvent args)
     {
         if (!TryComp<MovementImpairedCorrectionComponent>(args.Unequipped, out var correctionComp))
             return;
 
         if (correctionComp.SpeedCorrection == 0)
         {
-            comp.CorrectionCounter--;
-
-            // Reset speed when all full corrections are removed
-            if (comp.CorrectionCounter == 0)
+            // Only reset speed if this is the last full correction being dropped.
+            if (comp.CorrectionCounter == 1)
                 comp.ImpairedSpeedMultiplier = comp.BaseImpairedSpeedMultiplier;
 
-            // Ensure CorrectionCounter doesn't go negative
-            comp.CorrectionCounter = Math.Max(comp.CorrectionCounter, 0);
+            // Decrement counter
+            comp.CorrectionCounter--;
         }
         else
         {
-            comp.SpeedCorrectionOverflow.TryGetValue(args.Unequipped, out var overflow);
+            var multiplier = Math.Clamp(comp.ImpairedSpeedMultiplier - correctionComp.SpeedCorrection, 0f, 1f);
+            comp.ImpairedSpeedMultiplier = multiplier;
 
-            var baseMultiplier = comp.ImpairedSpeedMultiplier - correctionComp.SpeedCorrection + overflow;
-            comp.ImpairedSpeedMultiplier = Math.Clamp(baseMultiplier.Float(), 0f, 1f);
-
-            comp.SpeedCorrectionOverflow.Remove(args.Unequipped);
+            // If you somehow manage to reach zero speed, reset to the base speed.
+            if (comp.ImpairedSpeedMultiplier == 0)
+                comp.ImpairedSpeedMultiplier = comp.BaseImpairedSpeedMultiplier;
+            // This lags a bit, but you usually shouldn't see this unless something is borked.
         }
 
         _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
@@ -98,7 +92,7 @@ public sealed partial class MovementImpairedSystem : EntitySystem
 
     private void OnModifierRefresh(EntityUid uid, MovementImpairedComponent comp, RefreshMovementSpeedModifiersEvent args)
     {
-        args.ModifySpeed(comp.ImpairedSpeedMultiplier.Float());
+        args.ModifySpeed(comp.ImpairedSpeedMultiplier);
         Dirty(uid, comp);
     }
 }

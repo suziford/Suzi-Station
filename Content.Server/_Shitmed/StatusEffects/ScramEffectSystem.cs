@@ -6,7 +6,6 @@
 
 using Content.Shared._Shitmed.StatusEffects;
 using Content.Server.Teleportation;
-using Content.Shared.Teleportation;
 
 namespace Content.Server._Shitmed.StatusEffects;
 

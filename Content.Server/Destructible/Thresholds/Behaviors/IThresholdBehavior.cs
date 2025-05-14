@@ -11,14 +11,10 @@
 //
 // SPDX-License-Identifier: MIT
 
-using Content.Shared.Database;
-
 namespace Content.Server.Destructible.Thresholds.Behaviors
 {
     public interface IThresholdBehavior
     {
-        public LogImpact Impact => LogImpact.Low;
-
         /// <summary>
         ///     Executes this behavior.
         /// </summary>

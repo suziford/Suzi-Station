@@ -28,7 +28,6 @@
     nameSegments:
       - AbductorScientistPrefix
       - AbductorNames
-    nameFormat: name-format-standard
   - type: Tag
     tags:
       - Abductor

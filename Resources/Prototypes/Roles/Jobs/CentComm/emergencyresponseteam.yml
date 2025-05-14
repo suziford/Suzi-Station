@@ -127,9 +127,6 @@
   # Goobstation
   - NanotrasenRepresentative
   - BlueshieldOfficer
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: ERTLeaderGear
@@ -204,8 +201,6 @@
     components:
     - type: BibleUser #Lets them heal with bibles
     - type: CanEnchant #GoobStation
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: ERTChaplainGear
@@ -230,12 +225,12 @@
     - DrinkWaterMelonJuiceJug
     - Lantern
     - Lantern
-    - ChaplainUndeterminedBible
+    - Bible
     - CrowbarRed
     - FoodBakedBunHotX
     - FoodBakedBunHotX
     - FoodBakedBunHotX
-    - Nullrod
+    - FoodBakedBunHotX
     - Lighter
     - ExecutiveIDCard # Goobstation - Executive Access!
 
@@ -262,7 +257,7 @@
     - DrinkWaterMelonJuiceJug
     - Lantern
     - Lantern
-    - ChaplainUndeterminedBible
+    - Bible
     - CrowbarRed
     - FoodBakedBunHotX
     - FoodBakedBunHotX
@@ -289,9 +284,6 @@
   # Goobstation
   - NanotrasenRepresentative
   - BlueshieldOfficer
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: ERTEngineerGear
@@ -369,9 +361,6 @@
   # Goobstation
   - NanotrasenRepresentative
   - BlueshieldOfficer
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: ERTSecurityGear
@@ -468,9 +457,6 @@
   # Goobstation
   - NanotrasenRepresentative
   - BlueshieldOfficer
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: ERTMedicalGear
@@ -493,7 +479,7 @@
     - CentCommHypo
     - MedkitAdvancedFilled
     - CrowbarRed
-    - ChemistryBottleOmnizine
+    - OmnizineChemistryBottle
     - JugOxandrolone
     - JugSalicylicAcid
     - ParamedHypo
@@ -544,9 +530,6 @@
   # Goobstation
   - NanotrasenRepresentative
   - BlueshieldOfficer
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: ERTJanitorGear

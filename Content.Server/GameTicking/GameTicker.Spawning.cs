@@ -186,9 +186,6 @@ namespace Content.Server.GameTicking
                 if (job == null)
                 {
                     var playerSession = _playerManager.GetSessionById(netUser);
-                    var evNoJobs = new NoJobsAvailableSpawningEvent(playerSession); // Used by gamerules to wipe their antag slot, if they got one
-                    RaiseLocalEvent(evNoJobs);
-
                     _chatManager.DispatchServerMessage(playerSession, Loc.GetString("job-not-available-wait-in-lobby"));
                 }
                 else
@@ -315,9 +312,6 @@ namespace Content.Server.GameTicking
                 {
                     JoinAsObserver(player);
                 }
-
-                var evNoJobs = new NoJobsAvailableSpawningEvent(player); // Used by gamerules to wipe their antag slot, if they got one
-                RaiseLocalEvent(evNoJobs);
 
                 _chatManager.DispatchServerMessage(player,
                     Loc.GetString("game-ticker-player-no-jobs-available-when-joining"));
@@ -596,7 +590,7 @@ namespace Content.Server.GameTicking
                 // Ideally engine would just spawn them on grid directly I guess? Right now grid traversal is handling it during
                 // update which means we need to add a hack somewhere around it.
                 var spawn = _robustRandom.Pick(_possiblePositions);
-                var toMap = _transform.ToMapCoordinates(spawn);
+                var toMap = spawn.ToMap(EntityManager, _transform);
 
                 if (_mapManager.TryFindGridAt(toMap, out var gridUid, out _))
                 {

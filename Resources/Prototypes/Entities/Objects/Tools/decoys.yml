@@ -37,7 +37,6 @@
     nameSegments:
     - NamesSyndicatePrefix #Reserve datasets fix
     - NamesSyndicateNormal
-    nameFormat: name-format-nukie-generic
   - type: Damageable
     damageContainer: Inorganic
   - type: ToggleableLightVisuals

@@ -70,8 +70,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Robust.Shared.Audio;
-using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.Sound.Components;
 
@@ -81,9 +79,10 @@ namespace Content.Shared.Sound.Components;
 /// </summary>
 public abstract partial class BaseEmitSoundComponent : Component
 {
-    /// <summary>
-    /// The <see cref="SoundSpecifier"/> to play.
-    /// </summary>
+    public static readonly AudioParams DefaultParams = AudioParams.Default.WithVolume(-2f);
+
+    [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
     [DataField(required: true)]
     public SoundSpecifier? Sound;
 
@@ -93,16 +92,4 @@ public abstract partial class BaseEmitSoundComponent : Component
     /// </summary>
     [DataField]
     public bool Positional;
-}
-
-/// <summary>
-/// Represents the state of <see cref="BaseEmitSoundComponent"/>.
-/// </summary>
-/// <remarks>This is obviously very cursed, but since the BaseEmitSoundComponent is abstract, we cannot network it.
-/// AutoGenerateComponentState attribute won't work here, and since everything revolves around inheritance for some fucking reason,
-/// there's no better way of doing this.</remarks>
-[Serializable, NetSerializable]
-public struct EmitSoundComponentState(SoundSpecifier? sound) : IComponentState
-{
-    public SoundSpecifier? Sound { get; } = sound;
 }

@@ -139,6 +139,12 @@
   name: admin observer
   categories: [ HideSpawnMenu ]
   components:
+  - type: Eye
+    visMask:
+    - Ghost
+    - Normal
+    - Ethereal
+    - AGhost # WD EDIT
   - type: ContentEye
     maxZoom: 8.916104, 8.916104
   - type: Tag
@@ -148,9 +154,6 @@
     - BypassInteractionRangeChecks
     - BypassDropChecks
     - NoConsoleSound
-    - SilentStorageUser
-    - PreventAccessLogging
-    - AllowBiomeLoading
   - type: Input
     context: "aghost"
   - type: Ghost
@@ -242,13 +245,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 35
   # Reserve-End
-  - type: Eye
-    visMask:
-      - Ghost
-      - Normal
-      - CosmicCultMonument # DeltaV - Cosmic Cult
-      - Abductor
-      - AGhost # WD EDIT
 
 - type: entity
   id: ActionAGhostShowSolar

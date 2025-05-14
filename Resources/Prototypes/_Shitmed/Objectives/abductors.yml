@@ -14,7 +14,8 @@
     issuer: objective-issuer-abductors
   - type: RoleRequirement
     roles:
-    - Abductor
+      mindRoles:
+      - Abductor
 
 - type: entity
   parent: BaseAbductorObjective
@@ -42,7 +43,8 @@
   - type: RoleplayObjective
   - type: RoleRequirement
     roles:
-    - AbductorVictim
+      mindRoles:
+      - AbductorVictim
 
 # Harmless Objectives
 
