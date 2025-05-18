@@ -1,4 +1,5 @@
 Name: Reservelog
+Order: -1
 Entries:
 - author: Svarshik
   changes:
@@ -6,3 +7,9 @@ Entries:
       message: ERP
   id: 3
   time: '2025-05-15T12:54:44.0000000+00:00'
+- author: lexaSvarshik
+  changes:
+    - type: Add
+      message: Новые инструменты для мапперов.
+  id: 4
+  time: '2025-05-18T21:58:00.0000000+00:00'
