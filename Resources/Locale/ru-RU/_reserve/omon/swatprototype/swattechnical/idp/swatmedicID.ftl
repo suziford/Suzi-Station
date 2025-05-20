@@ -1,3 +1,3 @@
-ent-SwatMedicIDCard = ID Карта ОКГ
+ent-SwatMedicIDCard = { ent-SwatStandartIDCard }
     .suffix = Резерв
     .desc = { ent-CentcomIDCard.desc }

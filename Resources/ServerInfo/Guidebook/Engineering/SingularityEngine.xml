@@ -1,5 +1,12 @@
+<!--
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 <Document>
-  # Генератор на основе Сингулярности
+  # Singularity Engine
   The Singularity Engine is a powerful generator that uses a contained singularity to produce energy for the station.
 
   <Box>

@@ -1,5 +1,6 @@
 // SPDX-FileCopyrightText: 2025 Kill_Me_I_Noobs <118206719+Vonsant@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Svarshik <96281939+lexaSvarshik@users.noreply.github.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -26,14 +27,27 @@ public sealed class AdditionalMapFix : EntitySystem
     {
         Timer.Spawn(TimeSpan.FromSeconds(5), () =>
         {
-            var query = AllEntityQuery<GridAtmosphereComponent, TransformComponent>();
-
-            while (query.MoveNext(out var dummyatmos, out var comp))
+            try
             {
-                var gridUid = comp.GridUid;
-                _host.AppendCommand($"fixgridatmos {gridUid}");
-                Logger.Error($"executed command on {gridUid}");
+                var query = AllEntityQuery<GridAtmosphereComponent, TransformComponent>();
+
+                while (query.MoveNext(out var dummyatmos, out var comp))
+                {
+                    if (!comp.GridUid.HasValue || !Exists(comp.GridUid))
+                   {
+                       Logger.Warning($"Skipping invalid grid entity {comp.GridUid}");
+                       continue;
+                  }
+
+                    var gridUid = comp.GridUid.Value;
+                    _host.ExecuteCommand($"fixgridatmos {gridUid}");
+                    Logger.Debug($"Fixed atmos for grid {gridUid}"); // Изменено на Debug, чтобы не засорять логи
+                }
             }
-        });
+            catch (Exception ex)
+            {
+                Logger.Error($"Failed to fix grid atmos: {ex}");
+            }
+        }, CancellationToken.None); // Добавлен токен отмены
     }
 }

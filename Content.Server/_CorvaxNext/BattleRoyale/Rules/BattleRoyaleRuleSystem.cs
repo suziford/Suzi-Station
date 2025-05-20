@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Svarshik <96281939+lexaSvarshik@users.noreply.github.com>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Linq;
 using Content.Server.Administration.Commands;
 using Content.Server.Administration.Logs;
@@ -117,6 +122,11 @@ namespace Content.Server._CorvaxNext.BattleRoyale.Rules
 
             Timer.Spawn(TimeSpan.FromMinutes(2), () =>
             {
+                //Reserve edit begin
+                if (!Exists(uid) || !TryComp<GameRuleComponent>(uid, out var gameRule))
+                    return;
+                //Reserve edit end
+
                 if (!GameTicker.IsGameRuleActive(uid, gameRule))
                     return;
 

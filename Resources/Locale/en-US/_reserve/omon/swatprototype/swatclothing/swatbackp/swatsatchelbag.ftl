@@ -1,3 +1,3 @@
-ent-ClothingBackpackSwatSatchel = сумка спецназа
-    .desc = Сумка оперативника контрреволюционной группы, используется чтобы переносить боекомплект и личные вещи спецназовца.
-    .suffix = Резерв
+ent-ClothingBackpackSwatSatchel = spetsnaz satchel
+    .desc = A counter-revolutionary operative's bag, used to carry ammunition and personal belongings of the special forces.
+    .suffix = Reserve

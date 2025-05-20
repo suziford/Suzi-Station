@@ -1,173 +1,35 @@
-#БОЕЦ ЭСКАДРОНА
-- type: entity
-  parent: MobHuman
-  id: MobHumanDSBase
-  name: Солдат Эскадрона
-  noSpawn: true
-  components:
-    - type: RandomHumanoidAppearance
-      randomizeName: false
-    - type: Stamina
-      decay: 6
-      cooldown: 2
-      critThreshold: 300
-    - type: SolutionRegeneration
-      solution: chemicals
-      generated:
-        reagents:
-        - ReagentId: Omniplus
-          Quantity: 0.25
-    - type: NpcFactionMember
-      factions:
-      - PetsNT
-    - type: NukeOperative
-    - type: IgnoreKudzu
-    - type: AutoImplant
-      implants:
-      - FreedomImplant
-      - StorageImplantDS
-      - MicroBombImplant
-      - MindShieldImplant
-      - DeathRattleImplantDS
-#СОЛДАТ
-- type: entity
-  parent: MobHumanDSBase
-  id: MobHumanDSSold
-  name: Солдат Эскадрона
-  suffix: reserve, Стандарт
-  components:
-    - type: Loadout
-      prototypes: [DSSold]
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirst #Reserve datasets fix
-      - NamesMilitaryLast #Reserve datasets fix
-    - type: GhostRole
-      makeSentient: true
-      name: Солдат Эскадрона Смерти
-      description: Выполните поставленную цель любой ценой. Не задавайте лишних вопросов.
-      rules: Слушайте приказы вашего командира, исполняйте их максимально ответственно и эффективно. С умом используйте предоставленное снаряжение.
-      raffle:
-        settings: default
-    - type: GhostTakeoverAvailable
-#СОЛДАТ
-- type: entity
-  parent: MobHumanDSSold
-  id: MobHumanDSSoldTimer
-  name: Солдат Эскадрона
-  suffix: reserve, С часами
-  components:
-    - type: GhostRole
-      requirements:
-        - !type:DepartmentTimeRequirement
-          department: Security
-          time: 72000
-      raffle:
-        settings: short
-    - type: GhostTakeoverAvailable
-#КОМАНДИР
-- type: entity
-  parent: MobHumanDSBase
-  id: MobHumanDSLeader
-  name: Командир Эскадрона
-  suffix: reserve, Без роли
-  components:
-    - type: Loadout
-      prototypes: [DSLeader]
-    - type: RandomMetadata
-      nameSegments:
-      - NamesMilitaryFirstLeader #Reserve datasets fix
-      - NamesMilitaryLast #Reserve datasets fix
-    - type: CommandStaff
-#КОМАНДИР ГОСТРОЛЬ
-- type: entity
-  parent: MobHumanDSLeader
-  id: MobHumanDSLeaderRole
-  name: Командир Эскадрона
-  suffix: reserve, Роль
-  components:
-    - type: GhostRole
-      makeSentient: true
-      name: Командир Эскадрона Смерти
-      description: Вы - руководитель операции. Неважно, какую задачу вам поручат, вы должны направить своих бойцов к ее успешному выполнению.
-      rules: Единственный ваш руководитель - офицер специальных операций. Как только он сообщит план задачи и место ее выполнения - доставайте нужный протокол из папочки и оглашайте план своим бойцам.
-      raffle:
-        settings: default
-      requirements:
-        - !type:DepartmentTimeRequirement
-          department: Security
-          time: 108000
-        - !type:DepartmentTimeRequirement
-          department: Command
-          time: 36000
-    - type: GhostTakeoverAvailable
-#ПРЕСЕТ ЭКИПИРОВКИ КОМАНДИРА
-- type: startingGear
-  id: DSLeader
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitDeathSquad
-    back: ClothingDeathSquadronLeaderBackpack
-    mask: ClothingMaskGasDeathSquad
-    eyes: ClothingEyesGlassesDS
-    ears: ClothingHeadsetDS
-    gloves: ClothingHandsGlovesPowergloveDS
-    outerClothing: ClothingOuterHardsuitDeathsquadAdv
-    shoes: ClothingShoesBootsMagAdv
-    id: DSLeaderPDA
-    pocket1: WeaponRevolverMatebaAPReserve
-    pocket2: EnergySwordDS
-    suitstorage: WeaponPulseCarbineDS
-    belt: ClothingBeltAssaultDS
-#ПРЕСЕТ ЭКИПИРОВКИ БОЙЦА
-- type: startingGear
-  id: DSSold
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitDeathSquad
-    back: ClothingDeathSquadronBackpackFill
-    mask: ClothingMaskGasDeathSquad
-    eyes: ClothingEyesGlassesDS
-    ears: ClothingHeadsetDS
-    gloves: ClothingHandsGlovesPowergloveDS
-    outerClothing: ClothingOuterHardsuitDeathsquadAdv
-    shoes: ClothingShoesBootsMagAdv
-    id: DSSoldPDA
-    pocket1: WeaponRevolverMatebaAPReserve
-    pocket2: EnergySwordDS
-    suitstorage: WeaponPulseCarbineDS
-    belt: ClothingBeltAssaultDS
 #КАНАЛ СВЯЗИ
 - type: radioChannel
   id: DS
-  name: Эскадрон Смерти
+  name: chat-radio-vox-ds
   keycode: 'у'
   frequency: 2213
   color: "DarkViolet"
   longRange: true
+
 #КЛЮЧ ШИФРОВАНИЯ
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyDS
-  name: ключ шифрования эскадрона смерти
-  description: Вам лучше не слышать того, о чем говорят на этой частоте...
-  suffix: резерв
+  name: death squad encryption key
+  description: You're better off not hearing what is being talked about on this frequency.....
   components:
   - type: EncryptionKey
     channels:
     - DS
     - Binary
-    - Freelance
     defaultChannel: DS
   - type: Sprite
     layers:
     - state: crypt_blue
     - state: cap_label
+
 #ГАРНИТУРА
 - type: entity
-  parent: ClothingHeadset
+  parent: [ClothingHeadsetAlt, BaseCentcommContraband]
   id: ClothingHeadsetDS
-  name: гарнитура эскадрона смерти
-  description: Специальный наушник эскадрона смерти.
-  suffix: резерв
+  name: deathsquad over-ear headset
+  description: A special death squad headset.
   components:
   - type: ContainerFill
     containers:
@@ -176,239 +38,16 @@
       - EncryptionKeyCentCom
       - EncryptionKeyStationMaster
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/brigmedic.rsi
+    sprite: _Goobstation/Clothing/Ears/Headsets/deathsquad.rsi
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/brigmedic.rsi
-#БРОНЯ
-- type: entity
-  parent: ClothingOuterHardsuitDeathsquad
-  id: ClothingOuterHardsuitDeathsquadAdv
-  name: скафандр эскадрона смерти
-  description: Продвинутый бронекостюм, применяемый спецназом в специальных операциях.
-  suffix: резерв
-  components:
-  - type: ClothingSpeedModifier
-    walkModifier: 1.25
-    sprintModifier: 1.25
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitDeathsquadAdv
-  - type: InputMover
-    toParent: true
-  - type: MovementSpeedModifier
-    weightlessAcceleration: 1
-    weightlessFriction: 0.3
-    weightlessModifier: 1.2
-  - type: CanMoveInAir
-  - type: UserInterface
-    interfaces:
-      enum.SharedGasTankUiKey.Key:
-        type: GasTankBoundUserInterface
-  - type: Jetpack
-    moleUsage: 0.00045
-  - type: GasTank
-    outputPressure: 42.6
-    air:
-      volume: 25
-      temperature: 293.15
-      moles:
-        - 5.15
-        - 5.15
-#ШЛЕМ
-- type: entity
-  parent: ClothingHeadHelmetHardsuitDeathsquad
-  id: ClothingHeadHelmetHardsuitDeathsquadAdv
-  name: шлем скафандра эскадрона смерти
-  description: Прочный тактический шлем скафандра для специальных операций.
-  noSpawn: true
-  components:
-  - type: PointLight
-    radius: 8
-    energy: 3
-#ОЧКИ
-- type: entity
-  parent: ClothingEyesHudSecurity
-  id: ClothingEyesGlassesDS
-  name: специальные очки
-  description: Специальные очки эскадрона смерти, с множеством различных сенсоров.
-  suffix: резерв
-  components:
-  - type: Sprite
-    sprite: Clothing/Eyes/Glasses/sunglasses.rsi
-  - type: Clothing
-    sprite: Clothing/Eyes/Glasses/sunglasses.rsi
-  - type: SolutionScanner
-  - type: ShowHealthBars
-    damageContainers:
-    - Biological
-    - Inorganic
-    - Silicon
-  - type: ShowHealthIcons
-    damageContainers:
-    - Biological
-#СИЛОВЫЕ ПЕРЧАТКИ
-- type: entity
-  parent: ClothingHandsBase
-  id: ClothingHandsGlovesPowergloveDS
-  name: силовые перчатки
-  description: Настоящие силовые перчатки, благодаря которым даже неподготовленный боец способен крушить стены.
-  suffix: резерв
-  components:
-  - type: Sprite
-    sprite: Clothing/Hands/Gloves/powerglove.rsi
-  - type: Clothing
-    sprite: Clothing/Hands/Gloves/powerglove.rsi
-  - type: Fiber
-    fiberMaterial: fibers-nanomachines
-  - type: FingerprintMask
-  - type: Insulated
-  - type: StaminaDamageOnHit
-    damage: 35
-  - type: MeleeWeapon
-    hidden: false
-    altDisarm: false
-    animation: WeaponArcSparksreserve
-    soundHit:
-      path: /Audio/Effects/metal_break2.ogg
-    damage:
-      types:
-        Blunt: 20
-        Shock: 15
-        Structural: 50
-#ВСПЫШКА ПЕРЧАТОК
-- type: entity
-  id: WeaponArcSparksreserve
-  parent: WeaponArcStatic
-  noSpawn: true
-  components:
-    - type: WeaponArcVisuals
-      fadeOut: false
-    - type: Sprite
-      sprite: Effects/sparks.rsi
-      state: sparks
-    - type: TimedDespawn
-      lifetime: 0.499
-#ЭНЕРГОЩИТ
-- type: entity
-  name: энергощит
-  parent: EnergyShield
-  id: EnergyShieldDS
-  description: Экзотический энергетический щит, в сложенном состоянии может поместиться даже в кармане.
-  suffix: резерв
-  components:
-    - type: Blocking
-      passiveBlockModifier:
-        coefficients:
-          Radiation: 2
-          Blunt: 2
-          Slash: 0.7
-          Piercing: 0.7
-          Heat: 0.5
-      activeBlockModifier:
-        coefficients:
-          Radiation: 2
-          Blunt: 2
-          Slash: 0.6
-          Piercing: 0.6
-          Heat: 0.4
-        flatReductions:
-          Piercing: 5
-          Heat: 5
-    - type: Appearance
-    - type: Damageable
-      damageContainer: Shield
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 350
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-#КАРТА КОМАНДИРА
-- type: entity
-  parent: IDCardStandard
-  id: DSIDCard
-  name: ID карта командира
-  description: Карта командира эскадрона смерти с полным доступом.
-  suffix: резерв
-  components:
-  - type: Sprite
-    layers:
-    - state: syndie
-    - state: idcaptain
-  - type: PresetIdCard
-    job: DSL
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-#КПК КОМАНДИРА
-- type: entity
-  parent: ERTLeaderPDA
-  id: DSLeaderPDA
-  name: КПК командира эскадрона
-  description: На нем можно разглядеть засохшие капли крови... Имеет встроенный анализатор здоровья.
-  suffix: резерв
-  components:
-  - type: Pda
-    id: DSIDCard
-    state: pda-roboticist
-  - type: PdaBorderColor
-    borderColor: "#333333"
-    accentVColor: "#800000"
-    accentHColor: "#00CED1"
-  - type: Icon
-    state: pda-roboticist
-  - type: HealthAnalyzer
-    scanDelay: 0.5
-    scanningEndSound:
-      path: "/Audio/Items/Medical/healthscanner.ogg"
-#КАРТА СОЛДАТА
-- type: entity
-  parent: DSIDCard
-  id: DSIDCardSold
-  name: ID карта солдата
-  description: Карта солдата эскадрона смерти с полным доступом.
-  suffix: резерв
-  components:
-  - type: PresetIdCard
-    job: DSS
-#КПК СОЛДАТА
-- type: entity
-  parent: DSLeaderPDA
-  id: DSSoldPDA
-  name: КПК солдата эскадрона
-  suffix: резерв
-  components:
-  - type: Pda
-    id: DSIDCardSold
-#ПУЛЬТ
-- type: entity
-  parent: DoorRemoteDefault
-  id: DoorRemoteAllCC
-  name: пульт полного доступа
-  description: Пульт с полным доступом к станции. Не способен открывать шлюзы с доступами ЦК и ДСО.
-  suffix: резерв
-  components:
-  - type: Sprite
-    layers:
-    - state: door_remotebase
-    - state: door_remotelightscolour
-      color: "#2eba22"
-    - state: door_remotescreencolour
-      color: "#22871a"
-  - type: Access
-    groups:
-    - AllAccess
+    sprite: _Goobstation/Clothing/Ears/Headsets/deathsquad.rsi
+
 #ПУЛЬТ КОМАНДИРА
 - type: entity
-  parent: DoorRemoteAllCC
-  id: DoorRemoteAllDSl
-  name: пульт командира
-  description: Пульт с полным доступом к станции. Имеет доступы ЦК и ДСО.
-  suffix: резерв
+  parent: [DoorRemoteDefault, BaseCentcommContraband]
+  id: DoorRemoteAllCC
+  name: commander's door remote
+  description: Remote control with full access to the station. Has CC access.
   components:
   - type: Sprite
     layers:
@@ -419,18 +58,16 @@
       color: "#9400D3"
   - type: Access
     tags:
-    - DSO
-    - DSOL
     - CentralCommand
     groups:
     - AllAccess
+
 #ПОРТАТИВНАЯ КОНСОЛЬ СВЯЗИ
 - type: entity
   id: CommunicationsConsolePortative
   parent: BaseItem
-  name: портативная консоль связи ДСО
-  description: Портативная консоль, используемая для подачи объявлений на всю станцию, изменения уровня угрозы, вызова эвакуационного шаттла и мониторинга экипажа. Имеет прямую связь с офицером спецопераций.
-  suffix: резерв
+  name: DSO portable communications console
+  description: A portable console used for station-wide announcements, changing threat levels, calling the evacuation shuttle, and crew monitoring. Has a direct link to the Special Operations Officer.
   components:
   - type: Sprite
     sprite: Objects/Devices/tablets.rsi
@@ -441,7 +78,7 @@
       - state: generic
         shader: unshaded
   - type: CommunicationsConsole
-    title: Департамент Спецопераций
+    title: comms-console-announcement-title-dso
     global: true
     color: "DarkViolet"
     sound:
@@ -457,13 +94,12 @@
       enum.CommunicationsConsoleUiKey.Key:
         type: CommunicationsConsoleBoundUserInterface
   - type: Prayable
-    sentMessage: Вы отправили сообщение Офицеру Спецопераций!
-    notifiactionPrefix: Эскадрон Смерти
-    verb: Сообщение для ОСО
+    sentMessage: prayer-popup-notify-centcom-sent
+    notificationPrefix: prayer-chat-notify-centcom
+    verb: prayer-verbs-call
     verbImage: null
   - type: CrewMonitoringServer
   - type: SingletonDeviceNetServer
-    ServerType: CrewMonitoringServer
   - type: DeviceNetwork
     deviceNetId: Wireless
     transmitFrequencyId: CrewMonitor
@@ -472,238 +108,24 @@
   - type: WirelessNetworkConnection
     range: 500
   - type: StationLimitedNetwork
-#МОНИТОРИНГ
-- type: entity
-  name: портативный монитор экипажа
-  parent: HandheldCrewMonitor
-  id: HandheldCrewMonitorDS
-  description: Ручной монитор экипажа, отображающий состояние датчиков костюма.
-  suffix: резерв
-  components:
-  - type: PowerCellDraw
-    drawRate: 0
-    useRate: 10
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
+
 #ПИНПОИНТЕР ЯДЕРНОЙ БОМБЫ
 - type: entity
   parent: PinpointerBase
   id: PinpointerNuclearBomb
-  name: пинпоинтер ядерной боеголовки
-  description: Портативное устройство слежения. Способно обнаружить ближайшую ядерную боеголовку.
-  suffix: резерв
+  name: nuclear warhead pinpointer
+  description: Portable tracking device. Capable of detecting the nearest nuclear warhead.
   components:
   - type: Pinpointer
     component: Nuke
     targetName: ядерная боеголовка
-#ПИНПОИНТЕР ЯДЕРНОЙ БОМБЫ
-- type: entity
-  parent: PinpointerBase
-  id: PinpointerNuclearDisk
-  name: пинпоинтер диска ядерной аутентифиуации
-  description: Портативное устройство слежения. Способно обнаружить ближайший диск ядерной аутентифиуации.
-  suffix: резерв
-  components:
-  - type: Pinpointer
-    component: NukeDisk
-    targetName: диск ядерной аутентифиуации
-#ПОЯС
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltAssaultDS
-  name: боевой пояс
-  description: Пояс, заполненный полезными в бою предметами.
-  suffix: резерв
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/assault.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/assault.rsi
-  - type: Storage
-    maxItemSize: Normal
-    grid:
-    - 0,0,9,1
-  - type: ExplosionResistance
-    damageCoefficient: 0
-  - type: StorageFill
-    contents:
-    - id: MedkitCombatFilledDS
-    - id: ExGrenade
-    - id: ExGrenade
-    - id: GrenadeFlashBang
-    - id: GrenadeFlashBang
-    - id: SpeedLoaderMagnumAP
-      amount: 4
-  - type: Appearance
-#РЮКЗАК СОЛДАТА
-- type: entity
-  parent: ClothingDeathSquadronBackpack
-  id: ClothingDeathSquadronBackpackFill
-  name: рюкзак эскадрона смерти
-  description: Вместительный рюкзак использующий технологию БлюСпейс.
-  suffix: резерв, Солдат
-  components:
-  - type: Storage
-    maxItemSize: Huge
-    grid:
-    - 0,0,14,7
-  - type: ExplosionResistance
-    damageCoefficient: 0
-  - type: StorageFill
-    contents:
-    - id: DoorRemoteAllCC
-    - id: HandheldCrewMonitorDS
-    - id: JawsOfLife
-    - id: RCDRecharging
-    - id: EnergyShieldDS
-    - id: WelderExperimental
-    - id: ToolDebug
-    - id: Multitool
-    - id: BoxMREDS
-    - id: BoxMREDS
-    - id: WeaponGrapplingGun
-    - id: HandheldGPSBasic
-    - id: C4
-      amount: 4
-#РЮКЗАК КОМАНДИРА
-- type: entity
-  parent: ClothingDeathSquadronBackpack
-  id: ClothingDeathSquadronLeaderBackpack
-  name: рюкзак эскадрона смерти
-  description: Вместительный рюкзак использующий технологию БлюСпейс.
-  suffix: резерв, Командир
-  components:
-  - type: Storage
-    maxItemSize: Huge
-    grid:
-    - 0,0,14,7
-  - type: ExplosionResistance
-    damageCoefficient: 0
-  - type: StorageFill
-    contents:
-    - id: BoxFolderBlackDSO
-    - id: CommunicationsConsolePortative
-    - id: DoorRemoteAllDSl
-    - id: HandheldCrewMonitorDS
-    - id: PinpointerNuclearDisk
-    - id: PinpointerNuclearBomb
-    - id: JawsOfLife
-    - id: RCDRecharging
-    - id: EnergyShieldDS
-    - id: WelderExperimental
-    - id: ToolDebug
-    - id: Multitool
-    - id: BoxMREDS
-    - id: BoxMREDS
-    - id: WeaponGrapplingGun
-    - id: HandheldGPSBasic
-    - id: C4
-      amount: 5
-#ДЖЕТПАК
-- type: entity
-  id: JetpackDS
-  parent: BaseJetpack
-  name: джетпак эскадрона смерти
-  description: Облегченный джетпак, содержащий газ под огромным давлением, что обеспечивает длительное использование.
-  suffix: резерв
-  components:
-  - type: Item
-    sprite: Objects/Tanks/Jetpacks/black.rsi
-  - type: Sprite
-    sprite: Objects/Tanks/Jetpacks/black.rsi
-  - type: Clothing
-    sprite: Objects/Tanks/Jetpacks/black.rsi
-    slots:
-      - Back
-      - suitStorage
-  - type: Jetpack
-    moleUsage: 0.00045
-  - type: GasTank
-    outputPressure: 42.6
-    air:
-      volume: 25
-      temperature: 293.15
-      moles:
-        - 5.15
-        - 5.15
-#ВИНТОВКА
-- type: entity
-  name: импульсная винтовка эскадрона
-  parent: BaseWeaponBattery
-  id: WeaponPulseCarbineDS
-  description: Фирменное оружие ужасающего эскадрона смерти. Удобное и легкое, автоматически восстанавливет заряд.
-  suffix: резерв
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
-  - type: Gun
-    fireRate: 3
-    availableModes:
-      - SemiAuto
-      - FullAuto
-    selectedMode: FullAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: HitscanBatteryAmmoProvider
-    proto: Pulse
-    fireCost: 150
-  - type: Battery
-    maxCharge: 15000
-    startingCharge: 15000
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 75
-#МАТЕБА
-- type: entity
-  name: Матеба
-  parent: WeaponRevolverMateba
-  id: WeaponRevolverMatebaAPReseve
-  suffix: резерв, Бронебойные
-  description: Знаковое оружие ужасающих эскадронов смерти. Использует патроны калибра .45 магнум.
-  components:
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-        - CartridgeMagnum
-        - SpeedLoaderMagnum
-    proto: CartridgeMagnumAP
-#ЭНЕРГЕТИЧЕСКИЙ МЕЧ
-- type: entity
-  name: энергетический меч
-  parent: EnergySword
-  id: EnergySwordDS
-  description: Очень громкий и опасный меч с лучом чистой, концентрированной плазмы. Разрезает любые объекты как масло благодаря оригинальной технологии.
-  suffix: резерв
-  components:
-  - type: ItemToggleMeleeWeapon
-    activatedDamage:
-        types:
-            Slash: 25
-            Heat: 25
-            Structural: 35
-  - type: Reflect
-    reflectProb: 0.65
-  - type: PointLight
-    radius: 4
-    energy: 3
+
 #ГИПОСПРЕЙ
 - type: entity
-  name: боевой гипоспрей
   parent: Hypospray
-  description: Гипоспрей военного образца, содержит в себе омнизин, и медленно восстанавливет его запас.
-  suffix: резерв
   id: HyposprayDS
+  name: combat hypospray
+  description: Military-grade hypospray, contains omnizine, and slowly restores its supply.
   components:
   - type: Sprite
     state: combat_hypo
@@ -724,28 +146,13 @@
       reagents:
       - ReagentId: Omnizine
         Quantity: 0.5
-#СТИМПАК
-- type: entity
-  name: военный стимулятор
-  parent: SpaceMedipen
-  id: CombatMedipenDSO
-  description: Мощный военный стимулятор, превращающий вас в ракету.
-  suffix: резерв
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 30
-        reagents:
-        - ReagentId: StimulantsDSO
-          Quantity: 30
+
 #АПТЕЧКА
 - type: entity
-  id: MedkitCombatFilledDS
   parent: MedkitCombat
-  name: боевая аптечка
-  description: Аптечка, оснащенная передовыми медикаментами, которые удобно применять в бою.
-  suffix: резерв
+  id: MedkitCombatFilledDS
+  name: advanced combat medkit
+  description: A first aid kit equipped with advanced medicines that are convenient to use in battle.
   components:
   - type: Item
     size: Normal
@@ -753,7 +160,7 @@
     grid:
     - 0,0,4,2
   - type: ExplosionResistance
-    damageCoefficient: 0
+    damageCoefficient: 0.1
   - type: StorageFill
     contents:
       - id: HyposprayDS
@@ -765,17 +172,16 @@
       - id: BurnAutoInjector
       - id: AntiPoisonMedipen
       - id: EmergencyMedipen
-      - id: CombatMedipenDSO
+
 #ЯЩИК ВЗРЫВЧАТКИ
 - type: entity
-  id: CrateServiceDSOExp
   parent: CrateCommandSecure
-  name: ящик взрывчатки
-  description: Содержит запас взрывчатых веществ для подрыва целой станции. Требуется доступ командира.
-  suffix: резерв
+  id: CrateServiceDSOExp
+  name: explosives crate
+  description: Contains a stockpile of explosives to blow up an entire station. Requires CC access.
   components:
   - type: AccessReader
-    access: [["DSOL"]]
+    access: [[ "CentralCommand" ]]
   - type: ExplosionResistance
     damageCoefficient: 0
   - type: EntityStorage
@@ -806,50 +212,13 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
 
-#РАБОТА КОМАНДИР
-- type: job
-  id: DSL
-  name: командир эскадрона смерти
-  playTimeTracker: DSL
-  icon: "JobIconNanotrasen"
-  accessGroups:
-  - AllAccess
-  access:
-  - CentralCommand
-  - DSO
-  - DSOL
-#РАБОТА СОЛДАТ
-- type: job
-  id: DSS
-  name: солдат эскадрона смерти
-  playTimeTracker: DSS
-  icon: "JobIconNanotrasen"
-  accessGroups:
-  - AllAccess
-  access:
-  - CentralCommand
-  - DSO
-#ФРАКЦИЯ
-- type: npcFaction
-  id: DeathSquad
-  hostile:
-  - NanoTrasen
-  - SimpleNeutral
-  - SimpleHostile
-  - Syndicate
-  - Passive
-  - Revolutionary
-  - Zombie
-  - Xeno
-  - Dragon
-  - Mouse
 #РЕАГЕНТ РЕГЕНЕРАЦИИ
 - type: reagent
   id: Omniplus
-  name: омниплюс
+  name: reagent-name-omniplus
   group: Medicine
-  desc: Комбинированный препарат широкого спектра действия, используемый в боевых имплантах.
-  physicalDesc: студенистое
+  desc: reagent-desc-royal-omniheal
+  physicalDesc: reagent-physical-desc-gelatinous
   flavor: medicine
   color: "#F08080"
   metabolisms:
@@ -898,80 +267,12 @@
         - !type:Temperature
           min: 293.15
         amount: -1000
-#РЕАГЕНТ СТИМПАК
-- type: reagent
-  id: StimulantsDSO
-  name: военный стимулятор
-  group: Narcotics
-  desc: Мощный военный стимулятор, значительно повышающий скорость реакции и движения.
-  physicalDesc: густое
-  flavor: bitter
-  color: "#CD5C5C"
-  boilingPoint: 255.0
-  meltingPoint: 36.0
-  metabolisms:
-    Narcotic:
-      effects:
-      - !type:MovespeedModifier
-        walkSpeedModifier: 1.4
-        sprintSpeedModifier: 1.4
-      - !type:SatiateHunger
-        factor: 2
-      - !type:SatiateThirst
-        factor: 2
-#ИМПЛАНТ ХРИП
-- type: entity
-  parent: DeathRattleImplant
-  id: DeathRattleImplantDS
-  name: имплант предсмертный хрип
-  description: Этот имплант сообщит в радиоканал Эскадрона Смерти, если пользователь окажется в критическом состоянии или умрёт.
-  noSpawn: true
-  components:
-  - type: Rattle
-    radioChannel: DS
-#ИМПЛАНТ ХРАНИЛИЩЕ
-- type: entity
-  parent: StorageImplant
-  id: StorageImplantDS
-  name: имплант хранилища
-  description: Модифицированный имплант хранилища с запасами на черный день.
-  noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-    - id: CombatKnife
-    - id: SmokeGrenade
-#ДОСТУП ДСО
-- type: accessLevel
-  id: DSO
-  name: ДСО
-#ДОСТУП ДСО КОМАНДИР
-- type: accessLevel
-  id: DSOL
-  name: командование ДСО
-#ПАПКА С ПРИКАЗАМИ
-- type: entity
-  name: папка с приказами
-  description: Папка с грифом "Совершенно секретно". Здесь содержатся инструкции по вашим миссиям.
-  id: BoxFolderBlackDSO
-  suffix: резерв
-  parent: BoxFolderBlack
-  components:
-  - type: StorageFill
-    contents:
-      - id: PaperDS1
-      - id: PaperDS2
-      - id: PaperDS3
-      - id: PaperDS4
-      - id: PaperDS5
-      - id: NukeCodePaperDS
+
 #ИРП
 - type: entity
-  name: И.Р.П.
   parent: BoxMRE
   id: BoxMREDS
-  description: Индивидуальный паек современного образца, содержит полноценный рацион на несколько дней.
-  suffix: резерв
+  description: Individual rations of modern design, contains a complete ration for several days.
   components:
   - type: Storage
     maxItemSize: Normal
@@ -986,83 +287,26 @@
       - id: DrinkMREFlask
       - id: DrinkIcedTeaCan
       - id: DrinkEnergyDrinkCan
-#ПРОТОКОЛ 1
+
+#ПРОТОКОЛ
 - type: entity
-  name: "протокол #1"
   parent: Paper
-  id: PaperDS1
-  description: Один из протоколов выполнения предстоящих миссий. Совершенно секретно.
-  suffix: резерв
+  id: PaperDS
+  name: mission protocol
+  description: Protocol for accomplishing the upcoming mission. Top secret.
   components:
   - type: Paper
     stampState: paper_stamp-syndicate
     stampedBy:
     - stampedName: ДСО
       stampedColor: "#800000"
-    content: "[color=#1b487e]███░███░░░░██░░░░[/color]\n[color=#1b487e]░██░████░░░██░░░░[/color]      [head=3]     Бланк документа[/head]\n[color=#1b487e]░░█░██░██░░██░█░░[/color]               [head=3]    NanoTrasen[/head]\n[color=#1b487e]░░░░██░░██░██░██░[/color]              [bold]    ДСО-ЭС ТФ-832[/bold]\n[color=#1b487e]░░░░██░░░████░███[/color][bold][color=#A52A2A]        СОВЕРШЕННО СЕКРЕТНО[/color][/bold]\n====================================================\n                                         [head=3]ПРОТОКОЛ #1[/head]\n====================================================\n[head=3]Основная цель[/head]\nЗащита активов Nanotrasen, максимальная сохранность экипажа, минимальный имущественный ущерб, эффективное устранение угрозы. \n[bold]Тип миссии[/bold] \nФокстрот \n[bold]Взаимодействие с экипажем[/bold]\nМинимазция потерь среди персонала.\n[bold]Вербальный контант с экипажем[/bold]\nПолностью разрешен.\n[bold]Применение корабельной артилерии[/bold]\nПо необходимости.\n[bold]Запрос БСА[/bold]\nНе предусмотрен.\n[bold]Уничтожение станции[/bold]\nНедопустимо."
-#ПРОТОКОЛ 2
-- type: entity
-  name: "протокол #2"
-  parent: Paper
-  id: PaperDS2
-  description: Один из протоколов выполнения предстоящих миссий. Совершенно секретно.
-  suffix: резерв
-  components:
-  - type: Paper
-    stampState: paper_stamp-syndicate
-    stampedBy:
-    - stampedName: ДСО
-      stampedColor: "#800000"
-    content: "[color=#1b487e]███░███░░░░██░░░░[/color]\n[color=#1b487e]░██░████░░░██░░░░[/color]      [head=3]     Бланк документа[/head]\n[color=#1b487e]░░█░██░██░░██░█░░[/color]               [head=3]    NanoTrasen[/head]\n[color=#1b487e]░░░░██░░██░██░██░[/color]              [bold]    ДСО-ЭС ТФ-832[/bold]\n[color=#1b487e]░░░░██░░░████░███[/color][bold][color=#A52A2A]        СОВЕРШЕННО СЕКРЕТНО[/color][/bold]\n====================================================\n                                         [head=3]ПРОТОКОЛ #2[/head]\n====================================================\n[head=3]Основная цель[/head]\nЗащита активов Nanotrasen, минимизация имущественных потерь, защита репутации NanoTrasen. \n[bold]Тип миссии[/bold] \nФокстрот \n[bold]Взаимодействие с экипажем[/bold]\nСпасение по возможности, все преступные элементы подлежат уничтожению на месте. В приоритете уничтожение угрозы.\n[bold]Вербальный контант с экипажем[/bold]\nРазрешен только командиру.\n[bold]Применение корабельной артилерии[/bold]\nПо необходимости.\n[bold]Запрос БСА[/bold]\nНе предусмотрен.\n[bold]Уничтожение станции[/bold]\nНедопустимо."
-#ПРОТОКОЛ 3
-- type: entity
-  name: "протокол #3"
-  parent: Paper
-  id: PaperDS3
-  description: Один из протоколов выполнения предстоящих миссий. Совершенно секретно.
-  suffix: резерв
-  components:
-  - type: Paper
-    stampState: paper_stamp-syndicate
-    stampedBy:
-    - stampedName: ДСО
-      stampedColor: "#800000"
-    content: "[color=#1b487e]███░███░░░░██░░░░[/color]\n[color=#1b487e]░██░████░░░██░░░░[/color]      [head=3]     Бланк документа[/head]\n[color=#1b487e]░░█░██░██░░██░█░░[/color]               [head=3]    NanoTrasen[/head]\n[color=#1b487e]░░░░██░░██░██░██░[/color]              [bold]    ДСО-ЭС ТФ-832[/bold]\n[color=#1b487e]░░░░██░░░████░███[/color][bold][color=#A52A2A]        СОВЕРШЕННО СЕКРЕТНО[/color][/bold]\n====================================================\n                                         [head=3]ПРОТОКОЛ #3[/head]\n====================================================\n[head=3]Основная цель[/head]\nЗащита репутации NanoTrasen, минимиазция имущественных  потерь, допустимы кадровые потери. \n[bold]Тип миссии[/bold] \nФокстрот \n[bold]Взаимодействие с экипажем[/bold]\nСпасение лояльного экипажа с имплнтами защиты разума. Остальные лица должны быть задержаны, либо уничтожены на месте.\n[bold]Вербальный контант с экипажем[/bold]\nРазрешен только командиру.\n[bold]Применение корабельной артилерии[/bold]\nПо необходимости.\n[bold]Запрос БСА[/bold]\nПо необходимости.\n[bold]Уничтожение станции[/bold]\nНедопустимо."
-#ПРОТОКОЛ 4
-- type: entity
-  name: "протокол #4"
-  parent: Paper
-  id: PaperDS4
-  description: Один из протоколов выполнения предстоящих миссий. Совершенно секретно.
-  suffix: резерв
-  components:
-  - type: Paper
-    stampState: paper_stamp-syndicate
-    stampedBy:
-    - stampedName: ДСО
-      stampedColor: "#800000"
-    content: "[color=#1b487e]███░███░░░░██░░░░[/color]\n[color=#1b487e]░██░████░░░██░░░░[/color]      [head=3]     Бланк документа[/head]\n[color=#1b487e]░░█░██░██░░██░█░░[/color]               [head=3]    NanoTrasen[/head]\n[color=#1b487e]░░░░██░░██░██░██░[/color]              [bold]    ДСО-ЭС ТФ-832[/bold]\n[color=#1b487e]░░░░██░░░████░███[/color][bold][color=#A52A2A]        СОВЕРШЕННО СЕКРЕТНО[/color][/bold]\n====================================================\n                                         [head=3]ПРОТОКОЛ #4[/head]\n====================================================\n[head=3]Основная цель[/head]\nЗащита репутации NanoTrasen, материальные и кадровые потери допустимы.\n[bold]Тип миссии[/bold] \nТанго \n[bold]Взаимодействие с экипажем[/bold]\nПолная ликвидация. Без исключений.\n[bold]Вербальный контант с экипажем[/bold]\nЗапрещен.\n[bold]Применение корабельной артилерии[/bold]\nПо необходимости.\n[bold]Запрос БСА[/bold]\nПо необходимости.\n[bold]Уничтожение станции[/bold]\nПо приказу ДСО."
-#ПРОТОКОЛ 5
-- type: entity
-  name: "протокол #5"
-  parent: Paper
-  id: PaperDS5
-  description: Один из протоколов выполнения предстоящих миссий. Совершенно секретно.
-  suffix: резерв
-  components:
-  - type: Paper
-    stampState: paper_stamp-syndicate
-    stampedBy:
-    - stampedName: ДСО
-      stampedColor: "#800000"
-    content: "[color=#1b487e]███░███░░░░██░░░░[/color]\n[color=#1b487e]░██░████░░░██░░░░[/color]      [head=3]     Бланк документа[/head]\n[color=#1b487e]░░█░██░██░░██░█░░[/color]               [head=3]    NanoTrasen[/head]\n[color=#1b487e]░░░░██░░██░██░██░[/color]              [bold]    ДСО-ЭС ТФ-832[/bold]\n[color=#1b487e]░░░░██░░░████░███[/color][bold][color=#A52A2A]        СОВЕРШЕННО СЕКРЕТНО[/color][/bold]\n====================================================\n                                         [head=3]ПРОТОКОЛ #5[/head]\n====================================================\n[head=3]Основная цель[/head]\nЗащита репутации NanoTrasen любой ценой. Полное уничтожение объекта.\n[bold]Тип миссии[/bold] \nТанго \n[bold]Взаимодействие с экипажем[/bold]\nПолная ликвидация. Без исключений.\n[bold]Вербальный контант с экипажем[/bold]\nЗапрещен.\n[bold]Применение корабельной артилерии[/bold]\nБез ограничений.\n[bold]Запрос БСА[/bold]\nПо необходимости.\n[bold]Уничтожение станции[/bold]\nВ обязательном порядке."
+    content: "[color=#1b487e]███░███░░░░██░░░░[/color]\n[color=#1b487e]░██░████░░░██░░░░[/color]      [head=3]     Бланк документа[/head]\n[color=#1b487e]░░█░██░██░░██░█░░[/color]               [head=3]    NanoTrasen[/head]\n[color=#1b487e]░░░░██░░██░██░██░[/color]              [bold]    ДСО-ЭС ТФ-832[/bold]\n[color=#1b487e]░░░░██░░░████░███[/color][bold][color=#A52A2A]        СОВЕРШЕННО СЕКРЕТНО[/color][/bold]\n====================================================\n                                         [head=3]ПРОТОКОЛ МИССИИ[/head]\n====================================================\n[head=3]Основная цель[/head]\nЗащита репутации NanoTrasen любой ценой. Полное уничтожение объекта.\n[bold]Взаимодействие с экипажем[/bold]\nПолная ликвидация. Без исключений.\n[bold]Вербальный контант с экипажем[/bold]\nЗапрещен.\n[bold]Применение корабельной артилерии[/bold]\nБез ограничений.\n[bold]Запрос БСА[/bold]\nПо необходимости.\n[bold]Уничтожение станции[/bold]\nВ обязательном порядке."
+
 #ЯДЕРНЫЕ КОДЫ
 - type: entity
   parent: NukeCodePaperStation
   id: NukeCodePaperDS
-  name: ядерные коды
-  description: Если не осталось иных вариантов...
-  suffix: резерв
+  description: That's it.
   components:
   - type: Paper
     stampState: paper_stamp-syndicate
@@ -1073,69 +317,35 @@
 ###СТРУКТУРЫ
 #КОНСОЛЬ СВЯЗИ
 - type: entity
-  parent: ComputerComms
+  parent: CentcommComputerComms
   id: DSOComputerComms
-  name: консоль связи ДСО
-  description: Консоль, используемая для подачи объявлений на всю станцию, изменения уровня угрозы и вызова эвакуационного шаттла.
-  suffix: резерв
+  name: DSO communication console
   components:
     - type: AccessReader
-      access: [[ "DSOL" ]]
+      access: [[ "CentralCommand" ]]
     - type: CommunicationsConsole
-      title: Департамент Спецопераций
+      title: comms-console-announcement-title-dso
       global: true
       color: "DarkViolet"
       sound:
         path: /Audio/Misc/delta_alt.ogg
         params:
-          volume: -4
+          volume: -1
+
 #ПЛАТА ДСО
 - type: entity
   parent: DoorElectronics
   id: DoorElectronicsDSO
-  noSpawn: true
-  suffix: резерв
+  categories: [ HideSpawnMenu ]
   components:
   - type: AccessReader
-    access: [["DSO"]]
-#ПЛАТА ДСОЛ
-- type: entity
-  parent: DoorElectronics
-  id: DoorElectronicsDSOL
-  noSpawn: true
-  suffix: резерв, Командир ДСО
-  components:
-  - type: AccessReader
-    access: [["DSOL"]]
-#БРОНИРОВАННЯ ДВЕРЬ КОМАНДИР
-- type: entity
-  parent: HighSecDoor
-  name: бронированная дверь
-  description: Удерживает плохих снаружи, а хороших внутри. Открыть может только командир.
-  id: HighSecDSOLLocked
-  suffix: резерв, Командир ДСО
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsDSOL ]
-#БРОНИРОВАННЯ ДВЕРЬ
-- type: entity
-  parent: HighSecDoor
-  name: бронированная дверь
-  description: Удерживает плохих снаружи, а хороших внутри.
-  id: HighSecDSOLocked
-  suffix: резерв, ДСО
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsDSO ]
-#СТЕНА
+    access: [[ "CentralCommand" ]]
+
+#СТЕНА ШАТТЛА
 - type: entity
   parent: BaseWall
   id: WallShuttleArm
-  name: армированная стена шаттла
-  description: Удерживает плохих снаружи, а хороших внутри.
-  suffix: резерв
+  name: reinforced shuttle wall
   components:
   - type: Tag
     tags:
@@ -1160,19 +370,15 @@
         acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
-    destroySound:
-      path: /Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
   - type: IconSmooth
     key: walls
     base: state
-#СТЕНА УГОЛ
+
+#СТЕНА ШАТТЛА УГЛОВАЯ
 - type: entity
   parent: WallShuttleDiagonal
   id: WallShuttleDiagonalArm
-  name: армированная стена шаттла
-  description: Удерживает плохих снаружи, а хороших внутри.
-  suffix: резерв, Диагональная
   components:
   - type: Tag
     tags:
@@ -1194,16 +400,13 @@
         acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
-    destroySound:
-      path: /Audio/Effects/metalbreak.ogg
+          collection: MetalBreak
+
 #СТЕКЛО
 - type: entity
   id: ShuttleWindowArm
-  name: армированное окно шаттла
   parent: ShuttleWindow
-  description: Удерживает плохих снаружи, а хороших внутри.
-  suffix: резерв
+  name: reinforced shuttle window
   components:
   - type: Sprite
     color: "#505050"
@@ -1221,26 +424,24 @@
       - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
+
 #СТАВНИ
 - type: entity
-  id: ShuttersArmOpen
   parent: ShuttersNormalOpen
-  name: армированные ставни
-  description: Удерживает плохих снаружи, а хороших внутри.
-  suffix: резерв
+  id: ShuttersArmOpen
+  name: reinforced shutters
   components:
   - type: Sprite
     color: "#505050"
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+
 #СТЫКОВОЧНЫЙ ШЛЮЗ
 - type: entity
   parent: AirlockShuttle
   id: AirlockShuttleArm
-  suffix: резерв
-  name: армированный стыковочный шлюз
-  description: Удерживает плохих снаружи, а хороших внутри.
+  name: reinforced external airlock
   components:
   - type: Sprite
     color: "#505050"
@@ -1262,41 +463,17 @@
         acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
-          path: /Audio/Effects/metalbreak.ogg
-    destroySound:
-      path: /Audio/Effects/metalbreak.ogg
-#ШЛЮЗ
-- type: entity
-  parent: AirlockCommandGlass
-  id: AirlockDSOLocked
-  suffix: резерв, ДСО
-  name: стеклянный шлюз
-  description: Он открывается, он закрывается, и он может вас раздавить.
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsDSO ]
-#РАЗДВИЖНОЕ ОКНО
-- type: entity
-  parent: WindoorSecureSecurityLocked
-  id: WindoorDSOLocked
-  suffix: резерв, ДСО
-  name: армированное раздвижное окно
-  description: Это и прочное окно, и раздвижная дверь. Вот это да!
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsDSO ]
+          collection: MetalBreak
+
 #ПУШКА
 - type: entity
-  id: EmitterCannon
-  name: противокорабельное орудие
   parent: Emitter
-  description: Мощная плазменная пушка для уничтожения шаттлов. При попадании создает разрушительный взрыв и ослепительный всплеск ЭМИ.
-  suffix: резерв
+  id: EmitterCannon
+  name: anti-ship gun
+  description: A powerful plasma cannon to destroy shuttles. On impact, it creates a devastating explosion and a blinding EMP burst.
   components:
   - type: AccessReader
-    access: [[ "DSO" ]]
+    access: [[ "CentralCommand" ]]
   - type: Sprite
     color: "#696969"
     sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
@@ -1314,12 +491,8 @@
     boltType: BulletPlasma
     fireBurstSize: 99
     fireInterval: 4
-    baseFireInterval: 4
-    fireRateMultiplier: 0
     fireBurstDelayMin: 0
     fireBurstDelayMax: 0
-    baseFireBurstDelayMin: 0
-    baseFireBurstDelayMax: 0
   - type: Gun
     minAngle: 2
     maxAngle: 5
@@ -1328,12 +501,13 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
       params:
         volume: 7
+
 #СНАРЯД
 - type: entity
+  parent: BulletRocket
   id: BulletPlasma
   name: заряд плазмы
-  parent: BulletRocket
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
@@ -1368,13 +542,13 @@
     radius: 2.5
     color: "#800080"
     energy: 2
+
 #ДВИГАТЕЛЬ
 - type: entity
-  id: ThrusterM
-  name: военный двигатель
-  description: Мощный двигатель используемый в боевых шаттлах.
-  suffix: резерв
   parent: Thruster
+  id: ThrusterMillitary
+  name: military thruster
+  description: The powerful thruster used in the battle shuttles.
   components:
   - type: Sprite
     color: "#808080"
@@ -1384,19 +558,5 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
-#ТУРЕЛЬ
-- type: entity
-  parent: BaseWeaponTurret
-  id: WeaponTurretDeathSquad
-  name: баллистическая турель
-  description: Автоматическая турель с баллистическим пулеметом.
-  suffix: резерв, ДСО
-  components:
-  - type: NpcFactionMember
-    factions:
-    - DeathSquad
-  - type: Gun
-    fireRate: 12
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/minigun.ogg
 
 # Прототип сделан Slava423 (NITRO)

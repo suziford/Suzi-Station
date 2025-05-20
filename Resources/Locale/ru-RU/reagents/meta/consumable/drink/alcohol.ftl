@@ -210,3 +210,5 @@ reagent-name-the-sun-also-rises = И восходит солнце
 reagent-desc-the-sun-also-rises = Крепкий коктейль, смешанный в мутную смесь. Тайный фаворит измученных авторов.
 reagent-name-whiskey-sour = виски сауэр
 reagent-desc-whiskey-sour = Что за секретный ингредиент? Яйца. Это яйца.
+reagent-name-bacchus-blessing = благословение бахуса
+reagent-desc-bacchus-blessing = Вы не думали, что жидкость может быть настолько отвратительной. Вы уверены в этом...?

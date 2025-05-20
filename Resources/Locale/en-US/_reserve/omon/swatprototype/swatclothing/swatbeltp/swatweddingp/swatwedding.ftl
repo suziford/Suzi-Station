@@ -1,3 +1,3 @@
-ent-ClothingBeltSwatWedding = РПС спецназа
-    .desc = Уникальная в своём роде РПС разработанная специально для элитных оперативников ОКГ, красиво окрашена в синий.
-    .suffix = Резерв
+ent-ClothingBeltSwatWedding = Spetsnaz wedding
+    .desc = A one-of-a-kind wedding designed specifically for elite OKG operatives, beautifully coloured in blue.
+    .suffix = Reserve

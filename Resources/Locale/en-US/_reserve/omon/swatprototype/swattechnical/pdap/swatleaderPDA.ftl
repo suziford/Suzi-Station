@@ -1,3 +1,3 @@
-ent-SwatLeaderPDA = КПК Лидера ОКГ
-    .desc = Пахнет властью.
-    .suffix = Резерв
+ent-SwatLeaderPDA = OKG Leader PDA
+    .desc = Smells like power.
+    .suffix = Reserve

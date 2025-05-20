@@ -10,8 +10,9 @@
       state: SwatLeader
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstPoliceSwatLeader
-      - NamesLastPSWCallsign
+      - SwatLeaderNamesFirst #Localized datasets
+      - SwatNamesLast
+      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: SwatLeaderSettings
 
@@ -40,8 +41,9 @@
       prototypes: [ SwatLeaderGear ]
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstPoliceSwatLeader
-      - NamesLastPSWCallsign
+      - SwatLeaderNamesFirst
+      - SwatNamesLast
+      nameFormat: name-format-ert
     - type: AutoImplant
       implants:
       - MindShieldImplant

@@ -9,35 +9,35 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <Document>
-  # Редентии (Rodentia)
+  # Rodentia
 
   <Box>
     <GuideEntityEmbed Entity="MobRodentiaDummy" Caption=""/>
   </Box>
 
-  Родентии - раса гуманоидов, напоминающих грызунов. Находчивые, уклоняющиеся, хитрые, но хрупкие.
+  Rodentia are a race of humanoid beings resembling rodents. Resourceful, evasive, sneaky, but fragile.
 
-  ## Пища
+  ## Diet
 
-  - Могут есть сырое мясо.
-  - Может отравиться теобромином (шоколад, чай, кофе) и аллицином (лук, чеснок).
+  - Can eat raw meat.
+  - Will get poisoned by Theobromine (Chocolate, Tea, Coffee) and Allicin (Onion, Garlic).
 
-  ## Преимущества
+  ## Benefits
 
-  - Используют когти для нанесения колющего и тупого урона.
-  - Меньше, чем люди.
-  - Могут помещаться в вещевые мешки.
+  - Uses their claws to do some Slashing and Blunt damage.
+  - Can fit in duffelbags.
 
-  ## Особые
+  ## Special
 
-  - Могут рыться в мусоропроводах, в которых иногда откапывают еду.
-  - Могут хранить мелкие предметы в щеках. Если у них во рту есть предметы, их речь становится неразборчивой, а если их атакуют, оглушают или толкают, они бросают все предметы во рту.
-  - Могут пробираться под столами, но не под дверями.
+  - Can Rummage in disposal chutes, which can sometimes dig up food.
+  - Can store small items in their cheeks. Having items in their mouth makes their speech unintelligible, and they will drop all items in their mouth if attacked, stunned, or shoved.
+  - Can "sneak" underneath tables, but not doors.
+  - Smaller than most other species.
 
-  ## Недостатки
+  ## Drawbacks
 
-  - Получает на 30% больше тупого урона и на 15% больше колющего и пронзающего урона.
-  - Всегда срабатывают мышеловки, независимо от того, надета ли на них обувь.
-  - Проголодался на 33% быстрее.
+  - Takes 30% more Blunt damage, and 15% more Slash and Piercing damage.
+  - Always triggers mousetraps, regardless of whether or not they are wearing shoes.
+  - Gets hungry 33% faster.
 
 </Document>

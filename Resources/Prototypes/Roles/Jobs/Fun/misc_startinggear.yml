@@ -218,7 +218,6 @@
     pocket1: RadioHandheld
     pocket2: WeaponLaserGun
     belt: ClothingBeltUtilityFilled
-  innerclothingskirt: ClothingUniformJumpsuitColorBrown
 
 - type: startingGear
   id: BoxingKangarooGear

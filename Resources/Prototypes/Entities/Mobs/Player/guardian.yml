@@ -241,6 +241,7 @@
     - type: Tag
       tags:
         - CannotSuicide
+        - NoPaint #EE spray paint port
     - type: MovementIgnoreGravity # Goobstation
 
 # From the uplink injector
@@ -369,6 +370,7 @@
       tags:
         - CannotSuicide
         - FootstepSound
+        - NoPaint
     - type: Inventory
       templateId: holoclown
     - type: Hands

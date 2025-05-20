@@ -1,10 +1,9 @@
 - type: entity
-  name: боевая аптечка ОКГ
-  description: Для боевых задач и наших жизней, очень тяжелое.
-  noSpawn: false
   parent: MedkitCombat
   id: MedkitCombatSwatFilled
-  suffix: Заполненная, Резерв
+  suffix: Filled, Reserve
+  name: OKG combat first aid kit
+  description: For combat missions and our lives, very heavy.
   components:
   - type: Sprite
     state: blackkit
@@ -41,8 +40,8 @@
       - id: MedicatedSuture
       - id: RegenerativeMesh
       - id: Bloodpack
-      - id: EpinephrineChemistryBottle
-      - id: EpinephrineChemistryBottle
+      - id: ChemistryBottleEpinephrine
+      - id: ChemistryBottleEpinephrine
       - id: Syringe
       - id: Syringe
       - id: Syringe

@@ -10,8 +10,9 @@
       state: SwatStandart
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstPoliceSwat
-      - NamesLastPSWCallsign
+      - SwatNamesFirst
+      - SwatNamesLast
+      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: SwatStandartSettings
 
@@ -31,8 +32,9 @@
       prototypes: [ SwatStandartGear ]
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstPoliceSwat
-      - NamesLastPSWCallsign
+      - SwatNamesFirst
+      - SwatNamesLast
+      nameFormat: name-format-ert
     - type: AutoImplant
       implants:
       - MindShieldImplant

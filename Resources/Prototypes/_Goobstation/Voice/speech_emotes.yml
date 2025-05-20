@@ -125,24 +125,35 @@
 #     - ultra farted
 #     - ultra farting
 
-# - type: emote
-#   id: Flap
-#   name: chat-emote-name-flap
-#   category: Vocal
-#   available: false
-#   icon: Interface/Emotes/chitter.png
-#   whitelist:
-#     components:
-#       - Vocal
-#   blacklist:
-#     components:
-#     - BorgChassis
-#   chatMessages: ["chat-emote-msg-flap"]
-#   chatTriggers:
-#    - flaps
-#    - flapped
-#    - flaps his wings
-#    - flaps her wings
-#    - flaps their wings
-#    - flaps its wings
-
+- type: emote
+  id: Flap
+  name: chat-emote-name-flap
+  category: Vocal
+  available: false
+  icon: Interface/Emotes/chitter.png
+  whitelist:
+    components:
+      - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-flap"]
+  chatTriggers:
+   - flaps
+   - flapped
+   - flaps his wings
+   - flaps her wings
+   - flaps their wings
+   - flaps its wings
+  # Reserve edit start
+   - машет крыльями
+   - машет его крыльями
+   - машет её крыльями
+   - хлопает крыльями
+   - хлопает его крыльями
+   - хлопает её крыльями
+   - хлопнул крыльями
+   - хлопнула крыльями
+   - хлопнул его крыльями
+   - хлопнула её крыльями
+  # Reserve edit end

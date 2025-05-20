@@ -30,7 +30,8 @@
   - type: Tool
     qualities:
       - Prying
-      - PlatingCutting #Reserve
+      # Goobstation - Fireaxe plating prying
+      - Axing
   - type: ToolTileCompatible
   - type: Prying
   - type: UseDelay

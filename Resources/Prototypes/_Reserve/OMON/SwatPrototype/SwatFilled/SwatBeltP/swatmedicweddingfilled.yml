@@ -1,8 +1,7 @@
 - type: entity
-  noSpawn: false
   parent: ClothingBeltSwatMedicWedding
   id: ClothingBeltSwatMedicWeddingFilled
-  suffix: Резерв, Заполненный, Медик
+  suffix: Reserve, Filled, Medic
   components:
   - type:  StorageFill
     contents:
@@ -11,6 +10,6 @@
       - id: MagazinePistol
       - id: MedicatedSuture
       - id: RegenerativeMesh
-      - id: OmnizineChemistryBottle
-      - id: EpinephrineChemistryBottle
+      - id: ChemistryBottleOmnizine
+      - id: ChemistryBottleEpinephrine
       - id: Stunbaton

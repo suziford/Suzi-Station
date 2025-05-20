@@ -258,6 +258,7 @@
     - ServiceBoards
     - SharedBoards
     - CameraBoards
+    - PlantAnalyzer #Reserve edit
   - type: EmagLatheRecipes
     emagStaticPacks:
     - ServiceBoardsEvilStatic # Donk Co microwave circiutboard

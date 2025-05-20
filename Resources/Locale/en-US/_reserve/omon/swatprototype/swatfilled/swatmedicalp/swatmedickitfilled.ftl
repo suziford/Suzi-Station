@@ -1,3 +1,3 @@
-ent-MedkitCombatSwatFilled = боевая аптечка ОКГ
-    .desc = Для боевых задач и наших жизней, очень тяжелое.
-    .suffix = Заполненная, Резерв
+ent-MedkitCombatSwatFilled = { ent-MedkitCombatSwat }
+    .desc = { ent-MedkitCombatSwat.desc }
+    .suffix = Filled, Reserve

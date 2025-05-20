@@ -7,7 +7,7 @@
 - type: guideEntry
   id: Changelings
   name: guide-entry-changelings
-  text: "/ServerInfo/_Goobstation/Antagonist/Changelings.xml"
+  text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/Changelings.xml"
   children:
   - ChangelingsAbilities
 

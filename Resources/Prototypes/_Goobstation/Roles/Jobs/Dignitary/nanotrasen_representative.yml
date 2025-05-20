@@ -142,7 +142,7 @@
 - type: startingGear
   id: NanotrasenRepresentativeGear
   equipment:
-    id: NTRPDA
+    id: NanotrasenRepresentativePDA
     ears: ClothingHeadsetAltCommand
     gloves: ClothingHandsGlovesGoldenTrim # Psst. I might as well add this here.
   storage:

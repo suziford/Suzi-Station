@@ -193,6 +193,11 @@
   - type: Reactive
     groups:
       Acidic: [Touch]
+  #EE spray paint port begin
+  - type: Tag
+    tags:
+      - NoPaint
+  #EE spray paint port end
   #reserve revenant buff start
   - type: DamageOnAttacked
     damage:
@@ -211,4 +216,3 @@
   - type: WeakToHoly # Goobstation Shitchap
     alwaysTakeHoly: true
     #reserve revenant buff end
-

@@ -1,8 +1,7 @@
 - type: entity
-  noSpawn: false
   parent: ClothingBeltSwatWedding
   id: ClothingBeltSwatWeddingStandartFilled
-  suffix: Резерв, Заполненный, Стандарт
+  suffix: Reserve, Filled, Standard
   components:
   - type:  StorageFill
     contents:

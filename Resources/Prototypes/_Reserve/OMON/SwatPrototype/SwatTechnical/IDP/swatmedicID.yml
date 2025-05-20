@@ -1,17 +1,18 @@
 - type: entity
   parent: CentcomIDCard
   id: SwatMedicIDCard
-  name: ID Карта ОКГ
-  suffix: Резерв
+  name: OKG ID card
+  suffix: Reserve
   components:
   - type: Sprite
+    sprite: _Reserve/Objects/Misc/id_cards.rsi
     layers:
     - state: gold
     - state: swat_medicID
   - type: Item
     heldPrefix: gold
   - type: IdCard
-    jobTitle: Медик ОКГ
+    jobTitle: job-name-swat-medic
   - type: Access
     groups:
     - AllAccess

@@ -1,3 +1,3 @@
-ent-SwatMedicPDA = КПК Медика ОКГ
-    .desc = Пахнет больницей.
-    .suffix = ОКГ
+ent-SwatMedicPDA = OKG Medic PDA
+    .desc = Smells like a hospital.
+    .suffix = Reserve

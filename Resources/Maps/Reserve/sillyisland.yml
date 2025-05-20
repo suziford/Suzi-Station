@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 247.2.0
+  engineVersion: 251.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/13/2025 10:16:46
+  time: 05/20/2025 12:16:14
   entityCount: 6416
 maps:
 - 1
@@ -4276,7 +4276,6 @@ entities:
       - 2916
       - 2881
       - 2882
-      - 97
   - uid: 9
     components:
     - type: Transform
@@ -4293,7 +4292,6 @@ entities:
       - 2886
       - 2887
       - 2922
-      - 106
       - 2893
   - uid: 10
     components:
@@ -4309,7 +4307,6 @@ entities:
       - 2863
       - 2920
       - 2890
-      - 99
       - 2919
       - 2861
       - 2918
@@ -4331,7 +4328,6 @@ entities:
       - 2914
       - 2853
       - 2908
-      - 100
       - 2913
       - 2857
       - 2912
@@ -4352,7 +4348,6 @@ entities:
       - 2911
       - 2854
       - 2909
-      - 101
       - 2910
   - uid: 13
     components:
@@ -4364,7 +4359,6 @@ entities:
       devices:
       - 2852
       - 2925
-      - 102
       - 2850
       - 2928
       - 2926
@@ -4379,10 +4373,8 @@ entities:
       devices:
       - 2870
       - 2929
-      - 104
       - 2869
       - 2930
-      - 103
       - 2891
       - 2931
   - uid: 15
@@ -4401,7 +4393,6 @@ entities:
       - 2874
       - 2875
       - 2873
-      - 105
   - uid: 16
     components:
     - type: Transform
@@ -4738,7 +4729,7 @@ entities:
       pos: -23.5,3.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -20277.143
+      secondsUntilStateChange: -23000.006
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -5167,90 +5158,6 @@ entities:
     - type: Transform
       pos: -15.5,5.5
       parent: 2
-- proto: AirSensor
-  entities:
-  - uid: 97
-    components:
-    - type: Transform
-      pos: 9.5,0.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 8
-  - uid: 98
-    components:
-    - type: Transform
-      pos: -2.5,5.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 2169
-  - uid: 99
-    components:
-    - type: Transform
-      pos: -1.5,10.5
-      parent: 2
-  - uid: 100
-    components:
-    - type: Transform
-      pos: 6.5,11.5
-      parent: 2
-  - uid: 101
-    components:
-    - type: Transform
-      pos: 24.5,9.5
-      parent: 2
-  - uid: 102
-    components:
-    - type: Transform
-      pos: 17.5,3.5
-      parent: 2
-  - uid: 103
-    components:
-    - type: Transform
-      pos: 18.5,-6.5
-      parent: 2
-  - uid: 104
-    components:
-    - type: Transform
-      pos: 16.5,-3.5
-      parent: 2
-  - uid: 105
-    components:
-    - type: Transform
-      pos: 8.5,-12.5
-      parent: 2
-  - uid: 106
-    components:
-    - type: Transform
-      pos: -14.5,3.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 2159
-  - uid: 107
-    components:
-    - type: Transform
-      pos: 0.5,1.5
-      parent: 2
-  - uid: 108
-    components:
-    - type: Transform
-      pos: -6.5,-2.5
-      parent: 2
-  - uid: 109
-    components:
-    - type: Transform
-      pos: 10.5,-4.5
-      parent: 2
-  - uid: 110
-    components:
-    - type: Transform
-      pos: 9.5,1.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 2168
 - proto: AltarConvertOrange
   entities:
   - uid: 111
@@ -5913,6 +5820,40 @@ entities:
     - type: Transform
       pos: -26.731546,-5.4222245
       parent: 2
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PolygonShape
+            radius: 0.01
+            vertices:
+            - -0.25,-0.25
+            - 0.25,-0.25
+            - 0.25,0.25
+            - -0.25,0.25
+          mask:
+          - Impassable
+          - HighImpassable
+          layer: []
+          density: 20
+          hard: True
+          restitution: 0.3
+          friction: 0.2
+        revenantReveal:
+          shape: !type:PolygonShape
+            radius: 0.01
+            vertices:
+            - -0.25,-0.25
+            - 0.25,-0.25
+            - 0.25,0.25
+            - -0.25,0.25
+          mask:
+          - GhostImpassable
+          layer:
+          - GhostImpassable
+          density: 1
+          hard: False
+          restitution: 0
+          friction: 0.4
 - proto: BikeHorn
   entities:
   - uid: 204
@@ -15325,6 +15266,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -17.5,17.5
       parent: 2
+    - type: Conveyed
   - uid: 1716
     components:
     - type: Transform
@@ -15373,6 +15315,32 @@ entities:
     components:
     - type: Transform
       pos: 3.5,7.5
+      parent: 2
+- proto: ChemistryBottleRobustHarvest
+  entities:
+  - uid: 3757
+    components:
+    - type: Transform
+      pos: 7.7908025,-14.50687
+      parent: 2
+  - uid: 3758
+    components:
+    - type: Transform
+      pos: 7.7908025,-14.395759
+      parent: 2
+  - uid: 3759
+    components:
+    - type: Transform
+      pos: 7.7908025,-14.242981
+      parent: 2
+- proto: ChemistryBottleUnstableMutagen
+  entities:
+  - uid: 4217
+    components:
+    - type: MetaData
+      name: бутылочка с мутагеном
+    - type: Transform
+      pos: -14.222612,17.29264
       parent: 2
 - proto: ChemistryHotplate
   entities:
@@ -19011,7 +18979,6 @@ entities:
       parent: 2
     - type: DeviceList
       devices:
-      - 106
       - 2175
       - 2174
       - 2173
@@ -19034,7 +19001,6 @@ entities:
       - 2198
       - 2197
       - 2196
-      - 99
       - 2200
       - 2201
       - 2199
@@ -19056,7 +19022,6 @@ entities:
       - 2204
       - 2202
       - 2203
-      - 100
   - uid: 2162
     components:
     - type: Transform
@@ -19065,7 +19030,6 @@ entities:
     - type: DeviceList
       devices:
       - 2215
-      - 101
       - 2178
       - 2179
       - 2214
@@ -19085,7 +19049,6 @@ entities:
       - 2217
       - 2216
       - 2219
-      - 102
   - uid: 2164
     components:
     - type: Transform
@@ -19096,7 +19059,6 @@ entities:
       devices:
       - 2221
       - 2220
-      - 104
       - 2222
       - 2223
   - uid: 2165
@@ -19115,7 +19077,6 @@ entities:
       - 2235
       - 2233
       - 2237
-      - 107
   - uid: 2166
     components:
     - type: Transform
@@ -19127,7 +19088,6 @@ entities:
       - 2247
       - 2246
       - 2245
-      - 108
       - 2251
   - uid: 2167
     components:
@@ -19147,7 +19107,6 @@ entities:
       - 2186
       - 2185
       - 2187
-      - 110
   - uid: 2168
     components:
     - type: Transform
@@ -19162,8 +19121,6 @@ entities:
       - 2220
       - 2242
       - 2241
-      - 109
-      - 110
       - 2243
       - 2244
   - uid: 2169
@@ -19181,7 +19138,6 @@ entities:
       - 2243
       - 2201
       - 2200
-      - 98
   - uid: 2170
     components:
     - type: Transform
@@ -31521,23 +31477,6 @@ entities:
     - type: Transform
       pos: -23.767435,8.702974
       parent: 2
-- proto: RobustHarvestChemistryBottle
-  entities:
-  - uid: 3757
-    components:
-    - type: Transform
-      pos: 7.7908025,-14.50687
-      parent: 2
-  - uid: 3758
-    components:
-    - type: Transform
-      pos: 7.7908025,-14.395759
-      parent: 2
-  - uid: 3759
-    components:
-    - type: Transform
-      pos: 7.7908025,-14.242981
-      parent: 2
 - proto: RollerBedSpawnFolded
   entities:
   - uid: 3157
@@ -35366,15 +35305,6 @@ entities:
     components:
     - type: Transform
       pos: -18.5,8.5
-      parent: 2
-- proto: UnstableMutagenChemistryBottle
-  entities:
-  - uid: 4217
-    components:
-    - type: MetaData
-      name: бутылочка с мутагеном
-    - type: Transform
-      pos: -14.222612,17.29264
       parent: 2
 - proto: UprightPianoInstrument
   entities:

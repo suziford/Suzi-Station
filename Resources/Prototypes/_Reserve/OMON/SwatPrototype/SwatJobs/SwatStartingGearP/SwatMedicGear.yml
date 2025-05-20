@@ -5,7 +5,7 @@
     back: ClothingBackpackSwatMedicSatchelFilled
     shoes: ClothingShoesSwatBoots
     head: ClothingHeadHatBeretMedicSwat
-    eyes: ClothingEyesGlassesDS
+    eyes: ClothingEyesGlassesDeathsquad
     mask: ClothingSwatGasMask
     gloves: ClothingHandsGlovesCombatSwat
     outerClothing: ClothingOuterLightVestSwat
@@ -16,4 +16,3 @@
     pocket2: WeaponFlareGun
   inhand:
     - MedkitCombatSwatFilled
-  innerclothingskirt: ClothingUniformJumpskirtMedicSwat

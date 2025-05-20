@@ -111,7 +111,7 @@
 # Stray syndicate surplus 100TK
 - type: entity
   parent: BaseSupplyPodTargetCircle
-  id: SupplyPodCircleSyndicateSurplus20TK
+  id: SupplyPodCircleSyndicateSurplus100TK
   suffix: Surplus 100TK, Syndicate #Goob
   components:
     - type: TimedSpawner

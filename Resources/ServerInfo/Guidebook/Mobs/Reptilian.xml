@@ -7,25 +7,32 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <Document>
-  # Унатхи (унати)
+  # Reptilians
 
   <Box>
     <GuideEntityEmbed Entity="MobReptilian" Caption=""/>
   </Box>
-  Унатхи (м.р. унатх, ж.р. унати) — это вид чешуйчатых гуманоидов родом с тропической планеты Д’тхун, расположенной в звездной системе Рисси-Ташут. Они могут есть только фрукты и мясо. Предпочитают более высокий диапазон температур по сравнению с людьми. С помощью своего хвоста они могут тащить объекты, освобождая обе руки.
 
-  ## Расовые особенности
-  - Животный желудок, вмещает 50 единиц веществ, получает урон ядами от шоколада.
-  - Безоружная атака отличается от остальных рас – наносит пробивающий урон (когтями), что позволяет голыми руками ломать двери, вендоматы, стены, шкафы и прочее.
-  - Получают урон от голода холодом по [color=red]0.1[/color] единице в секунду
-  - Могут таскать предметы с занятыми руками (хвостом)
-  - Имеют отличимый от других рас порог температуры. При низкой температуре получают [color=red]0.1[/color] холода в секунду; При высокой температуре получают [color=red]0.1[/color] ожогов в секунду.
-  - Имеют акцент, который добавляет шипящие «ссс» и «щщщ» в их речь.
-  - Можно разделать на крюке и получить 5 мяса ящерицы
-  - Они могут есть сырое мясо и пить кровь без каких-либо последствий.
-  - Они предпочитают несколько более высокий температурный режим, чем люди.
-  - Они могут тащить предметы хвостом, оставляя обе руки свободными.
-  - Их безоружные атаки когтями наносят косой урон, а не тупой.
-  - Они получают [color=#ffa500]на 30% больше урона от холода[/color].
+  ## Fresh means healthy!
+
+  Reptilians are capable of and are usually quite happy to eat things other species cannot, this includes things like raw meat, live animals, and even blood!
+
+  ## Is it cold in here?
+
+  Unlike other species, Reptilians are cold-blooded. This means they have no internal way of regulating their temperature and require external sources to assist.
+  Luckily, Nanotrasen (and The Syndicate!) issue all Reptillian crewmembers their very own heating lamps, capable of keeping them warm when it would otherwise be too cold to work.
+
+  These lamps take power cells and have three seperate modes: Low, Medium, and High.
+  They can be worn on the belt, held in the hand, or placed inside a backpack. When inside a backpack, they do not function as well as they would otherwise.
+
+  Due to this, they can also tolerate much higher temperatures than humans.
+  But, they take [color=#ffa500]30% more Cold damage.[/color]
+
+  ## Well, what about the tail?
+
+  Reptillians can drag objects and people with their tail, allowing them to keep both of their hands free.
+  A crafty lizard can use this in combat to their advantage. Maybe try dragging a teammate out of fire next time?
+
+  Because of their claws, a Reptilians unarmed attack deals Slash damage instead of Blunt.
 
 </Document>

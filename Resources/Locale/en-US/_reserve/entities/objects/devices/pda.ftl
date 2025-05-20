@@ -1,2 +1,2 @@
-ent-NTRPDA = NTR PDA
-    .desc = Light green sign of walking bureaucracy.
+ent-NanotrasenRepresentativePDA = nanotrasen representative's PDA
+    .desc = The devil's in the details.

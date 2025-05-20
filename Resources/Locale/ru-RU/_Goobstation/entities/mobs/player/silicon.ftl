@@ -1,10 +1,6 @@
-ent-JermovCircuitBoard = плата законов (Твитч)
-    .desc = Электронная плата, хранящая набор законов ИИ 'Твитч'.
-ent-ZooimovCircuitBoard = law board (Zooimov)
-    .desc = An electronics board containing the Zooimov lawset.
 ent-PlayerBorgDerelictSyndicateAssaultBattery = { ent-BorgChassisDerelictSyndicateAssault }
-    .suffix = Battery, Module, Operative, Derelict
+    .suffix = Батарея, Модуль, Оперативный, Заброшенный
     .desc = { ent-BorgChassisDerelictSyndicateAssault.desc }
 ent-PlayerBorgDerelictSyndicateAssaultGhostRole = { ent-PlayerBorgDerelictSyndicateAssaultBattery }
-    .suffix = Ghost role, Derelict
+    .suffix = Роль призрака, Заброшенный
     .desc = { ent-PlayerBorgDerelictSyndicateAssaultBattery.desc }

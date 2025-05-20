@@ -5,7 +5,7 @@
     back: ClothingBackpackSwatLeaderSatchelFilled
     shoes: ClothingShoesSwatBoots
     head: ClothingHeadHatBeretLeaderSwat
-    eyes: ClothingEyesGlassesDS
+    eyes: ClothingEyesGlassesDeathsquad
     mask: ClothingSwatGasMask
     gloves: ClothingHandsGlovesCombatSwat
     outerClothing: ClothingOuterMediumVestSwat
@@ -14,4 +14,3 @@
     belt: ClothingBeltSwatLeaderWeddingFilled
     pocket1: ClothingHeadHelmetHeavySwat
     pocket2: WeaponFlareGun
-  innerclothingskirt: ClothingUniformJumpskirtSwat

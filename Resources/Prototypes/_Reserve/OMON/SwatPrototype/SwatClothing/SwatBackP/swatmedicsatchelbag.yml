@@ -1,9 +1,9 @@
 - type: entity
-  parent: Clothing
+  parent: ClothingBackpackSatchel
   id: ClothingBackpackSwatMedicSatchel
-  name: сумка медика спецназа
-  description: Удобная и максимально компактная сумка медика оперативной контрреволюционной группы, которая способна вместить море медикаментов.
-  suffix: Резерв
+  name: Special Forces medic's bag
+  description: A handy and maximally compact counter-revolutionary task force medic's bag that can hold a sea of medical supplies.
+  suffix: Reserve
   components:
   - type: Sprite
     sprite: _Reserve/OMON/swatmedicsatchelbag.rsi

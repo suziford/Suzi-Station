@@ -6,5 +6,5 @@ ent-HecuPDA = КПК HECU
     .desc = Пахнет порохом.
 ent-BlueshieldPDA = КПК синего щита
     .desc = На лицевой стороне выгравирован серебряный знак синего щита.
-ent-NTRPDA = КПК представителя НТ
-    .desc = Пахнет бюрократией.
+ent-NanotrasenRepresentativePDA = КПК представителя НТ
+    .desc = Дьявол кроется в деталях.

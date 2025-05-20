@@ -29,7 +29,7 @@
     - Reptilian
     - SlimePerson
     # Goobstation
-    # - Felinid # Reserve
+    # - Felinid
     - Gingerbread
     - Harpy
     - Vox
@@ -77,12 +77,10 @@
   text: "/ServerInfo/Guidebook/Mobs/SlimePerson.xml"
 
 # Goobstation
-# Reserve-Start
 #- type: guideEntry
 #  id: Felinid
 #  name: species-name-felinid
 #  text: "/ServerInfo/Guidebook/Mobs/Felinid.xml"
-# Reserve-End
 
 - type: guideEntry
   id: Gingerbread
