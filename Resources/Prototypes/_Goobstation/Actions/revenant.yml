@@ -1,4 +1,9 @@
-﻿- type: entity
+# SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Svarshik <96281939+lexaSvarshik@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
   id: ActionRevenantHaunt
   name: Haunt
   description: Gives essence and stolen essence for every witness.
@@ -9,7 +14,7 @@
       sprite: Mobs/Ghosts/revenant.rsi
       state: icon
     event: !type:RevenantHauntActionEvent
-    useDelay: 20
+    useDelay: 45 #Revenant nerf
 
 - type: entity
   id: ActionRevenantBloodWriting
