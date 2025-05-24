@@ -41,6 +41,7 @@ guide-entry-sop-stationdamage = Повреждение станции
 guide-entry-sop-supermatterdelam = Расслаивание СМ
 guide-entry-sop-wardeclaration = Война
 guide-entry-sop-zombieoutbreak = Зомби
+guide-entry-sop-emergencyresponseteam = Отряд Быстрого Реагирования
 # - Юридический
 guide-entry-sop-execution = Казни
 guide-entry-sop-permabrig = Перманентный бриг
@@ -51,7 +52,7 @@ guide-entry-sop-cargotech = Грузчик
 guide-entry-sop-salvage = Утилизатор
 # - Командование
 guide-entry-sop-ntr = ПНТ
-guide-entry-sop-bso = Офицер синего щита
+guide-entry-sop-bso = Офицер "Синий Щит"
 guide-entry-sop-captain = Капитан
 guide-entry-sop-hop = ГП
 guide-entry-sop-hos = ГСБ
@@ -83,6 +84,7 @@ guide-entry-sop-janitor = Уборщик
 guide-entry-sop-librarian = Библиотекарь
 guide-entry-sop-mime = Мим
 guide-entry-sop-reporter = Репортер
+guide-entry-chaplain = Священник
 # - Космический закон
 guide-entry-space-law-table = Таблица статей
 guide-entry-space-law-violations-minor = 1ХХ статьи (лёгкие)

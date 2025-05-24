@@ -18,23 +18,27 @@
     Также обратите внимание, что любые ссылки на "Эту Станцию" или "Станцию" предполагают станцию, на которой вы работаете в текущую смену. Вы можете найти эту информацию на вашем КПК.
   </Box>
 
+## КЗ - космический закон
+
+- [textlink="Таблица, содержащая все статьи актуальной редакции Космического Закона" link="SpaceLawReserveTable"]
+
 ## Общие СРП Станции
 Следующие ссылки предназначены для общего ознакомления с процедурами на станции:
-- [textlink="Найм, Повышение, Перевод" link="Hiring SOP"]
-- [textlink="Увольнение, Понижение, Прекращение Договора" link="Demoting SOP"]
-- [textlink="Цепь Командования" link="Succession"]
-- [textlink="Правовые Процедуры" link="Legal SOP"]
-- [textlink="Чрезвычайные Ситуации" link="Emergencies SOP"]
-- [textlink="Уровни Тревоги" link="Alert Levels"]
+- [textlink="Найм, Повышение, Перевод" link="Hiring SOP Reserve"]
+- [textlink="Увольнение, Понижение, Прекращение Договора" link="Demoting SOP Reserve"]
+- [textlink="Цепь Командования" link="Succession Reserve"]
+- [textlink="Правовые Процедуры" link="Legal SOP Reserve"]
+- [textlink="Чрезвычайные Ситуации" link="Emergencies SOP Reserve"]
+- [textlink="Уровни Тревоги" link="Alert Levels Reserve"]
 
 ## Общие Отделы
 Следующие ссылки ведут к стандартным процедурам отделов. Они направят вас в соответствующую папку:
-- [textlink="Карго" link="Cargo SOP"]
-- [textlink="Командный Отдел" link="Command SOP"]
-- [textlink="Инженерный Отдел" link="Engineering SOP"]
-- [textlink="Медицинский Отдел" link="Medical SOP"]
-- [textlink="Научный Отдел" link="Science SOP"]
-- [textlink="Отдел Безопасности" link="Security SOP"]
-- [textlink="Сервисный Отдел" link="Service SOP"]
+- [textlink="Карго" link="Cargo SOP Reserve"]
+- [textlink="Командный Отдел" link="Command SOP Reserve"]
+- [textlink="Инженерный Отдел" link="Engineering SOP Reserve"]
+- [textlink="Медицинский Отдел" link="Medical SOP Reserve"]
+- [textlink="Научный Отдел" link="Science SOP Reserve"]
+- [textlink="Отдел Безопасности" link="Security SOP Reserve"]
+- [textlink="Сервисный Отдел" link="Service SOP Reserve"]
 
 </Document>

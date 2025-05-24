@@ -1,4 +1,4 @@
-species-name-abductor = пришелец
+species-name-abductor = Пришелец
 abductors-weapon-restricted-1 = Нажимает на шарик.
 abductors-weapon-restricted-2 = Кажется, что они схватили лезвие.
 abductors-weapon-restricted-3 = Нажимает на палочку, но ничего не происходит.
