@@ -501,7 +501,7 @@ internal sealed partial class ChatManager : IChatManager
 
             var payload = new WebhookPayload
             {
-                Content = $"{player.Name}[{(senderAdmin?.Title ?? "Admin")}]:\n{message}" //Reserve edit
+                Content = $"{player.Name} [{(senderAdmin?.Title ?? "Admin")}]:\n{message}" //Reserve edit
             };
             var identifier = webhookData.ToIdentifier();
             await _discord.CreateMessage(identifier, payload);
