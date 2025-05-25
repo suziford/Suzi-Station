@@ -6,10 +6,10 @@ condition-body-trauma-OrganDamage = - У {$woundable} повреждены не�
 condition-body-trauma-VeinsDamage = - У {$woundable} повреждены вены.
 condition-body-trauma-NerveDamage = - У {$woundable} повреждены нервы.
 condition-body-trauma-Dismemberment = - У {$targetSymmetry}{$targetType} были удалены...
-условие-тело-болит-уменьшилось = - Нервы {$woundable} онемели.
+condition-body-pain-decreased = - Нервы {$woundable} онемели.
 condition-body-pain-increased = - Нервы {$woundable} аномально чувствительны.
 condition-body-unrevivable = - У {$entity} особенно слабое строение. Он не может выдержать удар дефибриллятора.
-условие-тело-кровотечение = - У {$entity} кровотечение.
+condition-body-bleeding = - У {$entity} кровотечение.
 
 condition-organ-damage-Normal = - Орган {$entity} в основном в порядке.
 condition-organ-damage-Damaged = - Орган {$entity} поврежден.

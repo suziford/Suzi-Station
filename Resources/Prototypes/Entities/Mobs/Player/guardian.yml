@@ -245,7 +245,6 @@
       tags:
         - CannotSuicide
         - NoPaint #EE spray paint port
-    - type: MovementIgnoreGravity # Goobstation
     # <Goobstation>
     - type: MovementIgnoreGravity
     - type: ActionGrant
