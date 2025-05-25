@@ -132,6 +132,11 @@
     - trills
     - trilling
     - trilled
+    #Reserve translation begin
+    - трель
+    - издает трель
+    - издаёт трель
+    #Reserve translation end
 
 - type: emote
   id: Warble
@@ -151,6 +156,9 @@
     - warbles
     - warbling
     - warbled
+    #Reserve translation begin
+    - поскрипывает
+    #Reserve translation end
 
 - type: emote
   id: Wurble
@@ -173,3 +181,8 @@
     - wurbles
     - wurbling
     - wurbled
+    #Reserve translation begin
+    - урчит
+    - заурчал
+    - заурчала
+    #Reserve translation end

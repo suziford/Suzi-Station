@@ -7,3 +7,4 @@ collective-mind-abductormind = Глорп
 collective-mind-binary = Двоичный
 collective-mind-mousemind = Мышиный
 collective-mind-dronemind = Дроны
+collective-mind-empathy = Эмпатия

@@ -1,0 +1,35 @@
+condition-body-trauma-BoneDamage-Normal = - У {$woundable} есть очень незначительные повреждения костей.
+condition-body-trauma-BoneDamage-Damaged = - У {$woundable} есть некоторые повреждения костей.
+condition-body-trauma-BoneDamage-Cracked = - Кость {$woundable} выглядит почти сломанной...
+condition-body-trauma-BoneDamage-Broken = - Кость {$woundable} сломана!
+condition-body-trauma-OrganDamage = - У {$woundable} повреждены некоторые органы.
+condition-body-trauma-VeinsDamage = - У {$woundable} повреждены вены.
+condition-body-trauma-NerveDamage = - У {$woundable} повреждены нервы.
+condition-body-trauma-Dismemberment = - У {$targetSymmetry}{$targetType} были удалены...
+условие-тело-болит-уменьшилось = - Нервы {$woundable} онемели.
+condition-body-pain-increased = - Нервы {$woundable} аномально чувствительны.
+condition-body-unrevivable = - У {$entity} особенно слабое строение. Он не может выдержать удар дефибриллятора.
+условие-тело-кровотечение = - У {$entity} кровотечение.
+
+condition-organ-damage-Normal = - Орган {$entity} в основном в порядке.
+condition-organ-damage-Damaged = - Орган {$entity} поврежден.
+condition-organ-damage-Destroyed = - Орган {$} разрушен...
+condition-organ-rotting = - Орган {$} гниет!
+
+condition-none = - Никаких условий не обнаружено.
+group-organ-status = {$орган} на {$capacity}% работоспособности
+group-solution-name = {$solution}
+group-solution-unknown = Неизвестно
+group-solution-contents = {$реагент}: {$количество}
+
+condition-body-bleeding-Head = - У {$entity} кровоточит голова.
+condition-body-bleeding-Chest = - Торс {$entity} кровоточит.
+condition-body-bleeding-Groin = - Пах {$entity} кровоточит.
+condition-body-bleeding-LeftArm = - Левая рука {$entity} кровоточит.
+condition-body-bleeding-RightArm = - Правая рука {$entity} кровоточит.
+condition-body-bleeding-LeftLeg = - Левая нога {$entity} кровоточит.
+condition-body-bleeding-RightLeg = - Правая нога {$entity} кровоточит.
+condition-body-bleeding-LeftHand = - Левая рука {$entity} кровоточит.
+condition-body-bleeding-RightHand = - Правая рука {$entity} кровоточит.
+condition-body-bleeding-LeftFoot = - Левая нога {$entity} кровоточит.
+condition-body-bleeding-RightFoot = - Правая нога {$entity} кровоточит.

@@ -10,10 +10,11 @@ condemned-component-examined = [color=chartreuse]Глаза{CAPITALIZE($target)}
 devil-role-greeting = Вы дъявол из адских глубин,
   завладевший телом {$playerName}
   Развращайте смертных и собирайте души при помощи контрактов.
+  Не в ваших интересах выполнять задания, не связанные с вашими сделками, - они ниже вас.
   Ваше настоящее имя - {$trueName}, Постарайтесь держать его в секрете, хорошо?
 
 devil-true-name-heard = Когда {$speaker} произносит истинное имя {$target}, это заставляет {POSS-ADJ($target)} остановится.
-devil-true-name-heard-chaplain = Действие священных слов {$speaker} произносящих вашей истинное имя, выжигает саму душу {$target}.
+devil-true-name-heard-chaplain = Действие священных слов {$speaker} произносящих их истинное имя, выжигает саму душу {$target}.
 
 objective-condition-contract-title = Собрать души
 objective-condition-contract-description = Собрать как можно больше душ.
