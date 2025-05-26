@@ -365,5 +365,4 @@ ui-options-chat-window-opacity = Непрозрачность окна чата
 ui-options-speech-bubble-text-opacity = Непрозрачность текста речевого пузыря
 ui-options-speech-bubble-speaker-opacity = Непрозрачность диктора речевого пузыря
 ui-options-speech-bubble-background-opacity = Непрозрачность фона речевого пузыря
-ui-options-enable-classic-overlay = Вернуть антаг-оверлей в классический режим
 ui-options-censor-nudity = Цензура обнажённых персонажей

@@ -14,9 +14,6 @@ changeling-absorb-onexamine = [color=red]Тело кажется полым[/col
 changeling-absorb-fail-nograb = Вы не схватили достаточно сильно.
 changeling-absorb-fail-onfire = Цель горит, потушите ее cперва!
 
-
-changeling-absorb-fail-onfire = Вы в огне, сначала потушите себя!
-
 changeling-absorbbiomatter-start = { THE($user) } начинает поглощать пищу!
 changeling-absorbbiomatter-bad-food = Эта пища не усваивается.
 

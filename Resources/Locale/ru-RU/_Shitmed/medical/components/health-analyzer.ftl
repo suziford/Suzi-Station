@@ -11,16 +11,16 @@ condition-body-pain-increased = - Нервы {$woundable} аномально ч�
 condition-body-unrevivable = - У {$entity} особенно слабое строение. Он не может выдержать удар дефибриллятора.
 condition-body-bleeding = - У {$entity} кровотечение.
 
-condition-organ-damage-Normal = - Орган {$entity} в основном в порядке.
-condition-organ-damage-Damaged = - Орган {$entity} поврежден.
-condition-organ-damage-Destroyed = - Орган {$} разрушен...
-condition-organ-rotting = - Орган {$} гниет!
+condition-organ-damage-Normal = - {$organ} в порядке.
+condition-organ-damage-Damaged = - {$organ} поврежден.
+condition-organ-damage-Destroyed = - {$organ} разрушен...
+condition-organ-rotting = - {$organ} гниет!
 
 condition-none = - Никаких условий не обнаружено.
-group-organ-status = {$орган} на {$capacity}% работоспособности
+group-organ-status = {$organ} на {$capacity}% работоспособности
 group-solution-name = {$solution}
 group-solution-unknown = Неизвестно
-group-solution-contents = {$реагент}: {$количество}
+group-solution-contents = {$reagent}: {$quantity}
 
 condition-body-bleeding-Head = - У {$entity} кровоточит голова.
 condition-body-bleeding-Chest = - Торс {$entity} кровоточит.
