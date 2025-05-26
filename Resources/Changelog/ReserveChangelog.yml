@@ -82,3 +82,15 @@ Entries:
       message: Добавлены изменения с Goob Station на момент 25.05!
   id: 12
   time: '2025-05-26T15:36:33.0000000+00:00'
+- author: Jose229
+  changes:
+    - type: Add
+      message: Добавлена локализация!
+    - type: Remove
+      message: Убрана локализация!
+    - type: Tweak
+      message: Изменена локализация!
+    - type: Fix
+      message: Исправлена локализация!
+  id: 13
+  time: '2025-05-26T16:13:38.0000000+00:00'
