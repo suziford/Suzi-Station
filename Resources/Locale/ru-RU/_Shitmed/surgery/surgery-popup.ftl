@@ -46,3 +46,5 @@ surgery-popup-step-SurgeryStepInsertStomach = { $user } вставляет же�
 surgery-popup-step-SurgeryStepSealOrganWound = { $user } заклеивает раны на { $target } { $part }.
 surgery-popup-step-SurgeryStepLobotomize = { $user } проводит лоботомию { $target }!
 surgery-popup-step-SurgeryStepMendBrainTissue = { $user } восстанавливает мозговую ткань на { $target } { $part }.
+
+surgery-popup-step-SurgeryStepRemoveOrgan-failed = По какой-то причине у вас не получается удалить орган...

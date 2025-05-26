@@ -21,13 +21,15 @@ public sealed class ControlPinpointerSystem : EntitySystem
         var index = 0;
 
         foreach (var ent in entity.Comp.Entities)
+        {
             e.Verbs.Add(new()
             {
                 Text = MetaData(ent).EntityName,
-                Disabled = pin.Target == ent,
+                Disabled = _pin.IsTrackingTarget(pin, ent),
                 Category = VerbCategory.PinpointerTarget,
                 Priority = index--,
                 Act = () => _pin.SetTarget(entity, ent, pin)
             });
+        }
     }
 }

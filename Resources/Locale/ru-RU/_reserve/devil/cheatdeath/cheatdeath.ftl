@@ -1,6 +1,12 @@
 cheat-death-component-examined = [color=red] Что-то подсказывает вам, что {SUBJECT($target)} не боится смерти. [/color]
 
-cheat-death-component-remaining-revives = У вас осталось {$amount} возрождений.
+cheat-death-component-remaining-revives = { $amount ->
+[0] У вас не осталось возрождений.
+[one] У вас осталось одно возрождение.
+*[other] У вас осталось {$amount} возрождений.
+}
+
+cheat-death-component-remaining-revives-unlimited = У вас неограниченное количество возрождений. Разве это не весело?
 
 action-cheat-death-fail-no-lives = На этот раз ты не ускользнешь...
 action-cheat-death-fail-not-dead = Ты не можешь обмануть смерть, пока жив!
