@@ -5,7 +5,7 @@ roundend-prepend-devil-contracts = Кто-то заключил [color=red]{$num
 roundend-prepend-devil-contracts-named = [color=white]{$name}[/color] совершил [color=red]{$number}[/color] успешных контрактов.
 
 devil-component-examined = [color=darkred]{CAPITALIZE(POSS-ADJ($target))} глаза светятся слабым красным светом.[/color]
-condemned-component-examined = [color=chartreuse]Глаза{CAPITALIZE($target)} пустые и бездушные.[/color]
+condemned-component-examined = [color=chartreuse]Глаза {CAPITALIZE($target)} пустые и бездушные.[/color]
 
 devil-role-greeting = Вы дъявол из адских глубин,
   завладевший телом {$playerName}
