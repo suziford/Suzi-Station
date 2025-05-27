@@ -1,5 +1,5 @@
-ent-BaseMailLarge = mail-large-item-name-unaddressed
+ent-BaseMailLarge = почта-большая-с-названием-без-адреса
     .desc = { ent-BaseMail.desc }
 ent-MailLargeAdminFun = { ent-BaseMailLarge }
-    .suffix = adminfun
+    .suffix = администратор
     .desc = { ent-BaseMailLarge.desc }

@@ -1,6 +1,6 @@
-ent-ClothingOuterHardsuitSyndieStealthDebug = syndicate stealth hardsuit
-    .desc = A hardsuit with stealth plating for operations, the shielding doesn't work while you're moving though! Needs the helmet on to finish the stealth field.
-    .suffix = DEBUG, DO NOT MAP, stealth
-ent-ClothingHeadHelmetHardsuitSyndieStealthDebug = syndicate stealth hardsuit helmet
-    .desc = A helmet with plating for stealth operations.
-    .suffix = DEBUG, DO NOT MAP, stealth
+ent-ClothingOuterHardsuitSyndieStealthDebug = защитный костюм-невидимка синдиката
+    .desc = Наденьте защитный костюм со скрытым покрытием для операций, но защита не работает, когда вы двигаетесь! Для завершения маскировочного поля необходим шлем.
+    .suffix = ОТЛАДКА, НЕ НАНЕСЕНИЕ НА КАРТУ, скрытность
+ent-ClothingHeadHelmetHardsuitSyndieStealthDebug = защитный шлем-невидимка синдиката
+    .desc = Шлем с защитным покрытием для скрытных операций.
+    .suffix = ОТЛАДКА, НЕ НАНЕСЕНИЕ НА КАРТУ, скрытность

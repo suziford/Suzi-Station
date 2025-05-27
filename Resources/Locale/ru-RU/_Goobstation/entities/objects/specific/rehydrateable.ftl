@@ -26,5 +26,7 @@ ent-TajaranCube = кубик таяры
     .desc = { ent-MonkeyCube.desc }
 ent-YowieCube = кубик Йоуи
     .desc = { ent-MonkeyCube.desc }
+ent-ShadowkinCube = Куб, похожий на тень
+    .desc = { ent-MonkeyCube.desc }
 ent-VoxCube = кубик вокс
     .desc = { ent-MonkeyCube.desc }

@@ -7,7 +7,6 @@ inspect-wound-Brute-severe = выглядит искалеченным
 inspect-wound-Burn-minor = выглядит красным
 inspect-wound-Burn-moderate = имеет волдыри по всей площади
 inspect-wound-Burn-severe = имеет отшелушиваюшуюся кожу
-
 self-inspect-wound-Bleeding-minor = незначительно кровоточит
 self-inspect-wound-Bleeding-moderate = кровоточит
 self-inspect-wound-Bleeding-severe = обильно кровоточит

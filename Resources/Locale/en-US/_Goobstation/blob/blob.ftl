@@ -10,15 +10,6 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-ent-SpawnPointGhostBlob = Blob spawner
-    .suffix = DEBUG, Ghost Role Spawner
-    .desc = { ent-MarkerBase.desc }
-ent-MobBlobPod = Blob Drop
-    .desc = An ordinary blob fighter.
-ent-MobBlobBlobbernaut = Blobbernaut
-    .desc = An elite blob fighter.
-ent-BaseBlob = basic blob.
-    .desc = { "" }
 ent-NormalBlobTile = Regular Tile Blob
     .desc = An ordinary part of the blob required for the construction of more advanced tiles.
 ent-CoreBlobTile = Blob Core
@@ -189,3 +180,16 @@ objective-condition-fail = { $condition } | [color={ $markupColor }]Failure![/co
 
 admin-verb-make-blob = Make the target into a blob carrier.
 admin-verb-text-make-blob = Make Blob Carrier
+
+ent-SpawnPointGhostBlob = Blob spawner
+    .suffix = DEBUG, Ghost Role Spawner
+    .desc = { ent-MarkerBase.desc }
+
+ent-MobBlobPod = Blob Drop
+    .desc = An ordinary blob fighter.
+
+ent-MobBlobBlobbernaut = Blobbernaut
+    .desc = Juggernaut, but blob! when the station crew shows full hatred of you, with the help of such strong men you can organize a blitzkriek if you tell them the plan in advance.
+
+ent-BaseBlob = basic blob.
+    .desc = { "" }

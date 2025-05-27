@@ -2,6 +2,7 @@ heretic-roundend-name = heretic
 roundend-prepend-heretic-ascension-success = { $name }, [color=green] вознесся![/color]
 roundend-prepend-heretic-ascension-fail = { $name }, [color=red] не удалось![/color]
 roundend-prepend-heretic-knowledge-named = [color=white]{ $name }[/color] исследовал в общей сложности [color=purple]{ $number }[/color] знаний.
+roundend-prepend-heretic-ascension-fail-owls = { $name }, [color=red] has forsaken their Ascension and thus failed![/color]
 heretic-gamemode-title = Еретики
 heretic-gamemode-description = На станции обнаружена пространственная аномалия. Дополнительных данных нет.
 heretic-role-greeting-fluff =
@@ -29,9 +30,11 @@ ghostrole-ghoul-name = Упырь
 ghostrole-prophet-name = Сырой пророк
 ghostrole-stalker-name = Сталкер
 ghostrole-ghoul-desc = Помогать своему призывателю в достижении вознесения.
+ghostrole-rustwalker-name = Rust Walker
 ghostrole-prophet-desc = Помочь своему призывателю в достижении вознесения. Подключать других верующих к Связи Мансуса.
 ghostrole-stalker-desc = Помочь своему призывателю в достижении вознесения. Охотьтесь на экипаж станции.
 ghostrole-ghoul-rules = Вы являетесь [color=red][bold]командным антагонистом[/bold][/color] с тем, кто вызвал вас и других жутких существ.
+ghostrole-rustwalker-desc = Aid your summoner in achieving ascension. Spread rust everywhere.
 
 # Спи спокойно, Мансур.
 

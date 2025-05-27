@@ -7,3 +7,6 @@ ent-DoorElectronicsNTR = { ent-DoorElectronics }
 ent-DoorElectronicsBSO = { ent-DoorElectronics }
     .suffix = Офицер "Синий щит", Закрыт
     .desc = { ent-DoorElectronics.desc }
+ent-DoorElectronicsAllService = { ent-DoorElectronics }
+    .suffix = Все служебные помещения закрыты
+    .desc = { ent-DoorElectronics.desc }

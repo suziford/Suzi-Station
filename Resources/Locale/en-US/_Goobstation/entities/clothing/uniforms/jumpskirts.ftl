@@ -8,3 +8,5 @@ ent-ClothingUniformSkirtMailCarrier = mail carrier's jumpskirt
     .desc = Enemy of dogs everywhere.
 ent-ClothingUniformJumpskirtReporter = reporter's dress
     .desc = An extravagant black dress designed to catch the attention of as many people as possible.
+ent-ClothingUniformJumpskirtTrainer = NCT Jumpskirt
+    .desc = A jumpskirt issued to Nanotrasen Career Trainers. Fills you with a feeling of pride.

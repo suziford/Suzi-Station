@@ -9,7 +9,6 @@ nullrod-pistol-untrained-usage-popup = Серебряная рукоять бо�
 nullrod-honkmother-untrained-usage-popup = Ты думаешь, что ты смешной, да?
 nullrod-uristhand-untrained-usage-popup = Проникновение на охраняемую территорию.
 nullrod-chainsaw-untrained-usage-popup = Ах, и посмотрите, кто у нас здесь — чертов язычник!
-
-alternate-pray-prompt = Молиться {$item}
-alternate-pray-start = {$user} начинает нашептывать в {$item}...
+alternate-pray-prompt = Молиться { $item }
+alternate-pray-start = { $user } начинает нашептывать в { $item }...
 nullrod-spelldenial-popup = СИЛА БОЖЬЯ ПЕРЕПОЛНЯЕТ ВАС!

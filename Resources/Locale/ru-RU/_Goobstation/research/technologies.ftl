@@ -15,4 +15,3 @@ research-technology-experimental-science = Экспериментальные н
 research-technology-rescue = Передовое спасательное оборудование
 research-technology-energy-bolt-weaponry = Оружие с энергетическим боеприпасом
 research-technology-pinpointing = Технологии пинпоинтеров
-

@@ -1,3 +1,5 @@
+ent-BioSynthHeadEmpty = bio-synthetic hollow head
+    .desc = This synthetic head can be transplanted into any living organism and it will adapt to its recipient, does not contain a brain or eyes though.
 ent-BioSynthLeftArm = bio-synthetic left arm
     .desc = This left arm can be transplanted into any living organism and it will adapt to its recipient.
 ent-BioSynthRightArm = bio-synthetic right arm

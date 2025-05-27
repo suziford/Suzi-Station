@@ -1,2 +1,2 @@
-ent-SpawnLootLootbug = Lootbug loot spawner
+ent-SpawnLootLootbug = Создатель лута для мародеров
     .desc = { ent-MarkerBase.desc }

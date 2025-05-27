@@ -1,6 +1,8 @@
 ent-PartMonkey = { ent-BasePart }
     .desc = { ent-BasePart.desc }
-ent-TorsoMonkey = monkey torso
+ent-ChestMonkey = monkey chest
+    .desc = { ent-PartMonkey.desc }
+ent-GroinMonkey = monkey groin
     .desc = { ent-PartMonkey.desc }
 ent-HeadMonkey = monkey head
     .desc = { ent-PartMonkey.desc }

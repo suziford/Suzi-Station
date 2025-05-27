@@ -1,3 +1,5 @@
+ent-BulletMagnumNeurotoxin = пуля (дозвуковой нейротоксин 45-го калибра)
+    .desc = { ent-BaseBulletPractice.desc }
 ent-BulletMagnumEnsnaring = bullet (.45 magnum ensnaring)
     .desc = { ent-BaseBullet.desc }
 ent-BulletMagnumEMP = bullet (.45 magnum EMP)

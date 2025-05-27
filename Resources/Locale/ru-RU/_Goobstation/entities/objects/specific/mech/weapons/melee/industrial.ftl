@@ -1,6 +1,6 @@
-ent-WeaponMechMeleeDrill = exosuit drill
-    .desc = Equipment for mining exosuits. This is the drill that'll pierce the rocks!
-    .suffix = Mech Weapon, Melee, Industrial
-ent-WeaponMechMeleeDrillDiamond = diamond-tipped exosuit drill
-    .desc = Equipment for mining exosuits. This is an upgraded version of the drill that'll pierce the rocks!
-    .suffix = Mech Weapon, Melee, Industrial
+ent-WeaponMechMeleeDrill = тренировка в экзоскелете
+    .desc = Оборудование для добычи полезных ископаемых в экзоскелетах. Это бур, который будет пробивать скалы!
+    .suffix = Механическое оружие, для ближнего боя, Промышленное
+ent-WeaponMechMeleeDrillDiamond = сверло для экзоскелета с алмазным наконечником
+    .desc = Оборудование для добычи полезных ископаемых в экзоскелетах. Это усовершенствованная версия бура, который будет пробивать горные породы!
+    .suffix = Механическое оружие, для ближнего боя, Промышленное

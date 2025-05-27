@@ -18,6 +18,3 @@ ent-LavalandTendrilMagmawingWatcher = tendril
 ent-LavalandTendrilSpaceCarp = tendril
     .desc = A huge structure.
     .suffix = Carp
-ent-SpawnerRandomTendrilLavaland = tendril spawner
-    .suffix = Lavaland
-    .desc = { ent-MarkerBase.desc }

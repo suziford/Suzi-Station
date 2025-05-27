@@ -6,3 +6,5 @@ ent-ActionSiren = Siren
     .desc = Alert your victim to your presence.
 ent-ActivateSmokeImplant = Release a cloud of smoke
     .desc = Releases a cloud of smoke around you.
+ent-ActionDashMoth = Wing dash
+    .desc = Sharply flap your wings, dashing to the side!

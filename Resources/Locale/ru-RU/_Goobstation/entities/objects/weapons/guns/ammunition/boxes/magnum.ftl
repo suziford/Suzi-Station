@@ -1,3 +1,5 @@
+ent-MagazineBoxMagnumNeurotoxin = коробка с боеприпасами (нейротоксин "магнум" 45-го калибра)
+    .desc = { ent-BaseMagazineBoxMagnum.desc }
 ent-BaseMagazineBoxMagnumExtended = { ent-BaseMagazineBoxMagnum }
     .desc = { ent-BaseMagazineBoxMagnum.desc }
 ent-MagazineBoxMagnumEnsnaring = коробка с патронами (.45 магнум сковывающий)

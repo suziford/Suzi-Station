@@ -7,3 +7,6 @@ ent-DoorElectronicsNTR = { ent-DoorElectronics }
 ent-DoorElectronicsBSO = { ent-DoorElectronics }
     .suffix = BlueshieldOfficer, Locked
     .desc = { ent-DoorElectronics.desc }
+ent-DoorElectronicsAllService = { ent-DoorElectronics }
+    .suffix = All Service, Locked
+    .desc = { ent-DoorElectronics.desc }

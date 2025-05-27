@@ -1,5 +1,9 @@
 ent-PartAbductorBase = { ent-BasePart }
     .desc = { ent-BasePart.desc }
+ent-ChestAbductor = сундук похитителя
+    .desc = { ent-PartAbductorBase.desc }
+ent-GroinAbductor = пах похитителя
+    .desc = { ent-PartAbductorBase.desc }
 ent-TorsoAbductor = торс абдуктора
     .desc = { ent-BaseTorso.desc }
 ent-HeadAbductor = голова абдуктора

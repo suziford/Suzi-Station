@@ -1,3 +1,3 @@
 ent-ClothingBackpackSwatLeaderDuffelFilled = { ent-ClothingBackpackSwatDuffel }
-    .suffix = Резерв, Заполненный, Лидер
+    .suffix = Reserve, Filled, Leader
     .desc = { ent-ClothingBackpackSwatDuffel.desc }

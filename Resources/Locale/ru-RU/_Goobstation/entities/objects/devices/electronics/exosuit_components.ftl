@@ -1,4 +1,4 @@
-ent-BaseExosuitParts = base components
+ent-BaseExosuitParts = базовые компоненты
     .desc = { ent-BaseItem.desc }
 ent-DurandArmorPlate = броня Дюранда
     .desc = Бронепластины из пластали для экзокостюма Дюранд.

@@ -1,3 +1,7 @@
+ent-BibleQuaran = Каран
+    .desc = Иншаллах.
+ent-BibleTanakh = Танах
+    .desc = Выбери жизнь, чтобы ты и твое потомство могли жить.
 ent-BibleAtheist = дваченомикон
     .desc = Эта странная книга почему-то ужасно пахнет.
 ent-BibleBhuddhist = трипитака

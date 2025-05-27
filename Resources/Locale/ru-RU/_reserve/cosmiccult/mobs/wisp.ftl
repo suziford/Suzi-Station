@@ -1,1 +1,0 @@
-ent-MobCosmicWisp = Пучок

@@ -1,4 +1,4 @@
-ent-Autodoc = Autodoc Mk.XIV
+ent-Autodoc = Автодокументация Mk.XIV
     .desc = Программируемый робот-хирург, способный автоматически оперировать пациентов.
 ent-AutodocSyndie = { ent-Autodoc }
     .suffix = Синдикат

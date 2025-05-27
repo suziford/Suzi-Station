@@ -16,3 +16,5 @@ ent-BlobSpawn = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-Honkops = { ent-BaseNukeopsRule }
     .desc = { ent-BaseNukeopsRule.desc }
+ent-Devil = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }

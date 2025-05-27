@@ -1,2 +1,2 @@
-ent-StrangeBerrySeeds = пакет с семенами диковинных ягод
+ent-StrangeBerrySeeds = packet of strange berry seeds
     .desc = { ent-SeedBase.desc }

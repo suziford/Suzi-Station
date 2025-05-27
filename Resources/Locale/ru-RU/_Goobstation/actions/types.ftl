@@ -6,3 +6,5 @@ ent-ActionSiren = Сирена
     .desc = Предупредите о вашем присутствии.
 ent-ActivateSmokeImplant = Выпусить облако дыма
     .desc = Выпускает облако дыма.
+ent-ActionDashMoth = Рывок крыла
+    .desc = Резко взмахни крыльями, бросаясь в сторону!

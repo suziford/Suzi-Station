@@ -10,3 +10,5 @@ ent-ClothingMaskClownUnremoveable = unremoveable banana clown wig and mask
 ent-ClothingMaskGasVoiceCraftable = Voice Modulator Mask
     .desc = A poorly constructed voice modulator made of a gasmask and voice trigger.
     .suffix = Voice Mask, Craftable
+ent-ClothingMaskGasHalf = half gas mask
+    .desc = A gas mask... only the half of it.

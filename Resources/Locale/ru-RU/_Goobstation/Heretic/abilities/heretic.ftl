@@ -4,11 +4,15 @@ heretic-ability-fail-notarget = Не удалось найти подходящ�
 heretic-ability-fail-lowhealth = Это заклинание наносит { $damage } урона, и если вы его произнесете, то окажетесь в критическом состоянии!
 heretic-magicitem-examine = [color=yellow]Позволяет использовать продвинутые заклинания, находясь в руках или снаряжении[/color].
 heretic-ability-fail-tile-not-rusted = Выбранное покрытие должно быть ржавым, чтобы использовать эту способность!
+heretic-ability-fail-tile-underneath-not-rusted = Tile that you are standing on must be rusted to use this ability!
 heretic-ability-fail-tile-occupied = Покрытие занято!
 heretic-ability-fail-rust-stage-low = Вы недостаточно сильны чтобы покрыть ржавчиной данное покрытие!
+heretic-ability-fail-target-ghoul = Target is ghoul already!
+heretic-ability-fail-target-no-mind = Target has no soul!
 
 ## blade
 
+mansus-grasp-trigger-fail = Something prevents you from activating this!
 heretic-blade-examine = [color=yellow]Если использовать его, пока он в руке, то клинок сломается и телепортирует вас подальше от опасности[/color].
 heretic-blade-use = Клинок разлетается на куски, и вы чувствуете, как голоса уводят вас прочь.
 heretic-riposte-used = Ответный удар использован!
@@ -34,32 +38,28 @@ heretic-livingheart-notargets = Нет доступных целей, посет
 heretic-livingheart-offstation = Оно { $state }, вне станции, { $direction }!
 heretic-livingheart-onstation = Оно { $state }, { $direction }!
 heretic-livingheart-unknown = Оно... не на этой равнине реальности.
-heretic-livingheart-faraway = Оно {$state}, очень далеко отсюда!
+heretic-livingheart-faraway = Оно { $state }, очень далеко отсюда!
 
 ## speech
 
 heretic-speech-mansusgrasp = R'CH T'H TR'TH!
-
 heretic-speech-ash-jaunt = ASH'N P'SSG'
 heretic-speech-ash-volcano = V'LC'N!
 heretic-speech-ash-rebirth = G'LR'Y T' TH' N'GHT'W'TCH'ER!
 heretic-speech-ash-flame = FL'MS!!
 heretic-speech-ash-cascade = C'SC'DE!!
-
 heretic-speech-blade-furioussteel = F'LSH'NG S'LV'R!
-
 heretic-speech-flesh-surgery = CL'M M'N!
 heretic-speech-flesh-worm = REALITY UNCOIL!!
-
 heretic-speech-rust-spread = A'GRSV SPR'D!
 heretic-speech-rust-plume = 'NTR'P'C PL'M'!
-
+heretic-speech-rust-wave = SPR'D TH' WO'D!
 heretic-speech-void-blast = F'RZ'E!
 heretic-speech-void-phase = RE'L'T' PH'S'E!
 heretic-speech-void-pull = BR'NG F'RTH TH'M T' M'!!
-
 heretic-speech-cleave = CL'VE!
 heretic-speech-bloodsiphon = FL'MS O'ET'RN'ITY!
 heretic-speech-mansuslink = PI'RC' TH' M'ND!
 heretic-speech-realignment = R'S'T!
 heretic-speech-fuckoff = F'K 'FF!!
+heretic-speech-ice-spear = D'WN 'F TH'CE!

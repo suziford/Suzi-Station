@@ -1,0 +1,14 @@
+ent-BaseChangelingObjective = { ent-BaseObjective }
+    .desc = { ent-BaseObjective.desc }
+ent-BaseChangelingSyndicateObjective = { ent-BaseObjective }
+    .desc = { ent-BaseObjective.desc }
+ent-ChangelingSurviveObjective = Выжить
+    .desc = Мы должны выжить, несмотря ни на что.
+ent-ChangelingAbsorbObjective = { ent-BaseChangelingObjective }
+    .desc = { ent-BaseChangelingObjective.desc }
+ent-ChangelingAbsorbOtherObjective = { ent-BaseChangelingObjective }
+    .desc = { ent-BaseChangelingObjective.desc }
+ent-ChangelingStealDNAObjective = { ent-BaseChangelingObjective }
+    .desc = { ent-BaseChangelingObjective.desc }
+ent-EscapeIdentityObjective = { ent-BaseChangelingObjective }
+    .desc = Нам нужно бежать на эвакуационном шаттле. Тайно.

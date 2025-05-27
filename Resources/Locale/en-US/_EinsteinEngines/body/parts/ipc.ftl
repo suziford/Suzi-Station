@@ -1,6 +1,8 @@
 ent-PartIPCBase = ipc body part
     .desc = { ent-BasePartInorganic.desc }
-ent-TorsoIPC = ipc torso
+ent-ChestIPC = ipc chest
+    .desc = { ent-PartIPCBase.desc }
+ent-GroinIPC = ipc groin
     .desc = { ent-PartIPCBase.desc }
 ent-HeadIPC = ipc head
     .desc = { ent-PartIPCBase.desc }

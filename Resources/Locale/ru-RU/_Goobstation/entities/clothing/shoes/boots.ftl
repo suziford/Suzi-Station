@@ -1,7 +1,7 @@
 ent-ClothingShoesBootsChrono = футуристические ботинки
     .desc = Усовершенствованная футуристическая обувь, гарантирующая комфорт и полное сцепление с любой поверхностью.
 ent-ClothingShoesBootsChronoUnremoveable = { ent-ClothingShoesBootsChrono }
-    .suffix = Unremoveable
+    .suffix = Неустранимый
     .desc = { ent-ClothingShoesBootsChrono.desc }
 ent-ClothingShoesBootsMagEmergencyResponseTeam = магнитные сапоги отряда быстрого реагирования
     .desc = Смотри! ОБР, мы спасены!
@@ -16,3 +16,7 @@ ent-ClothingShoesCreasedJordans = помятые эйр джорданы
     .desc = Нет, подождите... этого не может быть.... ОНИ ПОМЯТЫ!
 ent-ClothingShoesBootsJackAdvanced = усовершенствованные подкованные сапоги
     .desc = Подкованные сапоги, усиленные блюспейс-энергией, созданы специально для боевых действий. Эта пара была разработана для главы службы безопасности.
+ent-ClothingShoesRealJordansAutographed = воздушные кроссовки jordans
+    .desc = Это не просто кроссовки от Джордана, они подписаны самим Майклом Джорданом. Они, должно быть, стоят целое состояние.
+ent-ClothingShoesBootsWinterSnowjackBso = зимние ботинки blueshield's snowjackboots
+    .desc = Для тех случаев, когда вам нужно спасти голову от подменыша на исследовательской станции в Антарктиде.

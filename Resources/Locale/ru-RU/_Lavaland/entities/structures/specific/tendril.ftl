@@ -18,6 +18,3 @@ ent-LavalandTendrilMagmawingWatcher = завиток
 ent-LavalandTendrilSpaceCarp = завиток
     .desc = Огромное сооружение.
     .suffix = Карп
-ent-SpawnerRandomTendrilLavaland = спавнер завиток
-    .suffix = Лаваленд
-    .desc = { ent-MarkerBase.desc }

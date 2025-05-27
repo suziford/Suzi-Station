@@ -1,3 +1,3 @@
-ent-ClothingBeltSwatMedicWedding = РПС медика ОКГ
-    .desc = Увеличенная в объеме разгрузочно поясная система, для медиков ОКГ.
-    .suffix = Резерв
+ent-ClothingBeltSwatMedicWedding = OKG Medic wedding
+    .desc = Extended volume off-loading belt system, for OKG medics.
+    .suffix = Reserve

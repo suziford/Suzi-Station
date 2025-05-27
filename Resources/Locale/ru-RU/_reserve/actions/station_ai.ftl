@@ -1,0 +1,12 @@
+ent-ActionStationAiInfo = Просмотреть информацию
+    .desc = Просмотрите общую информацию о станции.
+ent-ActionStationAiRadar = Интерфейс сканера массы
+    .desc = Просмотр интерфейса сканера массы.
+ent-ActionStationAiCrewMonitoring = Интерфейс мониторинга экипажа
+    .desc = Просмотр интерфейса мониторинга экипажа.
+ent-ActionStationAiStationRecords = Интерфейс станционного учёта
+    .desc = Просмотр интерфейса станционного учёта.
+ent-ActionStationAiCommunications = Интерфейс связи
+    .desc = Просмотр интерфейса связи.
+ent-ActionStationAiAtmosphericAlerts = Интерфейс атмосферной сигнализации
+    .desc = Просмотр интерфейса атмосферной сигнализации.

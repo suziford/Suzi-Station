@@ -13,3 +13,5 @@ ent-VehicleWheelchair = wheelchair
 ent-VehicleWheelchairFolded = { ent-VehicleWheelchair }
     .suffix = folded
     .desc = { ent-VehicleWheelchair.desc }
+ent-VehicleHoverchair = hoverchair
+    .desc = A luxury hoverchair, kick back and relax.

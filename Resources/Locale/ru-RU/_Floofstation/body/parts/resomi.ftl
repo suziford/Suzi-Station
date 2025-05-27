@@ -1,3 +1,9 @@
+ent-PartResomi = { ent-PartHuman }
+    .desc = { ent-PartHuman.desc }
+ent-ChestResomi = грудь резоми
+    .desc = { ent-BaseChest.desc }
+ent-GroinResomi = резоми в паху
+    .desc = { ent-BaseGroin.desc }
 ent-TorsoResomi = туловище резоми
     .desc = { ent-TorsoHuman.desc }
 ent-HeadResomi = голова резоми

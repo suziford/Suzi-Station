@@ -1,0 +1,41 @@
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Aineias1 <142914808+Aineias1@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+ent-FloorTileItemWoodParquet = деревянный паркет
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodBlack = черный деревянный пол
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodDark = темный деревянный пол
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodLight = белый деревянный пол
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodRed = красный деревянный пол
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodLargeBlack = большой черный деревянный пол
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodLargeDark = большой пол из темного дерева
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodLargeLight = большой белый деревянный пол
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodLargeRed = большой красный деревянный пол
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodParquetBlack = черный деревянный паркет
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodParquetDark = паркет из темного дерева
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodParquetLight = белый деревянный паркет
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodParquetRed = паркет из красного дерева
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodChess = деревянный шахматный пол
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodChessBlack = шахматный пол из черного дерева
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodChessDark = шахматный пол из темного дерева
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodChessLight = белый деревянный шахматный пол
+    .desc = { ent-FloorTileItemBase.desc }
+ent-FloorTileItemWoodChessRed = шахматный пол из красного дерева
+    .desc = { ent-FloorTileItemBase.desc }

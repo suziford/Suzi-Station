@@ -1,3 +1,3 @@
-ent-DimensionPot = { ent-PottedPlant27 }
+ent-DimensionPot = { ent-PottedPlantBase }
     .suffix = Dimension
-    .desc = { ent-PottedPlant27.desc }
+    .desc = { ent-PottedPlantBase.desc }

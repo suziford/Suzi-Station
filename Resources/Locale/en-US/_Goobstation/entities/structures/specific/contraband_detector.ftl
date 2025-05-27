@@ -1,8 +1,7 @@
 ent-ContrabandDetector = contraband detector
     .desc = Walk in with confidence, walk out with security chasing you.
-    .suffix = unlocked
-ent-ContrabandDetectorAnchored = { ent-ContrabandDetector }
-    .suffix = locked
+ent-ContrabandDetectorSecure = { ent-ContrabandDetector }
+    .suffix = Secure
     .desc = { ent-ContrabandDetector.desc }
 ent-ContrabandDetectorFrame = contraband detector frame
     .desc = { "" }

@@ -17,4 +17,4 @@ cmd-timetransferpanel-desc = Открыть меню перевода време
 admin-player-actions-window-time-transfer = Перевод времени
 time-transfer-panel-no-player-database-message = Игрок не найден в базе данных.
 # Please change it if you really-really need to do it
-time-transfer-panel-author = Made by BombasterDS for Goobstation
+time-transfer-panel-author = Сделано BombasterDS для Goobstation

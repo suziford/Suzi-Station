@@ -7,7 +7,6 @@ chat-emote-name-trill = Трель
 chat-emote-name-warble = Поскрипеть
 chat-emote-name-wurble = Урчать
 chat-emote-name-mars = Мар
-
 # Message
 chat-emote-msg-fart = пукает.
 chat-emote-msg-fart-inhale = вдыхает пердеж.
@@ -17,7 +16,6 @@ chat-emote-msg-trill = Издаёт трель!
 chat-emote-msg-warble = Поскрипывает!
 chat-emote-msg-wurble = Урчит!
 chat-emote-msg-mars = Мар!
-
 # Misc
 emote-fart-not-loaded = Вы не готовы пердеть!
 emote-fart-already-loaded = Вы уже готовы пердеть!

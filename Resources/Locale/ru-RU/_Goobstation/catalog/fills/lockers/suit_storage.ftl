@@ -1,3 +1,3 @@
 ent-SuitStorageBlueshield = { ent-SuitStorageBase }
-    .suffix = BSO Hardsuit
+    .suffix = Жесткий костюм BSO
     .desc = { ent-SuitStorageBase.desc }

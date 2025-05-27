@@ -5,4 +5,6 @@ ent-ActionHereticMansusGrasp = Mansus Grasp
 ent-ActionHereticLivingHeart = Living Heart
     .desc = Use your heart to get your sacrifice targets location.
 ent-ActionHereticMansusLink = Manse Link
-    .desc = Pierce through reality and connect minds to one another. Default radio key is :z
+    .desc = Pierce through reality and connect minds to one another. Default key is +m
+ent-ActionHereticShadowCloak = Cloak of Shadow
+    .desc = Completely conceals your identity, but does not make you invisible. Can be activated early to disable it. While cloaked, you move faster, but undergo actions much slower. Taking damage while cloaked may cause it to lift suddenly.

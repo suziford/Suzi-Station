@@ -4,3 +4,5 @@ ent-ActionHierophantTeleport = action-hierophant-teleport
     .desc = action-hierophant-teleport-desc
 ent-ActionHierophantSpawnCross = action-hierophant-spawn-cross
     .desc = action-hierophant-spawn-cross-desc
+ent-ActionHierophantTileMovement = action-hierophant-tile-movement
+    .desc = action-hierophant-tile-movement-desc

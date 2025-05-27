@@ -1,6 +1,8 @@
-ent-ActionHierophantPlaceMarker = action-hierophant-place-marker
-    .desc = action-hierophant-place-marker-desc
-ent-ActionHierophantTeleport = action-hierophant-teleport
-    .desc = action-hierophant-teleport-desc
-ent-ActionHierophantSpawnCross = action-hierophant-spawn-cross
-    .desc = action-hierophant-spawn-cross-desc
+ent-ActionHierophantPlaceMarker = действие-иерофант -указатель места
+    .desc = действие-иерофант-место-указатель-описание
+ent-ActionHierophantTeleport = действие-иерофант-телепортация
+    .desc = действие-иерофант-телепорт-описание
+ent-ActionHierophantSpawnCross = действие-иерофант-порождение-крест
+    .desc = действие-иерофант-порождение-переход-описание
+ent-ActionHierophantTileMovement = действие-иерофант-плитка-движение
+    .desc = действие-иерофант-плитка-перемещение-описание

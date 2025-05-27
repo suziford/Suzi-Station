@@ -1,6 +1,8 @@
 ent-PartHarpyBase = { ent-BasePart }
     .desc = { ent-BasePart.desc }
-ent-TorsoHarpy = harpy torso
+ent-ChestHarpy = harpy chest
+    .desc = { ent-PartHarpyBase.desc }
+ent-GroinHarpy = harpy groin
     .desc = { ent-PartHarpyBase.desc }
 ent-HeadHarpy = harpy head
     .desc = { ent-PartHarpyBase.desc }

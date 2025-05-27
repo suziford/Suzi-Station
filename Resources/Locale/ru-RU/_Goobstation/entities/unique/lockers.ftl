@@ -1,6 +1,6 @@
 ent-UniqueLockerNanorepFilled = { ent-LockerNanorepFilled }
-    .suffix = MAP THIS, Unique, Filled
+    .suffix = КАРТА ЭТА, уникальная, Заполненная
     .desc = { ent-LockerNanorepFilled.desc }
 ent-UniqueLockerBlueshieldOfficerFilled = { ent-LockerBlueshieldOfficerFilled }
-    .suffix = MAP THIS, Unique, Filled
+    .suffix = КАРТА ЭТА, уникальная, Заполненная
     .desc = { ent-LockerBlueshieldOfficerFilled.desc }

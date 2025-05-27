@@ -1,4 +1,3 @@
-
 # Боевое
 
 evolutionmenu-combat-armhammer-name = Рука-молот

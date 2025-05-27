@@ -1,6 +1,10 @@
-ent-PartIPCBase = ipc body part
+ent-PartIPCBase = часть корпуса ipc
     .desc = { ent-BasePartInorganic.desc }
-ent-PartIPC = ipc body part
+ent-ChestIPC = грудная клетка ipc
+    .desc = { ent-PartIPCBase.desc }
+ent-GroinIPC = мпк в паху
+    .desc = { ent-PartIPCBase.desc }
+ent-PartIPC = часть корпуса ipc
     .desc = { ent-BaseItem.desc }
 ent-TorsoIPC = тело КПБ
     .desc = { ent-PartIPC.desc }
