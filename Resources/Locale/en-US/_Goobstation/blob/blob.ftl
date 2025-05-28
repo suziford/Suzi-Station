@@ -10,21 +10,6 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-ent-NormalBlobTile = Regular Tile Blob
-    .desc = An ordinary part of the blob required for the construction of more advanced tiles.
-ent-CoreBlobTile = Blob Core
-    .desc = The most important organ of the blob. By destroying the core, the infection will cease.
-ent-FactoryBlobTile = Blob Factory
-    .desc = Spawns Blob Drops and Blobbernauts over time.
-ent-ResourceBlobTile = Resource Blob
-    .desc = Produces resources for the blob.
-ent-NodeBlobTile = Blob Node
-    .desc = A mini version of the core that allows you to place special blob tiles around itself.
-ent-StrongBlobTile = Strong Blob Tile
-    .desc = A reinforced version of the regular tile. It does not allow air to pass through and protects against brute damage.
-ent-ReflectiveBlobTile = Blob Reflective Tiles
-    .desc = It reflects lasers, but does not protect against brute damage as well.
-    .desc = { "" }
 objective-issuer-blob = Blob
 
 
@@ -181,15 +166,3 @@ objective-condition-fail = { $condition } | [color={ $markupColor }]Failure![/co
 admin-verb-make-blob = Make the target into a blob carrier.
 admin-verb-text-make-blob = Make Blob Carrier
 
-ent-SpawnPointGhostBlob = Blob spawner
-    .suffix = DEBUG, Ghost Role Spawner
-    .desc = { ent-MarkerBase.desc }
-
-ent-MobBlobPod = Blob Drop
-    .desc = An ordinary blob fighter.
-
-ent-MobBlobBlobbernaut = Blobbernaut
-    .desc = Juggernaut, but blob! when the station crew shows full hatred of you, with the help of such strong men you can organize a blitzkriek if you tell them the plan in advance.
-
-ent-BaseBlob = basic blob.
-    .desc = { "" }

@@ -1,5 +1,3 @@
-ent-texture-tag-short = [идентификатор enttex="{ $id }"]
-ent-texture-tag = [идентификатор enttex="{ $id }" размер={ $size }]
 texture-tag-short = [текстовый путь="{ $path }"]
 texture-tag = [текстовый путь="{ $path }" масштаб={ $scale }]
 radio-icon-tag-short = [путь радикона="{ $path }" текст="{ $text }" цвет="{ $color }"]
