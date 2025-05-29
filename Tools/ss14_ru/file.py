@@ -66,20 +66,22 @@ class FluentFile(File):
         parsed_data = FluentParser().parse(file_data)
 
         for body_element in parsed_data.body:
-            if not isinstance(body_element, ast.Term) and not isinstance(body_element, ast.Message):
+            if not isinstance(body_element, (ast.Term, ast.Message)):
                 continue
 
-            if not len(body_element.value.elements):
+            if not body_element.value or not hasattr(body_element.value, "elements") or not body_element.value.elements:
                 continue
+
 
             first_element = body_element.value.elements[0]
             if not isinstance(first_element, ast.TextElement):
                 continue
 
-            if not self.newline_exceptions_regex.match(first_element.value):
-                continue
+            # Отключаем автоматическое добавление тега для удаления перевода строки
+            # if not self.newline_exceptions_regex.match(first_element.value):
+            #     continue
+            # first_element.value = f"{self.newline_remover_tag}{first_element.value}"
 
-            first_element.value = f"{self.newline_remover_tag}{first_element.value}"
 
         return parsed_data
 
@@ -87,8 +89,8 @@ class FluentFile(File):
         from fluent.syntax import FluentSerializer
 
         serialized_data = FluentSerializer(with_junk=True).serialize(parsed_file_data)
-        serialized_data = self.newline_remover_regex.sub(' ', serialized_data)
-
+        # Удаление тега отключено
+        # serialized_data = self.newline_remover_regex.sub(' ', serialized_data)
         return serialized_data
 
     def read_serialized_data(self):

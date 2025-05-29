@@ -12,7 +12,7 @@ job-name-navy-officer-undercover = Офицер военно-морского ф
 job-name-navycaptain = Капитан флота
 job-name-diplomat = Дипломат
 job-name-inspector = Аудитор Центрального Командования
-job-name-nct =  Карьерный тренер Нанотрейзен
+job-name-nct = Карьерный тренер Нанотрейзен
 
 # Half Life
 
@@ -29,6 +29,7 @@ job-name-greytide = Грейтайдер
 JobBlueshieldOfficer = Офицер "Синий Щит"
 JobNanotrasenRepresentative = Представитель НаноТрейзен
 JobHecuOperative = Оперативник HECU
+JobNanotrasenCareerTrainer = Nanotrasen Career Trainer
 JobNavyOfficer = Офицер военно-морского флота
 JobNavyOfficerUndercover = Офицер флота под прикрытием
 JobNavyCaptain = Капитан флота

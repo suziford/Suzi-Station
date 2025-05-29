@@ -17,5 +17,5 @@ chat-speech-verb-VoiceModulator-name = Модулятор голоса
 chat-speech-verb-VoiceModulator-1 = модулирует
 chat-speech-verb-VoiceModulator-2 = жужжит
 chat-speech-verb-VoiceModulator-3 = дроны
-chat-speech-verb-VoiceModulator-4 = hums
+chat-speech-verb-VoiceModulator-4 = жужжит
 chat-speech-verb-VoiceModulator-5 = треск

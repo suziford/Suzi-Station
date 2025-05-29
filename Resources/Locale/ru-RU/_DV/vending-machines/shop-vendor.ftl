@@ -1,4 +1,4 @@
-shop-vendor-balance = Balance: { $points }
+shop-vendor-balance = Баланс: { $points }
 shop-vendor-stack-suffix = x{ $count }
-shop-vendor-flavor-left = All payments are secure
-shop-vendor-flavor-right = v1.2
+shop-vendor-flavor-left = Все платежи безопасны
+shop-vendor-flavor-right = версия 1.2

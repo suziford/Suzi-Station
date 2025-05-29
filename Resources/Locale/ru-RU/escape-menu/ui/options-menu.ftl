@@ -325,27 +325,44 @@ ui-options-reduced-motion = Снижение интенсивности визу
 ui-options-accessability-header-visuals = Изображение
 ui-options-accessability-header-content = Содержимое
 ui-options-screen-shake-intensity = Интенсивность дрожания экрана
-ui-options-header-targeting = Цель куклы
+
+## Admin menu
+
+## Shitmed Change
+
+ui-options-header-targeting = Целиться в
 ui-options-function-target-head = Голова
-ui-options-function-target-torso = Целевой торс
+ui-options-function-target-chest = Грудь
+ui-options-function-target-groin = Пах
 ui-options-function-target-left-arm = Левая рука
 ui-options-function-target-right-arm = Правая рука
+ui-options-function-target-left-hand = Левая ладонь
+ui-options-function-target-right-hand = Правая ладонь
 ui-options-function-target-left-leg = Левая нога
 ui-options-function-target-right-leg = Правая нога
-ui-options-chat-window-opacity = Непрозрачность окна чата
-ui-options-speech-bubble-text-opacity = Непрозрачность текста речевого пузыря
-ui-options-speech-bubble-speaker-opacity = Непрозрачность диктора речевого пузыря
-ui-options-speech-bubble-background-opacity = Непрозрачность фона речевого пузыря
-ui-options-enable-classic-overlay = Вернуть антаг-оверлей в классический режим
-ui-options-censor-nudity = Цензура обнажённых персонажей
+ui-options-function-target-left-foot = Левая ступня
+ui-options-function-target-right-foot = Правая ступня
+
 ui-options-admin-player-panel = Список персонажей в админ меню
+
 ui-options-admin-playerlist-separate-symbols = Показывать отдельные символы для каждого типа антагониста
 ui-options-admin-playerlist-character-color = Цветные имена антагонистов
 ui-options-admin-playerlist-roletype-color = Цветные типы ролей
+
 ui-options-admin-overlay-title = Админ оверлей
+
+ui-options-enable-classic-overlay = Вернуть оверлей в классический режим
 ui-options-enable-overlay-symbols = Добавить символ антага к тексту
 ui-options-enable-overlay-playtime = Отображать наигранное время
 ui-options-enable-overlay-starting-job = Показывать начальную должность
 ui-options-overlay-merge-distance = Расстояние слияния стаков
 ui-options-overlay-ghost-fade-distance = Диапазон затухания оверлея призрака от мыши
 ui-options-overlay-ghost-hide-distance = Диапазон скрытия оверлея призрака от мыши
+
+## Accessibility menu
+
+ui-options-chat-window-opacity = Непрозрачность окна чата
+ui-options-speech-bubble-text-opacity = Непрозрачность текста речевого пузыря
+ui-options-speech-bubble-speaker-opacity = Непрозрачность диктора речевого пузыря
+ui-options-speech-bubble-background-opacity = Непрозрачность фона речевого пузыря
+ui-options-censor-nudity = Цензура обнажённых персонажей

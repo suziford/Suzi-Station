@@ -4,4 +4,3 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-trade-station-names-dataset-1 = Автоматическая Торговая Станция

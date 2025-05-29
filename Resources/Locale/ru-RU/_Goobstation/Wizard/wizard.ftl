@@ -1,3 +1,5 @@
+
+
 roles-antag-wizard-name = Маг
 roles-antag-wizard-description = Вызовите хаос и разруху на станции.
 roles-antag-apprentice-name = Ученик

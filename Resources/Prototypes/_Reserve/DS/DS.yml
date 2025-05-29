@@ -17,7 +17,6 @@
   - type: EncryptionKey
     channels:
     - DS
-    - Binary
     defaultChannel: DS
   - type: Sprite
     layers:
@@ -117,7 +116,9 @@
   description: Portable tracking device. Capable of detecting the nearest nuclear warhead.
   components:
   - type: Pinpointer
-    component: Nuke
+    whitelist: # Goob edit: pinpointer whitelist
+      components:
+      - Nuke
     targetName: ядерная боеголовка
 
 #ГИПОСПРЕЙ

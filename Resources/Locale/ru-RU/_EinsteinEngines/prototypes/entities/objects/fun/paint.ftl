@@ -1,37 +1,3 @@
-ent-PaintBase = баллончик краски
-    .desc = Баночка аэрозольной краски.
-ent-FunnyPaint = баллончик смешной краски
-    .desc = Баночка с веселой краской, изготовленная компанией Хонк! Ко.
-ent-FunnyPaintYellow = { ent-FunnyPaint }
-    .desc = { ent-FunnyPaint.desc }
-ent-DeathPaint = { ent-PaintBase }
-    .desc = { ent-PaintBase.desc }
-    .suffix = Розовая
-ent-DeathPaintTwo = { ent-PaintBase }
-    .desc = { ent-PaintBase.desc }
-    .suffix = Красная
-ent-SprayPaintBlue = { ent-PaintBase }
-    .desc = { ent-PaintBase.desc }
-    .suffix = Голубая
-ent-SprayPaintRed = { ent-PaintBase }
-    .desc = { ent-PaintBase.desc }
-    .suffix = Красная
-ent-SprayPaintGreen = { ent-PaintBase }
-    .desc = { ent-PaintBase.desc }
-    .suffix = Зелёная
-ent-SprayPaintBlack = { ent-PaintBase }
-    .desc = { ent-PaintBase.desc }
-    .suffix = Чёрная
-ent-SprayPaintOrange = { ent-PaintBase }
-    .desc = { ent-PaintBase.desc }
-    .suffix = Оранжевая
-ent-SprayPaintPurple = { ent-PaintBase }
-    .desc = { ent-PaintBase.desc }
-    .suffix = Фиолетовая
-ent-SprayPaintWhite = { ent-PaintBase }
-    .desc = { ent-PaintBase.desc }
-    .suffix = Белая
-
 # Ящик
 ent-CrateFunSprayPaints = ящик с аэрозольной краской
     .desc = Ящик, наполненный аэрозольной краской.

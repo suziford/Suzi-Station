@@ -1,6 +1,6 @@
 ent-SmallExplosionInstant = мгновенный эффект
-    .desc = {""}
-    .suffix = Взрыв, маленький
+    .suffix = Взрыв, небольшой
+    .desc = { ent-AdminInstantEffectBase.desc }
 ent-MediumExplosionInstant = мгновенный эффект
-    .desc = {""}
     .suffix = Взрыв, средний
+    .desc = { ent-AdminInstantEffectBase.desc }

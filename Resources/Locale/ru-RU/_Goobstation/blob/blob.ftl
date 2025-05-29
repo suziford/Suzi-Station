@@ -1,5 +1,3 @@
-
-
 objective-issuer-blob = Блоб
 ghost-role-information-blobbernaut-name = Блоббернаут
 ghost-role-information-blobbernaut-description = Вы - Блоббернаут. Вы должны защищать ядро блоба.
@@ -121,15 +119,17 @@ blob-round-end-result =
         [one] Было одно заражение блоба.
        *[other] Было { $blobCount } блобов.
     }
-blob-user-was-a-blob = [color=gray]{ $user }[/color] был блобом.
-blob-user-was-a-blob-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) был блобом.
-blob-was-a-blob-named = [color=White]{ $name }[/color] был блобом.
-preset-blob-objective-issuer-blob = [color=#33cc00]Blob[/color]
-blob-user-was-a-blob-with-objectives = [color=gray]{ $user }[/color] был блобом, у которого были следующие цели:
-blob-user-was-a-blob-with-objectives-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) был блобом, у которого были следующие цели:
-blob-was-a-blob-with-objectives-named = [color=White]{ $name }[/color] был блобом, у которого были следующие цели:
+blob-user-was-a-blob = [цвет=серый]{ $user }[/color] был блобом.
+blob-user-was-a-blob-named = [цвет=белый]{ $name }[/color] ([цвет=серый]{ $user }[/color]) был блобом.
+blob-was-a-blob-named = [цвет=белый]{ $name }[/color] был блобом.
+preset-blob-objective-issuer-blob = [color=#33cc00]Большой объект[/color]
+blob-user-was-a-blob-with-objectives = [цвет=серый]{ $user }[/color] был блобом, у которого были следующие цели:
+blob-user-was-a-blob-with-objectives-named = [цвет=белый]{ $name }[/color] ([цвет=серый]{ $user }[/color]) был блобом, у которого были следующие цели:
+blob-was-a-blob-with-objectives-named = [цвет=белый]{ $name }[/color] был блобом, у которого были следующие цели:
 # Objectivies
 objective-condition-blob-capture-title = Захватить станцию
 objective-condition-blob-capture-description = Ваша единственная цель - захватить всю станцию. У вас должно быть не менее { $count } блобов.
-objective-condition-success = { $condition } | [color={ $markupColor }]Успех![/color]
-objective-condition-fail = { $condition } | [color={ $markupColor }]Неудача![/color] ({ $progress }%)
+objective-condition-success = { $condition } | [цвет={ $markupColor }]Успех![/color]
+objective-condition-fail = { $condition } | [цвет={ $markupColor }]Неудача![/color] ({ $progress }%)
+admin-verb-make-blob = Превратите цель в сгусток-носитель.
+admin-verb-text-make-blob = Создать переносчик больших двоичных объектов

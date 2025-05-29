@@ -53,3 +53,8 @@ traitor-waffleco-terrorist-goal = Нашим инвесторам нужна д�
 traitor-waffleco-terrorist-allies = Большинству других агентов синдиката доверять нельзя, за исключением членов «Мародеров Горлекса».
 traitor-waffleco-terrorist-uplink = Для выполнения задания вам предоставлен канал связи с синдикатом, расположенный в вашем КПК.
 traitor-waffleco-terrorist-roundend = [color=red]террорист из «Waffle Co.»[/color].
+traitor-nvf-intro = You are a Neulithiv Federation Visionary
+traitor-nvf-goal = The Space Wizards Federation wants us to prove we can work with them well. Draw as much attention to yourself as possible while still completing your task.
+traitor-nvf-allies = Members of the Space Wizards Federation and other visionaries can be trusted. It's your choice whether to trust other Syndicate members.
+traitor-nvf-uplink = The federation has granted you an uplink in your PDA. Use it wisely.
+traitor-nvf-roundend = [color=violet]a Federation Visionary[/color]
