@@ -1,7 +1,7 @@
 cqc-fail-used = { CAPITALIZE(THE($manual)) } уже использован.
 cqc-fail-notself = Вы не можете никого обучить с помощью { CAPITALIZE(THE($manual)) }.
 cqc-fail-knowanother = Вы уже владеете другим боевым искусством.
-cqc-fail-changeling = We are beyond using this.
+cqc-fail-changeling = Нам это ни к чему.
 cqc-fail-already = Вы уже знаете все о Боевом искусстве.
 cqc-success-unblocked = Ваши навыки кулинарного CQC больше не привязаны к кухне.
 cqc-success-learned = Вы уже знаете CQC.

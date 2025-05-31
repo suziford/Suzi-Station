@@ -12,6 +12,6 @@ bingle-station-announcement = Бингл Бингл Бингл
 ghost-role-information-bingle-name = Бингл
 ghost-role-information-bingle-description = Яма - это любовь. Яма - это жизнь. Яма должна расти.
 bingle-upgrade-success = Вы чувствуете себя сильнее!
-ghost-role-information-bingle-rules = Вы являетесь [color=red] [выделено жирным] командным противником [/выделено жирным][/color] вместе с другими Бинглами
+ghost-role-information-bingle-rules = Вы являетесь [color=red][bold]командным антагонистом[/bold][/color] вместе с другими Бинглами
 bingle-pit-grow = Яма становится все больше!
-bingle-pit-end-of-round = Бинглпит рядом { $location } вырос до уровня [цвет=бирюзовый]{ $level }[/color] и собранный [color=бирюзовый]{ $points }[/color] Выпуклые точки
+bingle-pit-end-of-round = Бинглпит рядом с { $location } вырос до уровня [color=cyan]{ $level }[/color] и набрал [color=cyan]{ $points }[/color] очков!

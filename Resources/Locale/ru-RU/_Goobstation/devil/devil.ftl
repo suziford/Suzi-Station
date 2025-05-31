@@ -1,4 +1,4 @@
-devil-speech-grip = Удивляйтесь и падайте!!
+devil-speech-grip = Удивляйтесь и падайте!
 devil-roundend-name = Дьявол
 objective-issuer-devil = Дьявол
 roundend-prepend-devil-contracts = Кто-то заключил [color=red]{ $number }[/color] успешных контрактов.
