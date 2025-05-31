@@ -5,3 +5,19 @@
   alpha: 0.8
   ghostName: Kutos
   ghostDescription: ... 
+
+- type: customGhost
+  id: xelitex-ghost
+  ckey: localhost@_XeliteX_FFX_
+  sprite: /Textures/_Reserve/CustomGhosts/xelitex-ghost.rsi
+  alpha: 0.8
+  ghostName: XeliteX
+  ghostDescription: Очень странный призрак.
+
+- type: customGhost
+  id: already-taken-ghost
+  ckey: is_already_taken
+  sprite: /Textures/_Reserve/CustomGhosts/already-taken-ghost.rsi
+  alpha: 0.8
+  ghostName: Already Taken
+  ghostDescription: Это конец...
