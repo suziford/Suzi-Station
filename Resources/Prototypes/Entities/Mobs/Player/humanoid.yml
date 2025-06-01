@@ -186,7 +186,6 @@
 
 - type: randomHumanoidSettings
   id: DeathSquad
-  speciesWhitelist: Human # ReserveStation
   parent: CentcommHumanoid # Goobstation
   randomizeName: false
   components:
@@ -236,7 +235,6 @@
 
 - type: randomHumanoidSettings
   id: ERTLeader
-  speciesWhitelist: Human # ReserveStation
   parent: CentcommHumanoid # Goobstation
   randomizeName: false
   components:

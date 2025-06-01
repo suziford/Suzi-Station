@@ -13,19 +13,20 @@
 
 - type: randomHumanoidSettings
   id: CentcommHumanoid
-  speciesBlacklist:
-  - Monkey
-  - Kobold
-  - Abductor
-  - Yowie
-  - IPC
-  - Diona
-  - Harpy
-  - Vox # Pasha
-  - Tajaran # Specism.
-  - Resomi # Sprites look shit on them.
-  - Oni # Same as above, plus it fucks over ERTs.
-  - Gingerbread # Soecusn
+  speciesWhitelist: Human # ReserveStation
+#  speciesBlacklist: ReserveStation
+#  - Monkey
+#  - Kobold
+#  - Abductor
+#  - Yowie
+#  - IPC
+#  - Diona
+#  - Harpy
+#  - Vox # Pasha
+#  - Tajaran # Specism.
+#  - Resomi # Sprites look shit on them.
+#  - Oni # Same as above, plus it fucks over ERTs.
+#  - Gingerbread # Soecusn
   components:
   - type: RandomHumanoidAppearance
     randomizeName: false
