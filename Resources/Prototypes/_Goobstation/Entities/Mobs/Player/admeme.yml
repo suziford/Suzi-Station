@@ -17,7 +17,7 @@
 
 - type: randomHumanoidSettings
   id: CentcommHumanoid
-  speciesBlacklist: ReserveStation
+  speciesBlacklist:
   - Monkey
   - Kobold
   - Abductor
