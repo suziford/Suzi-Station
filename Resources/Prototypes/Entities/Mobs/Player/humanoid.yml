@@ -165,7 +165,6 @@
 
 - type: randomHumanoidSettings
   id: EventHumanoidCentcomm
-  speciesWhitelist: Human # ReserveStation
   parent: EventHumanoidMindShielded
   components:
   - type: AutoImplant
@@ -192,6 +191,7 @@
 
 - type: randomHumanoidSettings
   id: DeathSquad
+  speciesWhitelist: Human # ReserveStation
   parent: CentcommHumanoid # Goobstation
   randomizeName: false
   components:
@@ -241,6 +241,7 @@
 
 - type: randomHumanoidSettings
   id: ERTLeader
+  speciesWhitelist: Human # ReserveStation
   parent: CentcommHumanoid # Goobstation
   randomizeName: false
   components:
@@ -688,6 +689,7 @@
 
 - type: randomHumanoidSettings
   id: CBURNAgent
+  speciesWhitelist: Human # ReserveStation
   parent: EventHumanoidCentcomm
   components:
     - type: AutoImplant
