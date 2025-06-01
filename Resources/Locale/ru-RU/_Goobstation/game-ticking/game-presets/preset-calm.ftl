@@ -4,4 +4,4 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 sleeper-title = The Ghost
-sleeper-description = A calm experience with a range of peaceful events.
+sleeper-description = Спокойный игровой опыт с малым количеством антагонистов и внутриигровых событий.

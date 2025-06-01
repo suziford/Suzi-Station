@@ -1,5 +1,5 @@
-enchant-examine = [цвет=светло-голубой]{ $enchant }[/цвет]
-enchant-examine-level = [цвет=светло-голубой]{ $enchant } { $level ->
+enchant-examine = [color=blue]{ $enchant }[/цвет]
+enchant-examine-level = [color=blue]{ $enchant } { $level ->
         [1] I
         [2] II
         [3] III
@@ -11,4 +11,4 @@ enchant-examine-level = [цвет=светло-голубой]{ $enchant } { $le
         [9] IX
         [10] X
        *[other] $level
-    }[/цвет]
+    }[/color]

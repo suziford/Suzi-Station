@@ -14,6 +14,6 @@ hud-chatbox-highlights-tooltip =
     только в том случае, если они разделены пробелами или знаками препинания.
 
 hud-chatbox-highlights-placeholder =
-    Макхэндс
+    МакХэндс
     "Судья"
     Медицинский
