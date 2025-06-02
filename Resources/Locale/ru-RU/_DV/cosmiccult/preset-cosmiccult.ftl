@@ -11,13 +11,13 @@ cosmiccult-vote-steward-initiator = Неизвестное
 cosmiccult-vote-steward-title = Руководство космическим культом
 cosmiccult-vote-steward-briefing =
     Вы - управляющий Космическим культом!
-    Проследите, чтобы Памятник был установлен в надежном месте, и организуйте культ так, чтобы обеспечить вашу коллективную победу.
+    Проследите, чтобы Монумент был установлен в надежном месте, и организуйте культ так, чтобы обеспечить вашу коллективную победу.
     Вам не разрешается инструктировать культистов о том, как использовать или расходовать их энтропию.
 cosmiccult-vote-lone-steward-title = Одинокий культист
 cosmiccult-vote-lone-steward-briefing =
     Вы совершенно одиноки. Но ваш долг еще не выполнен.
-    Проследите, чтобы памятник был установлен в надежном месте, и завершите то, что начал культ.
-cosmiccult-finale-autocall-briefing = Памятник активируется { $minutesandseconds } Соберитесь и приготовьтесь к концу.
+    Проследите, чтобы монумент был установлен в надежном месте, и завершите то, что начал культ.
+cosmiccult-finale-autocall-briefing = Монумент активируется { $minutesandseconds } Соберитесь и приготовьтесь к концу.
 cosmiccult-finale-ready = От Монумента исходит устрашающий свет!
 cosmiccult-finale-speedup = Притяжение усиливается! Энергия разливается по всему окружению...
 cosmiccult-finale-degen = Вы чувствуете, что распадаетесь на части!
@@ -46,13 +46,13 @@ cosmiccult-roundend-monument-stage =
 cosmiccult-roundend-cultcomplete = [color=#4cabb3]Культ Космоса одержал полную победу![/color]
 cosmiccult-roundend-cultmajor = [color=#4cabb3]Крупная победа космического культа![/color]
 cosmiccult-roundend-cultminor = [color=#4cabb3]Незначительная победа космического культа![/color]
-cosmiccult-roundend-neutral = [color=желтый]Нейтральное окончание![/color]
-cosmiccult-roundend-crewminor = [color=зеленый] Небольшая победа экипажа![/color]
-cosmiccult-roundend-crewmajor = [color=зеленый] Команда одержала крупную победу![/color]
-cosmiccult-roundend-crewcomplete = [color=зеленый] Команда одержала полную победу![/color]
+cosmiccult-roundend-neutral = [color=yellow]Нейтральное окончание![/color]
+cosmiccult-roundend-crewminor = [color=green] Небольшая победа экипажа![/color]
+cosmiccult-roundend-crewmajor = [color=green] Команда одержала крупную победу![/color]
+cosmiccult-roundend-crewcomplete = [color=green] Команда одержала полную победу![/color]
 cosmiccult-summary-cultcomplete = Космические культисты возвестили о конце света!
 cosmiccult-summary-cultmajor = Победа космических культистов будет неизбежна.
-cosmiccult-summary-cultminor = Памятник был достроен, но не в полной мере.
+cosmiccult-summary-cultminor = Монумент был достроен, но не в полной мере.
 cosmiccult-summary-neutral = Культ доживет до следующего дня.
 cosmiccult-summary-crewminor = Культ остался без управления.
 cosmiccult-summary-crewmajor = Все космические культисты были уничтожены.
@@ -66,7 +66,7 @@ cosmiccult-role-roundstart-fluff =
     Когда вы готовитесь к очередной смене на борту очередной станции NanoTrasen, неисчислимые знания внезапно наполняют ваш разум!
     Ни с чем не сравнимое откровение. Конец циклическим сизифовым страданиям.
     Тихий занавес.
-    
+
     Все, что вам нужно сделать, это начать.
 cosmiccult-role-short-briefing =
     Вы - космический культист!
@@ -76,22 +76,22 @@ cosmiccult-role-conversion-fluff =
     Когда призыв завершается, невыразимое знание внезапно наполняет ваш разум!
     Ни с чем не сравнимое откровение. Конец циклическим сизифовым страданиям.
     Тихий занавес.
-    
+
     Все, что вам нужно сделать, - это возвестить об этом.
 cosmiccult-role-deconverted-fluff =
     Огромная пустота заполняет твой разум. Успокаивающая, но незнакомая пустота...
     Все мысли и воспоминания о твоем пребывании в культе начинают тускнеть и размываться.
 cosmiccult-role-deconverted-briefing =
-    Обращен!
+    Ты более не обращен!
     Ты больше не космический культист.
 cosmiccult-monument-stage1-briefing =
-    Этот памятник привлек внимание многих людей.
+    Этот монумент привлек внимание многих людей.
     Он расположен { $location }!
 cosmiccult-monument-stage2-briefing =
-    Мощь памятника растет!
+    Мощь монумента растет!
     Его влияние повлияет на реальное пространство в { $time } секунд.
 cosmiccult-monument-stage3-briefing =
-    Памятник завершен!
+    монумент завершен!
     Его влияние начнет накладываться на реальное пространство в { $time } секунд.
     Это последний этап! Накопите столько энтропии, сколько сможете.
 
@@ -127,19 +127,19 @@ cosmiccult-ui-popup-confirm = Подтверждать
 
 ## OBJECTIVES / CHARACTERMENU
 
-objective-issuer-cosmiccult = [выделено жирным шрифтом][color=#cae8e8]Неизвестный[/color][/выделено жирным шрифтом]
+objective-issuer-cosmiccult = [bold][color=#cae8e8]Неизвестный[/color][/bold]
 objective-cosmiccult-charactermenu = Вы должны положить конец всему сущему. Выполняйте свои задания, чтобы способствовать прогрессу культа.
 objective-cosmiccult-steward-charactermenu = Вы должны направлять культ, чтобы он возвестил о конце света. Наблюдайте за развитием культа и следите за его развитием.
 objective-condition-entropy-title = ЭНТРОПИЯ СИФОНА
 objective-condition-entropy-desc = Коллективно перекачивать по крайней мере { $count } энтропия от экипажа.
-objective-condition-culttier-title = РАСШИРЬТЕ ВОЗМОЖНОСТИ ПАМЯТНИКА
-objective-condition-culttier-desc = Проследите за тем, чтобы Памятник заработал на полную мощность.
+objective-condition-culttier-title = РАСШИРЬТЕ ВОЗМОЖНОСТИ МОНУМЕНТА
+objective-condition-culttier-desc = Проследите за тем, чтобы монумент заработал на полную мощность.
 objective-condition-victory-title = ВОЗВЕСТИТЬ О КОНЦЕ
 objective-condition-victory-desc = Маните к себе Неизвестного и предвещайте финальный занавес.
 
 ## CHAT ANNOUNCEMENTS
 
-cosmiccult-radio-tier1-progress = Памятник манит к себе на станцию...
+cosmiccult-radio-tier1-progress = монумент манит к себе на станцию...
 cosmiccult-announce-tier2-progress = Нервирующее оцепенение пронзает ваши чувства.
 cosmiccult-announce-tier2-warning = Сканеры фиксируют заметное увеличение Λ-CDM! Вскоре в реальном пространстве могут появиться трещины. Пожалуйста, предупредите капеллана вашей станции, если увидите их.
 cosmiccult-announce-tier3-progress = Дуги ноосферной энергии потрескивают в стонущем здании станции. Конец близок.
