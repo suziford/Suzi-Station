@@ -94,6 +94,6 @@ wizard-last-dataset-93 = Посохокузнец
 wizard-last-dataset-94 = Воскомаг
 wizard-last-dataset-95 = Плачущий
 wizard-last-dataset-96 = Белый
-wizard-last-dataset-97 = Супруга
+wizard-last-dataset-97 = Шумный
 wizard-last-dataset-98 = Мудрый
 wizard-last-dataset-99 = Чародеус
