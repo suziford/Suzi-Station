@@ -43,13 +43,13 @@ cosmiccult-roundend-monument-stage =
         [3] The Monument was completed.
        *[other] [color=red]Something went REALLY wrong.[/color]
     }
-cosmiccult-roundend-cultcomplete = [color=#4cabb3]Культ Космоса одержал полную победу![/color]
+cosmiccult-roundend-cultcomplete = [color=#4cabb3]Космический культ одержал полную победу![/color]
 cosmiccult-roundend-cultmajor = [color=#4cabb3]Крупная победа космического культа![/color]
 cosmiccult-roundend-cultminor = [color=#4cabb3]Незначительная победа космического культа![/color]
-cosmiccult-roundend-neutral = [color=желтый]Нейтральное окончание![/color]
-cosmiccult-roundend-crewminor = [color=зеленый] Небольшая победа экипажа![/color]
-cosmiccult-roundend-crewmajor = [color=зеленый] Команда одержала крупную победу![/color]
-cosmiccult-roundend-crewcomplete = [color=зеленый] Команда одержала полную победу![/color]
+cosmiccult-roundend-neutral = [color=yellow]Нейтральное окончание![/color]
+cosmiccult-roundend-crewminor = [color=green] Небольшая победа экипажа![/color]
+cosmiccult-roundend-crewmajor = [color=green] Победа экипажа![/color]
+cosmiccult-roundend-crewcomplete = [color=green] Полная победа экипажа![/color]
 cosmiccult-summary-cultcomplete = Космические культисты возвестили о конце света!
 cosmiccult-summary-cultmajor = Победа космических культистов будет неизбежна.
 cosmiccult-summary-cultminor = Памятник был достроен, но не в полной мере.
@@ -127,7 +127,7 @@ cosmiccult-ui-popup-confirm = Подтверждать
 
 ## OBJECTIVES / CHARACTERMENU
 
-objective-issuer-cosmiccult = [выделено жирным шрифтом][color=#cae8e8]Неизвестный[/color][/выделено жирным шрифтом]
+objective-issuer-cosmiccult = [bold][color=#cae8e8]Неизвестный[/color][/bold]
 objective-cosmiccult-charactermenu = Вы должны положить конец всему сущему. Выполняйте свои задания, чтобы способствовать прогрессу культа.
 objective-cosmiccult-steward-charactermenu = Вы должны направлять культ, чтобы он возвестил о конце света. Наблюдайте за развитием культа и следите за его развитием.
 objective-condition-entropy-title = ЭНТРОПИЯ СИФОНА
