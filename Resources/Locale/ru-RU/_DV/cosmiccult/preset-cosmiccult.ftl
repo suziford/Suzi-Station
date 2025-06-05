@@ -43,13 +43,11 @@ cosmiccult-roundend-monument-stage =
         [3] The Monument was completed.
        *[other] [color=red]Something went REALLY wrong.[/color]
     }
-cosmiccult-roundend-cultcomplete = [color=#4cabb3]Культ Космоса одержал полную победу![/color]
+cosmiccult-roundend-cultcomplete = [color=#4cabb3]Космический культ одержал полную победу![/color]
 cosmiccult-roundend-cultmajor = [color=#4cabb3]Крупная победа космического культа![/color]
 cosmiccult-roundend-cultminor = [color=#4cabb3]Незначительная победа космического культа![/color]
 cosmiccult-roundend-neutral = [color=yellow]Нейтральное окончание![/color]
 cosmiccult-roundend-crewminor = [color=green] Небольшая победа экипажа![/color]
-cosmiccult-roundend-crewmajor = [color=green] Команда одержала крупную победу![/color]
-cosmiccult-roundend-crewcomplete = [color=green] Команда одержала полную победу![/color]
 cosmiccult-summary-cultcomplete = Космические культисты возвестили о конце света!
 cosmiccult-summary-cultmajor = Победа космических культистов будет неизбежна.
 cosmiccult-summary-cultminor = Монумент был достроен, но не в полной мере.
