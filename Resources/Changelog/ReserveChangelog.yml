@@ -130,3 +130,9 @@ Entries:
       message: Усы "Велосипедный руль"
   id: 19
   time: '2025-06-05T17:30:06.0000000+00:00'
+- author: Svarshik
+  changes:
+    - type: Add
+      message: Добавлены изменения с Goob Station на момент 06.06
+  id: 20
+  time: '2025-06-06T18:31:19.0000000+00:00'
