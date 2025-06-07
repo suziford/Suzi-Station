@@ -43,4 +43,4 @@ spell-charge-spells-charged-entity = { CAPITALIZE($entity) } внезапно с
 spell-summon-simians-maxed-out-message = Ваша сила призыва обезьян достигла максимального уровня!  Теперь вы можете использовать это заклинание обнаженным, и вам дополнительно предоставлено заклинание превращения в гориллу!
 dimension-shift-message = Изменение измерений!
 ghosts-summoned-message = Призраки были призваны!
-global-tile-movement-message = An ominous beat starts playing!
+global-tile-movement-message = Начинает звучать зловещий ритм!

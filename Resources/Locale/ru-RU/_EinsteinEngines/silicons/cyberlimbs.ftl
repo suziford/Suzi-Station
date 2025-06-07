@@ -1,5 +1,7 @@
 marking-MobIPCHeadDefault = Стандартный операционный монитор
 marking-MobIPCChestDefault = Стандартное роботизированное шасси
+marking-MobIPCTorsoDefault = Стандартное роботизированное шасси
+marking-MobIPCTorsoFemaleDefault = Стандартное роботизированное шасси
 marking-MobIPCChestFemaleDefault = Стандартное роботизированное шасси
 marking-MobIPCGroinFemaleDefault = Стандартный роботизированный пах
 marking-MobIPCGroinDefault = Стандартный роботизированный пах

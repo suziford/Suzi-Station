@@ -450,6 +450,7 @@
 
 - type: guideEntry
   id: Brigmedic SOP
+  abstract: true #Reserve guidebook
   name: guide-entry-sop-brigmedic
   text: "/ServerInfo/_Goobstation/Guidebook/SoP/Jobs/Security/BrigmedicSOP.xml"
 

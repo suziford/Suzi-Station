@@ -8,7 +8,7 @@ roles-antag-cosmiccult-description = Приблизьте конец всего 
 cosmiccult-gamemode-title = Космический культ
 cosmiccult-gamemode-description = Сканеры фиксируют аномальное увеличение Λ-CDM. Дополнительных данных нет.
 cosmiccult-vote-steward-initiator = Неизвестное
-cosmiccult-vote-steward-title = Руководство космическим культом
+cosmiccult-vote-steward-title = Руководитель космического культа
 cosmiccult-vote-steward-briefing =
     Вы - управляющий Космическим культом!
     Проследите, чтобы Монумент был установлен в надежном месте, и организуйте культ так, чтобы обеспечить вашу коллективную победу.
@@ -24,30 +24,32 @@ cosmiccult-finale-degen = Вы чувствуете, что распадаете
 cosmiccult-finale-location = Сканеры регистрируют огромный всплеск Λ-CDM { $location }!
 cosmiccult-finale-cancel-begin = Сила воли вашего разума начинает разрушать ритуал...
 cosmiccult-finale-beckon-begin = Шепот в глубине твоего сознания усиливается...
-cosmiccult-finale-beckon-success = Ты зовешь на финальный звонок.
+cosmiccult-finale-beckon-success = Ты зовешь на финальный зов.
 cosmiccult-monument-powerdown = В Монументе воцаряется зловещая тишина.
 
 ## ROUNDEND TEXT
 
 cosmiccult-roundend-cultist-count =
     { $initialCount ->
-        [1] There was { $initialCount } [color=#4cabb3]Cosmic Cultist[/color].
-       *[other] There were { $initialCount } [color=#4cabb3]Cosmic Cultists[/color].
+        [1] Был { $initialCount } [color=#4cabb3]Космический культист[/color].
+       *[other] Были { $initialCount } [color=#4cabb3]Космическими культистами[/color].
     }
-cosmiccult-roundend-entropy-count = Культ выкачал { $count } Энтропия.
-cosmiccult-roundend-cultpop-count = Сектанты выдумали { $count }% от состава экипажа.
+cosmiccult-roundend-entropy-count = Культ выкачал { $count } Энтропии.
+cosmiccult-roundend-cultpop-count = Сектанты конвертировали { $count }% от состава экипажа.
 cosmiccult-roundend-monument-stage =
     { $stage ->
-        [1] Alas, the Monument seems abandoned.
-        [2] The Monument progressed, but completion was out of reach.
-        [3] The Monument was completed.
-       *[other] [color=red]Something went REALLY wrong.[/color]
+        [1] Прискорбно, монумент кажется заброшенным.
+        [2] Монумент набирал силу, но его завершение было недостижимо.
+        [3] Монумент был завершен.
+       *[other] [color=red]Что-то пошло совсем не так.[/color]
     }
 cosmiccult-roundend-cultcomplete = [color=#4cabb3]Космический культ одержал полную победу![/color]
 cosmiccult-roundend-cultmajor = [color=#4cabb3]Крупная победа космического культа![/color]
 cosmiccult-roundend-cultminor = [color=#4cabb3]Незначительная победа космического культа![/color]
 cosmiccult-roundend-neutral = [color=yellow]Нейтральное окончание![/color]
-cosmiccult-roundend-crewminor = [color=green] Небольшая победа экипажа![/color]
+cosmiccult-roundend-crewminor = [color=green]Небольшая победа экипажа![/color]
+cosmiccult-roundend-crewmajor = [color=green]Крупная победа экипажа![/color]
+cosmiccult-roundend-crewcomplete = [color=green]Полная победа экипажа![/color]
 cosmiccult-summary-cultcomplete = Космические культисты возвестили о конце света!
 cosmiccult-summary-cultmajor = Победа космических культистов будет неизбежна.
 cosmiccult-summary-cultminor = Монумент был достроен, но не в полной мере.
@@ -128,8 +130,8 @@ cosmiccult-ui-popup-confirm = Подтверждать
 objective-issuer-cosmiccult = [bold][color=#cae8e8]Неизвестный[/color][/bold]
 objective-cosmiccult-charactermenu = Вы должны положить конец всему сущему. Выполняйте свои задания, чтобы способствовать прогрессу культа.
 objective-cosmiccult-steward-charactermenu = Вы должны направлять культ, чтобы он возвестил о конце света. Наблюдайте за развитием культа и следите за его развитием.
-objective-condition-entropy-title = ЭНТРОПИЯ СИФОНА
-objective-condition-entropy-desc = Коллективно перекачивать по крайней мере { $count } энтропия от экипажа.
+objective-condition-entropy-title = СИФОН ЭНТРОПИИ
+objective-condition-entropy-desc = Коллективно перекачивать по крайней мере { $count } энтропии из экипажа.
 objective-condition-culttier-title = РАСШИРЬТЕ ВОЗМОЖНОСТИ МОНУМЕНТА
 objective-condition-culttier-desc = Проследите за тем, чтобы монумент заработал на полную мощность.
 objective-condition-victory-title = ВОЗВЕСТИТЬ О КОНЦЕ
@@ -139,7 +141,7 @@ objective-condition-victory-desc = Маните к себе Неизвестно
 
 cosmiccult-radio-tier1-progress = монумент манит к себе на станцию...
 cosmiccult-announce-tier2-progress = Нервирующее оцепенение пронзает ваши чувства.
-cosmiccult-announce-tier2-warning = Сканеры фиксируют заметное увеличение Λ-CDM! Вскоре в реальном пространстве могут появиться трещины. Пожалуйста, предупредите капеллана вашей станции, если увидите их.
+cosmiccult-announce-tier2-warning = Сканеры фиксируют заметное увеличение Λ-CDM! Вскоре в реальном пространстве могут появиться трещины. Пожалуйста, предупредите священника вашей станции, если увидите их.
 cosmiccult-announce-tier3-progress = Дуги ноосферной энергии потрескивают в стонущем здании станции. Конец близок.
 cosmiccult-announce-tier3-warning = Обнаружено критическое увеличение Λ-CDM. Зараженный персонал должен быть обезврежен на месте.
 cosmiccult-announce-finale-warning = Всему экипажу станции. Аномалия Λ-CDM становится сверхкритической, приборы отказывают; неизбежен переход от ноосферы к реальности. Если вы еще не соблюдаете контрпротокол, немедленно вылетайте и вмешивайтесь. Повторяю: вмешайтесь немедленно или умрите.
@@ -148,8 +150,8 @@ cosmiccult-announce-victory-summon = ВЫСВОБОЖДАЕТСЯ ЧАСТИЦА
 ## MISC
 
 cosmiccult-spire-entropy = Частичка энтропии конденсируется на поверхности шпиля.
-cosmiccult-entropy-inserted = Ты наполняешь { $count } энтропия проникает в Монумент.
+cosmiccult-entropy-inserted = Ты переправляешь { $count } энтропии, которая проникает в Монумент.
 cosmiccult-entropy-unavailable = Ты не можешь сделать это прямо сейчас.
-cosmiccult-astral-ascendant = { $name }, Восходящий
-cosmiccult-gear-pickup-rejection = То { $ITEM } сопротивляется { CAPITALIZE(THE($TARGET)) }это прикосновение!
-cosmiccult-gear-pickup = Вы можете почувствовать, как раскрываетесь, держа в руках { $ITEM }!
+cosmiccult-astral-ascendant = { $name }, восходящий
+cosmiccult-gear-pickup-rejection = { $ITEM } сопротивляется прикосновению { CAPITALIZE(THE($TARGET)) }!
+cosmiccult-gear-pickup = Вы можете почувствовать, как разрываетесь, держа в руках { $ITEM }!
