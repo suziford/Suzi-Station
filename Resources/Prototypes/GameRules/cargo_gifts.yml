@@ -45,7 +45,7 @@
   - type: StationEvent
     startColor: "#18abf5"
     startAudio:
-      path: /Audio/_Reserve/announcement/cargo-gifts-event-announcement.ogg # Reserve
+      path: /Audio/Announcements/announce.ogg
   - type: CargoGiftsRule
     sender: cargo-gift-default-sender
 

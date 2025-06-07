@@ -33,8 +33,13 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
+  # _Reserve MoreAnonces (sound and alert upgrades) bgn
+    startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/_Reserve/announcement/attention.ogg # Reserve
+      path: /Audio/_Reserve/Announcements/infestation.ogg
+      params:
+        volume: -4
+  # _Reserve MoreAnonces (sound and alert upgrades) end
     earliestStart: 15
     weight: 6
     duration: 30 # DeltaV: was 50, used as a delay now
@@ -62,8 +67,13 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
+  # _Reserve MoreAnonces (sound and alert upgrades) bgn
+    startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/_Reserve/announcement/attention.ogg # Reserve
+      path: /Audio/_Reserve/Announcements/infestation.ogg
+      params:
+        volume: -4
+  # _Reserve MoreAnonces (sound and alert upgrades) end
     earliestStart: 15
     weight: 6
     duration: 30 # DeltaV: was 50, used as a delay now
@@ -97,8 +107,13 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
+  # _Reserve MoreAnonces (sound and alert upgrades) bgn
+    startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/_Reserve/announcement/attention.ogg # Reserve
+      path: /Audio/_Reserve/Announcements/infestation.ogg
+      params:
+        volume: -4
+  # _Reserve MoreAnonces (sound and alert upgrades) end
     weight: 6
     duration: 30 # DeltaV: was 50, used as a delay now
     chaos: # Goobstation
@@ -123,8 +138,13 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
+  # _Reserve MoreAnonces (sound and alert upgrades) bgn
+    startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/_Reserve/announcement/attention.ogg # Reserve
+      path: /Audio/_Reserve/Announcements/infestation.ogg
+      params:
+        volume: -4
+  # _Reserve MoreAnonces (sound and alert upgrades) end
     weight: 6
     duration: 30 # DeltaV: was 50, used as a delay now
     chaos: # Goobstation
@@ -149,8 +169,13 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
+  # _Reserve MoreAnonces (sound and alert upgrades) bgn
+    startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/_Reserve/announcement/attention.ogg # Reserve
+      path: /Audio/_Reserve/Announcements/infestation.ogg
+      params:
+        volume: -4
+  # _Reserve MoreAnonces (sound and alert upgrades) end
     earliestStart: 15
     weight: 6
     duration: 30 # DeltaV: was 50, used as a delay now
