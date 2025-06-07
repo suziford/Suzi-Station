@@ -144,3 +144,9 @@ Entries:
       message: Исправлена локализация
   id: 21
   time: '2025-06-07T15:45:25.0000000+00:00'
+- author: Svarshik
+  changes:
+    - type: Add
+      message: Новая модель шаттла карго! Тяжеловоз 'Pilgrim'
+  id: 22
+  time: '2025-06-07T21:57:26.0000000+00:00'
