@@ -104,8 +104,8 @@ public sealed class SandevistanSystem : EntitySystem
         }
     }
 
-    private void OnStartup(Entity<SandevistanUserComponent> ent, ref ComponentStartup args) =>
-        ent.Comp.ActionUid = _actions.AddAction(ent, ent.Comp.ActionProto);
+    private void OnStartup(Entity<SandevistanUserComponent> ent, ref ComponentStartup args)
+        => ent.Comp.ActionUid = _actions.AddAction(ent, ent.Comp.ActionProto);
 
     private void OnToggle(Entity<SandevistanUserComponent> ent, ref ToggleSandevistanEvent args)
     {
@@ -120,7 +120,7 @@ public sealed class SandevistanSystem : EntitySystem
         }
 
         ent.Comp.Active = EnsureComp<ActiveSandevistanUserComponent>(ent);
-        ent.Comp.CurrentLoad = MathF.Max(0, ent.Comp.CurrentLoad + ent.Comp.LoadPerInactiveSecond * (float)(_timing.CurTime - ent.Comp.LastEnabled).TotalSeconds);
+        ent.Comp.CurrentLoad = MathF.Max(0, ent.Comp.CurrentLoad + ent.Comp.LoadPerInactiveSecond * (_timing.CurTime - ent.Comp.LastEnabled).Seconds);
         _speed.RefreshMovementSpeedModifiers(ent);
 
         if (!HasComp<TrailComponent>(ent))
@@ -162,8 +162,8 @@ public sealed class SandevistanSystem : EntitySystem
         weapon.NextAttack -= rate - rate / ent.Comp.AttackSpeedModifier;
     }
 
-    private void OnMobStateChanged(Entity<SandevistanUserComponent> ent, ref MobStateChangedEvent args) =>
-        Disable(ent, ent.Comp);
+    private void OnMobStateChanged(Entity<SandevistanUserComponent> ent, ref MobStateChangedEvent args)
+        => Disable(ent, ent.Comp);
 
     private void OnShutdown(Entity<SandevistanUserComponent> ent, ref ComponentShutdown args)
     {
@@ -183,13 +183,13 @@ public sealed class SandevistanSystem : EntitySystem
 
         if (comp.Overlay != null)
         {
-            RemComp(uid, comp.Overlay);
+            RemComp<DogVisionComponent>(uid);
             comp.Overlay = null;
         }
 
         if (comp.Trail != null)
         {
-            RemComp(uid, comp.Trail);
+            RemComp<TrailComponent>(uid);
             comp.Trail = null;
         }
     }
