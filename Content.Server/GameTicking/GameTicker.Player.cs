@@ -104,7 +104,6 @@ namespace Content.Server.GameTicking
 
                     //ADT tweak begin
                     var creationDate = "Unable to get account creation date";
-                    var main = await _locator.LookupIdAsync(args.Session.UserId); //Reserve edit
                     try
                         {
                             // Получаем дату создания аккаунта через API визардов
@@ -135,7 +134,7 @@ namespace Content.Server.GameTicking
                         {
                             Content = Loc.GetString("player-first-join-message-webhook", ("name", args.Session.Name)) + "\n" +
                             Loc.GetString("player-first-join-account-date", ("creationDate", creationDate)) + "\n" + //Reserve edit
-                            $"userid: {main?.Username ?? "unknown"}" //Reserve edit
+                            $"userid: {args.Session.UserId.ToString()}" //Reserve edit
                         };
                         var identifier = webhookData.ToIdentifier();
                         await _discord.CreateMessage(identifier, payload);
