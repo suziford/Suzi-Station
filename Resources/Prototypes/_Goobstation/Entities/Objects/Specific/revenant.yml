@@ -12,6 +12,7 @@
   - type: Crayon
     color: '#a70000'
     infinite: true
+    deleteEmpty: false # Reserve hot-fix
   - type: BloodCrayon
   - type: Tag
     tags:
