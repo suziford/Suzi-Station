@@ -6,8 +6,6 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-
-
 - type: constructionGraph
   id: boomerangGraph
   start: start
@@ -28,4 +26,3 @@
               doAfter: 4
     - node: boomerangFinish
       entity: boomerang
-
