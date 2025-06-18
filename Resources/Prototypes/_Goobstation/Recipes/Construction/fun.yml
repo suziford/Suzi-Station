@@ -24,7 +24,7 @@
   icon: { sprite: _Goobstation/Objects/Weapons/Melee/e_sword_bananium.rsi, state: icon }
   objectType: Item
 
-
+# Reserve - removed boomerang crafting for balance reasons
 #- type: construction
 #  name: boomerang
 #  id: boomerang
