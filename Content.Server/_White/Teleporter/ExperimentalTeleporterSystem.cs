@@ -80,7 +80,7 @@ public sealed class ExperimentalTeleporterSystem : EntitySystem
         _layingDown.LieDownInRange(uid, coords);
         _transform.SetCoordinates(uid, coords);
 
-        _charges.UseCharge(teleporterUid);
+        _charges.TryUseCharge(teleporterUid);
     }
 
     private void PlaySoundAndEffects(ExperimentalTeleporterComponent component, EntityCoordinates coords, EntityCoordinates oldCoords)

@@ -133,7 +133,8 @@ using Content.Shared.Interaction.Components;
 using Robust.Shared.Player;
 using Content.Shared.StatusEffect;
 using Content.Shared.Flash.Components;
-using Robust.Shared.Audio.Systems; // End Imp Changes
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes; // End Imp Changes
 
 namespace Content.Server.Revenant.EntitySystems;
 
@@ -153,6 +154,7 @@ public sealed partial class RevenantSystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!; // Begin Imp Changes
     [Dependency] private readonly RevenantAnimatedSystem _revenantAnimated = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
     [ValidatePrototypeId<StatusEffectPrototype>]
     private const string RevenantEssenceRegen = "EssenceRegen";
@@ -263,7 +265,7 @@ public sealed partial class RevenantSystem
             return;
         }
 
-        if(_physics.GetEntitiesIntersectingBody(uid, (int) CollisionGroup.Impassable).Count > 0)
+        if (_physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.Impassable).Count > 0)
         {
             _popup.PopupEntity(Loc.GetString("revenant-in-solid"), uid, uid);
             return;
@@ -403,8 +405,8 @@ public sealed partial class RevenantSystem
             component: new RevenantRegenModifierComponent(witnesses, newHaunts)
         ))
         {
-            if (_mind.TryGetMind(uid, out var _, out var mind) && mind.Session != null)
-                RaiseNetworkEvent(new RevenantHauntWitnessEvent(witnesses), mind.Session);
+            if (_mind.TryGetMind(uid, out var _, out var mind) && _playerManager.TryGetSessionById(mind.UserId, out var session))
+                RaiseNetworkEvent(new RevenantHauntWitnessEvent(witnesses), session);
 
             _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
             { {comp.StolenEssenceCurrencyPrototype, comp.HauntStolenEssencePerWitness * newHaunts} }, uid);
@@ -523,7 +525,6 @@ public sealed partial class RevenantSystem
                 .Where(e => poweredLights.HasComponent(e) && !HasComp<RevenantOverloadedLightsComponent>(e) &&
                             _interact.InRangeUnobstructed(e, uid, -1)).ToArray();
 
-
             if (!nearbyLights.Any())
                 continue;
 
@@ -532,8 +533,6 @@ public sealed partial class RevenantSystem
                 Transform(e).Coordinates.TryDistance(EntityManager, xform.Coordinates, out var dist) ? component.OverloadZapRadius : dist);
             var comp = EnsureComp<RevenantOverloadedLightsComponent>(allLight.First());
             comp.Target = ent; //who they gon fire at?
-
-
         }
     }
 

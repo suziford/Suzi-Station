@@ -104,9 +104,11 @@
 // SPDX-FileCopyrightText: 2025 Errant <35878406+Errant-4@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
 // SPDX-FileCopyrightText: 2025 Pieter-Jan Briers <pieterjan.briers@gmail.com>
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
 // SPDX-FileCopyrightText: 2025 Winkarst <74284083+Winkarst-cpu@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 beck-thompson <107373427+beck-thompson@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 nazrin <tikufaev@outlook.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -141,7 +143,6 @@ namespace Content.Client.Administration.UI.Bwoink
         public AdminAHelpUIHandler AHelpHelper = default!;
 
         private PlayerInfo? _currentPlayer;
-        private readonly Dictionary<Button, ConfirmationData> _confirmations = new();
 
         public BwoinkControl()
         {
@@ -290,11 +291,6 @@ namespace Content.Client.Administration.UI.Bwoink
 
             Kick.OnPressed += _ =>
             {
-                if (!AdminUIHelpers.TryConfirm(Kick, _confirmations))
-                {
-                    return;
-                }
-
                 // TODO: Reason field
                 if (_currentPlayer is not null)
                     _console.ExecuteCommand($"kick \"{_currentPlayer.Username}\"");
@@ -308,11 +304,6 @@ namespace Content.Client.Administration.UI.Bwoink
 
             Respawn.OnPressed += _ =>
             {
-                if (!AdminUIHelpers.TryConfirm(Respawn, _confirmations))
-                {
-                    return;
-                }
-
                 if (_currentPlayer is not null)
                     _console.ExecuteCommand($"respawn \"{_currentPlayer.Username}\"");
             };

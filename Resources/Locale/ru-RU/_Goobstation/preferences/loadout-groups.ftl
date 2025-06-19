@@ -36,7 +36,9 @@ loadout-group-captain-mask = Капитан - Маска
 loadout-group-salvage-specialist-neck = Утилизатор - шея
 loadout-group-chemist-head = Головной убор химика
 loadout-group-hos-shoes = Обувь Главы Службы Безопасности
-loadout-group-brigmedic-jumpsuit = Комбинезон бригадного врача
-loadout-group-brigmedic-head = Голова бригадного врача
+loadout-group-brigmedic-jumpsuit = Комбинезон бригмедика
+loadout-group-brigmedic-head = Голова бригмедика
 loadout-group-brigmedic-outer = Верхняя одежда бригмедика
-loadout-group-brigmedic-backpack = Рюкзак бригадира
+loadout-group-brigmedic-backpack = Рюкзак бригмедика
+
+loadout-group-security-melee = Оружие ближнего боя СБ
