@@ -405,7 +405,7 @@
     delayDelta: 3
     knockdownTimeDelta: -3
   - type: StaminaResistance # Goobstation
-    coefficient: 0.4
+    damageCoefficient: 0.4
   #Reserve raid suit rework begin
   - type: TemperatureProtection
     heatingCoefficient: 0.15

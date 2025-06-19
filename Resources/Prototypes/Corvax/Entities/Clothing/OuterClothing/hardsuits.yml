@@ -44,4 +44,4 @@
     delayDelta: 3
     knockdownTimeDelta: -3
   - type: StaminaResistance # Goobstation
-    coefficient: 0.5
+    damageCoefficient: 0.5
