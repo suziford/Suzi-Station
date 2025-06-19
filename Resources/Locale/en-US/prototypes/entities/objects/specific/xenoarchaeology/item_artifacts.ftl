@@ -3,7 +3,6 @@ ent-BaseXenoArtifactItem = alien artifact
 ent-SimpleXenoArtifactItem = { ent-BaseXenoArtifactItem }
     .desc = { ent-BaseXenoArtifactItem.desc }
 ent-ComplexXenoArtifactItem = { ent-BaseXenoArtifactItem }
-    .suffix = Complex
     .desc = { ent-BaseXenoArtifactItem.desc }
 ent-ArtifactFragment = artifact fragment
     .desc = A broken piece of an artifact. You could probably repair it if you had more.
