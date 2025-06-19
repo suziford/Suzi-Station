@@ -114,6 +114,8 @@
 # SPDX-FileCopyrightText: 2025 MilenVolf <63782763+MilenVolf@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 PunishedJoe <PunishedJoeseph@proton.me>
 # SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
 # SPDX-FileCopyrightText: 2025 SX_7 <sn1.test.preria.2002@gmail.com>
 # SPDX-FileCopyrightText: 2025 SlamBamActionman <83650252+SlamBamActionman@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
@@ -322,7 +324,7 @@
   - type: TraitorRule
   # Goobstation
   - type: GameRule
-    chaosScore: 700
+    chaosScore: 900
   # TODO: codewords in yml
   # TODO: uplink in yml
   - type: AntagSelection
@@ -337,6 +339,23 @@
     sets:
     - groups: TraitorObjectiveGroups
     maxDifficulty: 5
+
+# Goobstation - order swapped since admin verbs use .Last() for some reason
+# TODO: Fix that
+- type: entity
+  id: TraitorReinforcement
+  parent: BaseTraitorRuleNoObjectives # Goobstation
+  components:
+  - type: TraitorRule
+    giveUplink: false
+    giveCodewords: false # It would actually give them a different set of codewords than the regular traitors, anyway
+    giveBriefing: false
+  - type: AntagSelection
+    selectionTime: PostPlayerSpawn # Goobstation
+    definitions:
+    - prefRoles: [ Traitor ]
+      mindRoles:
+      - MindRoleTraitorReinforcement
 
 - type: entity
   parent: BaseTraitorRule
@@ -359,27 +378,12 @@
       - MindRoleTraitor
 
 - type: entity
-  id: TraitorReinforcement
-  parent: BaseTraitorRuleNoObjectives # Goobstation
-  components:
-  - type: TraitorRule
-    giveUplink: false
-    giveCodewords: false # It would actually give them a different set of codewords than the regular traitors, anyway
-    giveBriefing: false
-  - type: AntagSelection
-    selectionTime: PostPlayerSpawn # Goobstation
-    definitions:
-    - prefRoles: [ Traitor ]
-      mindRoles:
-      - MindRoleTraitorReinforcement
-
-- type: entity
   id: Revolutionary
   parent: BaseGameRule
   components:
   - type: GameRule
     minPlayers: 15
-    chaosScore: 800 # Goobstation
+    chaosScore: 1000 # Goobstation
   - type: RevolutionaryRule
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn # Goobstation
@@ -471,6 +475,12 @@
     delay:
       min: 600
       max: 900
+    # Goobstation
+    chaosScore: 1200
+  # Goobstation
+  - type: Tag
+    tags:
+    - LoneRunRule
   - type: ZombieRule
   - type: AntagSelection
     definitions:
@@ -639,3 +649,5 @@
       orGroup: puddleMess
     - id: SmugglerStashVariationPass
       prob: 0.90
+    - id: SolarPanelDamageVariationPass
+    - id: SolarPanelEmptyVariationPass

@@ -7,6 +7,7 @@
 // SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Tim <timfalken@hotmail.com>
 // SPDX-FileCopyrightText: 2025 Timfa <timfalken@hotmail.com>
+// SPDX-FileCopyrightText: 2025 Tim <timfalken@hotmail.com>
 // SPDX-FileCopyrightText: 2025 amogus <113782077+whateverusername0@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 gus <august.eymann@gmail.com>
 // SPDX-FileCopyrightText: 2025 nazrin <tikufaev@outlook.com>
@@ -18,7 +19,6 @@ using System.Numerics;
 using Content.Goobstation.Common.Pirates;
 using Content.Goobstation.Server.Pirates.GameTicking.Rules;
 using Content.Goobstation.Server.Pirates.Objectives;
-using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Mind;
@@ -100,10 +100,11 @@ public sealed partial class ResourceSiphonSystem : EntitySystem
 
         // Uncomment this if you don't want cargo to go into space debt
         // :trollface:
-        var funds = bank.Comp.Balance - ent.Comp.DrainRate;
+        ;
+        var funds = _cargo.GetBalanceFromAccount(bank.AsNullable(), bank.Comp.PrimaryAccount) - ent.Comp.DrainRate;
         if (funds > 0)
         {
-            _cargo.DeductFunds(bank.Comp, (int) ent.Comp.DrainRate);
+            _cargo.UpdateBankAccount(bank.AsNullable(), (int) -ent.Comp.DrainRate, bank.Comp.PrimaryAccount);
             UpdateCredits(ent, ent.Comp.DrainRate);
         }
     }

@@ -143,10 +143,12 @@
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: GhostTakeoverAvailable
+    - type: IdBind
 
 - type: randomHumanoidSettings
   id: EventHumanoidMindShielded
   parent: EventHumanoid
+  randomizeName: false
   components:
     - type: MindShield
     - type: AntagImmune
@@ -193,7 +195,6 @@
   id: DeathSquad
   speciesWhitelist: Human # ReserveStation
   parent: CentcommHumanoid # Goobstation
-  randomizeName: false
   components:
     - type: AutoImplant
       implants: [ FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, NutrimentPumpImplant, StypticStimulatorImplant, DeathRattleImplantCentcomm] # Goobstation
@@ -243,7 +244,6 @@
   id: ERTLeader
   speciesWhitelist: Human # ReserveStation
   parent: CentcommHumanoid # Goobstation
-  randomizeName: false
   components:
     - type: GhostRole
       name: ghost-role-information-ert-leader-name

@@ -36,6 +36,8 @@
   - type: GhostTakeoverAvailable
   - type: MindShield
   - type: AntagImmune
+  - type: Speech
+    speechVerb: HolierThanThou
   - type: GhostRole
     requirements:
     - !type:DepartmentTimeRequirement
