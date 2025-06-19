@@ -490,8 +490,8 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             _role.MindAddRole(mindId, "MindRoleRevolutionary");
         }
 
-        if (mind?.Session != null)
-            _antag.SendBriefing(mind.Session, Loc.GetString("rev-role-greeting"), Color.Red, revComp.RevStartSound);
+        if (target != null)
+            _antag.SendBriefing(target, Loc.GetString("rev-role-greeting"), Color.Red, revComp.RevStartSound);
 
         if (!TryComp<CommandStaffComponent>(target, out var commandComp))
             return;

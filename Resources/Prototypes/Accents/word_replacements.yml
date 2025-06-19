@@ -474,7 +474,7 @@
 
 # For the chat sanitization system
 - type: accent
-  id: chatsanitize
+  id: chatsanitize_legacy #Reserve edit - replaced
   wordReplacements:
     chatsan-word-1: chatsan-replacement-1
     chatsan-word-2: chatsan-replacement-2
