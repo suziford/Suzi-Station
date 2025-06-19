@@ -186,3 +186,11 @@ Entries:
         своих шаттлов.
   id: 27
   time: '2025-06-12T13:42:39.0000000+00:00'
+- author: Svarshik
+  changes:
+    - type: Add
+      message: Добавлены измения с Goob Station на момент 19.06
+    - type: Add
+      message: Добавлены измения с Space Wizards на момент 27.04
+  id: 28
+  time: '2025-06-19T19:51:05.0000000+00:00'
