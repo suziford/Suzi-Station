@@ -18,6 +18,7 @@
 // SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
 // SPDX-FileCopyrightText: 2025 Alfred Baumann <93665570+CheesePlated@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Svarshik <96281939+lexaSvarshik@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 csqrb <56765288+CaptainSqrBeard@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 echotry <xippl1@mail.ru>
