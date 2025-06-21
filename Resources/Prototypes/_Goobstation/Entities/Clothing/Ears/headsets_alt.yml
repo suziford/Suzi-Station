@@ -94,6 +94,8 @@
   - type: ContainerFill
     containers:
       key_slots:
+      - EncryptionKeyMedical
+      - EncryptionKeySecurity
       - EncryptionKeyCommand
       - EncryptionKeyCentCom
       - EncryptionKeyCommon

@@ -85,12 +85,12 @@
   icon: "JobIconPassenger"
   supervisors: job-supervisors-everyone
   goobcoins: 0 #Goob content
-  requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 36000 #10 hrs
-      inverted: true # get a job you bum
-#  access:
-#  - Maintenance
+#  requirements:
+#    - !type:OverallPlaytimeRequirement
+#      time: 36000 #10 hrs
+#      inverted: true # get a job you bum // Не находи работу, ей боже. Не умеешь и не хочешь - не надо.
+  access:
+  - Maintenance # НЕ МЕНЯТЬ, ДОСТУП В ТЕХИ
 
 - type: startingGear
   id: PassengerGear
