@@ -36,3 +36,5 @@ reagent-name-fourteen-loko = фоуртин локо
 reagent-desc-fourteen-loko = Сильно переработанная жидкая субстанция, едва ли соответствующая межгалактическим стандартам безопасности для безалкогольного напитка.
 reagent-name-shamblers-juice = сок Шемблер
 reagent-desc-shamblers-juice = ~Встряхните мне немного этого сока Шемблер!~
+reagent-name-brepsi = брепси
+reagent-desc-brepsi = Сладкий газированный безалкогольный напиток.
