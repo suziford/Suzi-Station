@@ -18,3 +18,6 @@ health-analyzer-window-scan-mode-active = АКТИВЕН
 health-analyzer-window-scan-mode-inactive = НЕАКТИВЕН
 health-analyzer-popup-scan-target = { CAPITALIZE($user) } пытается просканировать вас!
 health-analyzer-window-return-button-text = < Вернуть
+health-analyzer-window-tab-body-text = Тело
+health-analyzer-window-tab-organs-text = Органы
+health-analyzer-window-tab-chemicals-text = Химия
