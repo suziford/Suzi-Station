@@ -8,5 +8,6 @@
         - to: desword
           steps:
             - tag: ToySword
+              name: construction-graph-tag-toy-sword
     - node: desword
       entity: DoubleToySword
