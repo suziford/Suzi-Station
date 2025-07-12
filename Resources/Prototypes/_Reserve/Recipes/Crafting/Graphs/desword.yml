@@ -1,6 +1,5 @@
 - type: constructionGraph
   id: DoubleToySwordGraph
-  name: recipes-toy-desword-name
   start: esword
   graph:
     - node: esword
