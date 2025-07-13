@@ -583,17 +583,12 @@ public enum LogType
     ArtifactNode = 101,
 
     /// <summary>
-    /// Damaging grid collision has occurred.
+    /// GameDirector related game interactions.
     /// </summary>
-    ShuttleImpact = 102,
-    
+    GameDirector = 10002, // Goobstation
+
     /// <summary>
     /// SecretPlus related game interactions.
     /// </summary>
     SecretPlus = 10001, // Goobstation
-
-    /// <summary>
-    /// GameDirector related game interactions.
-    /// </summary>
-    GameDirector = 10002, // Goobstation
 }

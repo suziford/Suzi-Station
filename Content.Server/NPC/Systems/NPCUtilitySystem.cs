@@ -36,7 +36,6 @@ using Content.Server.NPC.Queries.Queries;
 using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Storage.Components;
-using Content.Server.Temperature.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
@@ -430,13 +429,16 @@ public sealed class NPCUtilitySystem : EntitySystem
 
                     return 0f;
                 }
-            case TargetLowTempCon con:
+            case TargetIsCuffableCon:
+            {
+                if (TryComp<CuffableComponent>(targetUid, out var cuffable))
                 {
-                    if (!TryComp<TemperatureComponent>(targetUid, out var temperature))
+                    if(_cuffableSystem.IsCuffed((targetUid, cuffable), true))
                         return 0f;
-
-                    return temperature.CurrentTemperature <= con.MinTemp ? 1f : 0f;
+                    return 1f;
                 }
+                return 0f;
+            }
             default:
                 throw new NotImplementedException();
         }

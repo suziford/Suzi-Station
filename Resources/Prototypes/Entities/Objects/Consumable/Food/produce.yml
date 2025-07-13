@@ -651,8 +651,6 @@
   - type: Extractable
     grindableSolutionName: food
   - type: SpaceGarbage
-  - type: Food
-    requiresSpecialDigestion: true
 
 - type: entity
   name: baked banana peel
@@ -1632,7 +1630,6 @@
   - type: Tag
     tags:
     - Vegetable
-    - Mushroom
   - type: FoodSequenceElement
     sprite:
       sprite: Objects/Specific/Hydroponics/chanterelle.rsi
@@ -2019,9 +2016,6 @@
         sprite:
           sprite: Objects/Consumable/Food/skewer.rsi
           state: skewer-mushroom
-  - type: Tag
-    tags:
-    - Mushroom
 
 - type: entity
   name: ambrosia vulgaris
@@ -2271,9 +2265,6 @@
         sprite:
           sprite: Objects/Consumable/Food/skewer.rsi
           state: skewer-mushroom
-  - type: Tag
-    tags:
-    - Mushroom
 
 - type: entity
   name: gatfruit

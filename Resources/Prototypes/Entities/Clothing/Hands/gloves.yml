@@ -374,12 +374,11 @@
     abilities:
     - components:
       - type: BatteryDrainer
-      # Goobstation - replaced shock with ninjutsu
-      #- type: StunProvider
-      #  noPowerPopup: ninja-no-power
-      #  whitelist:
-      #    components:
-      #    - Stamina
+      - type: StunProvider
+        noPowerPopup: ninja-no-power
+        whitelist:
+          components:
+          - Stamina
       - type: EmagProvider
         whitelist:
           components:

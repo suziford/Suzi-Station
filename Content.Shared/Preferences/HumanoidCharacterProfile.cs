@@ -74,6 +74,10 @@ namespace Content.Shared.Preferences
         private static readonly Regex RestrictedNameRegex = new("[^A-Z, ,a-z,0-9,А-Яа-яёЁ0-9,\\-,']"); //Reserve-Localization
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
+        public const int MaxNameLength = 32;
+        public const int MaxLoadoutNameLength = 32;
+        public const int MaxDescLength = 512;
+
         /// <summary>
         /// Job preferences for initial spawn.
         /// </summary>
@@ -551,14 +555,13 @@ namespace Content.Shared.Preferences
             };
 
             string name;
-            var maxNameLength = configManager.GetCVar(CCVars.MaxNameLength);
             if (string.IsNullOrEmpty(Name))
             {
                 name = GetName(Species, gender);
             }
-            else if (Name.Length > maxNameLength)
+            else if (Name.Length > MaxNameLength)
             {
-                name = Name[..maxNameLength];
+                name = Name[..MaxNameLength];
             }
             else
             {
@@ -586,10 +589,9 @@ namespace Content.Shared.Preferences
 
 
             string flavortext;
-            var maxFlavorTextLength = configManager.GetCVar(CCVars.MaxFlavorTextLength);
-            if (FlavorText.Length > maxFlavorTextLength)
+            if (FlavorText.Length > MaxDescLength)
             {
-                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..maxFlavorTextLength];
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..MaxDescLength];
             }
             else
             {

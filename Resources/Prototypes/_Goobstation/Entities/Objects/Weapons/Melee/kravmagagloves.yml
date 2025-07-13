@@ -25,6 +25,3 @@
   - type: ClothingGrantComponent
     component:
     - type: KravMaga
-  - type: GuideHelp
-    guides:
-    - KravMaga

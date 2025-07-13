@@ -166,8 +166,6 @@
     - alertType: Magboots
     - alertType: Pacified
     - alertType: ShadowCloak # Goobstation
-    - alertType: DragonPower # Goobstation
-    - category: Ninjutsu # Goobstation
 
 - type: entity
   id: AlertSpriteView
@@ -277,7 +275,6 @@
     state: walking
   name: alerts-walking-name
   description: alerts-walking-desc
-  clientHandled: true
 
 - type: alert
   id: Stun
@@ -563,6 +560,7 @@
   description: alerts-pulling-desc
   minSeverity: 0
   maxSeverity: 3
+
 # Goobstation end
 
 - type: alert

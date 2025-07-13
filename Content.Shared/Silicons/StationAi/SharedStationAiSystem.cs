@@ -66,7 +66,6 @@ using Content.Shared.Chat;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Containers;
 using Content.Shared.Movement.Pulling.Systems;
-using Robust.Shared.Utility;
 using Content.Shared._CorvaxNext.Silicons.Borgs;
 
 namespace Content.Shared.Silicons.StationAi;
@@ -98,8 +97,6 @@ public abstract partial class SharedStationAiSystem : EntitySystem
     [Dependency] private readonly   StationAiVisionSystem _vision = default!;
     [Dependency] private readonly   AnchorableSystem _anchorable = default!; // WD edit
     [Dependency] private readonly   PullingSystem _pulling = default!; // WD edit
-    [Dependency] private readonly   IPrototypeManager _protoManager = default!;
-
     [Dependency] private readonly SharedAiRemoteControlSystem _remoteSystem = default!; // Corvax-Next-AiRemoteControl
 
     // StationAiHeld is added to anything inside of an AI core.
@@ -127,7 +124,6 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         InitializeAirlock();
         InitializeHeld();
         InitializeLight();
-        InitializeCustomization();
 
         SubscribeLocalEvent<StationAiWhitelistComponent, BoundUserInterfaceCheckRangeEvent>(OnAiBuiCheck);
 
@@ -153,35 +149,25 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
     private void OnCoreVerbs(Entity<StationAiCoreComponent> ent, ref GetVerbsEvent<Verb> args)
     {
+        if (!_admin.IsAdmin(args.User) ||
+            TryGetHeld((ent.Owner, ent.Comp), out _))
+        {
+            return;
+        }
+
         var user = args.User;
 
-        // Admin option to take over the station AI core
-        if (_admin.IsAdmin(args.User) &&
-            !TryGetHeld((ent.Owner, ent.Comp), out _))
+        args.Verbs.Add(new Verb()
         {
-            args.Verbs.Add(new Verb()
+            Text = Loc.GetString("station-ai-takeover"),
+            Category = VerbCategory.Debug,
+            Act = () =>
             {
-                Text = Loc.GetString("station-ai-takeover"),
-                Category = VerbCategory.Debug,
-                Act = () =>
-                {
-                    var brain = SpawnInContainerOrDrop(DefaultAi, ent.Owner, StationAiCoreComponent.Container);
-                    _mind.ControlMob(user, brain);
-                },
-                Impact = LogImpact.High,
-            });
-        }
-
-        // Option to open the station AI customization menu
-        if (TryGetHeld((ent, ent.Comp), out var insertedAi) && insertedAi == user)
-        {
-            args.Verbs.Add(new Verb()
-            {
-                Text = Loc.GetString("station-ai-customization-menu"),
-                Act = () => _uiSystem.TryOpenUi(ent.Owner, StationAiCustomizationUiKey.Key, insertedAi),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/emotes.svg.192dpi.png")),
-            });
-        }
+                var brain = SpawnInContainerOrDrop(DefaultAi, ent.Owner, StationAiCoreComponent.Container);
+                _mind.ControlMob(user, brain);
+            },
+            Impact = LogImpact.High,
+        });
     }
 
     private void OnAiAccessible(Entity<StationAiOverlayComponent> ent, ref AccessibleOverrideEvent args)
@@ -437,19 +423,10 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         EntityCoordinates? coords = ent.Comp.RemoteEntity != null ? Transform(ent.Comp.RemoteEntity.Value).Coordinates : null;
 
         // Attach new eye
-        var oldEye = ent.Comp.RemoteEntity;
-
         ClearEye(ent);
 
         if (SetupEye(ent, coords))
             AttachEye(ent);
-
-        if (oldEye != null)
-        {
-            // Raise the following event on the old eye before it's deleted
-            var ev = new StationAiRemoteEntityReplacementEvent(ent.Comp.RemoteEntity);
-            RaiseLocalEvent(oldEye.Value, ref ev);
-        }
 
         // Adjust user FoV
         var user = GetInsertedAI(ent);
@@ -571,21 +548,14 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         if (!Resolve(entity.Owner, ref entity.Comp, false))
             return;
 
-        // Todo: when AIs can die, add a check to see if the AI is in the 'dead' state
-        var state = StationAiState.Empty;
-
-        if (_containers.TryGetContainer(entity.Owner, StationAiHolderComponent.Container, out var container) && container.Count > 0)
-            state = StationAiState.Occupied;
-
-        // If the entity is a station AI core, attempt to customize its appearance
-        if (TryComp<StationAiCoreComponent>(entity, out var stationAiCore))
+        if (!_containers.TryGetContainer(entity.Owner, StationAiHolderComponent.Container, out var container) ||
+            container.Count == 0)
         {
-            CustomizeAppearance((entity, stationAiCore), state);
+            _appearance.SetData(entity.Owner, StationAiVisualState.Key, StationAiState.Empty);
             return;
         }
 
-        // Otherwise let generic visualizers handle the appearance update
-        _appearance.SetData(entity.Owner, StationAiVisualState.Key, state);
+        _appearance.SetData(entity.Owner, StationAiVisualState.Key, StationAiState.Occupied);
     }
 
     public virtual void AnnounceIntellicardUsage(EntityUid uid, SoundSpecifier? cue = null) { }
@@ -633,14 +603,9 @@ public sealed partial class AiToggleBoltsEvent : InstantActionEvent; // WD edit
 [Serializable, NetSerializable]
 public sealed partial class IntellicardDoAfterEvent : SimpleDoAfterEvent;
 
-[Serializable, NetSerializable]
-public enum StationAiVisualState : byte
-{
-    Key,
-}
 
 [Serializable, NetSerializable]
-public enum StationAiSpriteState : byte
+public enum StationAiVisualState : byte
 {
     Key,
 }
@@ -651,5 +616,4 @@ public enum StationAiState : byte
     Empty,
     Occupied,
     Dead,
-    Hologram,
 }

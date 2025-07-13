@@ -337,20 +337,6 @@
     damage:
       types:
         Piercing: 5
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      30: Critical
-      60: Dead
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
-        damage: 120
-      behaviors:
-      - !type:GibBehavior
-        recursive: false
   - type: Tag
     tags:
     - VimPilot
@@ -432,15 +418,6 @@
     rootTask:
       task: SimpleHostileCompound
   - type: ZombieImmune
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
-        damage: 20
-      behaviors:
-      - !type:GibBehavior
-        recursive: false
 
 - type: entity
   name: bee
@@ -702,9 +679,9 @@
         damageType: Blunt
         damage: 10
       behaviors:
-      - !type:GibBehavior
+      - !type:GibBehavior # Shitmed Change
         gibContents: Skip # Shitmed Change
-        recursive: false
+        recursive: false # Shitmed Change
   - type: NonSpreaderZombie
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
@@ -823,7 +800,7 @@
     baseSprintSpeed : 4
     weightlessAcceleration: 1.5
     weightlessFriction: 1
-    baseWeightlessModifier: 1
+    weightlessModifier: 1
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Moth
@@ -1112,15 +1089,6 @@
     bloodMaxVolume: 0.1
   - type: MobPrice
     price: 50
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
-        damage: 20
-      behaviors:
-      - !type:GibBehavior
-        recursive: false
 
 - type: entity
   name: cow
@@ -1552,6 +1520,9 @@
   - type: Vocal
     sounds:
       Unsexed: Kangaroo
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBounce
   - type: Puller
     needsHands: false
   - type: StaminaDamageOnHit
@@ -2513,15 +2484,6 @@
   - type: Tag
     tags:
     - VimPilot
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
-        damage: 60
-      behaviors:
-      - !type:GibBehavior
-        recursive: false
 
 # Would be cool to have some functionality for the parrot to be able to sit on stuff
 - type: entity
@@ -2690,7 +2652,6 @@
         Brute: 5
   - type: Item
     size: Normal
-    sprite: Mobs/Animals/grenadepenguin.rsi
   - type: OnUseTimerTrigger
     delay: 10
     beepSound:
@@ -3833,15 +3794,6 @@
         name: food-sequence-burger-content-hamster
       taco:
         name: food-sequence-content-hamster
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
-        damage: 120
-      behaviors:
-      - !type:GibBehavior
-        recursive: false
 
 - type: entity
   name: pig

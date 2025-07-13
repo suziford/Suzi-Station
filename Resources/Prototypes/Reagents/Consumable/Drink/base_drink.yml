@@ -53,7 +53,9 @@
   - !type:PlantAdjustHealth
     amount: -0.1
   footstepSound:
-    collection: FootstepSlime
+    collection: FootstepSticky
+    params:
+      volume: 6
   fizziness: 0.5
 
 - type: reagent
@@ -91,4 +93,6 @@
   abstract: true
   flavor: sweet
   footstepSound:
-    collection: FootstepSlime
+    collection: FootstepSticky
+    params:
+      volume: 6
