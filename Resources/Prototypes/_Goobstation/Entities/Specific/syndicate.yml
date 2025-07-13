@@ -22,9 +22,7 @@
   - type: StaticPrice
     price: 3000
   - type: GrantCqc
-  - type: GuideHelp
-    guides:
-    - CQC
+    startingStage: Hard
 
 - type: entity
   parent: [ BaseItem, BaseSyndicateContraband ]
@@ -42,25 +40,3 @@
   - type: StaticPrice
     price: 3000
   - type: GrantSleepingCarp
-  - type: GuideHelp
-    guides:
-    - SleepingCarp
-
-- type: entity
-  parent: [BaseItem, BaseSyndicateContraband]
-  id: CapoeiraManual
-  name: choreography manual
-  description: Choreography manual — or so it claims. Every second page ends with someone on the floor, not dancing.
-  components:
-  - type: Sprite
-    sprite: _Goobstation/Objects/Misc/martial_arts.rsi
-    layers:
-    - state: capoeira
-  - type: Item
-    size: Small
-  - type: StaticPrice
-    price: 3000
-  - type: GrantCapoeira
-  - type: GuideHelp
-    guides:
-    - Capoeira

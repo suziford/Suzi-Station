@@ -2,10 +2,6 @@
 // SPDX-FileCopyrightText: 2024 0x6273 <0x40@keemail.me>
 // SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2025 nazrin <tikufaev@outlook.com>
 //
 // SPDX-License-Identifier: MIT
 
@@ -26,7 +22,6 @@ public sealed class EntityPickupAnimationSystem : EntitySystem
 {
     [Dependency] private readonly AnimationPlayerSystem _animations = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
     public override void Initialize()
@@ -68,8 +63,8 @@ public sealed class EntityPickupAnimationSystem : EntitySystem
         }
 
         var sprite = Comp<SpriteComponent>(animatableClone);
-        _sprite.CopySprite((uid, sprite0), (animatableClone, sprite));
-        _sprite.SetVisible((animatableClone, sprite), true);
+        sprite.CopyFrom(sprite0);
+        sprite.Visible = true;
 
         var animations = Comp<AnimationPlayerComponent>(animatableClone);
 

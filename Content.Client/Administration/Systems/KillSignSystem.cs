@@ -3,10 +3,6 @@
 // SPDX-FileCopyrightText: 2023 Ygg01 <y.laughing.man.y@gmail.com>
 // SPDX-FileCopyrightText: 2023 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 Tayrtahn <tayrtahn@gmail.com>
-// SPDX-FileCopyrightText: 2025 nazrin <tikufaev@outlook.com>
 //
 // SPDX-License-Identifier: MIT
 
@@ -19,8 +15,6 @@ namespace Content.Client.Administration.Systems;
 
 public sealed class KillSignSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-
     public override void Initialize()
     {
         SubscribeLocalEvent<KillSignComponent, ComponentStartup>(KillSignAdded);
@@ -32,10 +26,10 @@ public sealed class KillSignSystem : EntitySystem
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
-        if (!_sprite.LayerMapTryGet((uid, sprite), KillSignKey.Key, out var layer, false))
+        if (!sprite.LayerMapTryGet(KillSignKey.Key, out var layer))
             return;
 
-        _sprite.RemoveLayer((uid, sprite), layer);
+        sprite.RemoveLayer(layer);
     }
 
     private void KillSignAdded(EntityUid uid, KillSignComponent component, ComponentStartup args)
@@ -43,15 +37,15 @@ public sealed class KillSignSystem : EntitySystem
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
-        if (_sprite.LayerMapTryGet((uid, sprite), KillSignKey.Key, out var _, false))
+        if (sprite.LayerMapTryGet(KillSignKey.Key, out var _))
             return;
 
-        var adj = _sprite.GetLocalBounds((uid, sprite)).Height / 2 + ((1.0f / 32) * 6.0f);
+        var adj = sprite.Bounds.Height / 2 + ((1.0f/32) * 6.0f);
 
-        var layer = _sprite.AddLayer((uid, sprite), new SpriteSpecifier.Rsi(new ResPath("Objects/Misc/killsign.rsi"), "sign"));
-        _sprite.LayerMapSet((uid, sprite), KillSignKey.Key, layer);
+        var layer = sprite.AddLayer(new SpriteSpecifier.Rsi(new ResPath("Objects/Misc/killsign.rsi"), "sign"));
+        sprite.LayerMapSet(KillSignKey.Key, layer);
 
-        _sprite.LayerSetOffset((uid, sprite), layer, new Vector2(0.0f, adj));
+        sprite.LayerSetOffset(layer, new Vector2(0.0f, adj));
         sprite.LayerSetShader(layer, "unshaded");
     }
 

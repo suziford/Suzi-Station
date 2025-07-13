@@ -5,10 +5,6 @@
 // SPDX-FileCopyrightText: 2024 0x6273 <0x40@keemail.me>
 // SPDX-FileCopyrightText: 2024 Pieter-Jan Briers <pieterjan.briers+git@gmail.com>
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 Kyle Tyo <36606155+VerinSenpai@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
-// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
-// SPDX-FileCopyrightText: 2025 nazrin <tikufaev@outlook.com>
 //
 // SPDX-License-Identifier: MIT
 
@@ -28,9 +24,6 @@ namespace Content.Client.Administration.UI.Tabs.AdminbusTab
     [UsedImplicitly]
     public sealed partial class LoadBlueprintsWindow : DefaultWindow
     {
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-
         public LoadBlueprintsWindow()
         {
             RobustXamlLoader.Load(this);
@@ -38,9 +31,9 @@ namespace Content.Client.Administration.UI.Tabs.AdminbusTab
 
         protected override void EnteredTree()
         {
-            var mapSystem = _entityManager.System<SharedMapSystem>();
+            var mapManager = IoCManager.Resolve<IMapManager>();
 
-            foreach (var mapId in mapSystem.GetAllMapIds())
+            foreach (var mapId in mapManager.GetAllMapIds())
             {
                 MapOptions.AddItem(mapId.ToString(), (int) mapId);
             }
@@ -56,19 +49,21 @@ namespace Content.Client.Administration.UI.Tabs.AdminbusTab
 
         private void Reset()
         {
-            var xformSystem = _entityManager.System<SharedTransformSystem>();
-            var player = _playerManager.LocalEntity;
+            var entManager = IoCManager.Resolve<IEntityManager>();
+            var xformSystem = entManager.System<SharedTransformSystem>();
+            var playerManager = IoCManager.Resolve<IPlayerManager>();
+            var player = playerManager.LocalEntity;
 
             var currentMap = MapId.Nullspace;
             var position = Vector2.Zero;
             var rotation = Angle.Zero;
 
-            if (_entityManager.TryGetComponent<TransformComponent>(player, out var xform))
+            if (entManager.TryGetComponent<TransformComponent>(player, out var xform))
             {
                 currentMap = xform.MapID;
                 position = xformSystem.GetWorldPosition(xform);
 
-                if (_entityManager.TryGetComponent<TransformComponent>(xform.GridUid, out var gridXform))
+                if (entManager.TryGetComponent<TransformComponent>(xform.GridUid, out var gridXform))
                 {
                     rotation = xformSystem.GetWorldRotation(gridXform);
                 }

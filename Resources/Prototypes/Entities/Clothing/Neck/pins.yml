@@ -273,21 +273,10 @@
 - type: entity
   parent: ClothingNeckPinBase
   id: ClothingNeckAutismPin
-  name: neurodivergent pin
-  description: Be neurodivergent, do crime.
+  name: autism pin
+  description: Be autism do crime.
   components:
   - type: Sprite
     state: autism
   - type: Clothing
     equippedPrefix: autism
-
-- type: entity
-  parent: ClothingNeckPinBase
-  id: ClothingNeckGoldAutismPin
-  name: autism pin
-  description: Be autistic, do crime.
-  components:
-  - type: Sprite
-    state: goldautism
-  - type: Clothing
-    equippedPrefix: goldautism

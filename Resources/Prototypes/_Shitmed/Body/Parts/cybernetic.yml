@@ -28,9 +28,9 @@
     canBleed: false
 
 - type: entity
+  abstract: true
   parent: [ CyberneticPartBase, BaseLeftArm ]
-  id: LeftArmCybernetic
-  name: cybernetic left arm
+  id: LeftArmCyberneticBase
   components:
   - type: Sprite
     state: "l_arm-combined"
@@ -38,6 +38,8 @@
     state: "l_arm-combined"
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLArm
+  - type: GenerateChildPart
+    id: LeftHandCybernetic
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: LArm
@@ -50,9 +52,9 @@
     bleedingOverlay: null
 
 - type: entity
+  abstract: true
   parent: [ CyberneticPartBase, BaseRightArm ]
-  id: RightArmCybernetic
-  name: cybernetic right arm
+  id: RightArmCyberneticBase
   components:
   - type: Sprite
     state: "r_arm-combined"
@@ -60,6 +62,8 @@
     state: "r_arm-combined"
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRArm
+  - type: GenerateChildPart
+    id: RightHandCybernetic
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: RArm
@@ -72,9 +76,9 @@
     bleedingOverlay: null
 
 - type: entity
+  abstract: true
   parent: [ CyberneticPartBase, BaseLeftLeg ]
-  id: LeftLegCybernetic
-  name: cybernetic left leg
+  id: LeftLegCyberneticBase
   components:
   - type: Sprite
     state: "l_leg-combined"
@@ -82,6 +86,8 @@
     state: "l_leg-combined"
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLLeg
+  - type: GenerateChildPart
+    id: LeftFootCybernetic
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: LLeg
@@ -94,9 +100,9 @@
     bleedingOverlay: null
 
 - type: entity
+  abstract: true
   parent: [ CyberneticPartBase, BaseRightLeg ]
-  id: RightLegCybernetic
-  name: cybernetic right leg
+  id: RightLegCyberneticBase
   components:
   - type: Sprite
     state: "r_leg-combined"
@@ -104,6 +110,8 @@
     state: "r_leg-combined"
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRLeg
+  - type: GenerateChildPart
+    id: RightFootCybernetic
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: RLeg
@@ -118,7 +126,6 @@
 - type: entity
   parent: [ CyberneticPartBase, BaseLeftHand ]
   id: LeftHandCybernetic
-  name: cybernetic left hand
   components:
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLHand
@@ -188,7 +195,7 @@
     bleedingOverlay: null
 
 - type: entity
-  parent: LeftArmCybernetic
+  parent: LeftArmCyberneticBase
   id: JawsOfLifeLeftArm
   name: J.W.L left arm
   description: A cybernetic left arm with the ability to pry doors open.
@@ -202,7 +209,7 @@
       delay: 1
 
 - type: entity
-  parent: RightArmCybernetic
+  parent: RightArmCyberneticBase
   id: JawsOfLifeRightArm
   name: J.W.L right arm
   description: A cybernetic right arm with the ability to pry doors open.
@@ -216,7 +223,7 @@
       delay: 1
 
 - type: entity
-  parent: LeftLegCybernetic
+  parent: LeftLegCyberneticBase
   id: SpeedLeftLeg
   name: S.P.E.E.D left leg
   description: A cybernetic left leg that allows its wearer to run faster.
@@ -226,7 +233,7 @@
     sprintSpeed: 5.175
 
 - type: entity
-  parent: RightLegCybernetic
+  parent: RightLegCyberneticBase
   id: SpeedRightLeg
   name: S.P.E.E.D right leg
   description: A cybernetic left leg that allows its wearer to run faster.

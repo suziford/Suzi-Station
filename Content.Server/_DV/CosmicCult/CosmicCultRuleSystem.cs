@@ -780,8 +780,8 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             return;
 
         _mind.ClearObjectives(mindId, mindComp);
-        _role.MindRemoveRole<CosmicCultRoleComponent>(mindId);
-        _role.MindRemoveRole<RoleBriefingComponent>(mindId);
+        _role.MindTryRemoveRole<CosmicCultRoleComponent>(mindId);
+        _role.MindTryRemoveRole<RoleBriefingComponent>(mindId);
 
         if (TryComp(uid, out EyeComponent? eyeComp))
             _eye.SetVisibilityMask(uid, eyeComp.VisibilityMask & (int) ~VisibilityFlags.CosmicCultMonument);

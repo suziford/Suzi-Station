@@ -147,9 +147,8 @@ public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
             return;
         }
 
-        // Goob edit
-        // if (CheckDisabled(ent, user))
-        //    return;
+        if (CheckDisabled(ent, user))
+            return;
 
         // TODO: teleporting into belt slot
         var message = _hands.TryPickupAnyHand(user, katana)
@@ -170,9 +169,8 @@ public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
             return;
         }
 
-        // Goob edit
-        // if (CheckDisabled(ent, user))
-        //   return;
+        if (CheckDisabled(ent, user))
+            return;
 
         var coords = _transform.GetMapCoordinates(user);
         _emp.EmpPulse(coords, comp.EmpRange, comp.EmpConsumption, comp.EmpDuration);
