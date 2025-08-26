@@ -1,2 +1,10 @@
-ent-BorgChassisDerelictSyndicateAssault = старый киборг синдиката
+ent-BorgChassisDerelictSyndicateAssault = старый киборг Синдиката
     .desc = Экономная машина для убийства, оснащенная множеством смертоносных модулей. Этот экземпляр находится в крайне запущенном состоянии.
+ent-BorgChassisUrist = Урист МакБорг
+    .desc = Мерзость, которая предположительно помогает в работе станции.
+ent-PlayerBorgUrist = { ent-BorgChassisUrist }
+    .suffix = Батарея, Модуль
+    .desc = { ent-BorgChassisUrist.desc }
+ent-PlayerBorgUristGhostRole = { ent-BorgChassisUrist }
+    .suffix = Роль призрака
+    .desc = { ent-BorgChassisUrist.desc }

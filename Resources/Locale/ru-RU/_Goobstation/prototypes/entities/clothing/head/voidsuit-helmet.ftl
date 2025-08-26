@@ -1,5 +1,5 @@
-ent-ClothingHeadHelmetVoidsuitSecurity = защитный шлем МОДсьюта
-    .desc = Хорошо сконструированная лицевая панель, прикрепленная к МОДсьюту.
+ent-ClothingHeadHelmetVoidsuitSecurity = защитный шлем скафандра службы безопасности
+    .desc = Хорошо сконструированная лицевая панель.
 ent-ClothingHeadHelmetHardsuitDreadnought = шлем дредноут-скафандра Cybersun
     .desc = Шлем, глядя на который, задаешься вопросом, есть ли там кто-нибудь живой.
 ent-ClothingHeadHelmetHardsuitHeadOfSecurityExperimental = продвинутый шлем скафандра главы службы безопасности

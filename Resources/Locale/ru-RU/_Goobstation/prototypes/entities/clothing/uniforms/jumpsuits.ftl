@@ -1,5 +1,7 @@
 ent-ClothingUniformJumpsuitDurathread = комбинезон из дюраткани
     .desc = Комбинезон из дюраткани . Его эластичные волокна обеспечивают некоторую защиту владельцу.
+ent-ClothingUniformJumpsuitResonant = резонансный комбинезон
+    .desc = Давай не будем играть слишком грубо. Ни ты, ни я пока не можем этого добиться…
 ent-ClothingUniformJumpsuitNanotrasenRepresentative = костюм представителя НаноТразен
     .desc = Черный костюм, который носят чиновники.
 ent-ClothingUniformJumpsuitCasualSyndicate = комбинезон синдиката

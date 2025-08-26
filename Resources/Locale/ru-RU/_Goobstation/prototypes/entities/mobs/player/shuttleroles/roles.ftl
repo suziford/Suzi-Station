@@ -1,2 +1,3 @@
-ent-RandomHumanoidVisitorAlien = роль инопланетного призрака в гостях
+ent-RandomHumanoidVisitorAlien = Глорпщит
+    .suffix = Случайный вид
     .desc = { "" }

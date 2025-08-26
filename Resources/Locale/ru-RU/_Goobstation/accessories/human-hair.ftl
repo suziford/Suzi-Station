@@ -10,6 +10,7 @@ marking-HumanHairFrontBraidsMedium = Передние косы средней д
 marking-HumanHairFrontBraidsShort = Короткие передние косы
 marking-HumanHairHairnet = Сеточка для волос
 marking-HumanHairJellyfish = Медуза
+marking-HumanHairJinx = Jinx
 marking-HumanHairKazuyaMishima = Казуя Мисима
 marking-HumanHairLongBraids = Длинные косы
 marking-HumanHairLongCurvy = Длинные кривые

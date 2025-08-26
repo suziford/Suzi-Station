@@ -17,12 +17,15 @@ job-name-nct = Карьерный тренер Нанотрейзен
 # Half Life
 
 job-name-hecu = Оперативник ХЕКУ
+job-name-highcommander = Верховный главнокомандующий
 job-name-gman = Джи-Мен
 
 # Misc
 
+job-name-governmentman = Джи-мэн
 job-name-conquest = Конквест
 job-name-greytide = Грейтайдер
+job-name-mercenarycaptain = Капитан наёмников
 
 # Таймеры ролей - сделайте их в алфавитном порядке или я вас порежу (не слушайте апстрим, я скопировал и вставил это, сделайте их не в алфавитном порядке :godo:)
 
@@ -37,3 +40,4 @@ JobDiplomat = Дипломат
 JobGovernmentMan = Джи-Мен
 JobConquest = Конквест
 JobInspector = Аудитор Центрального Командования
+JobMercenaryCaptain = Капитан наёмников

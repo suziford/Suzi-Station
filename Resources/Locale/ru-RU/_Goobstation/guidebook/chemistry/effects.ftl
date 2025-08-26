@@ -2,8 +2,8 @@ reagent-effect-guidebook-deal-stamina-damage =
     { $chance ->
         [1]
             { $deltasign ->
-                [1] Сделки
-               *[-1] Исцеляет
+                [1] сделки
+               *[-1] исцеляет
             }
        *[other]
             { $deltasign ->

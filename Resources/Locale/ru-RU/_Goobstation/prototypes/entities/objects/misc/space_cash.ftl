@@ -1,4 +1,4 @@
-ent-SpaceCashCounterfeit = подозрительные спецы
+ent-SpaceCashCounterfeit = подозрительные деньги
     .desc = Это выглядит как нарисованное на бумаге.
 ent-SpaceCashCounterfeit10 = { ent-SpaceCashCounterfeit }
     .suffix = 10

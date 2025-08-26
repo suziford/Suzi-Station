@@ -1,4 +1,4 @@
-ent-ClothingHeadHatHoodHeretic = Зловещий капюшон
+ent-ClothingHeadHatHoodHeretic = зловещий капюшон
     .desc = Порванный, запыленный капюшон. Странные глаза выстроились внутри.
 ent-ClothingHeadHatHoodHereticVoid = { ent-ClothingHeadHatHoodHeretic }
     .desc = { ent-ClothingHeadHatHoodHeretic.desc }

@@ -12,5 +12,5 @@ trait-tile-movement-name = Внутренний покой
 trait-tile-movement-desc = Вы всегда на связи со своими корнями. И под вашими корнями я подразумеваю центр плитки, на которой вы стоите.
 trait-movement-impaired-name = Нарушение движения
 trait-movement-impaired-desc = Кажется, вы не можете нормально передвигаться без посторонней помощи. В комплект входит трость.
-movement-impaired-trait-examined =[color=yellow]{ CAPITALIZE(SUBJECT($target)) } кажется, он слегка прихрамывает при ходьбе. Не похоже, что { SUBJECT($target) } может очень хорошо ходить без посторонней помощи[/color]
+movement-impaired-trait-examined = [color=yellow]{ CAPITALIZE(SUBJECT($target)) } кажется, он слегка прихрамывает при ходьбе. Не похоже, что { SUBJECT($target) } может очень хорошо ходить без посторонней помощи[/color]
 poor-vision-trait-examined = [color=lightblue]{ CAPITALIZE(POSS-ADJ($target)) } глаза расфокусированы. Не похоже, что { SUBJECT($target) } хорошо видит вас без очков...[/color]

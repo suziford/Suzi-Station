@@ -1,3 +1,3 @@
-ent-ChangelingShield = Мясной щит
+ent-ChangelingShield = мясной щит
     .desc = Большой мясистый щит.
     .suffix = Неснимаемый

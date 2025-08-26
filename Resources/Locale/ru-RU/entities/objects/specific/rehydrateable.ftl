@@ -23,3 +23,5 @@ ent-DehydratedSpaceCarp = обезвоженный космический кар
 ent-SyndicateSponge = обезьяний кубик
     .desc = Просто добавь воды!
     .suffix = Синдикат
+ent-MopBucketCube = кубик ведра для швабры
+    .desc = Просто добавь воды! И ещё воды!

@@ -42,8 +42,14 @@ uplink-beenades-desc = Невзрывная граната, полная... пч
 
 # Weapons
 
-uplink-WSPR-name = WSPR (ВСПР)
+uplink-WSPR-name = WSPR
 uplink-WSPR-desc = ППППСССссшшш.
+uplink-his-grace-name = Его Милость
+uplink-his-grace-desc = Существо из другого мира, запертое в ящике с инструментами. Сила увеличивается с каждым убийством, но оно поглотит вас, если его не накормить. Активируйте "в руке", чтобы связать себя.
+uplink-magazine-nailgun-name = Магазин гвоздомёта (бронебойный)
+uplink-magazine-nailgun-desc = Almost like a normal magazine for your nail gun. The only difference is that this one is armor-piercing.
+uplink-pressure-modkit-name = Модуль улучшения ПКУ (давление)
+uplink-pressure-modkit-desc = This illegal modkit takes 30 capacity of your proto-kinetic accelerator and overclocks it to deal full damage even in unsuitable pressure.
 uplink-dualetta-kit-name = Коробка Дуалетт
 uplink-dualetta-kit-desc = Две Дуалетты по низкой цене.
 uplink-contractor-baton-name = Дубинка контрактника
@@ -60,6 +66,8 @@ uplink-l6-saw-name = L6 "ПИЛА"
 uplink-l6-saw-desc = Больше дакки: культовый легкий пулемет L6.
 uplink-m90-name = М-90
 uplink-m90-desc = Боевая винтовка M-90.
+uplink-syndicate-disabler-name = Станнер Синдиката
+uplink-syndicate-disabler-desc = Усовершенствованный станнер, созданный на основе реверс-инжиниринга прототипа Nanotrasen. Несмотря на то, что ему немного не хватает останавливающей силы, он восполняет это за счет подзаряжаемого элемента.
 uplink-dualetta-bundle-name = Набор Дуалетты
 uplink-dualetta-bundle-desc = В комплект входят 2 Дуалетта, 2 магазина к ним, боевые перчатки, нуарный костюм, плащ детектива и ботинки на шнуровке.
 uplink-anaconda-name = Анаконда
@@ -128,6 +136,10 @@ uplink-sarin-gas-grenade-desc = Жестокий нейротоксичный г
 uplink-mech-teleporter-heavy-name = Тяжелый Мех "Маулер"
 uplink-mech-teleporter-heavy-desc = Содержит тяжелобронированного меха Cybersun со встроенным цепным мечом, Ultra AC-2, LBX AC 10 «Scattershot», ракетной стойкой BRM-6 и пушкой P-X Tesla.
 uplink-mech-teleporter-assault-name = Штурмовой Мех "Тёмный Гигакс"
+uplink-M172LAW-name = Легкое противоструктурное оружие M172
+uplink-M172LAW-desc = Одноразовая ракетная установка для уничтожения отдельных стен/машин с минимальным сопутствующим ущербом. Может удобно храниться в вашем рюкзаке.
+uplink-RPOA-name = РПО-А "Шмель"
+uplink-RPOA-desc = Термобарическая ракетная установка одноразового действия, которая поджигает противников и заложников в широком радиусе. Можно хранить в рюкзаке.
 uplink-mech-teleporter-assault-desc = Содержит легкобронированный мех Cybersun со встроенным цепным мечом, дробовиком LBX AC 10, Ракетомет SRM-8 и пушку Tesla P-X..
 
 # Chemicals
@@ -138,6 +150,12 @@ uplink-lollypop-bundle-big-name = Набор конфет Donk Co.©
 uplink-lollypop-bundle-big-desc = Содержит невероятное количество конфет. Что они могут содержать?
 uplink-syringe-pistol-name = Шприцемет-пистолет
 uplink-syringe-pistol-desc = Пистолет, который использует шприцы в качестве боеприпасов, которые впрыскивают своё содержимое их жертвам. Стреляет быстрее, чем обычные шприцеметы, и может поместиться в кармане.
+uplink-combat-medkit-pills-name = Боевая аптечка (таблетки)
+uplink-combat-medkit-pills-desc = Содержит большинство лекарств, необходимых вам для восстановления после травм и болезней, и все это в удобной форме таблеток.
+uplink-combat-medkit-ipc-name = Боевая аптечка (КПБ)
+uplink-combat-medkit-ipc-desc = Содержит все необходимое для лечения КПБ; в том числе НВ кабель, промышленный сварочный аппарат, батарею высокой емкости и инженерные очки.
+uplink-medical-beam-gun-name = Медицинский лучевой пистолет
+uplink-medical-beam-gun-desc = Лечите своих товарищей по команде с помощью этого нового устройства! Работает от встроенного аккумулятора и автоматически перезаряжается после разрядки. Вы можете лечить только одного товарища по команде одновременно.
 
 # Implants
 
@@ -153,20 +171,24 @@ uplink-radio-implanter-name = Имплант радио
 uplink-radio-implanter-desc = Имплантирует радио Синдиката, позволяя пользоваться скрытой связью без гарнитуры.
 uplink-jaunter-implanter-name = Имплант смены места
 uplink-jaunter-implanter-desc = Имплант смены места, позволяет носителю меняться местами с случайной целью.
-
-# Wearables
-
-uplink-helmet-swat-name = Шлем спецназа Синдиката
+uplink-binary-implant-name = Имплант бинарного декодера
+uplink-binary-implant-desc = Позволяет пользователю подключаться к бинарному каналу синтетиков. Однако говорить об этом не рекомендуется, по крайней мере, до тех пор, пока ИИ не выйдет из строя.
 uplink-autosurgeon-right-mantis-blade-name = Автохирург с правым лезвием богомола
 uplink-autosurgeon-left-mantis-blade-name = Автохирург с левым лезвием богомола
 uplink-autosurgeon-mantis-blade-desc = Модифицирует руку пользователя, чтобы по желанию доставать из нее кибер-импланты "Лезвие Богомола", которые лучше всего работают в паре. Требует слишком тонкой настройки для человека, поставляется с одноразовым автохирургом для установки.
 uplink-autosurgeon-sandevistan-name = Автохирург с Сандевистаном
 uplink-autosurgeon-sandevistan-desc = Заменяет сердце пользователя на "Сандевистан", синтетический орган, который значительно увеличивает скорость работы пользователя за счет его выносливости. Требует слишком тонкой настройки для человека, поставляется с одноразовым автохирургом для установки.
-uplink-davids-jacket-name = куртка бегущего по лезвию
+
+# Wearables
+
+uplink-helmet-swat-name = Шлем спецназа Синдиката
+uplink-davids-jacket-name = Куртка бегущего по лезвию
 uplink-davids-jacket-desc = Куртка для тех, кто, как и вы, особенно заинтересован в совершенствовании своего тела.
 uplink-helmet-swat-desc = Прочный шлем, который обеспечивает хорошую защиту, а также в некоторой степени подавляет звуки светошумовых гранат.
 uplink-reverse-bear-trap-name = Обратный медвежий капкан
 uplink-reverse-bear-trap-desc = Гениальное устройство для казни, надеваемое (почти всегда насильно) на голову. Взведя его, начнётся отчёт настраиваемого таймера (30-120 секунд), прикрепленного к капкану. Когда отсчёт закончится, челюсти капкана сожмутся, мгновенного убивая того, на ком это было надето, разрывая их челюсти. Для взведения данного устройства, атакуйте кого-нибудь с ним пока на них нету головного убора.
+uplink-belt-rig-name = Пояс гренадёра
+uplink-belt-rig-desc = Специальное крепление на поясе позволяет разместить столько гранат, что ваша рука устанет метать их все. Также в нем можно хранить оружие и магазины к нему.
 
 # Deception
 

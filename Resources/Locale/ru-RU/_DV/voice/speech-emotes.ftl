@@ -7,4 +7,4 @@ chat-emote-msg-awoo = воет!
 chat-emote-msg-whine = скулит!
 chat-emote-msg-snarl = рычит!
 chat-emote-msg-bark = лает!
-chat-emote-msg-howl = ревёт
+chat-emote-msg-howl = ревёт!

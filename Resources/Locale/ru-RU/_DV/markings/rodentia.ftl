@@ -1,6 +1,5 @@
 # head markings
 
-
 ## patterns
 
 marking-RodentiaHeadBlaze = Голова - Блейз
@@ -13,6 +12,7 @@ marking-RodentiaHeadRound-round = Паттерн
 ## ears
 
 marking-RodentiaHeadTopEarBat = Уши - Летучая мышь
+marking-RodentiaHeadTopEarDefault = Rodentia Ears
 marking-RodentiaHeadTopEarBat-bat = Наружное ухо
 marking-RodentiaHeadTopEarBatLarge = Уши - летучая мышь (большие)
 marking-RodentiaHeadTopEarBatLarge-bat_large = Наружное ухо
@@ -84,10 +84,10 @@ marking-RodentiaCheeksWhiskers-whiskers = Усики
 
 # body markings
 
-
 ## tail
 
 marking-RodentiaTailBeaver = Хвост - Бобр
+marking-RodentiaTailDefault = Хвост - Грызун
 marking-RodentiaTailBeaver-beaver = Хвост
 marking-RodentiaTailHamster = Хвост - хомяк
 marking-RodentiaTailHamster-hamster = Хвост

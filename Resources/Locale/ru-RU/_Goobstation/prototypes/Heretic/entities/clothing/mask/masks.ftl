@@ -1,2 +1,2 @@
-ent-ClothingMaskMadHeretic = Пустотная маска
+ent-ClothingMaskMadHeretic = пустотная маска
     .desc = Маска, созданная из страданий. Когда вы смотрите ей в глаза, она оглядывается назад.

@@ -8,15 +8,12 @@ ent-CassetteTape = кассета
 ent-CassetteTapeInterview = { ent-CassetteTape }
     .desc = { ent-CassetteTape.desc }
     .suffix = Интервью с Гарри Смош
-
 ent-TapeRecorderTranscript = транскрипция записи
     .desc = { ent-Paper.desc }
 interview-with-garry-smosh = Интервью с Гарри Смош
-
 interview-with-garry-smosh-phil-dervin = Фил Дервин
 interview-with-garry-smosh-garry-smosh = Гарри Смош
 interview-with-garry-smosh-officer-belview = Офицер Белью
-
 interview-with-garry-smosh-1 = "В 11:43 в комнате присутствуют Фил Дервин, детектив первого класса, офицер Белвью и Гарри Смош, подозреваемый в одном случае проникновения в запретную зону, четырех случаях нападения, двух случаях кражи и 85 случаях хулинганства."
 interview-with-garry-smosh-2 = "Мистер Смош, вы понимаете, в чем вас обвиняют?"
 interview-with-garry-smosh-3 = "Мне все равно, что ты говоришь, я ничего не сделал."

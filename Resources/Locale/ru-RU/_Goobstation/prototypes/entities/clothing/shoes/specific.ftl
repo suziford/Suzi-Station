@@ -1,2 +1,2 @@
-ent-ClothingShoesWizardSkates = Коньки волшебника
+ent-ClothingShoesWizardSkates = коньки волшебника
     .desc = Пара роликовых коньков федерации волшебников, пропитанных заклинанием защиты от столкновений.
