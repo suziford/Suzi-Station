@@ -25,10 +25,7 @@
   description: Costs 50 Essence.
   components:
   - type: EntityTargetAction
-    itemIconStyle: NoItem
-    icon: Interface/Actions/animate.png
     event: !type:RevenantAnimateEvent
-    useDelay: 1
     canTargetSelf: false
     whitelist:
       components:
