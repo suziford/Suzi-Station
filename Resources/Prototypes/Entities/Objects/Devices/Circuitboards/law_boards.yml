@@ -117,7 +117,7 @@
     sprite: Objects/Misc/module.rsi
     state: std_mod
   - type: SiliconLawProvider
-    laws: Clown
+    laws: Crewsimov
 
 - type: entity
   id: JanitorCircuitBoard

@@ -9,12 +9,7 @@
   description: Gives essence and stolen essence for every witness.
   components:
   - type: InstantAction
-    itemIconStyle: NoItem
-    icon:
-      sprite: Mobs/Ghosts/revenant.rsi
-      state: icon
     event: !type:RevenantHauntActionEvent
-    useDelay: 45 #Revenant nerf
 
 - type: entity
   id: ActionRevenantBloodWriting
@@ -22,10 +17,7 @@
   description: Costs 2 Essence per glyph.
   components:
   - type: InstantAction
-    itemIconStyle: NoItem
-    icon: Interface/Actions/blood-writing.png
     event: !type:RevenantBloodWritingEvent
-    useDelay: 1
 
 - type: entity
   id: ActionRevenantAnimate
