@@ -34,6 +34,7 @@ namespace Content.Shared.PDA
         public bool HasUplink;
         public bool CanPlayMusic;
         public string? Address;
+        public int? ReserveCoinBalance; // Reserve add
 
         public PdaUpdateState(
             List<NetEntity> programs,
@@ -45,7 +46,8 @@ namespace Content.Shared.PDA
             string? stationName,
             bool hasUplink = false,
             bool canPlayMusic = false,
-            string? address = null)
+            string? address = null,
+            int? reserveCoinBalance = null) // Reserve add
             : base(programs, activeUI)
         {
             FlashlightEnabled = flashlightEnabled;
@@ -56,6 +58,7 @@ namespace Content.Shared.PDA
             CanPlayMusic = canPlayMusic;
             StationName = stationName;
             Address = address;
+            ReserveCoinBalance = reserveCoinBalance; // Reserve add
         }
     }
 

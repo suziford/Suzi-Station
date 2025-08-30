@@ -44,9 +44,21 @@ namespace Content.Client._durkcode.ServerCurrency.UI
             if (!isAdmin)
                 Admin.Visible = false;
 
-            GiftButton.OnPressed += _ => Transfer(GiftPlayer.Text, int.Parse((string)GiftAmmount.Text));
-
-            AdminAddButton.OnPressed += _ => AdminAdd(AdminAddPlayer.Text, int.Parse((string)AdminAddAmmount.Text));
+            // Reserve edit start
+            GiftButton.OnPressed += _ => {
+                if (int.TryParse(GiftAmmount.Text, out var amount) && amount > 0)
+                    Transfer(GiftPlayer.Text, amount);
+                else
+                    ShowError(Loc.GetString("currency-invalid-transfer-amount"));
+            };
+            
+            AdminAddButton.OnPressed += _ => {
+                if (int.TryParse(AdminAddAmmount.Text, out var amount) && amount > 0)
+                    AdminAdd(AdminAddPlayer.Text, amount);
+                else
+                    ShowError(Loc.GetString("currency-invalid-add-amount"));
+            };
+            // Reserve edit end
 
             _serverCur.BalanceChange += UpdatePlayerBalance;
 
@@ -94,7 +106,7 @@ namespace Content.Client._durkcode.ServerCurrency.UI
                     // Reset button text after delay
                     Timer.Spawn(TimeSpan.FromSeconds(DoubleClickTimeWindow), () =>
                     {
-                        if (_buttonClickTimes.ContainsKey(button))
+                        if (_buttonClickTimes.TryGetValue(button, out var clickData))
                         {
                             button.Text = Loc.GetString(listing.Name, ("price", listing.Price));
                             _buttonClickTimes.Remove(button);
@@ -149,7 +161,6 @@ namespace Content.Client._durkcode.ServerCurrency.UI
                 var listing = _protoManager.EnumeratePrototypes<TokenListingPrototype>()
                     .FirstOrDefault(x => Loc.GetString(x.Name, ("price", x.Price)) == button.Text);
 
-
                 if (listing != null)
                     button.Disabled = balance < listing.Price;
             }
@@ -163,6 +174,17 @@ namespace Content.Client._durkcode.ServerCurrency.UI
             {
                 ConfirmationMessage.Visible = false;
                 UpdateButtonStates();
+            });
+        }
+
+        // Reserve add
+        private void ShowError(string message)
+        {
+            ConfirmationMessage.Text = Loc.GetString("currency-error-prefix", ("message", message));
+            ConfirmationMessage.Visible = true;
+            Timer.Spawn(TimeSpan.FromSeconds(3), () =>
+            {
+                ConfirmationMessage.Visible = false;
             });
         }
     }

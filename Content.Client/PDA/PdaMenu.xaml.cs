@@ -57,7 +57,7 @@ namespace Content.Client.PDA
         private string _stationName = Loc.GetString("comp-pda-ui-unknown");
         private string _alertLevel = Loc.GetString("comp-pda-ui-unknown");
         private string _instructions = Loc.GetString("comp-pda-ui-unknown");
-        
+        private int? _reserveBalance;
 
         private int _currentView;
 
@@ -150,8 +150,13 @@ namespace Content.Client.PDA
                 _clipboard.SetText(_instructions);
             };
 
-            
-
+            // Reserve edit start
+            ReserveCoinBalanceButton.OnPressed += _ =>
+            {
+                if (_reserveBalance is { } bal)
+                    _clipboard.SetText(bal.ToString());
+            };
+            // Reserve edit end
 
             HideAllViews();
             ToHomeScreen();
@@ -196,6 +201,15 @@ namespace Content.Client.PDA
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
                 ("time", stationTime.ToString("hh\\:mm\\:ss"))));
+
+            // Reserve edit start
+            // Update Reserve Coin balance display
+            _reserveBalance = state.ReserveCoinBalance;
+            ReserveCoinBalanceLabel.SetMarkup(
+                state.ReserveCoinBalance is { } bal
+                    ? Loc.GetString("comp-pda-ui-reserve-coins", ("balance", bal))
+                    : Loc.GetString("comp-pda-ui-reserve-coins-unknown"));
+            // Reserve edit end
 
             var alertLevel = state.PdaOwnerInfo.StationAlertLevel;
             var alertColor = state.PdaOwnerInfo.StationAlertColor;
@@ -362,14 +376,7 @@ namespace Content.Client.PDA
             }
         }
 
-        protected override void Draw(DrawingHandleScreen handle)
-        {
-            base.Draw(handle);
 
-            var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
-            StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.ToString("hh\\:mm\\:ss"))));
-        }
     }
 }

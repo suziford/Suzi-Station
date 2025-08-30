@@ -67,6 +67,7 @@ public enum NanoChatUiMessageType : byte
     DeleteChat,
     ToggleMute,
     ToggleListNumber,
+    SendCoin, // Reserve add
 }
 
 // putting this here because i can
@@ -135,6 +136,18 @@ public struct NanoChatMessage
     /// </summary>
     public bool DeliveryFailed;
 
+    // Reserve edit start
+    /// <summary>
+    ///     The amount of coins being transferred with this message, if any.
+    /// </summary>
+    public int CoinAmount;
+
+    /// <summary>
+    ///     Whether this message is a coin transfer.
+    /// </summary>
+    public bool IsCoinTransfer;
+    // Reserve edit end
+
     /// <summary>
     ///     Creates a new NanoChat message.
     /// </summary>
@@ -142,12 +155,15 @@ public struct NanoChatMessage
     /// <param name="content">The content of the message</param>
     /// <param name="senderId">The sender's NanoChat number</param>
     /// <param name="deliveryFailed">Whether delivery to the recipient failed</param>
-    public NanoChatMessage(TimeSpan timestamp, string content, uint senderId, bool deliveryFailed = false)
+    /// <param name="coinAmount">Amount of coins being transferred</param>
+    public NanoChatMessage(TimeSpan timestamp, string content, uint senderId, bool deliveryFailed = false, int coinAmount = 0)
     {
         Timestamp = timestamp;
         Content = content;
         SenderId = senderId;
         DeliveryFailed = deliveryFailed;
+        CoinAmount = Math.Max(0, coinAmount);
+        IsCoinTransfer = CoinAmount > 0;
     }
 }
 

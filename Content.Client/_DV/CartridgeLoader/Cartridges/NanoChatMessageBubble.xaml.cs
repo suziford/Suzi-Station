@@ -21,8 +21,11 @@ public sealed partial class NanoChatMessageBubble : BoxContainer
 {
     public static readonly Color OwnMessageColor = Color.FromHex("#173717d9"); // Dark green
     public static readonly Color OtherMessageColor = Color.FromHex("#252525d9"); // Dark gray
+    public static readonly Color CoinMessageColor = Color.FromHex("#1a4d1ad9"); // Dark green for coin transfers Reserve add
+    public static readonly Color CoinBorderColor = Color.FromHex("#2d5a2d"); // Dark green border for coin messages
     public static readonly Color BorderColor = Color.FromHex("#40404066"); // Subtle border
     public static readonly Color TextColor = Color.FromHex("#dcdcdc"); // Slightly softened white
+    public static readonly Color CoinTextColor = Color.FromHex("#90ee90"); // Light green text for coin messages // Reserve add
     public static readonly Color ErrorColor = Color.FromHex("#cc3333"); // Red
 
     public NanoChatMessageBubble()
@@ -37,12 +40,27 @@ public sealed partial class NanoChatMessageBubble : BoxContainer
 
         // Configure message appearance
         var style = (StyleBoxFlat)MessagePanel.PanelOverride;
-        style.BackgroundColor = isOwnMessage ? OwnMessageColor : OtherMessageColor;
-        style.BorderColor = BorderColor;
+        
+        // Reserve edit start
+        // Special styling for coin transfer messages
+        if (message.IsCoinTransfer)
+        {
+            style.BackgroundColor = CoinMessageColor;
+            style.BorderColor = CoinBorderColor;
+            style.BorderThickness = new Thickness(2); // Thicker border for coin messages
+            MessageText.Modulate = CoinTextColor;
 
-        // Set message content
-        MessageText.Text = message.Content;
-        MessageText.Modulate = TextColor;
+            MessageText.Text = message.Content;
+        }
+        else
+        {
+            style.BackgroundColor = isOwnMessage ? OwnMessageColor : OtherMessageColor;
+            style.BorderColor = BorderColor;
+            style.BorderThickness = new Thickness(1);
+            MessageText.Modulate = TextColor;
+            MessageText.Text = message.Content;
+        }
+        // Reserve edit end
 
         // Show delivery failed text if needed (only for own messages)
         DeliveryFailedLabel.Visible = isOwnMessage && message.DeliveryFailed;

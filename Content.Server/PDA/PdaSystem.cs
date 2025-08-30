@@ -105,6 +105,7 @@ using Content.Server.PDA.Ringer;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
 using Content.Server.Traitor.Uplink;
+using Content.Server._durkcode.ServerCurrency;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Chat;
@@ -133,6 +134,7 @@ namespace Content.Server.PDA
         [Dependency] private readonly UnpoweredFlashlightSystem _unpoweredFlashlight = default!;
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly IdCardSystem _idCard = default!;
+        [Dependency] private readonly ServerCurrencyManager _serverCurrency = default!; // Reserve add
 
         public override void Initialize()
         {
@@ -288,6 +290,16 @@ namespace Content.Server.PDA
 
             var programs = _cartridgeLoader.GetAvailablePrograms(uid, loader);
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
+
+            // Reserve edit start
+            // Get reserve coin balance for the PDA owner
+            int? reserveCoinBalance = null;
+            if (pda.PdaOwner != null && TryComp<ActorComponent>(pda.PdaOwner.Value, out var actor))
+            {
+                reserveCoinBalance = _serverCurrency.GetBalance(actor.PlayerSession.UserId);
+            }
+            // Reserve edit end
+            
             var state = new PdaUpdateState(
                 programs,
                 GetNetEntity(loader.ActiveProgram),
@@ -305,7 +317,8 @@ namespace Content.Server.PDA
                 pda.StationName,
                 showUplink,
                 hasInstrument,
-                address);
+                address,
+                reserveCoinBalance); // Reserve add
 
             _ui.SetUiState(uid, PdaUiKey.Key, state);
         }

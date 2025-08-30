@@ -25,6 +25,7 @@ namespace Content.Server._durkcode.ServerCurrency
         private readonly List<Task> _pendingSaveTasks = new();
         public event Action<PlayerBalanceChangeEvent>? BalanceChange;
         private ISawmill _sawmill = default!;
+        private readonly object _transferLock = new();
 
         public void Initialize()
         {
@@ -102,6 +103,44 @@ namespace Content.Server._durkcode.ServerCurrency
             _sawmill.Info($"Transferring {amount} currency from {sourceUserId} to {targetUserId}. Current balances: {newAccountValues.Item1}, {newAccountValues.Item2}");
             return newAccountValues;
         }
+
+        // Reserve edit start
+        /// <summary>
+        /// Attempts to transfer currency from one player to another, checking balance first.
+        /// </summary>
+        /// <param name="sourceUserId">The source player's NetUserId</param>
+        /// <param name="targetUserId">The target player's NetUserId</param>
+        /// <param name="amount">The amount of currency to transfer.</param>
+        /// <returns>True if transfer was successful, false if insufficient funds</returns>
+        public bool TryTransferCoins(NetUserId sourceUserId, NetUserId targetUserId, int amount)
+        {
+            if (amount <= 0)
+            {
+                _sawmill.Warning($"Invalid transfer amount: {amount} from {sourceUserId} to {targetUserId}");
+                return false;
+            }
+
+            if (sourceUserId == targetUserId)
+            {
+                _sawmill.Info($"Self-transfer blocked: {sourceUserId}, amount={amount}");
+                return false;
+            }
+
+            // Atomic check and transfer to prevent TOCTOU race condition
+            lock (_transferLock)
+            {
+                var sourceBalance = GetBalance(sourceUserId);
+                if (sourceBalance < amount)
+                {
+                    _sawmill.Info($"Insufficient funds: {sourceUserId}, amount={amount}, balance={sourceBalance}");
+                    return false;
+                }
+
+                TransferCurrency(sourceUserId, targetUserId, amount);
+                return true;
+            }
+        }
+        // Reserve edit end
 
         /// <summary>
         /// Sets a player's balance.
