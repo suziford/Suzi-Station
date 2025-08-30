@@ -1,18 +1,4 @@
 - type: gamePreset
-  id: VoxRaiders
-  name: voxraiders-title
-  description: voxraiders-description
-  showInVote: false
-  rules:
-    - VoxRaiders
-    - Traitor
-    - SubGamemodesRule
-    - BasicStationEventScheduler
-    #- MeteorSwarmScheduler #Goob
-    - SpaceTrafficControlEventScheduler
-    - BasicRoundstartVariation
-
-- type: gamePreset
   id: BattleRoyale
   alias:
     - br
