@@ -192,20 +192,15 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly GhostVisibilitySystem _ghostVisibility = default!; // Goobstation Change
     [Dependency] private readonly ScryingOrbSystem _scrying = default!; // Goobstation Change
     [Dependency] private readonly CollectiveMindUpdateSystem _collectiveMind = default!; // Goobstation - Starlight collective mind port
-<<<<<<< HEAD
     [Dependency] private readonly IGameTiming _gameTiming = default!; //Reserve - emote cooldown
-=======
     [Dependency] private readonly LanguageSystem _language = default!; // Einstein Engines - Language
->>>>>>> f527f18de11fe3b635b5174717c2c5726ce36fc7
 
     public const int VoiceRange = 10; // how far voice goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
     public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
-<<<<<<< HEAD
+
     public const string DefaultAnnouncementSound = "/Audio/Announcements/attention.ogg"; // Reserve Announcements
     public const string CentComAnnouncementSound = "/Audio/Corvax/Announcements/centcomm.ogg"; // Reserve Announcements
-=======
-    public const string DefaultAnnouncementSound = "/Audio/Announcements/attention.ogg";
     public const float DefaultObfuscationFactor = 0.2f; // Percentage of symbols in a whispered message that can be seen even by "far" listeners
     public readonly Color DefaultSpeakColor = Color.White; // Einstein Engines - Language
 
@@ -214,7 +209,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     public const bool WhisperRespectsLOS = false; // You can hear some whispers through walls.
     public const bool EmoteRespectsLOS = true; // You can still hear the noises, but you don't know who is making them.
     public const bool LocalOOCRespectsLOS = false; // LOOC can be seen through walls.
->>>>>>> f527f18de11fe3b635b5174717c2c5726ce36fc7
 
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;

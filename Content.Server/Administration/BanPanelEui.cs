@@ -210,7 +210,6 @@ public sealed class BanPanelEui : BaseEui
                 {
                     _sawmill.Warning($"{Player.Name} ({Player.UserId}) tried to issue a job ban with an invalid job: {role}");
                 }
->>>>>>> f527f18de11fe3b635b5174717c2c5726ce36fc7
             }
             //Start-ADT-Tweak: логи банов для диса
             var roleBanInfo = new BanInfo

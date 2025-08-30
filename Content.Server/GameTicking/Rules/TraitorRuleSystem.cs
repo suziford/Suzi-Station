@@ -166,6 +166,8 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
     [Dependency] private readonly IPlayerManager _playerManager = default!; // Reserve edit
     [Dependency] private readonly ILogManager _logManager = default!; // Reserve edit
 
+    private ISawmill _sawmill = default!; // Reserve edit
+
     public override void Initialize()
     {
         base.Initialize();
@@ -259,7 +261,7 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
                 }
             }
         }
-        string[]? codewords = null;
+        string[]? codewords = new string[]{};
         if (component.GiveCodewords)
         {
             Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - added codewords flufftext to briefing");
@@ -309,7 +311,6 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
     }
 
     // TODO: figure out how to handle this? add priority to briefing event?
-<<<<<<< HEAD
     private string GenerateBriefing(string[] codewords, Note[]? uplinkCode, string objectiveIssuer, UplinkPreference uplinkPreference = UplinkPreference.PDA) // Reserve edit
     {
         var sb = new StringBuilder();

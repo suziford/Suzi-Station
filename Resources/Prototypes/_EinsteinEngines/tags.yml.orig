@@ -1,0 +1,12 @@
+- type: Tag
+<<<<<<< HEAD
+  id: NoPaint
+=======
+  id: Envirohelm
+
+- type: Tag
+  id: PlasmamanSafe
+>>>>>>> f527f18de11fe3b635b5174717c2c5726ce36fc7
+
+- type: Tag
+  id: ShadowkinEmotes
