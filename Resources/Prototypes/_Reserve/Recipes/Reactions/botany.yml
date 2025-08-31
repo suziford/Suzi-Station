@@ -1,0 +1,11 @@
+- type: reaction
+  id: Antimutax
+  reactants:
+    Left4Zed:
+      amount: 1
+    UnstableMutagen:
+      amount: 1
+    Fluorine:
+      amount: 1
+  products:
+    Antimutax: 3
