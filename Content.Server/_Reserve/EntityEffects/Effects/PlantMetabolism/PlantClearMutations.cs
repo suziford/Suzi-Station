@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 sa1nt7331 <202271576+sa1nt7331@users.noreply.github.com>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Linq;
 using Content.Server.Botany;
 using Content.Server.Botany.Components;
