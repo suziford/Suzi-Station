@@ -576,6 +576,9 @@
   id: UristHand
 
 - type: Tag
+  id: Ushanka
+
+- type: Tag
   id: VehicleKey
 
 - type: Tag
@@ -637,3 +640,6 @@
 
 - type: Tag
   id: MidroundAntag
+
+- type: Tag
+  id: DisposableBattery
