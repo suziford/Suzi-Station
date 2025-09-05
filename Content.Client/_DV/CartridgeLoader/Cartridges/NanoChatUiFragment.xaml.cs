@@ -16,7 +16,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
-using System.Globalization;
 using System.Numerics;
 using Content.Client.PDA;
 using Content.Client._Reserve.CartridgeLoader.Cartridges;
@@ -176,7 +175,7 @@ public sealed partial class NanoChatUiFragment : BoxContainer
         {
             var target = _pendingChat ?? _currentChat;
             if (target != null)
-                OnMessageSent?.Invoke(NanoChatUiMessageType.SendCoin, target, amount.ToString(CultureInfo.InvariantCulture), null);
+                OnMessageSent?.Invoke(NanoChatUiMessageType.SendCoin, target, amount.ToString(), null);
         };
         dialog.OpenCentered();
     }

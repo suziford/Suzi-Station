@@ -51,6 +51,3 @@ nano-chat-coin-transfer-rate-limit = Слишком частые перевод�
 nano-chat-coin-transfer-invalid-amount = Некорректная сумма для перевода
 nano-chat-coin-transfer-failed = Системная ошибка при переводе
 
-currency-invalid-transfer-amount = Некорректная сумма для перевода
-currency-invalid-add-amount = Некорректная сумма для добавления
-currency-error-prefix = Ошибка: { $message }

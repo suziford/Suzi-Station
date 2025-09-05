@@ -49,21 +49,8 @@ namespace Content.Client._durkcode.ServerCurrency.UI
             if (!isAdmin)
                 Admin.Visible = false;
 
-            // Reserve edit start
-            GiftButton.OnPressed += _ => {
-                if (int.TryParse(GiftAmmount.Text, out var amount) && amount > 0)
-                    Transfer(GiftPlayer.Text, amount);
-                else
-                    ShowError(Loc.GetString("currency-invalid-transfer-amount"));
-            };
-            
-            AdminAddButton.OnPressed += _ => {
-                if (int.TryParse(AdminAddAmmount.Text, out var amount) && amount > 0)
-                    AdminAdd(AdminAddPlayer.Text, amount);
-                else
-                    ShowError(Loc.GetString("currency-invalid-add-amount"));
-            };
-            // Reserve edit end
+            GiftButton.OnPressed += _ => Transfer(GiftPlayer.Text, int.Parse((string)GiftAmmount.Text));
+            AdminAddButton.OnPressed += _ => AdminAdd(AdminAddPlayer.Text, int.Parse((string)AdminAddAmmount.Text));
 
             _serverCur.BalanceChange += UpdatePlayerBalance;
 
@@ -182,15 +169,5 @@ namespace Content.Client._durkcode.ServerCurrency.UI
             });
         }
 
-        // Reserve add
-        private void ShowError(string message)
-        {
-            ConfirmationMessage.Text = Loc.GetString("currency-error-prefix", ("message", message));
-            ConfirmationMessage.Visible = true;
-            Timer.Spawn(TimeSpan.FromSeconds(3), () =>
-            {
-                ConfirmationMessage.Visible = false;
-            });
-        }
     }
 }

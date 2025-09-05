@@ -16,6 +16,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.CartridgeLoader;
 using Content.Server.Power.Components;
@@ -388,21 +389,6 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             return;
         }
 
-        // Reserve edit start
-        // Check if the sender is the actual owner of the PDA
-        if (card.Comp.PdaUid != null && TryComp<PdaComponent>(card.Comp.PdaUid, out var pda))
-        {
-            // If PDA has an assigned owner, check if sender is the owner
-            // If PDA has no assigned owner (null), allow the current holder to use it
-            if (pda.PdaOwner != null && pda.PdaOwner != senderPlayer.AttachedEntity)
-            {
-                SendCoinTransferError(card, msg.RecipientNumber.Value, amount, "nano-chat-coin-transfer-failed");
-                _adminLogger.Add(LogType.Action, LogImpact.Medium,
-                    $"{ToPrettyString(card):user} attempted coin transfer without being PDA owner");
-                return;
-            }
-        }
-        // Reserve edit end
 
         // Check if sender has enough OOC reserve coins
         var senderBalance = _serverCurrency.GetBalance(senderPlayer.UserId);
