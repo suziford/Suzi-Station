@@ -297,11 +297,16 @@ namespace Content.Server.PDA
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
 
             // Reserve edit start
-            // Get reserve coin balance for the PDA owner
+            // Get reserve coin balance - only show to the actual owner
             int? reserveCoinBalance = null;
             if (pda.PdaOwner != null && TryComp<ActorComponent>(pda.PdaOwner.Value, out var actor))
             {
-                reserveCoinBalance = _serverCurrency.GetBalance(actor.PlayerSession.UserId);
+                var currentViewers = _ui.GetActors(uid, PdaUiKey.Key);
+                
+                if (currentViewers.Contains(pda.PdaOwner.Value))
+                {
+                    reserveCoinBalance = _serverCurrency.GetBalance(actor.PlayerSession.UserId);
+                }
             }
             // Reserve edit end
             

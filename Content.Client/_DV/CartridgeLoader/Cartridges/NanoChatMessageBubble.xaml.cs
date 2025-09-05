@@ -69,7 +69,13 @@ public sealed partial class NanoChatMessageBubble : BoxContainer
         // Show delivery failed text if needed (only for own messages)
         DeliveryFailedLabel.Visible = isOwnMessage && message.DeliveryFailed;
         if (DeliveryFailedLabel.Visible)
+        {
             DeliveryFailedLabel.Modulate = ErrorColor;
+            // Show specific error reason if available, otherwise default message
+            DeliveryFailedLabel.Text = !string.IsNullOrEmpty(message.FailureReason) 
+                ? message.FailureReason 
+                : Loc.GetString("nano-chat-delivery-failed");
+        }
 
         // For own messages: FlexSpace -> MessagePanel -> RightSpacer
         // For other messages: LeftSpacer -> MessagePanel -> FlexSpace

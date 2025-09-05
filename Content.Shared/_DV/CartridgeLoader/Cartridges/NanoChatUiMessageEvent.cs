@@ -141,6 +141,11 @@ public struct NanoChatMessage
     /// </summary>
     public bool DeliveryFailed;
 
+    /// <summary>
+    ///     The specific error message if delivery failed.
+    /// </summary>
+    public string? FailureReason;
+
     // Reserve edit start
     /// <summary>
     ///     The amount of coins being transferred with this message, if any.
@@ -161,7 +166,8 @@ public struct NanoChatMessage
     /// <param name="senderId">The sender's NanoChat number</param>
     /// <param name="deliveryFailed">Whether delivery to the recipient failed</param>
     /// <param name="coinAmount">Amount of coins being transferred</param>
-    public NanoChatMessage(TimeSpan timestamp, string content, uint senderId, bool deliveryFailed = false, int coinAmount = 0)
+    /// <param name="failureReason">Specific error message if delivery failed</param>
+    public NanoChatMessage(TimeSpan timestamp, string content, uint senderId, bool deliveryFailed = false, int coinAmount = 0, string? failureReason = null)
     {
         Timestamp = timestamp;
         Content = content;
@@ -169,6 +175,7 @@ public struct NanoChatMessage
         DeliveryFailed = deliveryFailed;
         CoinAmount = Math.Max(0, coinAmount);
         IsCoinTransfer = CoinAmount > 0;
+        FailureReason = failureReason;
     }
 }
 

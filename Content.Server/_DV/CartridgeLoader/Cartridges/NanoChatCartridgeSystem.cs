@@ -16,7 +16,6 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.CartridgeLoader;
 using Content.Server.Power.Components;
@@ -375,14 +374,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             var now = _timing.RealTime;
             if (_lastCoinTransfer.TryGetValue(senderPlayer.UserId, out var lastAt) && now - lastAt < _coinTransferCooldown)
             {
-                var failureMessage = new NanoChatMessage(
-                    _timing.CurTime,
-                    Loc.GetString("nano-chat-coin-transfer-rate-limit"),
-                    (uint)card.Comp.Number
-                ) { DeliveryFailed = true };
-                
-                _nanoChat.AddMessage((card, card.Comp), msg.RecipientNumber.Value, failureMessage);
-                
+                SendCoinTransferError(card, msg.RecipientNumber.Value, amount, "nano-chat-coin-transfer-rate-limit");
                 _adminLogger.Add(LogType.Action, LogImpact.Low,
                     $"{ToPrettyString(card):user} hit coin transfer rate limit");
                 return;
@@ -392,58 +384,48 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         // Get sender player entity
         if (senderPlayer == null)
         {
-            var failureMessage = new NanoChatMessage(
-                _timing.CurTime,
-                Loc.GetString("nano-chat-coin-transfer-failed", ("amount", (object)amount)),
-                (uint)card.Comp.Number
-            ) { DeliveryFailed = true };
-            
-            _nanoChat.AddMessage((card, card.Comp), msg.RecipientNumber.Value, failureMessage);
+            SendCoinTransferError(card, msg.RecipientNumber.Value, amount, "nano-chat-coin-transfer-failed");
             return;
         }
+
+        // Reserve edit start
+        // Check if the sender is the actual owner of the PDA
+        if (card.Comp.PdaUid != null && TryComp<PdaComponent>(card.Comp.PdaUid, out var pda))
+        {
+            // If PDA has an assigned owner, check if sender is the owner
+            // If PDA has no assigned owner (null), allow the current holder to use it
+            if (pda.PdaOwner != null && pda.PdaOwner != senderPlayer.AttachedEntity)
+            {
+                SendCoinTransferError(card, msg.RecipientNumber.Value, amount, "nano-chat-coin-transfer-failed");
+                _adminLogger.Add(LogType.Action, LogImpact.Medium,
+                    $"{ToPrettyString(card):user} attempted coin transfer without being PDA owner");
+                return;
+            }
+        }
+        // Reserve edit end
 
         // Check if sender has enough OOC reserve coins
         var senderBalance = _serverCurrency.GetBalance(senderPlayer.UserId);
         if (senderBalance < amount)
         {
-            var failureMessage = new NanoChatMessage(
-                _timing.CurTime,
-                Loc.GetString("nano-chat-coin-transfer-insufficient-funds", ("amount", (object)amount)),
-                (uint)card.Comp.Number
-            ) { DeliveryFailed = true };
-            
-            _nanoChat.AddMessage((card, card.Comp), msg.RecipientNumber.Value, failureMessage);
-            
+            SendCoinTransferError(card, msg.RecipientNumber.Value, amount, "nano-chat-coin-transfer-insufficient-funds");
             _adminLogger.Add(LogType.Action, LogImpact.Low,
                 $"{ToPrettyString(card):user} attempted coin transfer without sufficient funds: {amount}");
             return;
         }
 
-        // Attempt to find recipients
+        // Attempt to find recipients and get recipient player
         var (deliveryFailed, recipients) = AttemptMessageDelivery(cartridge, msg.RecipientNumber.Value);
         if (deliveryFailed || recipients.Count == 0)
         {
-            var failureMessage = new NanoChatMessage(
-                _timing.CurTime,
-                Loc.GetString("nano-chat-coin-transfer-delivery-failed", ("amount", (object)amount)),
-                (uint)card.Comp.Number
-            ) { DeliveryFailed = true };
-            
-            _nanoChat.AddMessage((card, card.Comp), msg.RecipientNumber.Value, failureMessage);
+            SendCoinTransferError(card, msg.RecipientNumber.Value, amount, "nano-chat-coin-transfer-delivery-failed");
             return;
         }
 
-        // Get the first recipient's player entity
         var recipientPlayer = GetPlayerFromCard(recipients[0]);
         if (recipientPlayer == null)
         {
-            var failureMessage = new NanoChatMessage(
-                _timing.CurTime,
-                Loc.GetString("nano-chat-coin-transfer-recipient-not-found", ("amount", (object)amount)),
-                (uint)card.Comp.Number
-            ) { DeliveryFailed = true };
-            
-            _nanoChat.AddMessage((card, card.Comp), msg.RecipientNumber.Value, failureMessage);
+            SendCoinTransferError(card, msg.RecipientNumber.Value, amount, "nano-chat-coin-transfer-delivery-failed");
             return;
         }
 
@@ -456,7 +438,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             // Create success message for sender
             var senderMessage = new NanoChatMessage(
                 _timing.CurTime,
-                Loc.GetString("nano-chat-coin-transfer-success-sender", ("amount", (object)amount), ("number", (object)msg.RecipientNumber.Value)),
+                Loc.GetString("nano-chat-coin-transfer-success-sender", ("amount", (object)amount)),
                 (uint)card.Comp.Number,
                 false,
                 amount
@@ -466,7 +448,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             // Create notification message for recipient
             var recipientMessage = new NanoChatMessage(
                 _timing.CurTime,
-                Loc.GetString("nano-chat-coin-transfer-success-recipient", ("amount", (object)amount), ("number", (object)card.Comp.Number)),
+                Loc.GetString("nano-chat-coin-transfer-success-recipient", ("amount", (object)amount)),
                 (uint)card.Comp.Number,
                 false,
                 amount
@@ -486,17 +468,30 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         else
         {
             // Transfer failed - log as suspicious
-            var failureMessage = new NanoChatMessage(
-                _timing.CurTime,
-                Loc.GetString("nano-chat-coin-transfer-failed", ("amount", (object)amount)),
-                (uint)card.Comp.Number
-            ) { DeliveryFailed = true };
-            
-            _nanoChat.AddMessage((card, card.Comp), msg.RecipientNumber.Value, failureMessage);
-            
+            SendCoinTransferError(card, msg.RecipientNumber.Value, amount, "nano-chat-coin-transfer-failed");
             _adminLogger.Add(LogType.Action, LogImpact.Medium,
                 $"{ToPrettyString(card):user} reserve coin transfer failed unexpectedly: {amount} to {string.Join(", ", recipients.Select(r => ToPrettyString(r)))}");
         }
+    }
+
+    /// <summary>
+    /// Helper method to send coin transfer error messages
+    /// </summary>
+    private void SendCoinTransferError(Entity<NanoChatCardComponent> card, uint recipientNumber, int amount, string errorKey)
+    {
+        if (card.Comp.Number == null)
+            return;
+            
+        var failureMessage = new NanoChatMessage(
+            _timing.CurTime,
+            Loc.GetString("nano-chat-coin-transfer-success-sender", ("amount", (object)amount)),
+            card.Comp.Number.Value,
+            true,
+            0,
+            Loc.GetString(errorKey)
+        );
+        
+        _nanoChat.AddMessage((card, card.Comp), recipientNumber, failureMessage);
     }
     // Reserve edit end
 
@@ -507,64 +502,33 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
     private ICommonSession? GetPlayerFromCard(Entity<NanoChatCardComponent> card)
     {
         if (card.Comp.PdaUid == null)
-        {
-            Logger.Warning($"[NanoChatCartridge] No PDA UID for card {card.Owner}");
             return null;
-        }
 
         // Get the PDA component and check if it has a contained ID
         if (!TryComp<PdaComponent>(card.Comp.PdaUid, out var pda) || pda.ContainedId != card.Owner)
-        {
-            Logger.Warning($"[NanoChatCartridge] PDA {card.Comp.PdaUid} doesn't contain card {card.Owner}");
             return null;
+
+        // Use PDA owner directly if available
+        if (pda.PdaOwner != null && TryComp<ActorComponent>(pda.PdaOwner.Value, out var ownerActor))
+        {
+            return ownerActor.PlayerSession;
         }
 
-        // Find who is currently holding/wearing this PDA
+        // Fallback: check who is currently holding the PDA
         var pdaTransform = Transform(card.Comp.PdaUid.Value);
-        var holder = pdaTransform.ParentUid;
+        var currentParent = pdaTransform.ParentUid;
         
-        Logger.Info($"[NanoChatCartridge] PDA {card.Comp.PdaUid} is held by {holder}");
-        
-        // Check if the holder is a valid player entity
-        if (TryComp<ActorComponent>(holder, out var actor))
+        // Walk up the transform hierarchy to find a player
+        var current = currentParent;
+        while (current.IsValid())
         {
-            Logger.Info($"[NanoChatCartridge] Found player entity {holder} for card {card.Owner}");
-            return actor.PlayerSession;
+            if (TryComp<ActorComponent>(current, out var actor))
+                return actor.PlayerSession;
+            
+            current = Transform(current).ParentUid;
         }
 
-        // If not directly held by player, check if it's in inventory
-        var query = EntityQueryEnumerator<ActorComponent>();
-        while (query.MoveNext(out var playerUid, out var playerActor))
-        {
-            if (playerActor.PlayerSession.AttachedEntity != null)
-            {
-                // Check if this player has the PDA in their inventory or equipped
-                var playerEntity = playerActor.PlayerSession.AttachedEntity.Value;
-                if (IsInPlayerInventory(card.Comp.PdaUid.Value, playerEntity))
-                {
-                    Logger.Info($"[NanoChatCartridge] Found PDA in inventory of player {playerEntity}");
-                    return playerActor.PlayerSession;
-                }
-            }
-        }
-
-        Logger.Warning($"[NanoChatCartridge] Could not find player for card {card.Owner}");
         return null;
-    }
-
-    /// <summary>
-    ///     Checks if a PDA is in a player's inventory or equipped
-    /// </summary>
-    private bool IsInPlayerInventory(EntityUid pda, EntityUid player)
-    {
-        // Check if PDA is directly held by player
-        if (Transform(pda).ParentUid == player)
-            return true;
-
-        // Check inventory slots if available
-        // This is a simplified check - in a real implementation you'd check all inventory slots
-        var pdaParent = Transform(pda).ParentUid;
-        return Transform(pdaParent).ParentUid == player;
     }
     // Reserve edit end
 

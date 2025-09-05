@@ -39,17 +39,18 @@ nano-chat-coin-transfer-send = Отправить
 nano-chat-coin-transfer-cancel = Отмена
 nano-chat-coin-transfer-amount-placeholder = Введите сумму
 nano-chat-send-coin = Отправить кредиты
+
+# Success messages
 nano-chat-coin-transfer-success-sender = Отправлено { $amount } кредитов
 nano-chat-coin-transfer-success-recipient = Получено { $amount } кредитов
-nano-chat-coin-transfer-insufficient-funds = Недостаточно средств для отправки { $amount } кредитов
-nano-chat-coin-transfer-delivery-failed = Не удалось доставить { $amount } кредитов
-nano-chat-coin-transfer-recipient-not-found = Получатель не найден для отправки { $amount } кредитов
-nano-chat-coin-transfer-failed = Не удалось отправить { $amount } кредитов
 
-# Currency transfer UI localization
+# Error details - specific error descriptions
+nano-chat-coin-transfer-insufficient-funds = Недостаточно средств
+nano-chat-coin-transfer-delivery-failed = Получатель недоступен или не найден
+nano-chat-coin-transfer-rate-limit = Слишком частые переводы. Подождите немного
+nano-chat-coin-transfer-invalid-amount = Некорректная сумма для перевода
+nano-chat-coin-transfer-failed = Системная ошибка при переводе
+
 currency-invalid-transfer-amount = Некорректная сумма для перевода
 currency-invalid-add-amount = Некорректная сумма для добавления
-currency-invalid-player = Некорректное имя получателя
-currency-insufficient-balance = Недостаточно средств
 currency-error-prefix = Ошибка: { $message }
-nano-chat-coin-transfer-rate-limit = Слишком частые переводы. Подождите немного.
