@@ -70,6 +70,7 @@
 # WD edit start
 - type: entity
   id: ActionAIToggleBolts
+  parent: BaseAction # reserve edit
   name: Toggle floor bolts
   description: Toggle bolts, that keep you wrenched to the floor.
   components:

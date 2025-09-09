@@ -1,5 +1,6 @@
 - type: entity
   id: ActionStationAiInfo
+  parent: BaseAction # reserve edit
   name: View Information
   description: View the information of your chassis and station.
   components:
@@ -9,6 +10,7 @@
 - type: entity
   id: ActionStationAiRadar
   name: Mass Scanner Interface
+  parent: BaseAction # reserve edit
   description: View a Mass Scanner Interface.
   components:
   - type: InstantAction
@@ -17,6 +19,7 @@
 - type: entity
   id: ActionStationAiCrewMonitoring
   name: Crew Monitoring Interface
+  parent: BaseAction # reserve edit
   description: View a Crew Monitoring Interface.
   components:
   - type: InstantAction
@@ -25,6 +28,7 @@
 - type: entity
   id: ActionStationAiStationRecords
   name: Station Records Interface
+  parent: BaseAction # reserve edit
   description: View a Station Records Interface.
   components:
   - type: InstantAction
@@ -33,6 +37,7 @@
 - type: entity
   id: ActionStationAiCommunications
   name: Communications Interface
+  parent: BaseAction # reserve edit
   description: View a Communications Interface.
   components:
   - type: InstantAction
@@ -41,6 +46,7 @@
 - type: entity
   id: ActionStationAiAtmosphericAlerts
   name: Atmospheric Alerts
+  parent: BaseAction # reserve edit
   description: View a Atmospheric Alerts Interface.
   components:
   - type: InstantAction
