@@ -47,16 +47,4 @@
   name: guide-entry-survival
   text: "/ServerInfo/_Reserve/Guidebook/Survival.xml"
 
-- type: guideEntry
-  id: MartialArts
-  name: guide-entry-martial-arts
-  text: "/ServerInfo/_Reserve/Guidebook/MartialArts/MartialArts.xml"
-  children:
-  - CQC
-  - SleepingCarp
-  - KravMaga
-  - CorporateJudo
-  - Capoeira
-  - Ninjutsu
-  - DragonKungFu
 
