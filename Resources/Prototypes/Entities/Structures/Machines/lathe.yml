@@ -527,6 +527,8 @@
     - UpgradeKits
     # Einstein Engines Packs
     - Translators
+    # Reserve Packs
+    - PlantAnalyzer
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityAmmo
