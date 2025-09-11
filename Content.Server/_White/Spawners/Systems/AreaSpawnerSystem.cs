@@ -43,6 +43,11 @@ public sealed class AreaSpawnerSystem : EntitySystem
                 continue;
             }
 
+            // Reserve add start
+            if (MetaData(spawned).EntityLifeStage >= EntityLifeStage.Terminating)
+                continue;
+            // Reserve add end
+
             var despawnComponent = new TimedDespawnComponent
             {
                 Lifetime = _random.NextFloat(component.MinTime, component.MaxTime)
