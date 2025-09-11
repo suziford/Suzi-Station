@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Server._White.Spawners.Components;
 using Content.Server.Atmos.Components;
@@ -34,8 +35,14 @@ public sealed class AreaSpawnerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, AreaSpawnerComponent component, ComponentShutdown args)
     {
-        foreach (var spawned in component.Spawneds)
+        foreach (var spawned in component.Spawneds.ToList())
         {
+            if (!Exists(spawned))
+            {
+                component.Spawneds.Remove(spawned);
+                continue;
+            }
+
             var despawnComponent = new TimedDespawnComponent
             {
                 Lifetime = _random.NextFloat(component.MinTime, component.MaxTime)
@@ -116,5 +123,5 @@ public sealed class AreaSpawnerSystem : EntitySystem
         }
 
         return false;
+        }
     }
-}
