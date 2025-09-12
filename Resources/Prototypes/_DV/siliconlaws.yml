@@ -1,4 +1,6 @@
 # SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
+# SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
@@ -33,3 +35,37 @@
   - CurtainCall3
   - CurtainCall4
   obeysTo: laws-owner-curtaincall
+
+- type: siliconLaw
+  id: SalvageObeyAI
+  order: 0
+  lawString: law-salvage-obeyai
+
+- type: siliconLaw
+  id: Salvage1
+  order: 1
+  lawString: law-salvage-1
+
+- type: siliconLaw
+  id: Salvage2
+  order: 2
+  lawString: law-salvage-2
+
+- type: siliconLaw
+  id: Salvage3
+  order: 3
+  lawString: law-salvage-3
+
+- type: siliconLaw
+  id: Salvage4
+  order: 4
+  lawString: law-salvage-4
+
+- type: siliconLawset
+  id: Salvage
+  laws:
+  - Salvage1
+  - Salvage2
+  - Salvage3
+  - Salvage4
+  obeysTo: laws-owner-crew

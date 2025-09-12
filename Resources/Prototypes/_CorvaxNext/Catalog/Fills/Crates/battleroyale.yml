@@ -743,15 +743,15 @@
     - id: ClothingOuterArmorHeretic
       prob: 0.011
       orGroup: BRArmor
-    - id: ClothingOuterHardsuitVoxRaidersCombat
-      prob: 0.011
-      orGroup: BRArmor
-    - id: ClothingOuterHardsuitVoxRaidersEngineer
-      prob: 0.011
-      orGroup: BRArmor
-    - id: ClothingOuterHardsuitVoxRaidersMedical
-      prob: 0.011
-      orGroup: BRArmor
+#    - id: ClothingOuterHardsuitVoxRaidersCombat
+#      prob: 0.011
+#      orGroup: BRArmor
+#    - id: ClothingOuterHardsuitVoxRaidersEngineer
+#      prob: 0.011
+#      orGroup: BRArmor
+#    - id: ClothingOuterHardsuitVoxRaidersMedical
+#      prob: 0.011
+#      orGroup: BRArmor
     - id: ClothingOuterHardsuitSyndieElite
       prob: 0.006
       orGroup: BRArmor
@@ -779,9 +779,9 @@
     - id: ClothingOuterSuitSpaceNinja
       prob: 0.006
       orGroup: BRArmor
-    - id: ClothingOuterHardsuitVoxRaidersStealth
-      prob: 0.006
-      orGroup: BRArmor
+#    - id: ClothingOuterHardsuitVoxRaidersStealth
+#      prob: 0.006
+#      orGroup: BRArmor
     - id: ClothingOuterHardsuitClown
       prob: 0.003
       orGroup: BRArmor

@@ -23,7 +23,6 @@
 # SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
 # SPDX-FileCopyrightText: 2025 Svarshik <96281939+lexaSvarshik@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 nazrin <tikufaev@outlook.com>
-# SPDX-FileCopyrightText: 2025 sa1nt7331 <202271576+sa1nt7331@users.noreply.github.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -37,6 +36,8 @@
   - Survival
   - Antagonists
   - Glossary
+  - MartialArts # Goobstation - idk where to put it
+  - SOP # Goobstation - Make it look good.
 
 - type: guideEntry
   id: Glossary
