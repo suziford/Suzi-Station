@@ -170,7 +170,9 @@ public sealed partial class DocumentParsingManager
     private string CutComments(string text)
     {
 	if (text.Contains("<!--")){
-           return text.Remove(text.IndexOf("<!--"), text.IndexOf("-->") + 3);
+           var startIndex = text.IndexOf("<!--");
+           var endIndex = text.IndexOf("-->") + 3;
+           return text.Remove(startIndex, endIndex - startIndex);
         }
 	return text;
     }

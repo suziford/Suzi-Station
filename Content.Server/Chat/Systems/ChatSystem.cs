@@ -322,8 +322,6 @@ public sealed partial class ChatSystem : SharedChatSystem
         LanguagePrototype? languageOverride = null // Einstein Engines - Language
         )
     {
-        if (message.Contains("/"))
-            return;
 
         if (HasComp<GhostComponent>(source))
         {
@@ -1136,6 +1134,9 @@ public sealed partial class ChatSystem : SharedChatSystem
     private string SanitizeInGameICMessage(EntityUid source, string message, out string? emoteStr, bool capitalize = true, bool punctuate = false, bool capitalizeTheWordI = true)
     {
         var newMessage = SanitizeMessageReplaceWords(message.Trim());
+
+        // Reserve add
+        newMessage = newMessage.Replace("/", "").Replace("(", "").Replace(")", "");
 
         GetRadioKeycodePrefix(source, newMessage, out newMessage, out var prefix);
 

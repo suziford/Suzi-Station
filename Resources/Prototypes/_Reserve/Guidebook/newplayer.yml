@@ -16,6 +16,7 @@
   children:
   - ControlsReserve
   - CharacterCreationReserve
+  - GrammarGuideReserve
 
 - type: guideEntry
   id: ControlsReserve
@@ -41,3 +42,8 @@
   id: YourFirstCharacterReserve
   name: guide-entry-yourfirstcharacter
   text: "/ServerInfo/_Reserve/Guidebook/NewPlayer/YourFirstCharacter.xml"
+
+- type: guideEntry
+  id: GrammarGuideReserve
+  name: guide-entry-grammar
+  text: "/ServerInfo/_Reserve/Guidebook/NewPlayer/GrammarGuide.xml"
