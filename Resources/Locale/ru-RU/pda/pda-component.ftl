@@ -49,5 +49,6 @@ nano-chat-coin-transfer-insufficient-funds = Недостаточно средс
 nano-chat-coin-transfer-delivery-failed = Получатель недоступен или не найден
 nano-chat-coin-transfer-rate-limit = Слишком частые переводы. Подождите немного
 nano-chat-coin-transfer-invalid-amount = Некорректная сумма для перевода
+nano-chat-coin-transfer-unauthorized = Доступ запрещен
 nano-chat-coin-transfer-failed = Системная ошибка при переводе
 

@@ -111,7 +111,7 @@ using Content.Server.PDA.Ringer;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
 using Content.Server.Traitor.Uplink;
-using Content.Server._durkcode.ServerCurrency;
+using Content.Goobstation.Common.ServerCurrency;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Chat;
@@ -142,7 +142,7 @@ namespace Content.Server.PDA
         [Dependency] private readonly UnpoweredFlashlightSystem _unpoweredFlashlight = default!;
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly IdCardSystem _idCard = default!;
-        [Dependency] private readonly ServerCurrencyManager _serverCurrency = default!; // Reserve add
+        [Dependency] private readonly ICommonCurrencyManager _serverCurrency = default!; // Reserve add
 
         public override void Initialize()
         {
