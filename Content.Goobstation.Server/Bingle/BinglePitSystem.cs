@@ -25,6 +25,7 @@ using Content.Server.Pinpointer;
 using Content.Server.Stunnable;
 using Content.Shared.Destructible;
 using Content.Shared.Destructible;
+using Content.Shared.Foldable;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Maps;
@@ -82,6 +83,7 @@ public sealed class BinglePitSystem : EntitySystem
     [Dependency] private readonly ITileDefinitionManager _tiledef = default!;
     [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly ContainerSystem _container = default!; // WD edit
+    [Dependency] private readonly FoldableSystem _foldable = default!; // Reserve fix
 
     private EntityQuery<BingleComponent> _query;
     private EntityQuery<BinglePitFallingComponent> _fallingQuery;
@@ -192,6 +194,10 @@ public sealed class BinglePitSystem : EntitySystem
 
         if (TryComp<PullableComponent>(tripper, out var pullable) && pullable.BeingPulled)
             _pulling.TryStopPull(tripper, pullable, ignoreGrab: true);
+
+        // Reserve fix
+        if (TryComp<FoldableComponent>(tripper, out var foldable) && !foldable.IsFolded)
+            _foldable.SetFolded(tripper, foldable, true);
 
         // WD edit start
         if (HasComp<ContainerManagerComponent>(tripper))
