@@ -83,7 +83,7 @@ public sealed class BinglePitSystem : EntitySystem
     [Dependency] private readonly ITileDefinitionManager _tiledef = default!;
     [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly ContainerSystem _container = default!; // WD edit
-    [Dependency] private readonly FoldableSystem _foldable = default!; // Reserve fix
+    [Dependency] private readonly FoldableSystem _foldable = default!; // Reserve edit 
 
     private EntityQuery<BingleComponent> _query;
     private EntityQuery<BinglePitFallingComponent> _fallingQuery;
@@ -197,7 +197,7 @@ public sealed class BinglePitSystem : EntitySystem
 
         // Reserve fix
         if (TryComp<FoldableComponent>(tripper, out var foldable) && !foldable.IsFolded)
-            _foldable.SetFolded(tripper, foldable, true);
+            _foldable.TrySetFolded(tripper, foldable, true);
 
         // WD edit start
         if (HasComp<ContainerManagerComponent>(tripper))
