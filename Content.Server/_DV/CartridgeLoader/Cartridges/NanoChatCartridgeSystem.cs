@@ -363,7 +363,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
         if (!int.TryParse(msg.Content, out var amount))
             return;
-        if (amount <= 0 || amount > 10000) // Sanity check for maximum amount
+        if (amount < 0 || amount > 10000) // Sanity check for maximum amount
         {
             _adminLogger.Add(LogType.Action, LogImpact.Medium,
                 $"{ToPrettyString(card):user} attempted invalid coin transfer amount: {amount}");
@@ -490,11 +490,8 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         
         _nanoChat.AddMessage((card, card.Comp), recipientNumber, failureMessage);
     }
-    // Reserve edit end
-
-    // Reserve edit start
     /// <summary>
-    ///     Gets the OWNER of the PDA.
+    ///     Gets the owner of the PDA.
     /// </summary>
     private ICommonSession? GetPlayerFromCard(Entity<NanoChatCardComponent> card)
     {
@@ -505,13 +502,11 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (!TryComp<PdaComponent>(card.Comp.PdaUid, out var pda) || pda.ContainedId != card.Owner)
             return null;
 
-        // ONLY return the designated PDA owner - no fallbacks
         if (pda.PdaOwner != null && TryComp<ActorComponent>(pda.PdaOwner.Value, out var ownerActor))
         {
             return ownerActor.PlayerSession;
         }
 
-        // If PDA has no owner, return null (deny coin transfers)
         return null;
     }
 

@@ -381,7 +381,14 @@ namespace Content.Client.PDA
             }
         }
 
+        protected override void Draw(DrawingHandleScreen handle)
+        {
+            base.Draw(handle);
 
+            var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);	
 
+            StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",	
+                ("time", stationTime.ToString("hh\\:mm\\:ss"))));	
+        }
     }
 }

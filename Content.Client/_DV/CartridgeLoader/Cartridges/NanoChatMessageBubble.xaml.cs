@@ -44,7 +44,7 @@ public sealed partial class NanoChatMessageBubble : BoxContainer
 
         // Configure message appearance
         var style = (StyleBoxFlat)MessagePanel.PanelOverride;
-        
+
         // Reserve edit start
         // Special styling for coin transfer messages
         if (message.IsCoinTransfer)
@@ -71,11 +71,12 @@ public sealed partial class NanoChatMessageBubble : BoxContainer
         if (DeliveryFailedLabel.Visible)
         {
             DeliveryFailedLabel.Modulate = ErrorColor;
-            // Show specific error reason if available, otherwise default message
-            DeliveryFailedLabel.Text = !string.IsNullOrEmpty(message.FailureReason) 
-                ? message.FailureReason 
+            // Reserve edit start. Showing the standard error.
+            DeliveryFailedLabel.Text = !string.IsNullOrEmpty(message.FailureReason)
+                ? message.FailureReason
                 : Loc.GetString("nano-chat-delivery-failed");
         }
+        // Reserve edit end
 
         // For own messages: FlexSpace -> MessagePanel -> RightSpacer
         // For other messages: LeftSpacer -> MessagePanel -> FlexSpace
