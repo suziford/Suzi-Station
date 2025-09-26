@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared.SprayPainter.Prototypes;
 using Robust.Client.GameObjects;
