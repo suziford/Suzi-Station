@@ -163,6 +163,14 @@
     canInteract: true
   - type: GhostHearing
   - type: Hands
+    hands:
+      hand_right:
+        location: Right
+      hand_left:
+        location: Left
+    sortedHands:
+    - hand_right
+    - hand_left
   - type: ComplexInteraction
   - type: Puller
     needsHands: false
@@ -257,6 +265,8 @@
       - CosmicCultMonument # DeltaV - Cosmic Cult
       - Abductor
       - AGhost # WD EDIT
+  - type: ExplosionResistance
+    damageCoefficient: 0
 
 - type: entity
   abstract: true

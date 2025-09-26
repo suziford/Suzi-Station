@@ -75,10 +75,9 @@ public sealed class UplinkSystem : EntitySystem
 
     private ISawmill _sawmill = default!; // Reserve edit
 
-    [ValidatePrototypeId<CurrencyPrototype>]
-    public const string TelecrystalCurrencyPrototype = "Telecrystal";
-    private const string FallbackUplinkImplant = "UplinkImplant";
-    private const string FallbackUplinkCatalog = "UplinkUplinkImplanter";
+    public static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
+    private static readonly EntProtoId FallbackUplinkImplant = "UplinkImplant";
+    private static readonly ProtoId<ListingPrototype> FallbackUplinkCatalog = "UplinkUplinkImplanter";
 
     public override void Initialize()
     {
@@ -177,9 +176,6 @@ public sealed class UplinkSystem : EntitySystem
     /// </summary>
     private bool ImplantUplink(EntityUid user, FixedPoint2 balance)
     {
-        var implantProto = new string(FallbackUplinkImplant);
-
-        /*
         if (!_proto.TryIndex<ListingPrototype>(FallbackUplinkCatalog, out var catalog))
             return false;
 
@@ -192,7 +188,7 @@ public sealed class UplinkSystem : EntitySystem
             balance = balance - cost;
         */
 
-        var implant = _subdermalImplant.AddImplant(user, implantProto);
+        var implant = _subdermalImplant.AddImplant(user, FallbackUplinkImplant);
 
         if (implant == null || !HasComp<StoreComponent>(implant))  // Reserve Station edit start - simplified implant creation
         {
