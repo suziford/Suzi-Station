@@ -589,10 +589,11 @@ public sealed partial class RevenantSystem
         }
         else
         {
-            _handsSystem.AddHand(uid, "crayon", HandLocation.Middle);
+            var handId = "crayon";
+            _handsSystem.AddHand((uid, hands), handId, HandLocation.Middle);
             var crayon = Spawn("CrayonBlood");
             component.BloodCrayon = crayon;
-            _handsSystem.DoPickup(uid, hands.Hands["crayon"], crayon);
+            _handsSystem.DoPickup(uid, handId, crayon);
             EnsureComp<UnremoveableComponent>(crayon);
         }
     }
