@@ -86,7 +86,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
-using Content.Shared._EinsteinEngines.Paint;
 using Content.Shared.SprayPainter.Components;
 using Content.Shared.SprayPainter.Prototypes;
 using Content.Shared.Verbs;

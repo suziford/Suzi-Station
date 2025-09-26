@@ -228,11 +228,6 @@
       - Energy
   - type: IgnitionSource
     temperature: 700
-  #EE spray paint port begin
-  - type: Tag
-    tags:
-      - NoPaint
-  #EE spray paint port end
   - type: Tool
     qualities:
     - Ignition
@@ -411,7 +406,6 @@
   - type: Tag
     tags:
     - Write
-    - NoPaint #EE spray paint port
   - type: Reflect
     reflectProb: 0.25 #Goob rebalace
     reflects: #Goob rebalance
