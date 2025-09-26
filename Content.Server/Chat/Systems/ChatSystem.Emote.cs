@@ -229,7 +229,7 @@ public partial class ChatSystem
             var currentTime = _gameTiming.CurTime;
             if (currentTime - comp.LastChatEmoteTime < comp.ChatEmoteCooldown)
             {
-                return;
+                return false;
             }
 
             comp.LastChatEmoteTime = currentTime;
