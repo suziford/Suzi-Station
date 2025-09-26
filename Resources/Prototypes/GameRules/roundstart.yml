@@ -401,14 +401,13 @@
         - CommandStaff # Goobstation
       jobBlacklist: [ Mime ] # Goobstation
       briefing:
-        text: head-rev-role-greeting-consent-only # Reserve-ConsentRev
+        text: head-rev-role-greeting
         color: CornflowerBlue
         sound: "/Audio/Ambience/Antag/headrev_start.ogg"
-      #startingGear: HeadRevGear # Reserve-ConsentRev
+      startingGear: HeadRevGear
       components:
       - type: Revolutionary
       - type: HeadRevolutionary
-        onlyConsentConvert: true # Reserve-ConsentRev
       mindRoles:
       - MindRoleHeadRevolutionary
 
