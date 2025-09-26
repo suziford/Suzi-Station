@@ -216,7 +216,6 @@ public partial class ChatSystem
     /// <returns>True if the chat message should be displayed (because the emote was explicitly cancelled), false if it should not be.</returns>
     private bool TryEmoteChatInput(EntityUid uid, string textInput)
     {
-        consumed = false;
         var actionTrimmedLower = TrimPunctuation(textInput.ToLower());
         if (!_wordEmoteDict.TryGetValue(actionTrimmedLower, out var emote))
             return true;
@@ -230,7 +229,6 @@ public partial class ChatSystem
             var currentTime = _gameTiming.CurTime;
             if (currentTime - comp.LastChatEmoteTime < comp.ChatEmoteCooldown)
             {
-                consumed = true;
                 return;
             }
 

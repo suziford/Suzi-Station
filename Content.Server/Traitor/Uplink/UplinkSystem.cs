@@ -186,7 +186,6 @@ public sealed class UplinkSystem : EntitySystem
             balance = 0;
         else
             balance = balance - cost;
-        */
 
         var implant = _subdermalImplant.AddImplant(user, FallbackUplinkImplant);
 

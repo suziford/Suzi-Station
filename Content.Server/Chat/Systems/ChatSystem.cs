@@ -925,14 +925,6 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("entity", ent),
             ("message", FormattedMessage.RemoveMarkupOrThrow(action)));
 
-        if (checkEmote)
-            {
-            // Reserve emote cooldwon begin
-            TryEmoteChatInput(source, action, out var consumed);
-            if (consumed)
-                return;
-            // Reserve emote cooldwon end
-            }
         if (checkEmote &&
             !TryEmoteChatInput(source, action))
             return;
