@@ -258,11 +258,6 @@
       - !type:GroupSelector
         children:
         - !type:EntSelector
-          id: CrateFunSprayPaints
-          weight: 1
-      - !type:GroupSelector
-        children:
-        - !type:EntSelector
           id: CrateFunParty
           weight: 1
       - !type:GroupSelector
