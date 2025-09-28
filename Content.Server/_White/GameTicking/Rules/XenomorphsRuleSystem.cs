@@ -1,3 +1,4 @@
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Spatison <137375981+Spatison@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Triangle <74220687+cwestkaemper@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 loltart <159829224+loltart@users.noreply.github.com>
