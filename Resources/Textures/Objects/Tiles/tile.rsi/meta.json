@@ -586,27 +586,6 @@
             "directions": 4
         },
         {
-            "name": "dark-squiggly"
-        },
-        {
-            "name": "white-marble"
-        },
-        {
-            "name": "white-marble-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "white-marble-inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "dark-marble"
-        },
-        {
-            "name": "dark-marble-inhand-left",
-            "directions": 4
-        },
-        {
             "name": "dark-marble-inhand-right",
             "directions": 4
         },
