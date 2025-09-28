@@ -31,6 +31,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             <Button Name="GiftButton" Text="{Loc gs-balanceui-confirm}" StyleClasses="ButtonColorRed" />
         </BoxContainer>
 
+        <controls:HSpacer Spacing="10" />
 
         <controls:HSpacer Spacing="15" />
         <controls:HLine Thickness="2" Access="Public" />
