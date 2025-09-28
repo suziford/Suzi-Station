@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2025 Lumminal <81829924+Lumminal@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Goobstation.Shared.Overlays;
 using Content.Goobstation.Shared.Shadowling.Components;
 using Content.Goobstation.Shared.Shadowling.Components.Abilities.PreAscension;
@@ -11,6 +17,7 @@ using Content.Server.Polymorph.Systems;
 using Content.Server.Station.Systems;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.Actions;
+using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Examine;
 using Content.Shared.Popups;
@@ -42,6 +49,7 @@ public sealed class ShadowlingAscensionEggSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -154,6 +162,8 @@ public sealed class ShadowlingAscensionEggSystem : EntitySystem
         // Dont take damage during hatching
         //EnsureComp<GodmodeComponent>(uid);
         // NO. PLEASE NO. DON'T DO IT PLEASE I BEG YOU. PLEEEEASEEEEE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA - Rouden
+        // eat my mango
+        _damageable.SetDamageModifierSetId(uid, "ShadowlingAscending");
 
         shadowling.IsAscending = true;
         component.StartTimer = true;

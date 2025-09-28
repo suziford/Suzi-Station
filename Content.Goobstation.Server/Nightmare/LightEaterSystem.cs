@@ -1,5 +1,7 @@
 // SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
 // SPDX-FileCopyrightText: 2025 Lumminal <81829924+Lumminal@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
@@ -34,14 +36,14 @@ public sealed class LightEaterSystem : EntitySystem
 
         SubscribeLocalEvent<LightEaterUserComponent, ToggleLightEaterEvent>(OnToggleLightEater);
         SubscribeLocalEvent<LightEaterComponent, MeleeHitEvent>(OnMeleeHit);
-        SubscribeLocalEvent<LightEaterComponent, MapInitEvent>(OnStartup);
-        SubscribeLocalEvent<LightEaterComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<LightEaterUserComponent, MapInitEvent>(OnStartup);
+        SubscribeLocalEvent<LightEaterUserComponent, ComponentShutdown>(OnShutdown);
     }
 
-    private void OnStartup(Entity<LightEaterComponent> ent, ref MapInitEvent args)
+    private void OnStartup(Entity<LightEaterUserComponent> ent, ref MapInitEvent args)
         => _actions.AddAction(ent.Owner, ref ent.Comp.ActionEnt, ent.Comp.ActionId);
 
-    private void OnShutdown(Entity<LightEaterComponent> ent, ref ComponentShutdown args)
+    private void OnShutdown(Entity<LightEaterUserComponent> ent, ref ComponentShutdown args)
         => _actions.RemoveAction(ent.Owner, ent.Comp.ActionEnt);
 
     private void OnToggleLightEater(EntityUid uid, LightEaterUserComponent component, ToggleLightEaterEvent args)

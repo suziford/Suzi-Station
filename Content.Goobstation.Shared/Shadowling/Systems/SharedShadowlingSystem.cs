@@ -1,3 +1,10 @@
+// SPDX-FileCopyrightText: 2025 BombasterDS2 <bombasterds.github@mail.ru>
+// SPDX-FileCopyrightText: 2025 Lumminal <81829924+Lumminal@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Goobstation.Shared.LightDetection.Components;
 using Content.Goobstation.Shared.LightDetection.Systems;
 using Content.Goobstation.Shared.Mindcontrol;
@@ -28,6 +35,7 @@ public abstract class SharedShadowlingSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -135,6 +143,9 @@ public abstract class SharedShadowlingSystem : EntitySystem
                 EnsureComp<SlowedDownComponent>(uid);
                 _appearance.AddMarking(uid, "AbominationTorso");
                 _appearance.AddMarking(uid, "AbominationHorns");
+
+                // take another hardcoded variable
+                _damageable.SetDamageModifierSetId(uid, "ShadowlingAbomination");
                 break;
             }
         }
