@@ -525,6 +525,7 @@
     - MedicalMisc
     - MedicalVehiclesAdvanced
     - UpgradeKits
+    - ConstructionBagOfHolding
     # Einstein Engines Packs
     - Translators
     # Reserve Packs
@@ -597,6 +598,7 @@
     - ShuttleBoards
     # Goobstation Packs
     - SharedBoards
+    - ShuttleBoardsGoob
   - type: MaterialStorage
     whitelist:
       tags:
@@ -892,6 +894,7 @@
     - MedicalVehiclesAdvanced
     - MedicalBoards
     - Janitor
+    - Genetics
     # Einstein Engines Packs
     - Translators # Language
     - TranslatorImplanters # Language
@@ -939,6 +942,7 @@
     - Bedsheets
     # Goobstation Packs
     - ClothingCasualJumpsuits
+    - ClothingCommandSummer
   - type: EmagLatheRecipes
     emagStaticPacks:
     - ClothingCentComm

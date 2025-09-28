@@ -127,7 +127,6 @@
     tags:
       - RawMaterial
       - DroneUsable # Goobstation
-      - NoPaint #EE spray paint port
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible

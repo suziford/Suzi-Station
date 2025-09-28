@@ -534,14 +534,6 @@
       - id: CrazyGlue
         amount: 2
       - id: PlasticBanana
-      #EE spary paint port begin
-      - id: FunnyPaint
-        orGroup: Paint
-        prob: 0.5
-      - id: FunnyPaintYellow
-        orGroup: Paint
-        prob: 0.5
-      #EE spary paint port end
       - id: WhoopieCushion
       - id: ToyHammer
       - id: MrChips
@@ -585,43 +577,6 @@
         amount: 15
         prob: 0.05
 
-#EE spary paint port begin
-- type: entity
-  id: CrateFunSprayPaints
-  name: spray paint crate
-  description: a crate filled with spray paint.
-  parent: CratePlastic
-  suffix: Spray Paint
-  components:
-  - type: StorageFill
-    contents:
-      - id: SprayPaintBlue
-        amount: 2
-        prob: 0.33
-      - id: SprayPaintRed
-        amount: 2
-        prob: 0.33
-      - id: SprayPaintOrange
-        amount: 2
-        prob: 0.33
-      - id: SprayPaintBlack
-        amount: 2
-        prob: 0.33
-      - id: SprayPaintGreen
-        amount: 2
-        prob: 0.33
-      - id: SprayPaintPurple
-        amount: 2
-        prob: 0.33
-      - id: SprayPaintWhite
-        amount: 2
-        prob: 0.33
-      - id: DeathPaint
-        amount: 2
-      - id: DeathPaintTwo
-        amount: 2
-#EE spary paint port end
-
 - type: entity
   name: dartboard box set
   description: A box with everything you need for a fun game of darts.
@@ -639,12 +594,20 @@
         prob: 0.05
 
 - type: entity
-  id: CrateFunDiscoBeachBall
-  parent: CrateGenericSteel
-  name: disco beach ball crate
-  description: A crate containing a Disco Beach Ball that turns any beach trip into Studio 54.
+  name: hydrated scurret
+  description: Wait, what?
+  id: CrateFunScurret
+  parent: CrateLivestock
   components:
   - type: StorageFill
     contents:
-    - id: DiscoBeachBall
-      amount: 1
+    - id: MobEmotionalSupportScurret # How? Why?
+    - id: DrinkVodkaBottleFull
+    - id: DrinkWhiskeyBottleFull
+    - id: DrinkTequilaBottleFull # ...that explains it.
+    - id: DrinkShotGlass
+      amount: 2
+    - id: Spear # self defence
+    - id: ClothingHeadHatHardhatYellow
+    - id: ClothingNeckMantleQM
+    - id: ClothingHeadsetCargo

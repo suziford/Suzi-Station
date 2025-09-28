@@ -20,16 +20,13 @@ namespace Content.Client.Interactable.Components
     [RegisterComponent]
     public sealed partial class InteractionOutlineComponent : Component
     {
+        private static readonly ProtoId<ShaderPrototype> ShaderInRange = "SelectionOutlineInrange";
+        private static readonly ProtoId<ShaderPrototype> ShaderOutOfRange = "SelectionOutline";
+
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IEntityManager _entMan = default!;
 
         private const float DefaultWidth = 1;
-
-        [ValidatePrototypeId<ShaderPrototype>]
-        private const string ShaderInRange = "SelectionOutlineInrange";
-
-        [ValidatePrototypeId<ShaderPrototype>]
-        private const string ShaderOutOfRange = "SelectionOutline";
 
         private bool _inRange;
         private ShaderInstance? _shader;
@@ -73,27 +70,13 @@ namespace Content.Client.Interactable.Components
             }
         }
 
-        //RESERVE STATION
         private ShaderInstance GetOrCreateShader(bool inRange, int renderScale)
         {
-            if (inRange)
-            {
-                if (_shaderInRange == null)
-                {
-                    _shaderInRange = _prototypeManager.Index<ShaderPrototype>(ShaderInRange).InstanceUnique();
-                }
-                _shaderInRange.SetParameter("outline_width", DefaultWidth * renderScale);
-                return _shaderInRange;
-            }
-            else
-            {
-                if (_shaderOutOfRange == null)
-                {
-                    _shaderOutOfRange = _prototypeManager.Index<ShaderPrototype>(ShaderOutOfRange).InstanceUnique();
-                }
-                _shaderOutOfRange.SetParameter("outline_width", DefaultWidth * renderScale);
-                return _shaderOutOfRange;
-            }
+            var shaderName = inRange ? ShaderInRange : ShaderOutOfRange;
+
+            var instance = _prototypeManager.Index(shaderName).InstanceUnique();
+            instance.SetParameter("outline_width", DefaultWidth * renderScale);
+            return instance;
         }
     }
 }

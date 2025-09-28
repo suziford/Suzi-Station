@@ -244,7 +244,6 @@
     - type: Tag
       tags:
         - CannotSuicide
-        - NoPaint #EE spray paint port
     # <Goobstation>
     - type: MovementIgnoreGravity
     - type: ActionGrant
@@ -379,7 +378,6 @@
       tags:
         - CannotSuicide
         - FootstepSound
-        - NoPaint
     - type: Inventory
       templateId: holoclown
     - type: Hands
@@ -391,6 +389,9 @@
           Piercing: 4
         groups:
           Burn: 3
+      catchingFailDamage:
+        types:
+          Blunt: 1
     - type: MeleeWeapon
       angle: 30
       animation: WeaponArcFist

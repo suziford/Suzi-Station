@@ -38,7 +38,7 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
     private RulesAndInfoWindow? _infoWindow;
 
     [ValidatePrototypeId<GuideEntryPrototype>]
-    private const string DefaultRuleset = "DefaultRulesetReserve"; //Reserve edit
+    private static readonly ProtoId<GuideEntryPrototype> DefaultRuleset = "DefaultRulesetReserve"; //Reserve edit
 
     public ProtoId<GuideEntryPrototype> RulesEntryId = DefaultRuleset;
 
@@ -110,7 +110,7 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
     {
         if (!_prototype.TryIndex(RulesEntryId, out var guideEntryPrototype))
         {
-            guideEntryPrototype = _prototype.Index<GuideEntryPrototype>(DefaultRuleset);
+            guideEntryPrototype = _prototype.Index(DefaultRuleset);
             Log.Error($"Couldn't find the following prototype: {RulesEntryId}. Falling back to {DefaultRuleset}, please check that the server has the rules set up correctly");
             return guideEntryPrototype;
         }

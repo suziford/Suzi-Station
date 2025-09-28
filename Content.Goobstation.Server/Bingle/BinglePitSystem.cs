@@ -91,6 +91,7 @@ public sealed class BinglePitSystem : EntitySystem
     [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly ContainerSystem _container = default!; // WD edit
     [Dependency] private readonly FoldableSystem _foldable = default!; // Reserve edit 
+    [Dependency] private readonly TurfSystem _turf = default!;
 
     private EntityQuery<BingleComponent> _query;
     private EntityQuery<BinglePitFallingComponent> _fallingQuery;
@@ -168,23 +169,11 @@ public sealed class BinglePitSystem : EntitySystem
 
         StartFalling(uid, component, args.Tripper);
 
-        // WD edit start
-
-        // if (component.BinglePoints >=( component.SpawnNewAt * component.Level))
-        // {
-        //     SpawnBingle(uid, component);
-        //     component.BinglePoints -= ( component.SpawnNewAt * component.Level);
-        // }
-
-        var binglesToSpawn = (int) Math.Floor(component.BinglePoints / component.SpawnNewAt);
-
-        for (var i = 0; i < binglesToSpawn; i++)
+        if (component.BinglePoints >= (component.SpawnNewAt * component.Level))
         {
             SpawnBingle(uid, component);
-            component.BinglePoints -= ( component.SpawnNewAt * component.Level);
+            component.BinglePoints -= (component.SpawnNewAt * component.Level);
         }
-
-        // WD edit end
     }
 
     private void StartFalling(EntityUid uid, BinglePitComponent component, EntityUid tripper, bool playSound = true)
@@ -240,7 +229,7 @@ public sealed class BinglePitSystem : EntitySystem
     public void SpawnBingle(EntityUid uid, BinglePitComponent component)
     {
         Spawn(component.GhostRoleToSpawn, Transform(uid).Coordinates);
-        OnSpawnTile(uid,component.Level*2);
+        OnSpawnTile(uid, component.Level * 2);
 
         component.MinionsMade++;
         if (component.MinionsMade < component.UpgradeMinionsAfter)
@@ -359,13 +348,13 @@ public sealed class BinglePitSystem : EntitySystem
             return;
 
         var tileEnumerator = _map.GetLocalTilesEnumerator(gridUid, mapGrid, new Box2(tgtPos.Coordinates.Position + new Vector2(-radius, -radius), tgtPos.Coordinates.Position + new Vector2(radius, radius)));
-        var convertTile = (ContentTileDefinition)_tiledef[FloorTile];
+        var convertTile = (ContentTileDefinition) _tiledef[FloorTile];
 
         while (tileEnumerator.MoveNext(out var tile))
         {
             if (tile.Tile.TypeId == convertTile.TileId)
                 continue;
-            if (tile.GetContentTileDefinition().Name != convertTile.Name &&
+            if (_turf.GetContentTileDefinition(tile).Name != convertTile.Name &&
                 _random.Prob(0.1f)) // 10% probability to transform tile
             {
                 _tile.ReplaceTile(tile, convertTile);
