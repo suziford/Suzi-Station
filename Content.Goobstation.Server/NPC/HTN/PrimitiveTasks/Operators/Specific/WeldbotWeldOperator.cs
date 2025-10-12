@@ -1,7 +1,11 @@
 // SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
+// SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
 // SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 JohnOakman <10437690+JohnOakman@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
+// SPDX-FileCopyrightText: 2025 Svarshik <96281939+lexaSvarshik@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Timfa <timfalken@hotmail.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
@@ -28,6 +32,7 @@ public sealed partial class WeldbotWeldOperator : HTNOperator
 {
     [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    private RepairableSystem _repairableSystem = default!;
     private ChatSystem _chat = default!;
     private WeldbotSystem _weldbot = default!;
     private SharedAudioSystem _audio = default!;
@@ -52,6 +57,7 @@ public sealed partial class WeldbotWeldOperator : HTNOperator
         _popup = sysManager.GetEntitySystem<SharedPopupSystem>();
         _damageableSystem = sysManager.GetEntitySystem<DamageableSystem>();
         _tagSystem = sysManager.GetEntitySystem<TagSystem>();
+        _repairableSystem = sysManager.GetEntitySystem<RepairableSystem>();
     }
 
     public override void TaskShutdown(NPCBlackboard blackboard, HTNOperatorStatus status)
@@ -81,7 +87,7 @@ public sealed partial class WeldbotWeldOperator : HTNOperator
         }
         else
         {
-            _damageableSystem.TryChangeDamage(target, botComp.DamageAmount, true, false, damage);
+            _repairableSystem.ApplyRepairs((target, repairComp), owner);
         }
 
         _audio.PlayPvs(botComp.WeldSound, target);

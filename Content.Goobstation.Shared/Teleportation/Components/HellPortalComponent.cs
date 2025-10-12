@@ -11,7 +11,7 @@ using Robust.Shared.Utility;
 namespace Content.Goobstation.Shared.Teleportation.Components;
 
 /// <summary>
-/// Component for Hell portal activation
+/// Component for Hell portal and helldimensionsystem
 /// </summary>
 [RegisterComponent]
 public sealed partial class HellPortalComponent : Component

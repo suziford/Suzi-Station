@@ -1,3 +1,10 @@
+// SPDX-FileCopyrightText: 2025 Lumminal <81829924+Lumminal@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+using Content.Goobstation.Shared.Devil;
 using Content.Goobstation.Shared.Overlays;
 using Content.Goobstation.Shared.Shadowling.Components;
 using Content.Goobstation.Shared.Shadowling.Components.Abilities.Thrall;
@@ -5,6 +12,7 @@ using Content.Server.Antag;
 using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Shared.Examine;
+using Content.Shared.IdentityManagement;
 
 namespace Content.Goobstation.Server.Shadowling.Systems;
 
@@ -17,7 +25,6 @@ public sealed class ShadowlingThrallSystem : EntitySystem
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly ShadowlingSystem _shadowling = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -59,10 +66,16 @@ public sealed class ShadowlingThrallSystem : EntitySystem
 
     private void OnExamined(EntityUid uid, ThrallComponent component, ExaminedEvent args)
     {
-        if (!HasComp<ShadowlingComponent>(args.Examiner)
-            || component.Converter != args.Examiner)
+        if (HasComp<ShadowlingComponent>(args.Examiner)
+            && component.Converter == args.Examiner)
+            args.PushMarkup($"[color=red]{Loc.GetString("shadowling-thrall-examined")}[/color]"); // Indicates that it is your Thrall
+
+        var ev = new IsEyesCoveredCheckEvent();
+        RaiseLocalEvent(uid, ev);
+
+        if (ev.IsEyesProtected)
             return;
 
-        args.PushMarkup($"[color=red]{Loc.GetString("shadowling-thrall-examined")}[/color]"); // Indicates that it is your Thrall
+        args.PushMarkup($"[color=pink]{Loc.GetString("shadowling-thrall-other-examined", ("target", Identity.Entity(uid, EntityManager)))}[/color]");
     }
 }
