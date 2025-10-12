@@ -74,8 +74,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 6.5
-    icon: { sprite: Clothing/Neck/Cloaks/moth.rsi, state: icon } # Reserve edit #new icon still suck and still barely visible
+    useDelay: 9
+    icon: { sprite: Clothing/Neck/Cloaks/moth.rsi, state: icon }
     itemIconStyle: NoItem
     sound: !type:SoundPathSpecifier
       path: /Audio/_Goobstation/Effects/moth_wings.ogg
@@ -208,7 +208,7 @@
       sprite: /Textures/_Goobstation/Effects/portal.rsi
       state: portal-hell
   - type: TargetAction
-    range: 2
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
