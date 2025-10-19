@@ -35,3 +35,11 @@
   alpha: 0.7
   ghostName: FXX
   ghostDescription: Космическая Гидра.
+
+- type: customGhost
+  id: already-taken-ghost
+  ckey: is_already_taken
+  sprite: /Textures/_Reserve/CustomGhosts/already-taken-ghost.rsi
+  alpha: 0.8
+  ghostName: Раймонд Роберт (Is_already_taken)
+  ghostDescription: РП Аллах
