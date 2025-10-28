@@ -21,3 +21,6 @@ health-analyzer-window-return-button-text = < Вернуть
 health-analyzer-window-tab-body-text = Тело
 health-analyzer-window-tab-organs-text = Органы
 health-analyzer-window-tab-chemicals-text = Химия
+solution-type-chemicals = Химикаты в крови
+solution-type-bloodstream = Количество крови
+solution-type-stomach = Химикаты в желудке

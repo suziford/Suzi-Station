@@ -1,4 +1,4 @@
-ent-LockerBlueshieldOfficer = шкаф офицера синего щита
+ent-LockerBlueshieldOfficer = шкаф офицера Синего Щита
     .desc = { ent-LockerBaseSecure.desc }
-ent-LockerNanorep = шкаф представителя НаноТразен
+ent-LockerNanorep = шкаф представителя Nanotrasen
     .desc = { ent-LockerBaseSecure.desc }

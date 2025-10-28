@@ -7,4 +7,5 @@
     minSyllables: 1
     maxSyllables: 1
     replacement:
-    - honk
+    # reserve edit
+    - хонк

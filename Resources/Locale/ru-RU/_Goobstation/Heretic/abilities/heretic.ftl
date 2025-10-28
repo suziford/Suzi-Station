@@ -35,14 +35,26 @@ heretic-manselink-start-target = Вы чувствуете, что ваш раз
 ## living heart
 
 heretic-livingheart-notargets = Нет доступных целей, посетите руну.
-heretic-livingheart-offstation = Оно { $state }, вне станции, { $direction }!
-heretic-livingheart-onstation = Оно { $state }, { $direction }!
+heretic-livingheart-offstation = Оно { $state ->
+    [dead] мертво
+    [alive] живо
+    *[other] в неизвестном состоянии
+    }, вне станции, { $direction }!
+heretic-livingheart-onstation = Оно { $state ->
+    [dead] мертво
+    [alive] живо
+    *[other] в неизвестном состоянии
+    }, на станции, { $direction }!
 heretic-livingheart-unknown = Оно... не на этой равнине реальности.
-heretic-livingheart-faraway = Оно { $state }, очень далеко отсюда!
+heretic-livingheart-faraway = Оно { $state ->
+    [dead] мертво
+    [alive] живо
+    *[other] в неизвестном состоянии
+}, очень далеко отсюда!
 
 ## speech
 
-heretic-speech-mansusgrasp = УЗ'И ПР'ВДУ!
+heretic-speech-mansusgrasp = УЗ'И И'Т'НУ!
 heretic-speech-ash-jaunt = ПЕП'Н ПЕ'ЕХОД
 heretic-speech-ash-volcano = В'ЛК'Н!
 heretic-speech-ash-rebirth = СЛА'А Н'ЧН'МУ НАБ'Л'ДАТ'ЛЮ

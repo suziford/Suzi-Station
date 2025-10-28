@@ -24,11 +24,27 @@
     boldFontId: MonospaceBold
   obfuscation:
     !type:SyllableObfuscation
-    minSyllables: 1
-    maxSyllables: 10 # Crazy
+    minSyllables: 2 # reserve edit
+    maxSyllables: 2 # reserve edit
     replacement:
+    # reserve edit start
     - 0
     - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - A
+    - B
+    - C
+    - D
+    - E
+    - F
+    # reserve edit end
 
 # Insanely long.
 - type: language
@@ -317,10 +333,11 @@
   obfuscation:
     !type:ReplacementObfuscation
     replacement:
-    - something
-    - a cryptic message
-    - a signal
-    - a message
+    # reserve edit
+    - что-то
+    - зашифрованное сообщение
+    - сигнал
+    - сообщение
 
     #Used for Xenoglossy, and anything else with the UniversalLanguageSpeaker component
 - type: language

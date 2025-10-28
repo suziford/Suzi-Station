@@ -4,3 +4,6 @@ ent-AirlockJanitor = { ent-Airlock }
 ent-AirlockJanitorGlass = { ent-AirlockGlass }
     .suffix = Уборщик
     .desc = { ent-AirlockGlass.desc }
+ent-HighSecAtmosLocked = { ent-HighSecDoor }
+    .suffix = Атмосферный, Закрыт
+    .desc = { ent-HighSecDoor.desc }
