@@ -135,6 +135,7 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Flash.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes; // End Imp Changes
+using Content.Goobstation.Shared.Wraith.Components;
 
 namespace Content.Server.Revenant.EntitySystems;
 

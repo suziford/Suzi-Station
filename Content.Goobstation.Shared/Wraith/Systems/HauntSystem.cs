@@ -8,7 +8,6 @@ using Content.Shared.Flash.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Revenant.Components;
 using Content.Shared.StatusEffect;
 
 namespace Content.Goobstation.Shared.Wraith.Systems;
@@ -62,7 +61,7 @@ public sealed partial class HauntSystem : EntitySystem
 
             if (_timing.CurTime >= haunt.NextHauntUpdate)
             {
-                RemComp<CorporealComponent>(uid);
+                RemComp<Content.Shared.Revenant.Components.CorporealComponent>(uid);
                 haunt.Active = false;
                 _actions.StartUseDelay(haunt.ActionEnt);
 
@@ -119,7 +118,7 @@ public sealed partial class HauntSystem : EntitySystem
                 true);
 
         // we don't have corporeal so add it
-        _statusEffectsOld.TryAddStatusEffect<CorporealComponent>(ent.Owner, ent.Comp.CorporealEffect, ent.Comp.HauntCorporealDuration, true);
+        _statusEffectsOld.TryAddStatusEffect<Content.Shared.Revenant.Components.CorporealComponent>(ent.Owner, ent.Comp.CorporealEffect, ent.Comp.HauntCorporealDuration, true);
 
         // set original rate for resetting it after boost
         ent.Comp.OriginalWpRegen = _wraithPointsSystem.GetCurrentWpRate(ent.Owner);
