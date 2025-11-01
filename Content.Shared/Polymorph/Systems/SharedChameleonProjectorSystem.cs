@@ -12,6 +12,8 @@
 using Content.Shared.Actions;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage;
+using Content.Shared.Disposal.Components;
+using Content.Shared.DragDrop;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
@@ -54,6 +56,7 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
         SubscribeLocalEvent<ChameleonDisguiseComponent, DamageChangedEvent>(OnDisguiseDamaged);
         SubscribeLocalEvent<ChameleonDisguiseComponent, InsertIntoEntityStorageAttemptEvent>(OnDisguiseInsertAttempt);
         SubscribeLocalEvent<ChameleonDisguiseComponent, ComponentShutdown>(OnDisguiseShutdown);
+        SubscribeLocalEvent<ChameleonDisguiseComponent, DragDropDraggedEvent>(OnDisguiseDragDrop); // Reserve fix
 
         SubscribeLocalEvent<ChameleonDisguisedComponent, EntGotInsertedIntoContainerMessage>(OnDisguisedInserted);
 
@@ -91,6 +94,16 @@ public abstract class SharedChameleonProjectorSystem : EntitySystem
     private void OnDisguiseShutdown(Entity<ChameleonDisguiseComponent> ent, ref ComponentShutdown args)
     {
         _actions.RemoveProvidedActions(ent.Comp.User, ent.Comp.Projector);
+    }
+
+    private void OnDisguiseDragDrop(Entity<ChameleonDisguiseComponent> ent, ref DragDropDraggedEvent args)
+    {
+        // Reserve fix - When disguise entity is being dragged to a disposal unit
+        if (HasComp<DisposalUnitComponent>(args.Target))
+        {
+            TryReveal(ent.Comp.User);
+            args.Handled = true;
+        }
     }
 
     #endregion
