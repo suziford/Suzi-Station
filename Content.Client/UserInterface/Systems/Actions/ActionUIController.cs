@@ -138,6 +138,7 @@ using Content.Shared.Actions;
 using Content.Shared.Damage;
 using Content.Shared.Actions.Components;
 using Content.Shared.Charges.Systems;
+using Content.Shared.Heretic;
 using Content.Shared.Input;
 using Content.Shared.Mobs.Components;
 using Robust.Client.GameObjects;
@@ -1129,6 +1130,11 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
 
         // If we were targeting something else we should stop
         StopTargeting();
+
+        // Goobstation
+        if (EntityManager.TryGetComponent(ent, out WorldTargetActionComponent? worldTarget) &&
+            worldTarget.Event is InstantWorldTargetActionEvent)
+            _actionsSystem?.TriggerAction(ent, true); // We just perform it and hope for the best :godo:
 
         SelectingTargetFor = uid;
         // TODO inform the server

@@ -177,7 +177,7 @@
   - type: CombatMode
   - type: Physics
     ignorePaused: true
-    bodyType: KinematicController #Reserve edit
+    bodyType: Kinematic
   - type: Body
     prototype: Aghost
     thermalVisibility: false # WD EDIT
@@ -252,10 +252,6 @@
     prototypes: [ MobAghostGear ]
   - type: BypassInteractionChecks
   - type: SupermatterImmune # Goobstation
-  # Reserve-Start
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 35
-  # Reserve-End
   - type: Speech # Goobstation
     speechVerb: HolierThanThou
   - type: Eye
@@ -264,7 +260,8 @@
       - Normal
       - CosmicCultMonument # DeltaV - Cosmic Cult
       - Abductor
-      - AGhost # WD EDIT
+  - type: OwnInteractionVerbs
+    allowedVerbs: []
   - type: ExplosionResistance
     damageCoefficient: 0
 
