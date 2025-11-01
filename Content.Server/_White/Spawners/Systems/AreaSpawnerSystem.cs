@@ -28,6 +28,7 @@ public sealed class AreaSpawnerSystem : EntitySystem
 
     public override void Initialize()
     {
+        base.Initialize();
         SubscribeLocalEvent<AreaSpawnerComponent, ComponentShutdown>(OnShutdown);
     }
 

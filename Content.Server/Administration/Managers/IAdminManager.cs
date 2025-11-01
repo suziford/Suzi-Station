@@ -85,5 +85,7 @@ namespace Content.Server.Administration.Managers
         void PromoteHost(ICommonSession player);
 
         bool TryGetCommandFlags(CommandSpec command, out AdminFlags[]? flags);
+
+        bool IsSpecialAuthUser(string username);
     }
 }

@@ -404,7 +404,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             bloodAmount = bloodSolution.FillFraction;
 
         var bodyStatus = _woundSystem.GetDamageableStatesOnBody(target);
-        Dictionary<TargetBodyPart, bool> bleeding = new();
+        Dictionary<TargetBodyPart, bool> bleeding; // Goobstation - removed unnecessary allocation
 
         switch (mode)
         {

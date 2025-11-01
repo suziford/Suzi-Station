@@ -1,3 +1,4 @@
+using Content.Goobstation.Common.Religion;
 using Content.Goobstation.Shared.Bible;
 using Content.Server.Bible;
 using Content.Server.Construction;

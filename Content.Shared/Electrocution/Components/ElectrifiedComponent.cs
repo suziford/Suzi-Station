@@ -18,6 +18,7 @@
 // SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 K-Dynamic <20566341+K-Dynamic@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 RichardBlonski <48651647+RichardBlonski@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Svarshik <96281939+lexaSvarshik@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 nazrin <tikufaev@outlook.com>
 //
@@ -154,6 +155,7 @@ public sealed partial class ElectrifiedComponent : Component
     [DataField, AutoNetworkedField]
     public bool IsWireCut = false;
 
+    #region Goobstation
     /// <summary>
     /// Goobstation
     /// Whether this will ignore target insulation
@@ -175,4 +177,17 @@ public sealed partial class ElectrifiedComponent : Component
     [DataField, AutoNetworkedField]
     public float ElectrocutionChance = 1f;
 
+    /// <summary>
+    /// Cooldown between shocks
+    /// </summary>
+    [DataField]
+    public TimeSpan ShockCooldown { get; set; } = TimeSpan.FromSeconds(0.3f);
+
+    /// <summary>
+    /// Last time this entity was shocked
+    /// </summary>
+    [DataField]
+    public TimeSpan LastShockTime { get; set; } = TimeSpan.Zero;
+
+    #endregion
 }
