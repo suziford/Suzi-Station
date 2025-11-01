@@ -3152,6 +3152,8 @@
   - type: Item
     sprite: _Goobstation/Objects/Specific/Hydroponics/cherry.rsi
     heldPrefix: pit
+    shape:
+    - 0,0,0,0 # Reserve add
   - type: Tag
     tags:
     - Recyclable
