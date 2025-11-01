@@ -168,7 +168,6 @@
     requireBibleUser: false
   - type: Summonable
     specialItem: SpawnPointGhostRemilia
-  - type: RevealRevenantOnCollide # Imp
   - type: ReactionMixer
     mixMessage: "bible-mixing-success"
     reactionTypes:
@@ -196,8 +195,12 @@
   - type: StealTarget
     stealGroup: Bible
   - type: EnchantingTool # Goobstation
-  - type: CollisionWake # DeltaV
-    enabled: false
+  - type: StatusEffectOnCollideGhost # Goobstation
+    whitelist:
+      tags:
+      - WeakToSalt
+    statusEffect: Corporeal
+    duration: 5
 
 - type: entity
   parent: [Bible, BaseSyndicateContraband]
