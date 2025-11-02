@@ -1,0 +1,4265 @@
+From 202b097e7ae92875855e281aa949ba4ab4350249 Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Sun, 12 Oct 2025 22:20:48 +0100
+Subject: [PATCH 01/29] Chery pick 1
+
+---
+ Content.Server/Ghost/GhostSystem.cs           |  15 ++++++++
+ .../Damage/Systems/DamageableSystem.cs        |  34 ++++++++++++++++++
+ .../Ghosts/ghost_human.rsi/ghost_piercing.png | Bin 0 -> 778 bytes
+ 3 files changed, 49 insertions(+)
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_piercing.png
+
+diff --git a/Content.Server/Ghost/GhostSystem.cs b/Content.Server/Ghost/GhostSystem.cs
+index de694118d0b6..68545ab8b87d 100644
+--- a/Content.Server/Ghost/GhostSystem.cs
++++ b/Content.Server/Ghost/GhostSystem.cs
+@@ -583,6 +583,21 @@ private bool IsValidSpawnPosition(EntityCoordinates? spawnPosition)
+             var ghost = SpawnAtPosition(GameTicker.ObserverPrototypeName, spawnPosition.Value);
+             var ghostComponent = Comp<GhostComponent>(ghost);
+ 
++            //Get damage values and choose the ghost sprite
++            if (TryComp<DamageableComponent>(mind.Comp.CurrentEntity, out var damageComp))  //this will cause issues, a brain from gibs wont have a damage comp
++            {
++                var highestDamageType = _damageable.GetHighestDamageTypes(damageComp);
++
++                //gotta figure out what to do when theres multiple types
++                /*
++                string damageName = ("ghost_" + highestDamageType).ToLower();
++                if (TryComp<AppearanceComponent>(ghost, out var appearanceComp))
++                {
++                    _appearance.SetData(ghost, GhostVisuals.Damage, damageName, appearanceComp);
++                }
++                */
++            }
++
+             // Try setting the ghost entity name to either the character name or the player name.
+             // If all else fails, it'll default to the default entity prototype name, "observer".
+             // However, that should rarely happen.
+diff --git a/Content.Shared/Damage/Systems/DamageableSystem.cs b/Content.Shared/Damage/Systems/DamageableSystem.cs
+index 63491ce71974..f45d114dbedf 100644
+--- a/Content.Shared/Damage/Systems/DamageableSystem.cs
++++ b/Content.Shared/Damage/Systems/DamageableSystem.cs
+@@ -967,6 +967,40 @@ private void DamageableHandleState(EntityUid uid, DamageableComponent component,
+             component.Damage = newDamage;
+             DamageChanged(uid, component, delta);
+         }
++
++        /// <summary>
++        /// Returns a string list containing the type/s of the highest damage value
++        /// </summary>
++        /// <param name="component"></param>
++        /// <returns></returns>
++        public List<string> GetHighestDamageTypes(DamageableComponent component)
++        {
++            var highestType = new List<string>();
++            var highestValue = FixedPoint2.Zero;
++
++            foreach (var (damageGroupId, damageAmount) in component.DamagePerGroup)  //go trough each group
++            {
++                var group = _prototypeManager.Index<DamageGroupPrototype>(damageGroupId);  //get group
++                foreach (var type in group.DamageTypes) //go trough each type inside that group
++                {
++                    if (component.Damage.DamageDict.TryGetValue(type, out var damageValue) && damageValue > 0)  //get value and make sure it isnt 0
++                    {
++                        if (damageValue > highestValue)  //if its higher, clear the list and add the value
++                        {
++                            highestType.Clear();
++                            highestType.Add(type);
++
++                            highestValue = damageValue;
++                        }
++                        else if (damageValue == highestValue)  //if its the same, add it to the list
++                        {
++                            highestType.Add(type);
++                        }
++                    }
++                }
++            }
++            return highestType;
++        }
+     }
+ 
+     /// <summary>
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_piercing.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_piercing.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..2d76b7904ebd866b43107794c86ec1853d0acbf3
+GIT binary patch
+literal 778
+zcmV+l1NHogP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px%#7RU!RCt{2TFZ6=Aqd5u?()$y`RG~OMa4r1&WNB+8}FvcG~wPL;sXE{7CsuG
+z^@}man2m(cY-cwAw}Jdg-;Z>HC;yj)JcO{P$4@#UJ>ku-@*4B}mR@i4S<gt|BQHSB
+zuZ{qK?0FP&CTIvqB<R1Z{ldv8bRGS>@MjS*#y!Tk6H&u}e5k>~-;x6W3L^l}cS-EQ
+zU;W{V1eAsJa6&KsswBwCdD3C;-Iv6k{Fk0mcpgFsIWK@yB=B{g*uO#*zh)W4IhF<R
+zkx1e;g-s1M{^JW;RQ#tN5;i^n7aI}w8B-LD;IEB<q9I{E2Jnx9H~!M*N6W9?2^PYB
+zIL@Yn1}%r7-9qRM)X_Q+wGN<5%f<<*GjQH|IS9`k?EFvp@HOhHUbO&p5l}SBvj39_
+zGlAI2iS5F+>Tp(dA(GbLm|h3GfG7x|$74^3i4C=(E=UQpb^uNz05d9?_c;?wxqxMA
+z^G1kgbZSqU`}lv1$Qu4Cfzp*zVXkd7LTYSl_|G`6^p;SS10-Xm^|r_TAo=ke;wWqQ
+zz4q$whMgmzH^;)l!otGB!otVFr9U7W8?-a?<TmvO@N4Q3eF9RA0Lx=7+@8fzM7JX4
+zZOY>S;+<fxdVqu%F3a^>vjc=1myvw}FI<-Ew`K?Y7c|Y)nN14b+@29Iq(j5I@?`1~
+zOM-SUF<N+(<t<%e5@t?;CJmM@F@Uj4UkPtzdkvZ#Kq^5~rUDOrxULozVXh7%MplVS
+zTrGppTpeyD^hTjjS`E`OIIB0nQ-ift_9Y1($I-QEGR7E><KT}sFqGphNibu^RPgFl
+zQ90nG9@s=~L8&x9>^LluKOT?nC&I)rZ!0WC!5yXmjOrGTzu3v&+&$7W0aAXZgK8Oa
+z7QlM_o*s|u)0g$oHrlMO)`qrQ{N2Fh8vR{$Ei5c7Ec^xh06SqdNK_m|ga7~l07*qo
+IM6N<$f;tIlzyJUM
+
+literal 0
+HcmV?d00001
+
+
+From a703cb965addc4122480313cdb1d11cd6b88824b Mon Sep 17 00:00:00 2001
+From: Thinbug <ringingsince1997@gmail.com>
+Date: Sat, 31 May 2025 20:30:42 -0300
+Subject: [PATCH 02/29] yeah doing that
+
+---
+ .../Mobs/Ghosts/ghost_human.rsi/ghost_blunt.png  | Bin 0 -> 1030 bytes
+ .../Mobs/Ghosts/ghost_human.rsi/ghost_cold.png   | Bin 0 -> 864 bytes
+ .../Ghosts/ghost_human.rsi/ghost_explosion.png   | Bin 0 -> 1215 bytes
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_cold.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion.png
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..b0c00849f7ca0cd94be762257f6b6f650f5cb962
+GIT binary patch
+literal 1030
+zcmV+h1o``kP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px&z)3_wRCt{2T0L*uFc5t#>?uPKz-i|!{t@{<S*zLTKye5%d(QvK(0@=Zo;uhS
+zngpo4#K3i^DV%7^7Qf^a;aiMI%Dv;`@%VK>M#hJR@cl<3qSlBI-geH-KM5dL{O>VE
+zh{^xSmwYEm$sQ}-BPn4vK9t`{0N(fsm8e7^0Z0INy}n0k5qcW0;U$7|1OUK<N>zyh
+zb6P6x(7N9Em^wS0$BnHQDpANeEk{X)N1{Ob@OwFIal(t-7cu#rW&t+FIz7P0e@Y?x
+z_`$}%EC1jeKt!~<TG+_(d-n(WU8+RLdc8LZuC5l&iFl9zJmg-l@1^<v?Pc3>B(?}A
+zvOf&JocK=)z{zi(AJn?uV0E=P5aH(efjbyY1Y6_HPFP(n<htH)9|rTgOoI}Dp87f>
+z)Yu+;mjJEZb-n3`aP$12v|q0LM+LBDTTS@(vTa4UrAHfia1_}1_lvK-b%!(m&<Hq~
+zX6Ce1#@GkYX5rXT(DKh|scLM&dOV2VYbB`B=L7&4dj)TpcAmtYWDysPAOVh{nN5?}
+zxur+-B<`X`*iZrZcsfc>L{y0)%qs(xC_3|dPXtKKj}ucS#~=ZAqLe#P_P*l|08n#U
+zs#u$&b-n3qx^SWccA|6|ekTQ}L?N5m6cZ`|bd${M^}V!&dS|)}#lY#UO_CET(affL
+zt9}wk_X0u)p+ou--F0>)3i)OB+4{ZdlrNY)WwDQ)DCKwj#4SB`zTZd9pnbu~&5$<A
+zjd5XE4=Md!%p)>x&m7;n@iyOv@(<b#+KidKp^@Tzu#d}ZJpX>M?NI0XR$DPe7=t4t
+zBO@atBO~L(AxeEfYiy*ISxoLI^#S~OY7tCsz4!O!_O1^wpYI(>S|?!Ro=~Zp+0^@b
+zKFXP(Q7<qCIy{%ZzIh+ML=nKK7Z?KvJibS8(N2ZOYP{`kG6b>e12mG?30O{|g1EhA
+zfgX%fB++*|<cnytz&Q}3Qq8MMtjC$;Rbt$SohWTb^3EcJCc*Z8AkdC8SmT4ZLj;fj
+zly3Zl%F&0#e(F;Q5Fsc6DpAOFy$M=~_<~)T0r0<#4qgY0xcE7WW;XQ_Az6JuYS_4a
+zuH-`mI2e0P(<Ge<h=`h|F&|3+YF%%<mc!lx#Hs*^1>b0N5`bTg$EpB{37>jpuL$7V
+zUS1$^adDA6C+s;!FOg{>gb;IDw&TsE7$GsnDcGieDE03Td?lUuMqCPWKT7VCt34;h
+z7{S>}<t_dk6mll14|uP4^zYTLjEszojQ;_D0S8OTH$lY8TL1t607*qoM6N<$g6t9K
+AEdT%j
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_cold.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_cold.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..1e3d541073beb1a7c5645cb326b286c9b6c63572
+GIT binary patch
+literal 864
+zcmV-m1E2hfP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px&8c9S!RCt{2T1%3nFbsX3nqG9l1-L-(X2GR$4JOyfp@v1@VR8bBMHZgLSd`ka
+ziDe7uRQ#&CNb}KqmMtS=0TmT54U_xer?r-T|1u`q&e8l?4}Mx}Z@`uQe*?NbouJ7t
+ze#j@+5OE~`k6iLMpyS6IaOJ~t3&a{<!Y^`wPsoqYikA<8m!AYhAz&T+9=HKlx|Sp2
+zNdBJ^@)5Z9z@-N;0w=oG0~fe+)>>;e7!9s*XUC_;pL8Q9=Lm^#7&M*0oxjFQ=X;<_
+z<$o9gDUA={tQ8J^<AFP8!#_W|kVvsFnF9uAoV*+pGze@a!P!r;+XG$9K_RR<Akh26
+z1LIs|@hAxK^XmaEV*b<-u*9?<f4&HJpY|w-&MAH<O8K)g!BG4^m=n}Nj+YGg5VBKY
+z-r&6(uh{{q4p`#pW12c3?)lhTqYz)>*?%35z=?E8`IAS$$g;0c<4M4{(c*~gPSdo+
+zcSwhn|DgkTasdEs+Zryy7ee=Gg@w-_!pAgqZQGh0{?%027-L)_a_X_nuxOg*?%t+p
+z{QHx$F$sU@)kb=9_#dtX$S60)ge<W}*;nZP5^#GgE94kL+SF2EG8#GeB|8NEPeR&@
+zA;0GtUobyVUkt4wmThS-hPLLYsHmu@sHmuTIjGbJ5cb*~(&Sdz8YAqnMRxe!;Mx{-
+ziIAhXv%d+3$hB<k$))CiJ?jKCxzrr+tf-S<jtKfR#m{Mc13ZFX90D7C_t!wyUZl7}
+zggozmlb38smmt#n;%#w4(IiOU;7j-CGP!AQu;`U2iWzVC4}ReSlq*9LG=TO1xGsr?
+z(h+c1va%OKg&H|1a)6eI9B4UTWdvvlkzl1bON<f+oWUwFdf+n8b956!1J+tQ&vU3I
+zDf_i7c7Wg0BXBxu4hU(H+7UUx7-K@Oog?P}@0>UrEUpn^LWcME_sugz$1!-^o0rHe
+zpiyvCp;U}_x3!41*8Z{fud7Y|?fxuX+k>BuoS!sF?TOa{^qb}5OXjsl4|rTupRlYA
+qq)tc{{9X6xzpJi_ii(PgXTU!<pH;AGBRSmw0000<MNUMnLSTXc=9>Tj
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..8dc7380a6357f21029f248ede392f46fd1ab66dc
+GIT binary patch
+literal 1215
+zcmV;w1VH<VP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px(c}YY;RCt{2n!8TpOccle{u~L#MhO^%jc6!HVWD)9QjjtfC@+$lA{8Z73L0L4
+zcSyqn5Q!#A86nX`*b#|x!Hz6q%@%0#Io<?3;|t5Ke~s-CoZFl^XJ!CMN%^M{cz@Bd
+zEJEL9S>~4W-TE`U%Ddg}%6F1Mh*JN5VU+_wv)NpkkvOp|i!__fm9cKO%dMX&0AA;d
+z#p22{i6D5L_v_~k0&@mXXdvj*FbrN%Oi(?3{k$-*8~+k$wOTL?12;D}i4;T2vdHD-
+zB{WUL#l^*PyjU!9>E|+-1|ezZz52aD;B_A0r~&JWV7*?4uIofmlvrzkq9{bybyBa_
+zSH|i3=cxgKqqZsaZQI7<<0DMd#Aq~%Jqr{?A*!mPR4PG|q|i$t&=3A8&Qqcc!k0^6
+zUCL7?lL-JM>bzGU)$fO;B?hhmwBNQ`EdYRR+vxRrFikV4h)6L_6TMy!wr#K2MePjA
+zrvdQKJ{4{l1}2k9;;HXtG#Uw}X<{;&EcXUp=YwWJpbQApW|BshWq~CNxOako3)}(7
+z=kriiHA-8UQB@WBd_I(nKmqWsr$(azP17Jr5(<R^;@<phLQxb_C=`}$u+eA$_`GYa
+zBX9=zg=(7ityw^4U(>Xean{2Ta~qUpS)kFDBnhQbX_*B{Y=!BQZi0Z1tfWOc(l+R?
+zsQyksmqM*pgRbkOQmMptCtz6?sZ=V^b)D2|wPou2?WONQJJ*+2VzMj?{wpUs)@(MR
+zX&MZ}fOkgX;_&bg`FwuGdGG9RviCDW^>*(KO%lgq?=cwo-FY5D8=Lg)@OR%vr=+B$
+zq@<*z{55dzqzECu9eM;oNMvUgrEaeO4<Lk)cDucHJnkTPb<>;R#bUv&oB2v?lk))3
+zZnxLYPE@ROUKB;VzrUkiuXE{+>{7H`E=MJbNtfd|8~;EOgvbK0DJ$ZD>Y}p`0B>(^
+zT(W-jwYcLr7>!1uWH1Ln5CmaUx|hr4SUUmLP1nD7_V4cQxO8)Mfpx^~JVg)$fe=Ej
+zuC7*Q|NQ)%OJ1a1ASt}g4h92cvstLBifXkQZx{H^7D%a9tK{tL45n#fFc`pfUCifm
+z%w{vLAcQJ{Nwz*O{eB;V!2rYI5aaO}v)K#)kj-Y9WpM|fTrMZt`n*i1Qw)d0<@azn
+zgzLJPPNxt>kx5o$MKCEuQAEGr2LR0Hb2yHJt*tEpz<4~y_VzZDydM_;0C;_UMJAKM
+zVzEFblYwPfa2y8!{*3_0vJA&@u)n{L`Fsul*xA`hwg$A@?Zk^9?J_4PCpbMl1@KY$
+zsPl@Vz;#_FnLlnT?7A*;xg0FZ!qL$Y_V)I0e0&T^lCZnG%Pfy60H1AxlSULp<Z?Lx
+z|F^%VrzhOs-!tt-BRvi$u@%0)zQ*(O^YZ)U<t3E7NDo6va&T~fPN#$0+go%x9oV+b
+zJo{V_Lde6z1EEj)9=l?Xe&AzEO!bGcgE?aU^FUIm|CKE?D_L#fGTa;K?{fZ6v?V1a
+dB_-vj@e8AH&?1pyj)VXJ002ovPDHLkV1h`MK&Joz
+
+literal 0
+HcmV?d00001
+
+
+From 0f3ff5779fadde316e6d9a920c3ade2274845e11 Mon Sep 17 00:00:00 2001
+From: Thinbug <ringingsince1997@gmail.com>
+Date: Mon, 2 Jun 2025 20:37:56 -0300
+Subject: [PATCH 03/29] first steps of moving the logic somewhere nicer
+
+---
+ Content.Server/Ghost/GhostSystem.cs             | 17 +++++------------
+ .../GhostSpriteEvent.cs                         | 11 +++++++++++
+ .../GhostSpriteStateComponent.cs                |  6 ++++++
+ .../GhostSpriteStateSystem.cs                   | 17 +++++++++++++++++
+ .../Entities/Mobs/Player/observer.yml           | 17 +++++++++++++++++
+ 5 files changed, 56 insertions(+), 12 deletions(-)
+ create mode 100644 Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteEvent.cs
+ create mode 100644 Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
+ create mode 100644 Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateSystem.cs
+
+diff --git a/Content.Server/Ghost/GhostSystem.cs b/Content.Server/Ghost/GhostSystem.cs
+index 68545ab8b87d..f3c7166184f5 100644
+--- a/Content.Server/Ghost/GhostSystem.cs
++++ b/Content.Server/Ghost/GhostSystem.cs
+@@ -108,6 +108,7 @@
+ using Content.Goobstation.Maths.FixedPoint;
+ using Content.Shared.Follower;
+ using Content.Shared.Ghost;
++using Content.Shared.Ghost.GhostSpriteStateSelection;
+ using Content.Shared.Mind;
+ using Content.Shared.Mind.Components;
+ using Content.Shared.Mobs;
+@@ -583,19 +584,11 @@ private bool IsValidSpawnPosition(EntityCoordinates? spawnPosition)
+             var ghost = SpawnAtPosition(GameTicker.ObserverPrototypeName, spawnPosition.Value);
+             var ghostComponent = Comp<GhostComponent>(ghost);
+ 
+-            //Get damage values and choose the ghost sprite
+-            if (TryComp<DamageableComponent>(mind.Comp.CurrentEntity, out var damageComp))  //this will cause issues, a brain from gibs wont have a damage comp
++            // Raise an event to assign a sprite state according to the damage taken
++            if (mind.Comp.CurrentEntity != null)
+             {
+-                var highestDamageType = _damageable.GetHighestDamageTypes(damageComp);
+-
+-                //gotta figure out what to do when theres multiple types
+-                /*
+-                string damageName = ("ghost_" + highestDamageType).ToLower();
+-                if (TryComp<AppearanceComponent>(ghost, out var appearanceComp))
+-                {
+-                    _appearance.SetData(ghost, GhostVisuals.Damage, damageName, appearanceComp);
+-                }
+-                */
++                var spriteEvent = new GhostSpriteEvent(mind.Comp.CurrentEntity.Value);
++                RaiseLocalEvent(ghost, spriteEvent);
+             }
+ 
+             // Try setting the ghost entity name to either the character name or the player name.
+diff --git a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteEvent.cs b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteEvent.cs
+new file mode 100644
+index 000000000000..52e00439ae04
+--- /dev/null
++++ b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteEvent.cs
+@@ -0,0 +1,11 @@
++namespace Content.Shared.Ghost.GhostSpriteStateSelection;
++
++public sealed class GhostSpriteEvent : EntityEventArgs
++{
++    public GhostSpriteEvent(EntityUid uid)
++    {
++        Uid = uid;
++    }
++
++    public EntityUid Uid { get; set; }
++}
+diff --git a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
+new file mode 100644
+index 000000000000..c1d772d99b04
+--- /dev/null
++++ b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
+@@ -0,0 +1,6 @@
++namespace Content.Shared.Ghost.GhostSpriteStateSelection;
++
++[RegisterComponent]
++public sealed partial class GhostSpriteStateComponent : Component
++{
++}
+diff --git a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateSystem.cs b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateSystem.cs
+new file mode 100644
+index 000000000000..bcd7491ad416
+--- /dev/null
++++ b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateSystem.cs
+@@ -0,0 +1,17 @@
++namespace Content.Shared.Ghost.GhostSpriteStateSelection;
++
++public sealed class GhostSpriteStateSystem : EntitySystem
++{
++    public override void Initialize()
++    {
++        base.Initialize();
++
++        SubscribeLocalEvent<GhostSpriteStateComponent, GhostSpriteEvent>(SetGhostSprite);
++    }
++
++    private void SetGhostSprite(Entity<GhostSpriteStateComponent> ent, ref GhostSpriteEvent args)
++    {
++        Log.Debug("do the thingies here yeah");
++
++    }
++}
+diff --git a/Resources/Prototypes/Entities/Mobs/Player/observer.yml b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+index fc8abaa05982..7b4b7ee57a99 100644
+--- a/Resources/Prototypes/Entities/Mobs/Player/observer.yml
++++ b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+@@ -167,6 +167,22 @@
+     layers:
+     - state: animated
+       shader: unshaded
++  - type: Appearance
++  - type: GenericVisualizer
++    visuals:
++      enum.GhostVisuals.Damage:
++        ghostVariant:
++          ghost_blunt: { state: ghost_blunt }
++          ghost_slash: { state: ghost_slash }
++          ghost_piercing: { state: ghost_piercing }
++          ghost_heat: { state: ghost_heat }
++          ghost_cold: { state: ghost_cold }
++          ghost_radiation: { state: ghost_radiation }
++          ghost_cellular: { state: ghost_cellular }
++          ghost_poison: { state: ghost_poison }
++          ghost_airloss: { state: ghost_airloss }
++          ghost_explosion: { state: ghost_explosion }
++          ghost_bloodloss: { state: animated }
+   - type: ContentEye
+     maxZoom: 1.44,1.44
+   - type: Eye
+@@ -181,6 +197,7 @@
+   - type: Examiner
+     skipChecks: true
+   - type: Ghost
++  - type: GhostSpriteState
+   - type: GhostHearing
+   - type: ShowElectrocutionHUD
+   - type: IntrinsicRadioReceiver
+
+From 2af21e70e03b283a892e09d39456ed736667f8e7 Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Sun, 12 Oct 2025 22:30:20 +0100
+Subject: [PATCH 04/29] still plenty to do cherrry pick
+
+---
+ .../GhostSpriteStateComponent.cs              |   2 +
+ .../GhostSpriteStateSystem.cs                 |  35 ++-
+ .../Entities/Mobs/Player/observer.yml         |   2 +
+ .../Ghosts/ghost_human.rsi/ghost_shock.png    | Bin 0 -> 564 bytes
+ .../Mobs/Ghosts/ghost_human.rsi/meta.json     | 212 +++++++++++++++---
+ 5 files changed, 225 insertions(+), 26 deletions(-)
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_shock.png
+
+diff --git a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
+index c1d772d99b04..7a3fa1e59fd3 100644
+--- a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
++++ b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
+@@ -3,4 +3,6 @@ namespace Content.Shared.Ghost.GhostSpriteStateSelection;
+ [RegisterComponent]
+ public sealed partial class GhostSpriteStateComponent : Component
+ {
++    [DataField]
++    public string prefix = "";
+ }
+diff --git a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateSystem.cs b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateSystem.cs
+index bcd7491ad416..c90ab41395d6 100644
+--- a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateSystem.cs
++++ b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateSystem.cs
+@@ -1,7 +1,15 @@
++using Content.Shared.Damage;
++using Robust.Shared.Random;
++using Robust.Shared.Timing;
++
+ namespace Content.Shared.Ghost.GhostSpriteStateSelection;
+ 
+ public sealed class GhostSpriteStateSystem : EntitySystem
+ {
++    [Dependency] private readonly DamageableSystem _damageable = default!;
++    [Dependency] private readonly IGameTiming _timing = default!;
++    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
++
+     public override void Initialize()
+     {
+         base.Initialize();
+@@ -11,7 +19,32 @@ public override void Initialize()
+ 
+     private void SetGhostSprite(Entity<GhostSpriteStateComponent> ent, ref GhostSpriteEvent args)
+     {
+-        Log.Debug("do the thingies here yeah");
++        if(!TryComp<AppearanceComponent>(ent, out var appearance))
++            return;
++
++        var spriteState = "";
++        var random = new System.Random((int)_timing.CurTick.Value);
++
++        if (TryComp<DamageableComponent>(args.Uid, out var damageComp))
++        {
++            var highestType = _damageable.GetHighestDamageTypes(damageComp);
++            highestType.Sort();
++            //check length
++            if (highestType.Count == 1) // if its 1, just use that sprite
++            {
++                spriteState = highestType[0];
++            }
++            else if (highestType is ["Blunt", "Heat", "Piercing"])  // specific case for explosions
++            {
++                spriteState = "Explosion";
++            }
++            else // if it doesn't fall into any specific category, choose randomly
++            {
++                spriteState = highestType[random.Next(0, highestType.Count - 1)];
++            }
++        }
+ 
++        var properStateName = (ent.Comp.prefix + spriteState).ToLower();
++        _appearance.SetData(ent, GhostVisuals.Damage, properStateName, appearance);
+     }
+ }
+diff --git a/Resources/Prototypes/Entities/Mobs/Player/observer.yml b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+index 7b4b7ee57a99..a1e0c3adea44 100644
+--- a/Resources/Prototypes/Entities/Mobs/Player/observer.yml
++++ b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+@@ -177,6 +177,7 @@
+           ghost_piercing: { state: ghost_piercing }
+           ghost_heat: { state: ghost_heat }
+           ghost_cold: { state: ghost_cold }
++          ghost_shock: { state: ghost_shock }
+           ghost_radiation: { state: ghost_radiation }
+           ghost_cellular: { state: ghost_cellular }
+           ghost_poison: { state: ghost_poison }
+@@ -198,6 +199,7 @@
+     skipChecks: true
+   - type: Ghost
+   - type: GhostSpriteState
++    prefix: "ghost_"
+   - type: GhostHearing
+   - type: ShowElectrocutionHUD
+   - type: IntrinsicRadioReceiver
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_shock.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_shock.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..dacb71f307304ba79cecb1cfa76595c8d34ea134
+GIT binary patch
+literal 564
+zcmV-40?Yl0P)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px$?ny*JRCt{2o7r;1APhyJ)Bh&^a{7?5hpKEsy27b-UOY)KSC#>>C?Pn`qlv3G
+z=A83YNsP<&?AHGlh#%!=ODAaRvu~o}1<Aq*+WKDt@kFji*(?!s9)4M$<p3&3t{=(c
+zyTFpc6(dX@9-+^=spw<XHxL3gBqH>u3l9dMUxpx@fYP5T$PiyLVyFJF(1JMIh@JYJ
+zFqp<gSmn4t^t%qIjkXMN@x;hNf3^k8_o;U|?N$KOm&^qJ1@3^!a%F$&HZQ@bJ*(d$
+zt>|-Fz^Kw|RmiB516_rV%1yxzgA;?yjxbmbl6ql~KI~{DCcld(LKgbdQ(;<JqpzhH
+zW7OUvJL~Idj_hqQ)dgymwYmagf3SFXO7$(PFNS)wMrXic2&&;Yj^j9v^Eg!U1Fp)9
+zW@eh&D)|BB_h=_*Yik~kp1{rt5!#x2f~buUsFtP!Eb|1^v>v}Jtd$>d0?!lJnj<v8
+zBuPU1<caM7(7wM0OJ|WQ86sOkAj$@57qAR{Ekrg*9FW32y223zPI!D6bO-D<U^miK
+z+3LxVpw2F>)1e?3i@XJJ3WM^0G}*o!wg`)&ut#A#;Kr@MCSg0jc@@{!IXI#JFi~ny
+z{n8E&8rkBesqz(j{v=XD@&oRAMt@hk9LI5-Pv8eon`|!rpU(FH0000<MNUMnLSTZm
+CZv&tJ
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+index a465e90b6cfe..68bb46d5235b 100644
+--- a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
++++ b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+@@ -1,26 +1,188 @@
+ {
+-  "version": 1,
+-  "license": "CC-BY-SA-3.0",
+-  "copyright": "https://github.com/tgstation/tgstation/blob/f80e7ba62d27c77cfeac709dd71033744d0015c4/icons/mob/mob.dmi, inhand sprites by TiniestShark (github)",
+-  "size": {
+-    "x": 32,
+-    "y": 32
+-  },
+-  "states": [
+-      {
+-          "name": "animated",
+-          "directions": 4
+-      },
+-      {
+-          "name": "icon"
+-      },
+-      {
+-          "name": "inhand-left",
+-          "directions": 4
+-      },
+-      {
+-          "name": "inhand-right",
+-          "directions": 4
+-      }
+-  ]
+-}
++    "version": 1,
++    "license": "CC-BY-SA-3.0",
++    "copyright": "https://github.com/tgstation/tgstation/blob/f80e7ba62d27c77cfeac709dd71033744d0015c4/icons/mob/mob.dmi, inhand sprites by TiniestShark (github), damage sprites by Thinbug (github)",
++    "size": {
++        "x": 32,
++        "y": 32
++    },
++    "states": [
++        {
++            "name": "animated",
++            "directions": 4
++        },
++        {
++            "name": "icon"
++        },
++        {
++            "name": "inhand-left",
++            "directions": 4
++        },
++        {
++            "name": "inhand-right",
++            "directions": 4
++        },
++        {
++            "name": "ghost_blunt1",
++            "directions": 4
++        },
++        {
++            "name": "ghost_blunt2",
++            "directions": 4
++        },
++        {
++            "name": "ghost_blunt3",
++            "directions": 4
++        },
++        {
++            "name": "ghost_slash1",
++            "directions": 4
++        },
++        {
++            "name": "ghost_slash2",
++            "directions": 4
++        },
++        {
++            "name": "ghost_slash3",
++            "directions": 4
++        },
++        {
++            "name": "ghost_piercing1",
++            "directions": 4
++        },
++        {
++            "name": "ghost_piercing2",
++            "directions": 4
++        },
++        {
++            "name": "ghost_piercing3",
++            "directions": 4
++        },
++        {
++            "name": "ghost_heat",
++            "directions": 4,
++            "delays": [
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ]
++            ]
++        },
++        {
++            "name": "ghost_cold",
++            "directions": 4
++        },
++        {
++            "name": "ghost_shock",
++            "directions": 4,
++            "delays": [
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ]
++            ]
++        },
++        {
++            "name": "ghost_radiation",
++            "directions": 4,
++            "delays": [
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ]
++            ]
++        },
++        {
++            "name": "ghost_genetic",
++            "directions": 4
++        },
++        {
++            "name": "ghost_poison",
++            "directions": 4
++        },
++        {
++            "name": "ghost_airloss",
++            "directions": 4
++        },
++        {
++            "name": "ghost_explosion1",
++            "directions": 4
++        },
++        {
++            "name": "ghost_explosion2",
++            "directions": 4
++        },
++        {
++            "name": "ghost_explosion3",
++            "directions": 4
++        }
++      ]
++    }
+\ No newline at end of file
+
+From b1be4e24214587e1468c004bedcb8c22ce08c167 Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Fri, 10 Oct 2025 23:44:15 +0100
+Subject: [PATCH 05/29] #37949 (ghost types) cherry pick 1
+
+---
+ Content.Server/GhostTypes/BeforeBodyDestructionEvent.cs | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+ create mode 100644 Content.Server/GhostTypes/BeforeBodyDestructionEvent.cs
+
+diff --git a/Content.Server/GhostTypes/BeforeBodyDestructionEvent.cs b/Content.Server/GhostTypes/BeforeBodyDestructionEvent.cs
+new file mode 100644
+index 000000000000..35d827b22a2c
+--- /dev/null
++++ b/Content.Server/GhostTypes/BeforeBodyDestructionEvent.cs
+@@ -0,0 +1,9 @@
++namespace Content.Server.GhostTypes;
++
++/// <summary>
++/// Raised right before a body is deleted (gibbed or otherwise)
++/// small change so i can try pushing again
++/// </summary>
++[ByRefEvent]
++public readonly record struct BeforeBodyDestructionEvent;
++
+
+From 1bf59fad24dc4be9faf54b83f398f49470adc1e3 Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Sun, 12 Oct 2025 22:31:45 +0100
+Subject: [PATCH 06/29] #37949 (ghost types) cherry pick 2
+
+---
+ Content.Server/Ghost/GhostSystem.cs           |   6 +
+ .../GhostTypes/BeforeBodyDestructionEvent.cs  |   1 -
+ .../GhostTypes/GhostSpriteStateSystem.cs      |  66 ++++
+ .../GhostTypes/MindRememberBodySystem.cs      |  27 ++
+ .../Damage/Systems/DamageableSystem.cs        |   1 +
+ Content.Shared/Ghost/GhostVisuals.cs          |   9 +
+ .../Entities/Mobs/Player/observer.yml         |  16 +-
+ .../Ghosts/ghost_human.rsi/ghost_airloss.png  | Bin 0 -> 1026 bytes
+ .../Ghosts/ghost_human.rsi/ghost_blunt.png    | Bin 1030 -> 0 bytes
+ .../Ghosts/ghost_human.rsi/ghost_blunt1.png   | Bin 0 -> 946 bytes
+ .../Ghosts/ghost_human.rsi/ghost_blunt2.png   | Bin 0 -> 1234 bytes
+ .../Ghosts/ghost_human.rsi/ghost_blunt3.png   | Bin 0 -> 1052 bytes
+ .../Ghosts/ghost_human.rsi/ghost_cellular.png | Bin 0 -> 821 bytes
+ .../Ghosts/ghost_human.rsi/ghost_cold.png     | Bin 864 -> 1942 bytes
+ .../ghost_human.rsi/ghost_explosion.png       | Bin 1215 -> 0 bytes
+ .../ghost_human.rsi/ghost_explosion1.png      | Bin 0 -> 870 bytes
+ .../ghost_human.rsi/ghost_explosion2.png      | Bin 0 -> 876 bytes
+ .../ghost_human.rsi/ghost_explosion3.png      | Bin 0 -> 930 bytes
+ .../Ghosts/ghost_human.rsi/ghost_heat.png     | Bin 0 -> 1972 bytes
+ .../Ghosts/ghost_human.rsi/ghost_pierce1.png  | Bin 0 -> 733 bytes
+ .../Ghosts/ghost_human.rsi/ghost_pierce2.png  | Bin 0 -> 740 bytes
+ .../Ghosts/ghost_human.rsi/ghost_pierce3.png  | Bin 0 -> 844 bytes
+ .../Ghosts/ghost_human.rsi/ghost_piercing.png | Bin 778 -> 0 bytes
+ .../Ghosts/ghost_human.rsi/ghost_poison.png   | Bin 0 -> 972 bytes
+ .../ghost_human.rsi/ghost_radiation.png       | Bin 0 -> 1543 bytes
+ .../Ghosts/ghost_human.rsi/ghost_shock.png    | Bin 564 -> 2557 bytes
+ .../Ghosts/ghost_human.rsi/ghost_slash1.png   | Bin 0 -> 696 bytes
+ .../Ghosts/ghost_human.rsi/ghost_slash2.png   | Bin 0 -> 831 bytes
+ .../Ghosts/ghost_human.rsi/ghost_slash3.png   | Bin 0 -> 725 bytes
+ .../Mobs/Ghosts/ghost_human.rsi/meta.json     | 366 +++++++++---------
+ 30 files changed, 300 insertions(+), 192 deletions(-)
+ create mode 100644 Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+ create mode 100644 Content.Server/GhostTypes/MindRememberBodySystem.cs
+ create mode 100644 Content.Shared/Ghost/GhostVisuals.cs
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_airloss.png
+ delete mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt1.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt2.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt3.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_cellular.png
+ delete mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion1.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion2.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion3.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_heat.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce1.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce2.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce3.png
+ delete mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_piercing.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_poison.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_radiation.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_slash1.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_slash2.png
+ create mode 100644 Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_slash3.png
+
+diff --git a/Content.Server/Ghost/GhostSystem.cs b/Content.Server/Ghost/GhostSystem.cs
+index f3c7166184f5..7e7c547a3962 100644
+--- a/Content.Server/Ghost/GhostSystem.cs
++++ b/Content.Server/Ghost/GhostSystem.cs
+@@ -109,6 +109,7 @@
+ using Content.Shared.Follower;
+ using Content.Shared.Ghost;
+ using Content.Shared.Ghost.GhostSpriteStateSelection;
++using Content.Server.GhostTypes;
+ using Content.Shared.Mind;
+ using Content.Shared.Mind.Components;
+ using Content.Shared.Mobs;
+@@ -591,6 +592,11 @@ private bool IsValidSpawnPosition(EntityCoordinates? spawnPosition)
+                 RaiseLocalEvent(ghost, spriteEvent);
+             }
+ 
++            if (TryComp<GhostSpriteStateComponent>(ghost, out var state))
++            {
++                _ghostState.SetGhostSprite(ghost, mind.Comp, state);  //Assings the ghost a sprite according to the damage taken
++            }
++
+             // Try setting the ghost entity name to either the character name or the player name.
+             // If all else fails, it'll default to the default entity prototype name, "observer".
+             // However, that should rarely happen.
+diff --git a/Content.Server/GhostTypes/BeforeBodyDestructionEvent.cs b/Content.Server/GhostTypes/BeforeBodyDestructionEvent.cs
+index 35d827b22a2c..5f7ef497ee56 100644
+--- a/Content.Server/GhostTypes/BeforeBodyDestructionEvent.cs
++++ b/Content.Server/GhostTypes/BeforeBodyDestructionEvent.cs
+@@ -2,7 +2,6 @@ namespace Content.Server.GhostTypes;
+ 
+ /// <summary>
+ /// Raised right before a body is deleted (gibbed or otherwise)
+-/// small change so i can try pushing again
+ /// </summary>
+ [ByRefEvent]
+ public readonly record struct BeforeBodyDestructionEvent;
+diff --git a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+new file mode 100644
+index 000000000000..04d2663012df
+--- /dev/null
++++ b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+@@ -0,0 +1,66 @@
++using Content.Shared.Damage;
++using Content.Shared.Mind;
++using Robust.Shared.Timing;
++
++namespace Content.Server.GhostTypes;
++
++public sealed class GhostSpriteStateSystem : EntitySystem
++{
++    [Dependency] private readonly DamageableSystem _damageable = default!;
++    [Dependency] private readonly IGameTiming _timing = default!;
++    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
++
++    public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateComponent state)
++    {
++        if (!TryComp<AppearanceComponent>(ent, out var appearance))
++            return;
++
++        var highestType = new List<string>();
++        if (TryComp<DamageableComponent>(mind.CurrentEntity, out var damageComp))
++        {
++            highestType = _damageable.GetHighestDamageTypes(damageComp.DamagePerGroup, damageComp.Damage);
++        }
++        else if (mind.DamagePerGroup != null && mind.Damage != null)
++        {
++            highestType = _damageable.GetHighestDamageTypes(mind.DamagePerGroup, mind.Damage);
++        }
++        else
++            return;
++
++        if (highestType.Count == 0)
++            return;
++        highestType.Sort();
++
++        string spriteState = "wawa";
++        var random = new System.Random((int)_timing.CurTick.Value);
++        //check length  (yeah i gotta smooth this whole thingi dw)
++        if (highestType is ["Blunt", "Heat", "Piercing"])
++        {
++            var number = random.Next(1, 3);
++            spriteState = "explosion" + number;
++            Log.Debug($"THINGI EXPLOSION!! {spriteState}");
++        }
++        else if ( highestType.Count == 1)
++        {
++            if (highestType[0] == "Blunt"
++                || highestType[0] == "Slash"
++                || highestType[0] == "Pierce")
++            {
++                var number = random.Next(1, 3);
++                spriteState = highestType[0] + number;
++                Log.Debug($"THINGI CHOOSING FROM 3!! {spriteState}");
++            }
++            else
++            {
++                spriteState = highestType[0];
++                Log.Debug($"THINGI JUST CHOSING 1!! {spriteState}");
++            }
++        }
++        else // if it doesn't fall into any specific category, choose randomly
++            spriteState = highestType[random.Next(0, highestType.Count - 1)];
++
++        var properStateName = (state.Prefix + spriteState).ToLower();
++        Log.Debug($"LAST THINGI {properStateName}");
++        _appearance.SetData(ent, GhostVisuals.Damage, properStateName, appearance);
++    }
++}
+diff --git a/Content.Server/GhostTypes/MindRememberBodySystem.cs b/Content.Server/GhostTypes/MindRememberBodySystem.cs
+new file mode 100644
+index 000000000000..72c7d41c9d28
+--- /dev/null
++++ b/Content.Server/GhostTypes/MindRememberBodySystem.cs
+@@ -0,0 +1,27 @@
++using Content.Shared.Damage;
++using Content.Shared.Mind;
++using Content.Shared.Mind.Components;
++
++namespace Content.Server.GhostTypes;
++
++public sealed class MindRememberBodySystem : EntitySystem
++{
++    public override void Initialize()
++    {
++        SubscribeLocalEvent<MindRememberBodyComponent, BeforeBodyDestructionEvent>(SaveBody);
++    }
++
++    /// <summary>
++    /// Saves the damage of a player's previous body inside their MindComponent
++    /// </summary>
++    private void SaveBody(EntityUid uid, MindRememberBodyComponent component, BeforeBodyDestructionEvent args)
++    {
++        if (!TryComp<DamageableComponent>(uid, out var damageable)
++            || !TryComp<MindContainerComponent>(uid, out var mindContainer)
++            || !TryComp<MindComponent>(mindContainer.Mind, out var mind))
++            return;
++
++        mind.DamagePerGroup = damageable.DamagePerGroup;
++        mind.Damage = damageable.Damage;
++    }
++}
+diff --git a/Content.Shared/Damage/Systems/DamageableSystem.cs b/Content.Shared/Damage/Systems/DamageableSystem.cs
+index f45d114dbedf..83f817ac31af 100644
+--- a/Content.Shared/Damage/Systems/DamageableSystem.cs
++++ b/Content.Shared/Damage/Systems/DamageableSystem.cs
+@@ -985,6 +985,7 @@ public List<string> GetHighestDamageTypes(DamageableComponent component)
+                 {
+                     if (component.Damage.DamageDict.TryGetValue(type, out var damageValue) && damageValue > 0)  //get value and make sure it isnt 0
+                     {
++                        Log.Debug($"damagie {damageValue}");
+                         if (damageValue > highestValue)  //if its higher, clear the list and add the value
+                         {
+                             highestType.Clear();
+diff --git a/Content.Shared/Ghost/GhostVisuals.cs b/Content.Shared/Ghost/GhostVisuals.cs
+new file mode 100644
+index 000000000000..6ff195e0b35f
+--- /dev/null
++++ b/Content.Shared/Ghost/GhostVisuals.cs
+@@ -0,0 +1,9 @@
++using Robust.Shared.Serialization;
++
++namespace Content.Server.GhostTypes;
++
++[Serializable, NetSerializable]
++public enum GhostVisuals : byte
++{
++    Damage
++}
+diff --git a/Resources/Prototypes/Entities/Mobs/Player/observer.yml b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+index a1e0c3adea44..e3558cb815b9 100644
+--- a/Resources/Prototypes/Entities/Mobs/Player/observer.yml
++++ b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+@@ -172,9 +172,15 @@
+     visuals:
+       enum.GhostVisuals.Damage:
+         ghostVariant:
+-          ghost_blunt: { state: ghost_blunt }
+-          ghost_slash: { state: ghost_slash }
+-          ghost_piercing: { state: ghost_piercing }
++          ghost_blunt1: { state: ghost_blunt1 }
++          ghost_blunt2: { state: ghost_blunt2 }
++          ghost_blunt3: { state: ghost_blunt3 }
++          ghost_slash1: { state: ghost_slash1 }
++          ghost_slash2: { state: ghost_slash2 }
++          ghost_slash3: { state: ghost_slash3 }
++          ghost_pierce1: { state: ghost_pierce1 }
++          ghost_pierce2: { state: ghost_pierce2 }
++          ghost_pierce3: { state: ghost_pierce3 }
+           ghost_heat: { state: ghost_heat }
+           ghost_cold: { state: ghost_cold }
+           ghost_shock: { state: ghost_shock }
+@@ -182,7 +188,9 @@
+           ghost_cellular: { state: ghost_cellular }
+           ghost_poison: { state: ghost_poison }
+           ghost_airloss: { state: ghost_airloss }
+-          ghost_explosion: { state: ghost_explosion }
++          ghost_explosion1: { state: ghost_explosion1 }
++          ghost_explosion2: { state: ghost_explosion2 }
++          ghost_explosion3: { state: ghost_explosion3 }
+           ghost_bloodloss: { state: animated }
+   - type: ContentEye
+     maxZoom: 1.44,1.44
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_airloss.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_airloss.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..928b19672ccdd86b7ad2dee24b4db3da6e4ba633
+GIT binary patch
+literal 1026
+zcmV+d1pWJoP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px&yh%hsRCt{2S}|zUP#FGSFEk#dcZb%Y6b{7UbP$SYiwI6S*eqHq^exswI!HEg
+zXgjwZ#H~0K2Ro%hX<cduT}2d;f`eudp-{TqL9a#5lwO}hFS%SU@9w?iy<D~LgOW?$
+z%m4lP^8P<*{vSX=;Zy@fJ#qXVvEARxZ%{#)M+x&s5@6&Bv3pDFmb<@y&cJV9CMSYO
+zer^GR<RYBtB!3sr<cXO&`QqYj)4%O4ty>c_^<^moGWfX!@MCiF{epj+G(_=p39vMa
+z3i%-ehmGZj47@ZeHw0wxM@oWg8^m6IU5~>D4@b-~qpL59EfM_Vj|_bOZURYgZR0q`
+zery)4y*<Y}p2_HNX|N9i07P}9Q~b;VeEml3ovnQf0AP2wc|4ap-uCBv@zpEhMUchM
+zBmg1A-rfZZ0O05M3U%Ja%V_`r7{~!eNSp{V`P&LW2(baci#O+xK3CToc7=!_o1f<?
+zfL#*WpMRbNNa1fOKu~=K<Nk50c79|e!Oyw^*kkH=p6FE|jX(06;Qs<80OLH15Mr0h
+zWoWm&LgH2gSmGI%%VlnUo)yr}D6R=4`r<u)mK(s!&-ED0X0t3wM(SgbHii%?WV2ar
+z{+0p+FScDK&gF9c@z^gyLH>Y!+I%j4=2zjMF-ojqgis-DejK>=T5-1Xmj<Q~2s1_t
+z1<@Dpa#50C=w0UFkNj2G1uZ*^UIDT>6ciK`6ciK`P922w2e?S8Pe3HMkp2J{NtDP%
+za|`Pai0eqFxVgUxp3NME9(U{Xv~dw|ZM$5ozO{m|kD^KT35ew47NGxp>r>i|$AJv)
+zNJ()16|pzpHOFFp$iUB^%1wgLUJ!fhb2Ing9Rp82PN+eG5MobHZ#OuRxzKM;O{NlQ
+zl9*qt7WaPbG=#z2+(4vnklX?|PPMqQ^1CSpM@M_ibUGOUDwS$+b+y@tv9TUg*ZF+l
+z65y~(iXT2zs0rxCwKHaSx7=2lgM*{u$1i`VKHMBmn_3Dn`=Bw*@sR3*(ybe5uSVaU
+z0`s5>o-<mC$67RK8iL{LX>Z@}L#;$!;;|PgW!LKQ7$I2j*XI%9BaZ@vpcLR-&^5q1
+z*R8BW6-PVmK&PPuh;gn301fZtj^j{^7$QIju^q<=9ya4tq~opt=}Awv4_pFB>i-c5
+z?zcgaIRNXrE~`1hLybe&P2d*b1h0Z*{ul7o=&>*PNa+ip@rU#ZxV~_Uz$Jh$!#6Z9
+wcB)KGYowIYA8=A@^e5FX1qB5Kg?|Bm0pa1>UVle{;Q#;t07*qoM6N<$g1emDeE<Le
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt.png
+deleted file mode 100644
+index b0c00849f7ca0cd94be762257f6b6f650f5cb962..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 1030
+zcmV+h1o``kP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px&z)3_wRCt{2T0L*uFc5t#>?uPKz-i|!{t@{<S*zLTKye5%d(QvK(0@=Zo;uhS
+zngpo4#K3i^DV%7^7Qf^a;aiMI%Dv;`@%VK>M#hJR@cl<3qSlBI-geH-KM5dL{O>VE
+zh{^xSmwYEm$sQ}-BPn4vK9t`{0N(fsm8e7^0Z0INy}n0k5qcW0;U$7|1OUK<N>zyh
+zb6P6x(7N9Em^wS0$BnHQDpANeEk{X)N1{Ob@OwFIal(t-7cu#rW&t+FIz7P0e@Y?x
+z_`$}%EC1jeKt!~<TG+_(d-n(WU8+RLdc8LZuC5l&iFl9zJmg-l@1^<v?Pc3>B(?}A
+zvOf&JocK=)z{zi(AJn?uV0E=P5aH(efjbyY1Y6_HPFP(n<htH)9|rTgOoI}Dp87f>
+z)Yu+;mjJEZb-n3`aP$12v|q0LM+LBDTTS@(vTa4UrAHfia1_}1_lvK-b%!(m&<Hq~
+zX6Ce1#@GkYX5rXT(DKh|scLM&dOV2VYbB`B=L7&4dj)TpcAmtYWDysPAOVh{nN5?}
+zxur+-B<`X`*iZrZcsfc>L{y0)%qs(xC_3|dPXtKKj}ucS#~=ZAqLe#P_P*l|08n#U
+zs#u$&b-n3qx^SWccA|6|ekTQ}L?N5m6cZ`|bd${M^}V!&dS|)}#lY#UO_CET(affL
+zt9}wk_X0u)p+ou--F0>)3i)OB+4{ZdlrNY)WwDQ)DCKwj#4SB`zTZd9pnbu~&5$<A
+zjd5XE4=Md!%p)>x&m7;n@iyOv@(<b#+KidKp^@Tzu#d}ZJpX>M?NI0XR$DPe7=t4t
+zBO@atBO~L(AxeEfYiy*ISxoLI^#S~OY7tCsz4!O!_O1^wpYI(>S|?!Ro=~Zp+0^@b
+zKFXP(Q7<qCIy{%ZzIh+ML=nKK7Z?KvJibS8(N2ZOYP{`kG6b>e12mG?30O{|g1EhA
+zfgX%fB++*|<cnytz&Q}3Qq8MMtjC$;Rbt$SohWTb^3EcJCc*Z8AkdC8SmT4ZLj;fj
+zly3Zl%F&0#e(F;Q5Fsc6DpAOFy$M=~_<~)T0r0<#4qgY0xcE7WW;XQ_Az6JuYS_4a
+zuH-`mI2e0P(<Ge<h=`h|F&|3+YF%%<mc!lx#Hs*^1>b0N5`bTg$EpB{37>jpuL$7V
+zUS1$^adDA6C+s;!FOg{>gb;IDw&TsE7$GsnDcGieDE03Td?lUuMqCPWKT7VCt34;h
+z7{S>}<t_dk6mll14|uP4^zYTLjEszojQ;_D0S8OTH$lY8TL1t607*qoM6N<$g6t9K
+AEdT%j
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt1.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt1.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..fac4a13d20f99a50496f0ed16e52b7d0d155425d
+GIT binary patch
+literal 946
+zcmV;j15NyiP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px&Y)M2xRCt{2nr&+1Fc5}cZ8r@{j!{a_(F61xVKM9v9mGEt%#zdi9Hj*I5<z6s
+zcJ_yCS9RnMStE5z^*||c9KF&=n$gDqnar0)Ed3!7)m<S%+_TjvvHte}@zVaB(g>XT
+z-$KP93IHhW9*N0?zG1PxmjQa>3Zek0QV?ZOB^K)US){*c3bcZt3J`_)|4H$7f+M}4
+zQuqOG{Y6p0QHdmtkD>2n0BeppdjOF`VhsJ+1|XsuqAY;}oO52304c;84Mu;&--rUh
+z4M56Ee^wM|hn&V^Bj)G;(|E*)2HlW1PIvIVrhZ=flLoNoo1{H7p68UyW`v9R-X8%?
+zXJ|Y_(%xI&XC0u>8R2oPC)Cgvfn1g=iniD7#(U|H8o=dkJ2CfMw8eu*!H_;+dfqV_
+zz4hmgfZ2|vd5?P(IP?#YxP$Di<$U$M_X18v98)x?!eB)5VA23u>?XgT=@|JLYrHE`
+zIhZtn#2vKQl|)o)t<j%{_7K!sPi<J1V(Sl~I(<=?^~wyUrvNF_NKuwjO4yaKJ+RhV
+zNhuMb@hz>sbAD^BA*D2%Gu+Ic8uNSrRRAdk0GrL`-W3fj<3tOCT_YXeHT5#vbDCd;
+zQ3Lcn>Qp4?D$!IbbV=OT@0CCFKAV1rE1nWjO+*j9zk29>4*fCBsrnAF_)ruh3zcY_
+zAp`3+JjehTu{Ng>QfOo{nM@{=$$U9j@&mfU60OWQwOR55?B}tKz^xsgAJCHEiaf^k
+zILo1^7CUoblJ0Pn?a(D8KcGX>9$M^5>vAGC?=n<QSFc#V+`{K1sD<ZP{Qb>LTBySM
+z<rb%_r$s;K$`5FXo+rSq%{Bs3B}s7KJn=<=k0*W<aHhz;-M}PCmE#VDVN-xA1so=?
+z&mt2v9YPGC+N=$UyN|gbHIyMn;BkVaaK<Z3QK?~z0xSB>Ra8>^4KVZCITfM)$J+pB
+zJOS&UFe!8I=ic#nWWN@(A)@+tJia{;1tjfNNLcnZzzVlG|2+fOf0k<U;LZ{9#%nVq
+zgt#Z7dIgkc@dK-1`4A3}*X#a6@73sHC+Ki`YP;P=cMy$+0#(52S8#dW28fge#zC5d
+zZR?J{j-3}Uq>sy7fqE!cU<!_G@uaEpj`{@UC-`NHy9)T=JNo~%UYSfLllct%1K~VX
+U?8ueC7XSbN07*qoM6N<$f)$g#cK`qY
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt2.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt2.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..a9b274699aba4103f1f0d676e9bb6d0102ae1061
+GIT binary patch
+literal 1234
+zcmV;@1TFiCP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px(j7da6RCt{2TFq|TMiBm(P*RqJ>HrlGBkiGR3mppkQ0NJA$|(=wUV<X2QSh2x
+zeG0%sV4!ew$aDClColrnhMNX$AoLOyWdXSfy%kA$dWgubC{pGwmvoHq0}Mm_nQvw|
+zyR*A9K!XM!Gz`@jiD;MzF^oIfG^&~3R3-P!UDuu+p~X5NqG6p*m>chkzg79ABY=p8
+zk+toHe2P;9Sf^+4EvF7Aq>UG##D7he+%tFG34aSldrnL||L=-nSp`-Yugovy008LB
+z4iSM6S=+ApE`ahBx)M+t0-o`WYoi55d*ZDtIRuoIAfkKm-}&p)pKBq`;V(1vq#{5d
+z%KQSTI3-rWU)TW`Oh5~YRN;iG_zO*fY4WkL1#aBWdt7@q$TD6R|Ah|7BJZ&-P7z>i
+zY-v$KmftgXae~pR*9!B?q`^4fV-obShBnsFUiqA6By#Q95eBq>;d4c>(g7LXcL1Ol
+zJp_P-G&m2*gnVplm5u@;8e(&2iC^SBFz$+xC>mdgzi0$3O)P2S{p*{+|Ff`@6CKhR
+zAODugkGb)m;I_CNPxy<<mtF~`5n0;+fSc`?3)fE(loeeFqVXzF+6{{E_!|Jg8ebHq
+zD*}3~n|p7?JWv=#Bfur1A?F<F@anNH);GQcqdjoWligxGB+6p$V39u$PRuW}Kam*%
+zE@KRwb41p5l84Q+C&1AoaLygZ7y!5)f3q|sR3U_T%%3^FIp>J^W#mhzLCdo4m}gHM
+z|N17dxs%+CoddvGr)LQHR7Q_N{DP57_bkhbCrN#2Fg>G+GqF88g7?eX!t;U>V6<0y
+zNu1^v<*#@?hQ1|vRz4-7VaUF_m$fUaXepev3(VXJ%J3^6iekk=slv?=(tM?(tejf;
+z-qz`aIyf3MXwaZRg9Z&gIB4k)NQBk2GSkVe+#kS=pIqPoE!IKEr#Qi=mOg>_z-1Ej
+zlf&8gdgbMD2*$IGzY^nHtb?!c8Mtx3(h_-Gp68q|7(Yin<#7OLv19P#KQIaU0DzEB
+zapU#lofhkW#{Yb*BC{wuvqN<0skYjK(h!JGd)^&;bzpvR3(@C4JPP>~=K4o}>ryTY
+zU3v<gJqgOk;wKm(<QoY26w&X0BIMI_zrdA%QWl8E;?4F;9P(eq<LSzq6fU(#NJKAs
+zh)K||)p#gWelCJi7Kpz<#!P&fP|5--9U`kHpvxQrN;;IS4OUeOSJGic(?l-HIKWB1
+zg!Mfl^FawwrQiZ^!p;K#1L>Db7e_HKOKB6Ph$x8AV#m_&l`fAX)hkd3{LZ%-R|lZk
+zOj?!}2cTvrTnoNla>9B0Ia>YO^0G?k;ie}+-}kkb#Y7O%(D!|ux1Wobode^pYxh3|
+zMxL}xZ4po>UIedTPk&5)4`?44dEjr)q-9AtK=&$46<M7je(*1Dj34jFu0wQ2fMeTs
+z<(=bmj-`+AB6tPkmi$gs+5zuN6r?er{d&5^g&O^^>b`(Hek}J23{|_vb##l@*QcMY
+wPpSR{*>3S=0he5(e_!=#(4aws23G<90UeacO+xeHYybcN07*qoM6N<$g54KF&Hw-a
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt3.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_blunt3.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..001f7f1382b8953c36bf68d85eb8be445861b99d
+GIT binary patch
+literal 1052
+zcmV+%1mpXOP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px&)=5M`RCt{2nm=#TKp4iKYf_49N@xQD!~}E2+N}Km-Rqf-U9ec$V5>YKv1Ip$
+zV944TF(Oq$f(EHk8x`xSw#my7$GO-};`9A!tNJHJk>li^yC-+|-uYgjqT*h|%Kngu
+zI!PgnZELHMW&OH>cpzTeG(o5SlB#%2ApRpJnbLprQCVNgfK=oC)VpyLru3PI;jeGX
+zCP?=Hfgts6l|EeX$1ULKr&2jm2E^mcpK;qaJr9Wb4QgZM)rM951S0AX(T?!4GXB&0
+zXLzTqFBJv_p}cPI!*ED6p<g%*&Y1m00x-{5NL;ATykJ;6lGZOY2NY<0!m!@b9t{fV
+zQ;74yCcr!?{e=b;ZaniatQ}$L`Vf7#r_F>}`hB*S`EG;S0ELhVi84_jGy6v`J^;*%
+zubNo8J_G>2L2Zd*<@Ja478-~O*K;0o4ajkSQaIa(`}a4lYU{Y#_yo|Gw77CFn5BO{
+z*qrqfY5k%-AQNM+ADjUImK~1e)9%QG#cPGKOzAfejl24Yq!-HTmtG0hF9*OQ2l#gZ
+zpoh!Y5G#m{k5`4F2{M#l3R8%awI=|Y006gp0CdlqrOQ)5WzJb>z_8xJcsy~=A$G5)
+ze*#3$A140@Z>;oWLZ$?wem)fXoO7v=jUoobu@zum;5ZJ_m2kTU007Rp?>G(&ZjQ$K
+zx#OF2jw$_uLt>!;qj1v%DD(kfb#*m&k`c_&JpqpKg+^xX#q|OJKkl`Km}>xIY#S8%
+zeOyeglbc><F(Om~I(BF289h}#`fLwkW5;?+gVz9s`gVtT@sx-<gx#G%ZEI&x+nU;y
+z8CnWYcA?mvypB)57pd<oN<S1$gqRof;f`aou^nO3C{geD>u2_I{jEy5N(Nw#+d56K
+zp;1v$QBhG*QE~6kk{^&1W@%-nQ(H@ZfcUv-6Lf1!_kaRVT#Ox3n$T7`9?yttEX$gf
+zP6KS_324*OX~3PNR1}yq7L6w<=+@Rc2iORMx=)^TWr^Jw!b8zgXOU$xL~bMmX6nGa
+z_*ANwJ}Q%{gX$2l8Tux${n2^gsPRg5P%*$4dqec>y-GbK>0zz*BT0r(`6Eg#h4XMv
+zy1I&5429ZeZ*5Uv)Ftm8+6*w17GoUMRN1Mq7e$fwV=)mT>O@f{H^^5B%kl=4%*42@
+z$ma@ED0Td789UqIBxxcg?z*n=6=JM$b4y{y*mi^3{x~;i^r8J>k&`HCCtF;|6rY^c
+z8_Elqr4J!LVX7{c_5zr!#i2J7LlPqD4C}2R&Im!7jPb$-+}1Pt+gh)Rii(PgyTE^i
+We^w!Xa4s4E0000<MNUMnLSTZHoAI&$
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_cellular.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_cellular.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..29383b6f3a463f111b87171669c5e482400fe25f
+GIT binary patch
+literal 821
+zcmV-51Iqk~P)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px%?@2^KRCt{2TRV>9Fbt&@>i|wW_t-nk0p>DpU8nVxe22Nm)GAbH8p|ut`qHHA
+z0D6ECz;XPjCsCv%2B4#Z1Z(YjwGD8U9oE{_TKlzqULu6!c6LzTqbS4xu%O$MQtFdx
+z#FaMuArep9<*>9G36aJ-8@_AbS0z9O;vys(PX<+h1sU>Uvga&*YJb2r2SBTNfSbQs
+zfQS)SPl9CrDgitn5B2~6fTR!-{KW!POh6)|L5jaf0K)9cDuN_`HVOpDUj?&1TS$yF
+zo{hgI47$W;-maJsdxCUU1oV49@tPANOp*IRBn1e~w#bM%LC%%1r1&wav(u;msPQ?U
+z+IwSr&KW{>g)OZu<=;`u9~A(-C<f;Sq27Q~@mZ;Vg~K^DA7uIeW?uf0`99Y0R!E5t
+z1@>oMz`cC2)~?1FNcD;_Mr6U___fyfzTfysYmND5P8V2)VSr791B@}#Fbp8j_?>?o
+zN6=aaJ3wm<<2YjetP50!!N=nfoEtoGs=`nWzt_machBe3HIy$5;!%)Oa}#Gb>TEWM
+z`MpM_o@e9V5%ME%KhD3_*z+9xDbAd|F_4zSi0F{02rh<zdl{Y!gGnf*K0}6CYgd8A
+zkPq>tcQqPsigt8#baZrdoX4q55KvscRbo;Iawga!11#YGaOZ(kUXlQjt#WW15Yi%q
+zHeIN^)u+QkJ3cl1-w}S&1}s;7Kxm7c9cY`5<w%~hK%zBR1b=4%Sin^u;2>Tnz|GA$
+z0-6*_6du?V<L#nA0;DKFsSrsu{z?}h*>Khcq|N}E*>Gl4bn<%Q1^*8;TVp}CRH0aa
+z%+Q;m@mhcj#V)`-``!iboCw8I;p~yPk75A=F0kMc;T?~Qz&oP%>jJR<XOF~vysHbO
+z)&X*1@Ma=}P@RXcrozK8h-Zi!$91XjjYmP7f^GDFA<?>k7(X0q1<3y$;;0sHS}Gr~
+z=Tv<{Z6@gB@-zBY^$7>u@r?eCHg$A#ble`l;&n1x+;*s)00000NkvXXu0mjfh~0Wg
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_cold.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_cold.png
+index 1e3d541073beb1a7c5645cb326b286c9b6c63572..000751088d59d2516277f7db8260e7d96baa8344 100644
+GIT binary patch
+delta 1915
+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
+B%6b3*
+
+delta 829
+zcmV-D1H$~458wunFn<FYNkl<Zc%1E8OOm5741J!OUUb0)xIph_!KHEyCfCTJhDG0D
+zasrA)7M{gel-jY0Weez3{HnT0^U-^jEhA$A6%{WHll$POwU&PWGA7&3(fnBtep+j9
+zz?J@g1G+t(pvf<O$S2njaU}nbT=F-d<Hs9t<->9d#2R11FMo1?PsoqYikA<8m!AYh
+zAz&T+9=HKlx|Sp2NdBJ^@)5Z9z@-N;0w=oG0~fe+)>>;e7!9s*XUC_;pL8Q9=Lm^#
+z7&M*0oxjFQ=X;<_<$o9gDUA={tQ8J^<AFP8!#_W|kVvsFnF9uAoV*+pGze@a!P!r;
+z+XG$9K_RR<Ab-&N!vo`7Wbr5n@$>5eEn@!E5wOIxAAi0Gcc1nsh|Vc~C`$RWGQm*%
+zKbRBLL5`OU_YksEVcy`q8?V^`sSa4;>0_EYAny6tTcZ$P;@N*4j=+g@N%@mUz{s+%
+zP~%C!xY6Q>>`v3P#CJ%Cl>eavcya*%ZQB|y!WTmKX@7-<&mY3aG<9v;njHSsRM;3}
+zTq1JnvCOb&n&$4_rfK~9ld~}if9TaldUE(5t_8>_H^zi4u}0Zf=>8ILdn_yD7(&|A
+zQeiS0Irk+y1pZG#+KVB-=NVrxKTux`ts$0eX)lJh=BTKssHmu@sCYT3)CUmu+8xs5
+zR@oXO?0>OEcKF`l+7@+*kfXS>zX^uOwQTLlrRIP=>jX5p)Ew}vsFPrh2>LX|&uM%E
+zJc3^w0vmnz*Fe@@q_{$aJnw&#muyLwAkzEdZE-@;BuL-jOZVq8xoK~(=#?mn8E^Ox
+ze&GU?D?<`Afc5~mE{TTH5pY+svKK;y8aXI(fPa>V9B4UTWdvvlkzl1bON<f+oWUwF
+zdf+n8b956!1J+tQ&vU3IDf_i7c7Wg0BXBxu4hU(H+7UUx7-K@Oog?P}@0>UrEUpn^
+zLWcME_sugz$1!-^o0rHepiyvCp;U}_x3!41*8Z{fud7Y|?fxuX+k>BuoS!sF?TOa{
+z^fsI2<4fkXM-O;hRG+Y{4Wv#;7W`fJ=)bG3ii(Pgif6z-H=k9oY9l$_00000NkvXX
+Hu0mjf{%Mxp
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion.png
+deleted file mode 100644
+index 8dc7380a6357f21029f248ede392f46fd1ab66dc..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 1215
+zcmV;w1VH<VP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px(c}YY;RCt{2n!8TpOccle{u~L#MhO^%jc6!HVWD)9QjjtfC@+$lA{8Z73L0L4
+zcSyqn5Q!#A86nX`*b#|x!Hz6q%@%0#Io<?3;|t5Ke~s-CoZFl^XJ!CMN%^M{cz@Bd
+zEJEL9S>~4W-TE`U%Ddg}%6F1Mh*JN5VU+_wv)NpkkvOp|i!__fm9cKO%dMX&0AA;d
+z#p22{i6D5L_v_~k0&@mXXdvj*FbrN%Oi(?3{k$-*8~+k$wOTL?12;D}i4;T2vdHD-
+zB{WUL#l^*PyjU!9>E|+-1|ezZz52aD;B_A0r~&JWV7*?4uIofmlvrzkq9{bybyBa_
+zSH|i3=cxgKqqZsaZQI7<<0DMd#Aq~%Jqr{?A*!mPR4PG|q|i$t&=3A8&Qqcc!k0^6
+zUCL7?lL-JM>bzGU)$fO;B?hhmwBNQ`EdYRR+vxRrFikV4h)6L_6TMy!wr#K2MePjA
+zrvdQKJ{4{l1}2k9;;HXtG#Uw}X<{;&EcXUp=YwWJpbQApW|BshWq~CNxOako3)}(7
+z=kriiHA-8UQB@WBd_I(nKmqWsr$(azP17Jr5(<R^;@<phLQxb_C=`}$u+eA$_`GYa
+zBX9=zg=(7ityw^4U(>Xean{2Ta~qUpS)kFDBnhQbX_*B{Y=!BQZi0Z1tfWOc(l+R?
+zsQyksmqM*pgRbkOQmMptCtz6?sZ=V^b)D2|wPou2?WONQJJ*+2VzMj?{wpUs)@(MR
+zX&MZ}fOkgX;_&bg`FwuGdGG9RviCDW^>*(KO%lgq?=cwo-FY5D8=Lg)@OR%vr=+B$
+zq@<*z{55dzqzECu9eM;oNMvUgrEaeO4<Lk)cDucHJnkTPb<>;R#bUv&oB2v?lk))3
+zZnxLYPE@ROUKB;VzrUkiuXE{+>{7H`E=MJbNtfd|8~;EOgvbK0DJ$ZD>Y}p`0B>(^
+zT(W-jwYcLr7>!1uWH1Ln5CmaUx|hr4SUUmLP1nD7_V4cQxO8)Mfpx^~JVg)$fe=Ej
+zuC7*Q|NQ)%OJ1a1ASt}g4h92cvstLBifXkQZx{H^7D%a9tK{tL45n#fFc`pfUCifm
+z%w{vLAcQJ{Nwz*O{eB;V!2rYI5aaO}v)K#)kj-Y9WpM|fTrMZt`n*i1Qw)d0<@azn
+zgzLJPPNxt>kx5o$MKCEuQAEGr2LR0Hb2yHJt*tEpz<4~y_VzZDydM_;0C;_UMJAKM
+zVzEFblYwPfa2y8!{*3_0vJA&@u)n{L`Fsul*xA`hwg$A@?Zk^9?J_4PCpbMl1@KY$
+zsPl@Vz;#_FnLlnT?7A*;xg0FZ!qL$Y_V)I0e0&T^lCZnG%Pfy60H1AxlSULp<Z?Lx
+z|F^%VrzhOs-!tt-BRvi$u@%0)zQ*(O^YZ)U<t3E7NDo6va&T~fPN#$0+go%x9oV+b
+zJo{V_Lde6z1EEj)9=l?Xe&AzEO!bGcgE?aU^FUIm|CKE?D_L#fGTa;K?{fZ6v?V1a
+dB_-vj@e8AH&?1pyj)VXJ002ovPDHLkV1h`MK&Joz
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion1.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion1.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..efd2a1036d9bea628b942686c06a0e3befa5550a
+GIT binary patch
+literal 870
+zcmV-s1DX7ZP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px&AW1|)RCt{2nnA9rFcgM=UY;=!ojP_M%<P;^zz&dQknX@$+&PY98!|94ajFS1
+z4*CYql1fn9Qp)w-eiH)s)^pC!X-{bjI2^wkPq!gsY}@>Z=dFx+WZC}T9>%G7Z&L)5
+z_LVcBZCoI=A%bc9e{_wX&*xOU0-$1A4#A7ywe2ejATpoNsd)WVetj3vssbHOSP6az
+z`^sZL+xULJM_HDXF}984IMQ)KmN<?h#@MzjOS<3h#XnKOHzlM65CVS){&+kB0For3
+zRaL3lSE8yaBuPR6;CMWuErQNKC?!BwzY~KWiw+T>D#BX<-jp5yz-F^SRaGd8;!D=B
+z4n<LXRaJ$}X7lb}rA1H~19-iEc>A`3=d?xW$b$4)+b&)T&^6kQ89e8O2x9P3Ss<GM
+zR?A!;?tV&Vf$~gn?6=S9$^sp<r@}u4Spg_xY+Khg!Z1`CWNZ<JVOrO<RMiqu$pGs6
+zKI*y#{!e_cTrNQf8Fcpd3_?h>TrQC$2>_t3YxuqomEfUM27@42eYY$K!!QkkfDh8<
+z%3ym$ZC8S^vY`F;pZF(Lx!x{`d7igwFFEmNWm%5C77&JE+U1*-vdtLV?smH<j^oHy
+z77#+BIF6&;ZWozYfzn<T=Cqv{QhA%U91e%W;cz&9JVwq3G(To(W@gg1k@ErK^PxpB
+zZQJDLC}*$*)FEseTN4z{2@H-&TgC*ic}~EjEw?JH+ThK`!=M`|UAD6<>t)+y23XlW
+z5=F?e3`J3hA}FIQfa<#YQ1IYSrxO=J>yVUE862|&iaumnMtSg@#bN<M2=Y8v@}X}R
+z7=3@>cDwaz-$#IStgg_0`v97*pvp&<K_2|&a>4a_#pQB&c&@@n3V?g?ukK~}SOI3U
+z*~@!b`UpU64}yG)ez8~p_n@cKX%qb6a2W4n$R>o4Mg&g#UKS+*RL|eoU^1EXYX5Ol
+zVc+*@p698U1$+{ugXxbUYvg&}bOoImpf>kI$&qk1vQ4dGU-V<WUPpcW(D@d?m`CM1
+w{CV&NiVLLD0z6Z9>^=JL>X*aea5z4Je>V^}8&DlHw*UYD07*qoM6N<$f^OK6{Qv*}
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion2.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion2.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..f619859e959f14dd60e9c294bd511bf276219fe5
+GIT binary patch
+literal 876
+zcmV-y1C#uTP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px&CP_p=RCt{2n!j$VFcgP>T;0W$DpqI13qu!Hin8<p7&2v!cmqp)ib}jep5i_L
+z8-0TgU6PGCOBsC^j9eNA3{I3v=aZuRk#)Y~g9!=806`E0K@bE%5QK%@Zdb)|oR5u*
+z<2aAwI9EzlKK)9mO2?j(!)~{m?EgDOUKB;SUatWl2Y}Dd&wuB{-5At$T`HxjAP8Qj
+zCUVJN*R}QoKyLE`KsRo(f3yGqP!t8SER#i1lmPJf_?Ulue4uSxFvjro^n@fy`f+t#
+zm#z~XW53_`ac%zLxG7vLfKsYD91eXj9elsvBMd{FPA7z6h$xEs$pgS@wZh?WSiB0f
+zf3;cxfQ~=v2Qb<HXDkUJ1hOoXW}u=d5Jk~9xh4pL7a@ccLd>1_55Ew?$)9D}WdCRZ
+zhUlZAlhAVg`L*%wcP@Ys;#(40?(2x(+CQ}brBbSD+ZF(%nS?2C+ZNp=(D#?1>4(KH
+z=lES#K*<=xFbQMwk}-xWOn&H>7C+|rT?!xp;NjunMZY$eolzWV53vYoOcDdX?DBH<
+zUo1fP%_|4*tr$rFfL!`RXy_lrw~hDa?>YC=Rw-2}rSid}vW@rQzvLXt*GAwWG4q_0
+zn6Oe7xG?lBUS-SDvRB(@5pLli2!bF8f*=TjAP9mW&avHYE6#b&7#nR<-x|hP&N<Jw
+z+pW|6NT*w3N~!Ak`MEqEk2sx9{pW4l{%BX<0`oxVKH>ZOyVHF_=hhhK9BG;&3`2Z<
+zeaSEk`|7*Knu}hAW)5kZf^+U1%eerrude`rrfKA6vnkUwMUo_lq6oJr0_QxBq6kTn
+zAWc(jHk-0(8foU{!lVrnL$pXgzrDQyfL?xAJsou6F_`e2$zx6d&b6WE%I9*<H@7|R
+zTmZ8lsHIKQ%#ts~ob=rG_^eZ)qZC3&vs0tn)7NTP=oY!2xNeIt=}0drK#$p?z6Cxv
+zV>n#}hTYmb#JN}Kd>OnXXN+BIb3{+)@OBWK3vkD)z~6p=OBg-+>e~APY<~RQD^S_?
+z3XI|WU!Z&GwMRb}ANvy~7vNrd^!J(<K@bG-8~6_q`q4k&&y27D0000<MNUMnLSTZa
+Cshr9H
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion3.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_explosion3.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..5bd251feb304290c24bb92cda7ffaf595e54be35
+GIT binary patch
+literal 930
+zcmV;T16}-yP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px&TuDShRCt{2nm=x%KorJ5ueKRQxk{uQfx<-!E)Xe~n0D)JxrI+)SrioR+<_&>
+z6_z8p0VAatDGH=xi+Iq4IKceFS!I4wM2zu#kB=D!<~_jS_|Z&Me^}S`vT0;8@r*?@
+zvi@%k@j(1MrU@qXrF%eIT!4;Yf@%F<s^Tv%FI3zD2*hq_15y9=_4Ti~Rn?a=K;-)R
+zIuN&Gb9Hs~N8GCN<A;FKEN~`>QBK~5zLWvN7(06fV0lWkp+DGwj;{A95E~}g(jR1i
+zgt$@=m(=eyKtWtOh)e1Zng;Vc2LKvH5uzyKpFe!hzvE-k0)zG2-*?ezKv|YcN@?T%
+zbULMB7-GBKHbLZhj_r1fFbpxBPQ{bgelTiZeHnd9X;7ABuYTvd!0~uQnx=Srd!v)d
+z#H;IinWpK7W4Jiq&yQ2=wqGHo|Mc{<Ow%+t9*?~ZcN(x-t&k)M4u?atFG-RQ$8hoX
+zep?LDKO7E7k_4;Os<*vP1L8OaV+@|>c{sUC2=PTRF3uRU{#ra#-}5|=5aP#i+}md7
+zJs`_6R8=(>_f=IjXN+O7Sj<Inew>Bw5AlA&^^+t)nx<GR7IRTwj5EtJ!(p6(5aRRy
+z>$+anb?pm(+Bd<k+7oqkP<|Wah|Zt7ptWgG9AfP&u8Ot+9cVuYSvJ%jrWZzRFSIxu
+z4u`|xa5x-45F_;gO=BZvhfHc4sSgnM+cv?pw#nou$6B7yhPJWw0HIF6IwrM@88Bv@
+zfJrTzD?<MTrs@MY*6Rc=S|ilMC`A&c*9oN!u(a-P0;OD}N`=Tpra)UU=net8*=#hM
+zQ0JtrH5_ydpivYBMNwe0*<ef~xL#2dh@vRaF+uuKn4jp)%?-jZ1OVLK-2njB>$Pee
+zgITZFcz%8cPMKl6*9|DQCv8Ac6aawPY=(BO{^8+4IS?86iMRDtkTPI4n?X!Dw{!Ko
+z-A+58K6blZbK)jy5~K`><5+Y(005q<27ue!TkCIxkB^Uy9%Bq;SyG*8S;~Mc%Np@K
+z&*y{?zp5(Wy`Bj7_xGxC3}(OIgE0oYXNaxqeS#3;w{r7-D~~^BB2!yidK#>%YTnAt
+z8_ClvqOEP@UErJK@kcG#KFg)@_^y7y;cz${4u=Z=031WMD3<f_AOHXW07*qoM6N<$
+Eg43O^u>b%7
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_heat.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_heat.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..093e51b71aad1a4c01435aa2ac50ad14b244d2af
+GIT binary patch
+literal 1972
+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
+GLSTX#J?VG=
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce1.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce1.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..fd38128a9bea1ec8df37f385b8fff52e8f1a135b
+GIT binary patch
+literal 733
+zcmV<30wVp1P)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px%mq|oHRCt{2n$2y)FbsvMq8A0oP#qx4Xop_COb5sgT_pz{*^3>pvVKg8R1!oV
+z5CjPlzb8r-Wr+Zj$y?*3e?-LV{UXkNsW}>~|JfnF(9a`-psCLu0jW44j0l3Z{)bfj
+zcDn`o4gd=smKIbRFV<%TfO0;c7yACHy!|a8$^sb^LmF?P&k6v!$Fe;D#wpQ4|8M{r
+z6A(D(eh~3uH5xX3qEmvUe<%QH<F!q2^;0r_4(m4qAP{Gpkmzf50w)ay`oTH(vl>iI
+z1hC=XbvND3hg82BfZS}G8mNeOFN|vX1s`nvqa&a?oM<nsztbKC|MWAxPQ9@7MJvJ7
+zK;vFiC)KM3q=hH|qZ{0!$IsCKEQolGF+y&5Z9NcUY-SB1RKL{YL88wY0gLw@HWL&?
+zyu=uT_Z|!ypX!HPkH;86qR&o)r_<?+EIaQ#L4sqJ21z3!(GROHwth7L>5Q6Yg0v@y
+z3D8&wrTWSBbCaQ}J{8*KQ$)NX;w5=qOTX99uW7dYmJn}>LS><1_%H<8kKtVbfJ(Ft
+z9)?UcCX>lzGMP-?4wd?V`^5&W%rv!C>I3Na)<MwLW^aj61DTx}(<Aa+<B5l{$Kz1n
+zlD4L`J%1Q+0CK(GV}wa*6tEEo;F)%Yd%S4X2W*(v2|Tn$sKJmT3GI`ot}O6m*k=KY
+zDlIOJe9!jKdkgH&2S%WoetQBCw$bq5jIi_sL30v(NoD{ZZ9t0Fyweka-MvSSr%j+o
+z<Ye9nJ!$!6M}QWr02tN(h$t0Fa95+MOJVQ5`3iB>$QDURU<Y80@VADzGT%eC<j5KQ
+zuXSBONgwvL0>7nNffgFo;zLX2Gk&`26S&pl`wKkyjQ&}DO(v7c<Q4b>;pQd5soTM?
+P00000NkvXXu0mjf{i;cK
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce2.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce2.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..52456d9ccbd0c21778e13b668eaa9efd4c75d382
+GIT binary patch
+literal 740
+zcmV<A0vr8_P)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px%o=HSORCt{2noDxSAPj~@ryDYpL-hc@40p)Zm&pNghu$NrELhSFWT-4Z1QM=m
+zzM0M>amp{t5)dSSPUqB^(tivgJl=yC^Cf0cWBtzx@iBkj(g~9K><GZ(8LovBr1d{a
+z#f>p{0D#x)<>KWr4@(WGn@@I>>a!exj2Qp`uGcH|G@6m@DCP7iP_zmVMl`v34Skja
+zvK%9y04Ohs8v2_ZFc*5pm^;ctm1w~Fgl>`krb&>R{j+NW2+YP@eSGt!`l}JJFzKuz
+z5((P+oMkYr_me0<+!$kWm>n0{<L16cvFHG5wuR;Ja{%y+ud7o5=|8iHj!Z*z^PBXy
+zM!;e?<qnD8V?70~{?g`$t6#hm{4Z2HU}Zi~LrQn61I7@-!+Q@n5A$&J-q+09TlE3x
+z<=2(yb0T20)<QA@=b`uBS!+Sz=CS^-{7!aw@1aDWy$oJ17jlxxoFhE}zV)-4oLq}`
+zvGo@nfM-;^65u?{i~xy^5Y|WIPxO(V+?JeLPeTZg5W;}|9&_K9&|lJAvsZ;=P<%ba
+z_bTFPY^+y1Zt<ybZWuYR;4i`!8l6t3)9G|Nr$eMa;5}HQotdPzNPj^7xwaFewIz$A
+z3AH+*hPK$DXyda%u|pRz2h`T-nTQ>`o&H!{sy`s1-Y2kYkI)KDnk1wvPizM$o%>5r
+zREsR>5ZPr3)Uu&A1;}cxHZ|pNOpOCvdJ>J7KwK6ZYn*V@jSzs4<Bz%#663HNq1NSb
+zib?Ke<!Kf25;<y%DPEQj8v#<V9H7+yQw)&?`~4gS0B5aL-yuc~vRkbLwgaMvZ|JjK
+z`h*a-CP#8vjs9D^FJMj|ro95+Qswehag7>%r9D;s3EXb+=>R*|=>Mu+old9IIRZcC
+WeL%3UA{rt90000<MNUMnLSTYSsaS0Q
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce3.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce3.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6fb28a66d0615834b23ce6b5e648e7e3b446c92
+GIT binary patch
+literal 844
+zcmV-S1GD^zP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px&21!IgRCt{2TET6@Fbt%NejFgLPLu(>jCSZZ%XEP3&^_|<Lr?Z28H`F>qDUzz
+zssjonb<3kq5=Dsw7#R51m}>tK5pSE3X}Xws)S3TXL4Kv*dx~Jm|E3|Irs*sE`btNn
+zC9L^H0#NdGT^%AW>$<w&%%!ym=}05uLLOI%P_+c6Y5GD$0020j&sWBoX5e^&KVA3%
+z5pRgN#GmL?&n1xXE*k!-T_6oY0N|b(1U3930f@?55F%4=iv=}~Jd3|rfEa)Z)>@O<
+zz>NAY1VKbwVvztTc|p)I6(RTXj6cQv*=>*`PhXzw$MLgSUJ&^ij$MBw{E|Gt9XPp=
+z&)))@#h`X`vrl68PyjC4(&y<&gy;A0Sv?C9{(B*RL=k`K40u>mk$5L5xkyJr${!K=
+zljR}e7oP>-ARDW(B?ZT$$pWhc;2i3m3g-kb9gtE1u84T^-UCTEe!aN&o{icX&|M|)
+z1MosP%3nGlSpn#gbDn32PNW3hdpFNB#Gqw0BZ!^I@3`mQd!YQKD9HmJQq9xpbO}M}
+zVP7WVSO>re7hjUe30&|?%zr3A8d15kIL*R{6JU`Iru@-9A}-t#O!(}wQEop?kHz#z
+zYJD`OcK0}Q{x$)1h<tBCPHk)N04S<&g{fn#Vf({SQ;vawfq{X6fq{Pqlm39sSf|X)
+zlG~&|fd0O<2-e)H{(uy%OXQiCth$9(-w6`99`}NQ<KbFPgQ_Kvg7yn^g4wm3$qeY$
+zoX`MP{Q*^#*;?+MDs|Nrm{|<y)hT8jXsdUDUX>sLs&;{z4w0jK_vWoK2g`4}zL)r*
+zT>@s?k;aE-)drn)6-WYFvC<S{EEA!wuoB%`fDdDP&0!({nU43&pS~P40&HuKR%lxv
+zhG>aA7DlBNVTwN+10d6_Rtk{-v0BR!y+UGClZ~472qEHap6BYRSc<@5mVbx^2nv5{
+ziM3$5LqEG*$&r%yck8}@J^sWG>PuVxRyBI1KdSx&QMWj2;K?=mSM_UPU|?Y2FW?7J
+WFYj)iwxx*x0000<MNUMnLSTa9(S_3h
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_piercing.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_piercing.png
+deleted file mode 100644
+index 2d76b7904ebd866b43107794c86ec1853d0acbf3..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 778
+zcmV+l1NHogP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px%#7RU!RCt{2TFZ6=Aqd5u?()$y`RG~OMa4r1&WNB+8}FvcG~wPL;sXE{7CsuG
+z^@}man2m(cY-cwAw}Jdg-;Z>HC;yj)JcO{P$4@#UJ>ku-@*4B}mR@i4S<gt|BQHSB
+zuZ{qK?0FP&CTIvqB<R1Z{ldv8bRGS>@MjS*#y!Tk6H&u}e5k>~-;x6W3L^l}cS-EQ
+zU;W{V1eAsJa6&KsswBwCdD3C;-Iv6k{Fk0mcpgFsIWK@yB=B{g*uO#*zh)W4IhF<R
+zkx1e;g-s1M{^JW;RQ#tN5;i^n7aI}w8B-LD;IEB<q9I{E2Jnx9H~!M*N6W9?2^PYB
+zIL@Yn1}%r7-9qRM)X_Q+wGN<5%f<<*GjQH|IS9`k?EFvp@HOhHUbO&p5l}SBvj39_
+zGlAI2iS5F+>Tp(dA(GbLm|h3GfG7x|$74^3i4C=(E=UQpb^uNz05d9?_c;?wxqxMA
+z^G1kgbZSqU`}lv1$Qu4Cfzp*zVXkd7LTYSl_|G`6^p;SS10-Xm^|r_TAo=ke;wWqQ
+zz4q$whMgmzH^;)l!otGB!otVFr9U7W8?-a?<TmvO@N4Q3eF9RA0Lx=7+@8fzM7JX4
+zZOY>S;+<fxdVqu%F3a^>vjc=1myvw}FI<-Ew`K?Y7c|Y)nN14b+@29Iq(j5I@?`1~
+zOM-SUF<N+(<t<%e5@t?;CJmM@F@Uj4UkPtzdkvZ#Kq^5~rUDOrxULozVXh7%MplVS
+zTrGppTpeyD^hTjjS`E`OIIB0nQ-ift_9Y1($I-QEGR7E><KT}sFqGphNibu^RPgFl
+zQ90nG9@s=~L8&x9>^LluKOT?nC&I)rZ!0WC!5yXmjOrGTzu3v&+&$7W0aAXZgK8Oa
+z7QlM_o*s|u)0g$oHrlMO)`qrQ{N2Fh8vR{$Ei5c7Ec^xh06SqdNK_m|ga7~l07*qo
+IM6N<$f;tIlzyJUM
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_poison.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_poison.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..0b746bb1fc51cfaf6fe0282e96d8696eaaff6d2e
+GIT binary patch
+literal 972
+zcmV;-12g=IP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px&hDk(0RCt{2n!!ukP#nj<=_>lV=_+pXB22OKG7v|dY^Tu6P+@of3n7;s+;$lB
+zTG(IV?t@jlgx&@+1|Fp_1y7SQoRZhky6mt-lQe1aUfzo>eV<F3<n?`j@0(xVYx4`B
+zP>eJh?-%PO%XB|)Gz%4B5oN5;Wk9`TnVlx7x%*=!YGi4GNPT7lg5n~AxJ~^WulQ@6
+z7~XBCNowA-ltI+s)95o9;N>$O*Sy<dW#n%GH3_l`0|2?#dj;qvH6VFOl%b#4fP<|o
+zv->L-d%x$W{~FIf-4SkrEd4|V9Bf^g6A$CXUD{`2O^~S{Yrw(Ql{xbwxwuQ~s~8hx
+z>&GsGtGhWYY@^&chml0Ma}Hx+8|Bqq?iDsu{k|Ds+qMay;q2;1AAm>eh`bs<_h2l&
+z2fW|WG>tn8ve3^bj78Tpt>Oe!j%rj~13c{-QSCU8rY|N>hZto*!gdYYwoOVY0O(PT
+zD5b&sRum1V-+t%-U|ANEK1&8P2qADx=z&tI6G9+i@YnjTPE-R*DF`7<`YZ<M08l6t
+zDq&gRF()#>l<3X?L(gfNR&ior((h}4vxMk@{YV^hd_l1U6Q>{OKeWBaphWtKehS;R
+zZ3a7wxYw_jtF(g;)9<Gl7jG2Y4@D7ff{p~4l0pkXz0_HjE-YVQ{*DD_fNTwgLZMJ7
+z6pE2U$ol~<SyhKbY6~fixnxlyyY<>&zY=wtKyFK0*fYUbIIW86D@!e52JB;QM^s-~
+zYK{C;VXjH=%RD{o9#8aKh5UTGx_L~Ng+!K-cGAj_4=r!ErdIsN+E%-|ek6DB0I+#X
+zmiLzE;Y7i20==|bJpC~nP%l|#aj|zM{&T`3&xe)+#%KM<#%D>b4$GAGf&`qw&uv66
+zL#Op@eg}w*fhhwXtd8UE;>~{d0@eH^cD(1&Wa*I|(J?Ts0{5TZG!F^~&&wjHk)Om)
+z_X5?Z^Kmd`z>~KCfbx%z_yz#eFa77Io?!;>nDm)he1n<a-~GqV_Wy4eww=;BLkwK2
+zfFsljsnv7M#4O~-&?>I^b&G4Eu_WtHSY$&=8Uq@^La3)aE(K4C-iw~5BCRrjrE#!Y
+zJAg3P3Poms&iZl!4~~Ygi@<Ea0A~SLrI^_OPf1)4c^@xzxw;<#4fi5k$HFrKGyNBk
+uRio!c#QO<}4H(oK{h-FBP$(3NVc;M7BleG-ortIa0000<MNUMnLSTZdC&hOF
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_radiation.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_radiation.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..2d80fd7baade9c549a9af3a74c814b40d8f43551
+GIT binary patch
+literal 1543
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_shock.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_shock.png
+index dacb71f307304ba79cecb1cfa76595c8d34ea134..a5b5e4b5f241e5e71cb5fc4fc39fa34292aae9fc 100644
+GIT binary patch
+literal 2557
+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
+
+literal 564
+zcmV-40?Yl0P)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px$?ny*JRCt{2o7r;1APhyJ)Bh&^a{7?5hpKEsy27b-UOY)KSC#>>C?Pn`qlv3G
+z=A83YNsP<&?AHGlh#%!=ODAaRvu~o}1<Aq*+WKDt@kFji*(?!s9)4M$<p3&3t{=(c
+zyTFpc6(dX@9-+^=spw<XHxL3gBqH>u3l9dMUxpx@fYP5T$PiyLVyFJF(1JMIh@JYJ
+zFqp<gSmn4t^t%qIjkXMN@x;hNf3^k8_o;U|?N$KOm&^qJ1@3^!a%F$&HZQ@bJ*(d$
+zt>|-Fz^Kw|RmiB516_rV%1yxzgA;?yjxbmbl6ql~KI~{DCcld(LKgbdQ(;<JqpzhH
+zW7OUvJL~Idj_hqQ)dgymwYmagf3SFXO7$(PFNS)wMrXic2&&;Yj^j9v^Eg!U1Fp)9
+zW@eh&D)|BB_h=_*Yik~kp1{rt5!#x2f~buUsFtP!Eb|1^v>v}Jtd$>d0?!lJnj<v8
+zBuPU1<caM7(7wM0OJ|WQ86sOkAj$@57qAR{Ekrg*9FW32y223zPI!D6bO-D<U^miK
+z+3LxVpw2F>)1e?3i@XJJ3WM^0G}*o!wg`)&ut#A#;Kr@MCSg0jc@@{!IXI#JFi~ny
+z{n8E&8rkBesqz(j{v=XD@&oRAMt@hk9LI5-Pv8eon`|!rpU(FH0000<MNUMnLSTZm
+CZv&tJ
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_slash1.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_slash1.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..60ea51d3b364086f8192505344a7cb8fe995f2ad
+GIT binary patch
+literal 696
+zcmV;p0!RIcP)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px%a!Eu%RCt{2noVv4Aq<5*RX0S+p>lv+W)8xYa;Ql0l5S=qhr$G71EKY|Yn#T8
+z2bezt7=}?p2;nwb1B}uULb!zxuEPY7xFLkAM8j8QU{8MKdz+xCfn@*<e81mU4FOyd
+zjTdQPkAR)?`5YV3+=PS1SHm)3S(Xa`(4K!9@d2!xJ{If|kTO9cV03JD4#*6{=8fOU
+znBa*v7T={Gd^7)^^S`ALq=CsKxPOMDp~!&3<WnV}6h;E{91U-$Kt<+NUkzGn;N*Z*
+z@(~MoM@8c~I*$!V1TXn=mH-Ca*hQUCIs!_wyz1_-rUMR^$|Ti0K`jA=G+SoX4VaBm
+z1AGYKhKSH`j!Rh)k)1R-BfvZ7U^5|0ivtS)_{ZaMm`@N9oO8g9%~}Q#5l*L5a*iY7
+z^Hj(YP>OTTAB@0t)0O*smO}&Lghqm-1VYOxf{5$Z!&#z4sh2oY%UN_KbtOOFq}Nn&
+zoXq!UujIPkP!R)OL@LMl)%e{2DeB8$i^I^eESFZjx=6nuCrs0X9x)8VFbu=^e^hUT
+zQk#<*HzvgoBb3~kztx*SCjJYxaoHoF;KHNnGuc7>K98e0qI!WQls?aKP&1(CGr6YO
+zQ{D<|nypzM06m|{wa^>^BMT&|<7-rjbw&H-sk%xmLHBYwjrh_j(EXK2yAvb^tRtsF
+zq@$WCm%#`xG2t&5Ai@j~{O_-!N1msrVX6^8Y7{7<WGt=~o*mV#uybzovdG>JYafQ1
+zvze?GpM51pc4Bnyt@{h^z|&y+ljvTNovI1wMW$Aux+tUgPVf_-sB?vs98Kc-fYE$n
+e#~6lTOv4WdlmLuZtR?&a0000<MNUMnLSTabi#GiL
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_slash2.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_slash2.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..261f6b5aa2212656646f4e5ae6b3be5e53c76870
+GIT binary patch
+literal 831
+zcmV-F1Hk-=P)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px%`AI}URCt{2TTyPqAPjY;{Sc{#>H%^Y?y%onW(UZL_Eo8TdLIjs>p+OXkWJ%B
+z)f%nk8DngNU4V{`e~lsci-@>vgABu6O`^ZRkBAE*PKY>hVOsI8f2Z};jz2K@rb1}*
+zze&jfV1^&F`$WX)@p#zv-*asxQ2zCK8iwJsgkPip4?lSTfZOdhr@v7TObKFSIYB>p
+z2HV0JaVzl1RYH~p0D$GstvvC{v*XVmPx4_zT!vw|$1DIUha|GcgBIZBlZ<&<0U-w%
+z`Dhhuh?#ys9ufbkEs*fOT$sCdG&ow>z+#A^LDB*QnlD<3GyDlYj#K;+C%AJo)Dnm=
+z*$yeiAK^>Nd4xj+1Xe$)guvvB6QdA6<KqzXA1Z*DP}H0PW*G`orFh{_`5;L|N?O2C
+zf|1yRRgua7eOOG5lk@>AQS;+&2@Z0V9nOZq2@x0P91!!`t-f>aFlrQFCj2jQ5i78s
+zUt*P#C@>pifD7T_ocl1wK!wS3{-A$x&Or{pI1G;Ccn__<G3JX}NCj9j$qn8L#&O&n
+zwq(#VQNXh2=nW7N0yGjK&d<i*;N@X_dMSBm!t`c_-^$cTg;Sg<d1J`F6orFCsp4S>
+zIA5`qm5CMCwx$wVaCCHZbaZrdbo@K0^apH%HOkC1x!(%}*qys`Dl=Dei)(|4I)Qpo
+z<Scj7@^}a>FGxvGLNQbn(E4^*vnQcg0asp)Ye3^ZfKI-8pTL11$l@*ugM8JSHA#e&
+z(5yqm-^-Qs<!Hli!|G9hYCfQZ>Rn<Gi1*9~iDf8qf~neJEl}l`D!oJjcGdVL+kx=T
+zCB+z#0%A_?xA_DK#6BQ4(biRDt^6Y=3Pe}CRll%i@|EQS$ZEgrJyIU8f=HjDEvZOn
+zJHe|OC!Wuzs)BQz;I`_me<yGP;%rpyI1B*R7*oA-eC4?AI9#a<OapDsBBVyY)b0z2
+z@iRH7EMk6fxA^*2wML%{js65_xA=a5i)-}1Rj!VXj*gDMfNz^Z*l$!hKtccj002ov
+JPDHLkV1nj(fFl3^
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_slash3.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_slash3.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..414518dfc396cc66274264f3fffc6a7450f74bba
+GIT binary patch
+literal 725
+zcmV;`0xJE9P)<h;3K|Lk000e1NJLTq002M$002M;1^@s6s%dfF00001b5ch_0Itp)
+z=>Px%k4Z#9RCt{2THTGqAPlxo_d=y~rw-6%G6>6bfb7&r<<a+&R)_+L!G^2KCskE{
+z!e@+)jWNK$z*hrHA0(pXH3;HGOrpm8zZK-x|J+guUHOS<A);#&vV$O^t8WoaaKGOd
+zBDy}`TL|$~e)y^xljQ<|=~)1PX_{>QDSdcKn7OXN-ULJc^S~xAfi!<n6o?4XWbzvP
+zECqNz9$f)Y4v8B4hZT@9JwU`8hg1To&5tWfaU!%MjHpY*l%Ja@CokAlKyKxCAfg0q
+z{vXbO!vEt!g+Hr+*lx=px3!5;3;v^tP|}=2|3}12h1q8L!wE(9fg3R0rX~}N385Md
+z!bOnSe2Y$l86i{?A_dDjya`$&TAXu`^F!yHijV<+3UdiRCkj|&45Wl`&dtUcP?&tk
+zA6)?F9F*|0!{F(3y2Px&Q;u2~^d|ZC+a{Mhzjp>th7|wzBmb}A-z&&S^S=ho5WNW_
+zT^LF5CyOu~{?g+xAYw96(TD_zlVEk!DJh5mBKn`B+EzFWsdBJDL|u3X1_lNO1_lNs
+zA<`f48mv)fCdn<*AK-tlt%RQ3yXbOHUkS0>;dNc-^ZDFl_1ATs6W8+W(;=rKl*Ken
+zwv`1)_9TcY;8P*hAMk{FpMW&Cqy;o-lGr%J3ZHBRDAoNXP;?hr(jk(YeA8AL35YaE
+zv_zs1TU;n*xj@jT7wg&Ukp$VAJ>l!aVAbt#>VE!{P^AFv=BOBA;}cOA7kKkM?|NDV
+zM6^5}k8tm)3d>)=2e1?%orNi&-)Rs4W@C(chPZL`ONB!#K*Zbj>YV|$$wK`GgfIbW
+zkqGVdDl|C@K+jhBh&)yO3EXb+_W?Sa{(qHgU|?Wi;1lo%62o0bu5?&a00000NkvXX
+Hu0mjfjcQ0H
+
+literal 0
+HcmV?d00001
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+index 68bb46d5235b..5d8f8f56b458 100644
+--- a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
++++ b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+@@ -1,188 +1,180 @@
+ {
+-    "version": 1,
+-    "license": "CC-BY-SA-3.0",
+-    "copyright": "https://github.com/tgstation/tgstation/blob/f80e7ba62d27c77cfeac709dd71033744d0015c4/icons/mob/mob.dmi, inhand sprites by TiniestShark (github), damage sprites by Thinbug (github)",
+-    "size": {
+-        "x": 32,
+-        "y": 32
+-    },
+-    "states": [
+-        {
+-            "name": "animated",
+-            "directions": 4
+-        },
+-        {
+-            "name": "icon"
+-        },
+-        {
+-            "name": "inhand-left",
+-            "directions": 4
+-        },
+-        {
+-            "name": "inhand-right",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_blunt1",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_blunt2",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_blunt3",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_slash1",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_slash2",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_slash3",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_piercing1",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_piercing2",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_piercing3",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_heat",
+-            "directions": 4,
+-            "delays": [
+-                [
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1
+-                ],
+-                [
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1
+-                ],
+-                [
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1
+-                ],
+-                [
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1
+-                ]
+-            ]
+-        },
+-        {
+-            "name": "ghost_cold",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_shock",
+-            "directions": 4,
+-            "delays": [
+-                [
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1
+-                ],
+-                [
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1
+-                ],
+-                [
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1
+-                ],
+-                [
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1
+-                ]
+-            ]
+-        },
+-        {
+-            "name": "ghost_radiation",
+-            "directions": 4,
+-            "delays": [
+-                [
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1
+-                ],
+-                [
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1
+-                ],
+-                [
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1
+-                ],
+-                [
+-                    0.1,
+-                    0.1,
+-                    0.1,
+-                    0.1
+-                ]
+-            ]
+-        },
+-        {
+-            "name": "ghost_genetic",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_poison",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_airloss",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_explosion1",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_explosion2",
+-            "directions": 4
+-        },
+-        {
+-            "name": "ghost_explosion3",
+-            "directions": 4
+-        }
+-      ]
+-    }
+\ No newline at end of file
++  "version": 1,
++  "license": "CC-BY-SA-3.0",
++  "copyright": "https://github.com/tgstation/tgstation/blob/f80e7ba62d27c77cfeac709dd71033744d0015c4/icons/mob/mob.dmi, inhand sprites by TiniestShark (github)",
++  "size": {
++    "x": 32,
++    "y": 32
++  },
++  "states": [
++      {
++          "name": "animated",
++          "directions": 4
++      },
++      {
++          "name": "ghost_blunt1",
++          "directions": 4
++      },
++      {
++          "name": "ghost_blunt2",
++          "directions": 4
++      },
++      {
++          "name": "ghost_blunt3",
++          "directions": 4
++      },
++      {
++          "name": "ghost_slash1",
++          "directions": 4
++      },
++      {
++          "name": "ghost_slash2",
++          "directions": 4
++      },
++      {
++          "name": "ghost_slash3",
++          "directions": 4
++      },
++      {
++          "name": "ghost_pierce1",
++          "directions": 4
++      },
++      {
++          "name": "ghost_pierce2",
++          "directions": 4
++      },
++      {
++          "name": "ghost_pierce3",
++          "directions": 4
++      },
++      {
++          "name": "ghost_heat",
++          "directions": 4,
++          "delays": [
++              [
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1
++              ],
++              [
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1
++              ],
++              [
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1
++              ],
++              [
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1
++              ]
++          ]
++      },
++      {
++          "name": "ghost_cold",
++          "directions": 4
++      },
++      {
++          "name": "ghost_shock",
++          "directions": 4,
++          "delays": [
++              [
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1
++              ],
++              [
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1
++              ],
++              [
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1
++              ],
++              [
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1,
++                  0.1
++              ]
++          ]
++      },
++      {
++          "name": "ghost_radiation",
++          "directions": 4,
++          "delays": [
++          [
++              0.1,
++              0.1,
++              0.1,
++              0.1
++          ],
++          [
++              0.1,
++              0.1,
++              0.1,
++              0.1
++          ],
++          [
++              0.1,
++              0.1,
++              0.1,
++              0.1
++          ],
++          [
++              0.1,
++              0.1,
++              0.1,
++              0.1
++          ]
++          ]
++      },
++      {
++          "name": "ghost_cellular",
++          "directions": 4
++      },
++      {
++          "name": "ghost_poison",
++          "directions": 4
++      },
++      {
++          "name": "ghost_airloss",
++          "directions": 4
++      },
++      {
++          "name": "ghost_explosion1",
++          "directions": 4
++      },
++      {
++          "name": "ghost_explosion2",
++          "directions": 4
++      },
++      {
++          "name": "ghost_explosion3",
++          "directions": 4
++      },
++      {
++        "name": "icon"
++      }
++  ]
++}
+
+From d1427aa0a33615c8bb72353fdcd99fecbc466783 Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Fri, 10 Oct 2025 23:50:12 +0100
+Subject: [PATCH 07/29] #37949 cherry pick 3
+
+---
+ Content.Server/Ghost/GhostSystem.cs | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/Content.Server/Ghost/GhostSystem.cs b/Content.Server/Ghost/GhostSystem.cs
+index 7e7c547a3962..e10c35a34a26 100644
+--- a/Content.Server/Ghost/GhostSystem.cs
++++ b/Content.Server/Ghost/GhostSystem.cs
+@@ -108,7 +108,6 @@
+ using Content.Goobstation.Maths.FixedPoint;
+ using Content.Shared.Follower;
+ using Content.Shared.Ghost;
+-using Content.Shared.Ghost.GhostSpriteStateSelection;
+ using Content.Server.GhostTypes;
+ using Content.Shared.Mind;
+ using Content.Shared.Mind.Components;
+@@ -585,13 +584,6 @@ private bool IsValidSpawnPosition(EntityCoordinates? spawnPosition)
+             var ghost = SpawnAtPosition(GameTicker.ObserverPrototypeName, spawnPosition.Value);
+             var ghostComponent = Comp<GhostComponent>(ghost);
+ 
+-            // Raise an event to assign a sprite state according to the damage taken
+-            if (mind.Comp.CurrentEntity != null)
+-            {
+-                var spriteEvent = new GhostSpriteEvent(mind.Comp.CurrentEntity.Value);
+-                RaiseLocalEvent(ghost, spriteEvent);
+-            }
+-
+             if (TryComp<GhostSpriteStateComponent>(ghost, out var state))
+             {
+                 _ghostState.SetGhostSprite(ghost, mind.Comp, state);  //Assings the ghost a sprite according to the damage taken
+
+From df90847c5de2ec397b4e32ac1e654a2c85f95238 Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Fri, 10 Oct 2025 23:51:13 +0100
+Subject: [PATCH 08/29] #37949 cherry pick 4
+
+---
+ Content.Server/Body/Systems/BodySystem.cs        |  4 ++++
+ .../GhostTypes/GhostSpriteStateSystem.cs         | 16 +++++++---------
+ .../Damage/Systems/DamageableSystem.cs           |  1 -
+ 3 files changed, 11 insertions(+), 10 deletions(-)
+
+diff --git a/Content.Server/Body/Systems/BodySystem.cs b/Content.Server/Body/Systems/BodySystem.cs
+index 2623f3f90b12..7031078fe6a0 100644
+--- a/Content.Server/Body/Systems/BodySystem.cs
++++ b/Content.Server/Body/Systems/BodySystem.cs
+@@ -77,11 +77,15 @@
+ using Content.Server.Body.Components;
+ using System.Numerics;
+ using Content.Server.Ghost;
++using Content.Server.GhostTypes;
++using Content.Server.Body.Components;
+ using Content.Server.Humanoid;
+ using Content.Shared._Shitmed.Body.Part;
+ using Content.Shared.Body.Components;
++using Content.Shared.Body.Events;
+ using Content.Shared.Body.Part;
+ using Content.Shared.Body.Systems;
++using Content.Shared.Damage.Components;
+ using Content.Shared.Humanoid;
+ using Content.Shared.Mind;
+ using Content.Shared.Mobs.Systems;
+diff --git a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+index 04d2663012df..93519b382d5f 100644
+--- a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
++++ b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+@@ -1,5 +1,6 @@
+ using Content.Shared.Damage;
+ using Content.Shared.Mind;
++using Robust.Shared.Random;
+ using Robust.Shared.Timing;
+ 
+ namespace Content.Server.GhostTypes;
+@@ -7,7 +8,7 @@ namespace Content.Server.GhostTypes;
+ public sealed class GhostSpriteStateSystem : EntitySystem
+ {
+     [Dependency] private readonly DamageableSystem _damageable = default!;
+-    [Dependency] private readonly IGameTiming _timing = default!;
++    [Dependency] private readonly IRobustRandom _random = default!;
+     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+ 
+     public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateComponent state)
+@@ -31,14 +32,13 @@ public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateCo
+             return;
+         highestType.Sort();
+ 
+-        string spriteState = "wawa";
+-        var random = new System.Random((int)_timing.CurTick.Value);
++        string spriteState;
++        //var random = new System.Random((int)_timing.CurTick.Value);
+         //check length  (yeah i gotta smooth this whole thingi dw)
+         if (highestType is ["Blunt", "Heat", "Piercing"])
+         {
+-            var number = random.Next(1, 3);
++            var number = _random.Next(1, 4);
+             spriteState = "explosion" + number;
+-            Log.Debug($"THINGI EXPLOSION!! {spriteState}");
+         }
+         else if ( highestType.Count == 1)
+         {
+@@ -46,18 +46,16 @@ public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateCo
+                 || highestType[0] == "Slash"
+                 || highestType[0] == "Pierce")
+             {
+-                var number = random.Next(1, 3);
++                var number = _random.Next(1, 4);
+                 spriteState = highestType[0] + number;
+-                Log.Debug($"THINGI CHOOSING FROM 3!! {spriteState}");
+             }
+             else
+             {
+                 spriteState = highestType[0];
+-                Log.Debug($"THINGI JUST CHOSING 1!! {spriteState}");
+             }
+         }
+         else // if it doesn't fall into any specific category, choose randomly
+-            spriteState = highestType[random.Next(0, highestType.Count - 1)];
++            spriteState = highestType[_random.Next(0, highestType.Count - 1)];
+ 
+         var properStateName = (state.Prefix + spriteState).ToLower();
+         Log.Debug($"LAST THINGI {properStateName}");
+diff --git a/Content.Shared/Damage/Systems/DamageableSystem.cs b/Content.Shared/Damage/Systems/DamageableSystem.cs
+index 83f817ac31af..f45d114dbedf 100644
+--- a/Content.Shared/Damage/Systems/DamageableSystem.cs
++++ b/Content.Shared/Damage/Systems/DamageableSystem.cs
+@@ -985,7 +985,6 @@ public List<string> GetHighestDamageTypes(DamageableComponent component)
+                 {
+                     if (component.Damage.DamageDict.TryGetValue(type, out var damageValue) && damageValue > 0)  //get value and make sure it isnt 0
+                     {
+-                        Log.Debug($"damagie {damageValue}");
+                         if (damageValue > highestValue)  //if its higher, clear the list and add the value
+                         {
+                             highestType.Clear();
+
+From f29477c5da03e0f847fac9650433c28c054c3136 Mon Sep 17 00:00:00 2001
+From: Thinbug <ringingsince1997@gmail.com>
+Date: Wed, 30 Jul 2025 10:37:57 -0300
+Subject: [PATCH 09/29] testing if github will update now
+
+---
+ Content.Server/GhostTypes/GhostSpriteStateSystem.cs | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+index 93519b382d5f..19e061ea0d9e 100644
+--- a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
++++ b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+@@ -58,7 +58,6 @@ public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateCo
+             spriteState = highestType[_random.Next(0, highestType.Count - 1)];
+ 
+         var properStateName = (state.Prefix + spriteState).ToLower();
+-        Log.Debug($"LAST THINGI {properStateName}");
+         _appearance.SetData(ent, GhostVisuals.Damage, properStateName, appearance);
+     }
+ }
+
+From ba49461f28a8ba7b5c282ebd1cfd44e74b7352b7 Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Fri, 10 Oct 2025 23:52:30 +0100
+Subject: [PATCH 10/29] #37949 cherry pick 5
+
+---
+ Resources/Prototypes/Entities/Mobs/base.yml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Resources/Prototypes/Entities/Mobs/base.yml b/Resources/Prototypes/Entities/Mobs/base.yml
+index 81dd6356959c..f70ca7fb873e 100644
+--- a/Resources/Prototypes/Entities/Mobs/base.yml
++++ b/Resources/Prototypes/Entities/Mobs/base.yml
+@@ -202,6 +202,9 @@
+     - Shock
+     - Cold
+     - Caustic
++    - Asphyxiation
++    - Radiation
++  - type: MindRememberBody
+   - type: DamageOnHighSpeedImpact
+     damage:
+       types:
+
+From 6bd18083a80eaa1548a87ae7d25590b7a5e689eb Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Fri, 10 Oct 2025 23:53:57 +0100
+Subject: [PATCH 11/29] #37949 cherry pick 6
+
+---
+ .../Mobs/Ghosts/ghost_human.rsi/meta.json     | 364 +++++++++---------
+ 1 file changed, 186 insertions(+), 178 deletions(-)
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+index 5d8f8f56b458..850a5bacc541 100644
+--- a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
++++ b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+@@ -1,180 +1,188 @@
+ {
+-  "version": 1,
+-  "license": "CC-BY-SA-3.0",
+-  "copyright": "https://github.com/tgstation/tgstation/blob/f80e7ba62d27c77cfeac709dd71033744d0015c4/icons/mob/mob.dmi, inhand sprites by TiniestShark (github)",
+-  "size": {
+-    "x": 32,
+-    "y": 32
+-  },
+-  "states": [
+-      {
+-          "name": "animated",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_blunt1",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_blunt2",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_blunt3",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_slash1",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_slash2",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_slash3",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_pierce1",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_pierce2",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_pierce3",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_heat",
+-          "directions": 4,
+-          "delays": [
+-              [
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1
+-              ],
+-              [
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1
+-              ],
+-              [
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1
+-              ],
+-              [
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1
+-              ]
+-          ]
+-      },
+-      {
+-          "name": "ghost_cold",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_shock",
+-          "directions": 4,
+-          "delays": [
+-              [
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1
+-              ],
+-              [
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1
+-              ],
+-              [
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1
+-              ],
+-              [
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1,
+-                  0.1
+-              ]
+-          ]
+-      },
+-      {
+-          "name": "ghost_radiation",
+-          "directions": 4,
+-          "delays": [
+-          [
+-              0.1,
+-              0.1,
+-              0.1,
+-              0.1
+-          ],
+-          [
+-              0.1,
+-              0.1,
+-              0.1,
+-              0.1
+-          ],
+-          [
+-              0.1,
+-              0.1,
+-              0.1,
+-              0.1
+-          ],
+-          [
+-              0.1,
+-              0.1,
+-              0.1,
+-              0.1
+-          ]
+-          ]
+-      },
+-      {
+-          "name": "ghost_cellular",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_poison",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_airloss",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_explosion1",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_explosion2",
+-          "directions": 4
+-      },
+-      {
+-          "name": "ghost_explosion3",
+-          "directions": 4
+-      },
+-      {
+-        "name": "icon"
+-      }
+-  ]
++    "version": 1,
++    "license": "CC-BY-SA-3.0",
++    "copyright": "https://github.com/tgstation/tgstation/blob/f80e7ba62d27c77cfeac709dd71033744d0015c4/icons/mob/mob.dmi, inhand sprites by TiniestShark (github)",
++    "size": {
++        "x": 32,
++        "y": 32
++    },
++    "states": [
++        {
++            "name": "animated",
++            "directions": 4
++        },
++        {
++            "name": "icon"
++        },
++        {
++            "name": "inhand-left",
++            "directions": 4
++        },
++        {
++            "name": "inhand-right",
++            "directions": 4
++        },
++        {
++            "name": "ghost_blunt1",
++            "directions": 4
++        },
++        {
++            "name": "ghost_blunt2",
++            "directions": 4
++        },
++        {
++            "name": "ghost_blunt3",
++            "directions": 4
++        },
++        {
++            "name": "ghost_slash1",
++            "directions": 4
++        },
++        {
++            "name": "ghost_slash2",
++            "directions": 4
++        },
++        {
++            "name": "ghost_slash3",
++            "directions": 4
++        },
++        {
++            "name": "ghost_pierce1",
++            "directions": 4
++        },
++        {
++            "name": "ghost_pierce2",
++            "directions": 4
++        },
++        {
++            "name": "ghost_pierce3",
++            "directions": 4
++        },
++        {
++            "name": "ghost_heat",
++            "directions": 4,
++            "delays": [
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ]
++            ]
++        },
++        {
++            "name": "ghost_cold",
++            "directions": 4
++        },
++        {
++            "name": "ghost_shock",
++            "directions": 4,
++            "delays": [
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ]
++            ]
++        },
++        {
++            "name": "ghost_radiation",
++            "directions": 4,
++            "delays": [
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ],
++                [
++                    0.1,
++                    0.1,
++                    0.1,
++                    0.1
++                ]
++            ]
++        },
++        {
++            "name": "ghost_cellular",
++            "directions": 4
++        },
++        {
++            "name": "ghost_poison",
++            "directions": 4
++        },
++        {
++            "name": "ghost_airloss",
++            "directions": 4
++        },
++        {
++            "name": "ghost_explosion1",
++            "directions": 4
++        },
++        {
++            "name": "ghost_explosion2",
++            "directions": 4
++        },
++        {
++            "name": "ghost_explosion3",
++            "directions": 4
++        }
++    ]
+ }
+
+From 86254881622ebb91f22df82a06de3021433f1feb Mon Sep 17 00:00:00 2001
+From: Thinbug <ringingsince1997@gmail.com>
+Date: Sun, 3 Aug 2025 16:53:45 -0300
+Subject: [PATCH 12/29] hopefully this fixes it
+
+---
+ Resources/Prototypes/Entities/Mobs/Player/observer.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Resources/Prototypes/Entities/Mobs/Player/observer.yml b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+index e3558cb815b9..c430d5552fdd 100644
+--- a/Resources/Prototypes/Entities/Mobs/Player/observer.yml
++++ b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+@@ -172,7 +172,7 @@
+     visuals:
+       enum.GhostVisuals.Damage:
+         ghostVariant:
+-          ghost_blunt1: { state: ghost_blunt1 }
++          ghost_blunt1: { state: ghost_blunt1 } #wawa tis is icki gotta make it less icki
+           ghost_blunt2: { state: ghost_blunt2 }
+           ghost_blunt3: { state: ghost_blunt3 }
+           ghost_slash1: { state: ghost_slash1 }
+
+From 0e77a5cc7f263c997e549a4f7dd548b96f86ecfc Mon Sep 17 00:00:00 2001
+From: Thinbug <ringingsince1997@gmail.com>
+Date: Sun, 3 Aug 2025 17:21:10 -0300
+Subject: [PATCH 13/29] fixing conflicts again
+
+---
+ Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+index 850a5bacc541..0be1b4c2785a 100644
+--- a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
++++ b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+@@ -184,5 +184,5 @@
+             "name": "ghost_explosion3",
+             "directions": 4
+         }
+-    ]
+-}
++      ]
++    }
+
+From 0e20ce35aad407847c87bd1fbe19f624f4b7f443 Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Fri, 10 Oct 2025 23:54:58 +0100
+Subject: [PATCH 14/29] #37949 cherry pick 6?
+
+---
+ Content.Server/GhostTypes/GhostSpriteStateSystem.cs |   5 +----
+ .../Prototypes/Entities/Mobs/Player/observer.yml    |   2 +-
+ .../{ghost_cellular.png => ghost_genetic.png}       | Bin
+ .../Textures/Mobs/Ghosts/ghost_human.rsi/meta.json  |   2 +-
+ 4 files changed, 3 insertions(+), 6 deletions(-)
+ rename Resources/Textures/Mobs/Ghosts/ghost_human.rsi/{ghost_cellular.png => ghost_genetic.png} (100%)
+
+diff --git a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+index 19e061ea0d9e..5510c9b70d99 100644
+--- a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
++++ b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+@@ -33,8 +33,6 @@ public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateCo
+         highestType.Sort();
+ 
+         string spriteState;
+-        //var random = new System.Random((int)_timing.CurTick.Value);
+-        //check length  (yeah i gotta smooth this whole thingi dw)
+         if (highestType is ["Blunt", "Heat", "Piercing"])
+         {
+             var number = _random.Next(1, 4);
+@@ -57,7 +55,6 @@ public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateCo
+         else // if it doesn't fall into any specific category, choose randomly
+             spriteState = highestType[_random.Next(0, highestType.Count - 1)];
+ 
+-        var properStateName = (state.Prefix + spriteState).ToLower();
+-        _appearance.SetData(ent, GhostVisuals.Damage, properStateName, appearance);
++        _appearance.SetData(ent, GhostVisuals.Damage, (state.Prefix + spriteState).ToLower(), appearance);
+     }
+ }
+diff --git a/Resources/Prototypes/Entities/Mobs/Player/observer.yml b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+index c430d5552fdd..3031d25cac3a 100644
+--- a/Resources/Prototypes/Entities/Mobs/Player/observer.yml
++++ b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+@@ -185,7 +185,7 @@
+           ghost_cold: { state: ghost_cold }
+           ghost_shock: { state: ghost_shock }
+           ghost_radiation: { state: ghost_radiation }
+-          ghost_cellular: { state: ghost_cellular }
++          ghost_genetic: { state: ghost_genetic }
+           ghost_poison: { state: ghost_poison }
+           ghost_airloss: { state: ghost_airloss }
+           ghost_explosion1: { state: ghost_explosion1 }
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_cellular.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_genetic.png
+similarity index 100%
+rename from Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_cellular.png
+rename to Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_genetic.png
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+index 0be1b4c2785a..45374fcecbb6 100644
+--- a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
++++ b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+@@ -161,7 +161,7 @@
+             ]
+         },
+         {
+-            "name": "ghost_cellular",
++            "name": "ghost_genetic",
+             "directions": 4
+         },
+         {
+
+From 909bfec9ef281236d9090b7d35245b8aa6caacb6 Mon Sep 17 00:00:00 2001
+From: Thinbug <ringingsince1997@gmail.com>
+Date: Wed, 6 Aug 2025 22:25:21 -0300
+Subject: [PATCH 15/29] sprite fixie
+
+---
+ .../Ghosts/ghost_human.rsi/ghost_heat.png     | Bin 1972 -> 1952 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_heat.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_heat.png
+index 093e51b71aad1a4c01435aa2ac50ad14b244d2af..bacaf3e38900beb2072a2d04b9f82a120c9122a3 100644
+GIT binary patch
+delta 1924
+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
+KMNUMnLSTZv&hl0O
+
+delta 1945
+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
+
+
+From 5a18e657645e90596c7bcb2aaf395c622bea6bff Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Fri, 10 Oct 2025 23:57:54 +0100
+Subject: [PATCH 16/29] #37949 cherry pick 7 67 67 67 67 67 67 67 67 67
+
+---
+ Content.Server/Body/Systems/BodySystem.cs     |   3 +++
+ .../Destructible/DestructibleSystem.cs        |   3 +++
+ .../GhostTypes/GhostSpriteStateSystem.cs      |  23 +++++++-----------
+ .../GhostTypes/MindRememberBodyComponent.cs   |   5 ++++
+ .../Damage/Systems/DamageableSystem.cs        |  10 ++++----
+ .../GhostSpriteStateComponent.cs              |   6 +++++
+ .../Entities/Mobs/Player/observer.yml         |   9 +++----
+ ...{ghost_pierce1.png => ghost_piercing1.png} | Bin
+ ...{ghost_pierce2.png => ghost_piercing2.png} | Bin
+ ...{ghost_pierce3.png => ghost_piercing3.png} | Bin
+ .../Mobs/Ghosts/ghost_human.rsi/meta.json     |   6 ++---
+ 11 files changed, 38 insertions(+), 27 deletions(-)
+ create mode 100644 Content.Server/GhostTypes/MindRememberBodyComponent.cs
+ rename Resources/Textures/Mobs/Ghosts/ghost_human.rsi/{ghost_pierce1.png => ghost_piercing1.png} (100%)
+ rename Resources/Textures/Mobs/Ghosts/ghost_human.rsi/{ghost_pierce2.png => ghost_piercing2.png} (100%)
+ rename Resources/Textures/Mobs/Ghosts/ghost_human.rsi/{ghost_pierce3.png => ghost_piercing3.png} (100%)
+
+diff --git a/Content.Server/Body/Systems/BodySystem.cs b/Content.Server/Body/Systems/BodySystem.cs
+index 7031078fe6a0..53ff82088f53 100644
+--- a/Content.Server/Body/Systems/BodySystem.cs
++++ b/Content.Server/Body/Systems/BodySystem.cs
+@@ -201,6 +201,9 @@ public override HashSet<EntityUid> GibBody(
+         List<string>? allowedContainers = null,
+         List<string>? excludedContainers = null)
+     {
++        var beforeEvent = new BeforeBodyDestructionEvent();
++        RaiseLocalEvent(bodyId, ref beforeEvent);  //Stores the body damages inside of the entity MindComponent
++
+         if (!Resolve(bodyId, ref body, logMissing: false)
+             || TerminatingOrDeleted(bodyId)
+             || EntityManager.IsQueuedForDeletion(bodyId))
+diff --git a/Content.Server/Destructible/DestructibleSystem.cs b/Content.Server/Destructible/DestructibleSystem.cs
+index a4ce4e20ddc4..14c070424cf1 100644
+--- a/Content.Server/Destructible/DestructibleSystem.cs
++++ b/Content.Server/Destructible/DestructibleSystem.cs
+@@ -91,6 +91,9 @@ public void Execute(EntityUid uid, DestructibleComponent component, DamageChange
+                 {
+                     RaiseLocalEvent(uid, new DamageThresholdReached(component, threshold), true);
+ 
++                    var beforeEvent = new BeforeBodyDestructionEvent();  //Stores the body damages inside of the entity MindComponent
++                    RaiseLocalEvent(uid, ref beforeEvent);
++
+                     var logImpact = LogImpact.Low;
+                     // Convert behaviors into string for logs
+                     var triggeredBehaviors = string.Join(", ", threshold.Behaviors.Select(b =>
+diff --git a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+index 5510c9b70d99..7a9884b6129c 100644
+--- a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
++++ b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+@@ -1,7 +1,6 @@
+ using Content.Shared.Damage;
+ using Content.Shared.Mind;
+ using Robust.Shared.Random;
+-using Robust.Shared.Timing;
+ 
+ namespace Content.Server.GhostTypes;
+ 
+@@ -16,7 +15,7 @@ public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateCo
+         if (!TryComp<AppearanceComponent>(ent, out var appearance))
+             return;
+ 
+-        var highestType = new List<string>();
++        var highestType = new List<string>();  //set up damage list and try to find the entity damage
+         if (TryComp<DamageableComponent>(mind.CurrentEntity, out var damageComp))
+         {
+             highestType = _damageable.GetHighestDamageTypes(damageComp.DamagePerGroup, damageComp.Damage);
+@@ -30,31 +29,27 @@ public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateCo
+ 
+         if (highestType.Count == 0)
+             return;
+-        highestType.Sort();
++
++        highestType.Sort();  //sort if alphabetically
+ 
+         string spriteState;
+-        if (highestType is ["Blunt", "Heat", "Piercing"])
++        if (highestType is ["Blunt", "Heat", "Piercing"])  //special case for explosions
+         {
+-            var number = _random.Next(1, 4);
+-            spriteState = "explosion" + number;
++            spriteState = "explosion" + _random.Next(1, 4);  //Chooses between 3 possible sprites
+         }
+-        else if ( highestType.Count == 1)
++        else
+         {
+             if (highestType[0] == "Blunt"
+                 || highestType[0] == "Slash"
+-                || highestType[0] == "Pierce")
++                || highestType[0] == "Piercing")
+             {
+-                var number = _random.Next(1, 4);
+-                spriteState = highestType[0] + number;
++                spriteState = highestType[0] + _random.Next(1, 4); //Chooses between 3 possible sprites
+             }
+             else
+             {
+-                spriteState = highestType[0];
++                spriteState = highestType[_random.Next(0, highestType.Count)]; //Uses the 1 possible sprite
+             }
+         }
+-        else // if it doesn't fall into any specific category, choose randomly
+-            spriteState = highestType[_random.Next(0, highestType.Count - 1)];
+-
+         _appearance.SetData(ent, GhostVisuals.Damage, (state.Prefix + spriteState).ToLower(), appearance);
+     }
+ }
+diff --git a/Content.Server/GhostTypes/MindRememberBodyComponent.cs b/Content.Server/GhostTypes/MindRememberBodyComponent.cs
+new file mode 100644
+index 000000000000..41d5c3bd2633
+--- /dev/null
++++ b/Content.Server/GhostTypes/MindRememberBodyComponent.cs
+@@ -0,0 +1,5 @@
++namespace Content.Server.GhostTypes;
++
++// Stores the damage an entity took before that body is destroyed in their mind component
++[RegisterComponent]
++public sealed partial class MindRememberBodyComponent : Component;
+diff --git a/Content.Shared/Damage/Systems/DamageableSystem.cs b/Content.Shared/Damage/Systems/DamageableSystem.cs
+index f45d114dbedf..1911f38567da 100644
+--- a/Content.Shared/Damage/Systems/DamageableSystem.cs
++++ b/Content.Shared/Damage/Systems/DamageableSystem.cs
+@@ -978,21 +978,21 @@ public List<string> GetHighestDamageTypes(DamageableComponent component)
+             var highestType = new List<string>();
+             var highestValue = FixedPoint2.Zero;
+ 
+-            foreach (var (damageGroupId, damageAmount) in component.DamagePerGroup)  //go trough each group
++            foreach (var (damageGroupId, damageAmount) in damagePerGroup)  //go through each group
+             {
+                 var group = _prototypeManager.Index<DamageGroupPrototype>(damageGroupId);  //get group
+-                foreach (var type in group.DamageTypes) //go trough each type inside that group
++                foreach (var type in group.DamageTypes) //go through each type inside that group
+                 {
+-                    if (component.Damage.DamageDict.TryGetValue(type, out var damageValue) && damageValue > 0)  //get value and make sure it isnt 0
++                    if (damage.DamageDict.TryGetValue(type, out var damageValue) && damageValue > 0)  //get value and make sure it isn't 0
+                     {
+-                        if (damageValue > highestValue)  //if its higher, clear the list and add the value
++                        if (damageValue > highestValue)  //if it's higher, clear the list and add the value
+                         {
+                             highestType.Clear();
+                             highestType.Add(type);
+ 
+                             highestValue = damageValue;
+                         }
+-                        else if (damageValue == highestValue)  //if its the same, add it to the list
++                        else if (damageValue == highestValue)  //if it's the same, add it to the list
+                         {
+                             highestType.Add(type);
+                         }
+diff --git a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
+index 7a3fa1e59fd3..e581b70a4702 100644
+--- a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
++++ b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
+@@ -1,8 +1,14 @@
+ namespace Content.Shared.Ghost.GhostSpriteStateSelection;
+ 
++/// <summary>
++/// Changes the entity sprite according to damage taken
++/// </summary>
+ [RegisterComponent]
+ public sealed partial class GhostSpriteStateComponent : Component
+ {
++    /// <summary>
++    /// Prefix the system will add to the damage name it's using
++    /// </summary>
+     [DataField]
+     public string prefix = "";
+ }
+diff --git a/Resources/Prototypes/Entities/Mobs/Player/observer.yml b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+index 3031d25cac3a..e313ad2d88ef 100644
+--- a/Resources/Prototypes/Entities/Mobs/Player/observer.yml
++++ b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+@@ -172,15 +172,15 @@
+     visuals:
+       enum.GhostVisuals.Damage:
+         ghostVariant:
+-          ghost_blunt1: { state: ghost_blunt1 } #wawa tis is icki gotta make it less icki
++          ghost_blunt1: { state: ghost_blunt1 } #this is an icki way of doing this u.u -Thinbug
+           ghost_blunt2: { state: ghost_blunt2 }
+           ghost_blunt3: { state: ghost_blunt3 }
+           ghost_slash1: { state: ghost_slash1 }
+           ghost_slash2: { state: ghost_slash2 }
+           ghost_slash3: { state: ghost_slash3 }
+-          ghost_pierce1: { state: ghost_pierce1 }
+-          ghost_pierce2: { state: ghost_pierce2 }
+-          ghost_pierce3: { state: ghost_pierce3 }
++          ghost_piercing1: { state: ghost_piercing1 }
++          ghost_piercing2: { state: ghost_piercing2 }
++          ghost_piercing3: { state: ghost_piercing3 }
+           ghost_heat: { state: ghost_heat }
+           ghost_cold: { state: ghost_cold }
+           ghost_shock: { state: ghost_shock }
+@@ -191,7 +191,6 @@
+           ghost_explosion1: { state: ghost_explosion1 }
+           ghost_explosion2: { state: ghost_explosion2 }
+           ghost_explosion3: { state: ghost_explosion3 }
+-          ghost_bloodloss: { state: animated }
+   - type: ContentEye
+     maxZoom: 1.44,1.44
+   - type: Eye
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce1.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_piercing1.png
+similarity index 100%
+rename from Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce1.png
+rename to Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_piercing1.png
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce2.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_piercing2.png
+similarity index 100%
+rename from Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce2.png
+rename to Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_piercing2.png
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce3.png b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_piercing3.png
+similarity index 100%
+rename from Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_pierce3.png
+rename to Resources/Textures/Mobs/Ghosts/ghost_human.rsi/ghost_piercing3.png
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+index 45374fcecbb6..0142e7e24618 100644
+--- a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
++++ b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+@@ -47,15 +47,15 @@
+             "directions": 4
+         },
+         {
+-            "name": "ghost_pierce1",
++            "name": "ghost_piercing1",
+             "directions": 4
+         },
+         {
+-            "name": "ghost_pierce2",
++            "name": "ghost_piercing2",
+             "directions": 4
+         },
+         {
+-            "name": "ghost_pierce3",
++            "name": "ghost_piercing3",
+             "directions": 4
+         },
+         {
+
+From 85c8a556bb925b53d340a2520a110e6b4e0048bb Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Sun, 12 Oct 2025 22:33:50 +0100
+Subject: [PATCH 17/29] #37949 cherry pick 8
+
+---
+ Content.Server/Ghost/GhostSystem.cs                    | 3 +++
+ Content.Server/GhostTypes/MindRememberBodyComponent.cs | 4 +++-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/Content.Server/Ghost/GhostSystem.cs b/Content.Server/Ghost/GhostSystem.cs
+index e10c35a34a26..e5496cfb35e5 100644
+--- a/Content.Server/Ghost/GhostSystem.cs
++++ b/Content.Server/Ghost/GhostSystem.cs
+@@ -172,6 +172,9 @@ public sealed class GhostSystem : SharedGhostSystem
+         [Dependency] private readonly NameModifierSystem _nameMod = default!;
+         [Dependency] private readonly GhostVisibilitySystem _ghostVisibility = default!;
+         [Dependency] private readonly SharedBodySystem _bodySystem = default!; // Shitmed Change
++        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
++        [Dependency] private readonly GhostSpriteStateSystem _ghostState = default!;
++
+         private EntityQuery<GhostComponent> _ghostQuery;
+         private EntityQuery<PhysicsComponent> _physicsQuery;
+ 
+diff --git a/Content.Server/GhostTypes/MindRememberBodyComponent.cs b/Content.Server/GhostTypes/MindRememberBodyComponent.cs
+index 41d5c3bd2633..6a4f170762d8 100644
+--- a/Content.Server/GhostTypes/MindRememberBodyComponent.cs
++++ b/Content.Server/GhostTypes/MindRememberBodyComponent.cs
+@@ -1,5 +1,7 @@
+ namespace Content.Server.GhostTypes;
+ 
+-// Stores the damage an entity took before that body is destroyed in their mind component
++/// <summary>
++/// Stores the damage an entity took before that body is destroyed in their mind component
++/// </summary>
+ [RegisterComponent]
+ public sealed partial class MindRememberBodyComponent : Component;
+
+From 5b3a5e264bb982c58fa5c3483bf0f0a2367aabab Mon Sep 17 00:00:00 2001
+From: Thinbug <ringingsince1997@gmail.com>
+Date: Sat, 16 Aug 2025 08:39:07 -0300
+Subject: [PATCH 18/29] getting rid of the new event, gotta handle ashing next
+
+---
+ Content.Server/Body/Systems/BodySystem.cs          |  4 ++--
+ Content.Server/Destructible/DestructibleSystem.cs  |  3 ---
+ .../GhostTypes/BeforeBodyDestructionEvent.cs       |  8 --------
+ .../GhostTypes/MindRememberBodySystem.cs           | 14 +++++++++-----
+ Resources/Prototypes/Body/Parts/base.yml           |  1 +
+ Resources/Prototypes/Entities/Mobs/base.yml        |  1 -
+ 6 files changed, 12 insertions(+), 19 deletions(-)
+ delete mode 100644 Content.Server/GhostTypes/BeforeBodyDestructionEvent.cs
+
+diff --git a/Content.Server/Body/Systems/BodySystem.cs b/Content.Server/Body/Systems/BodySystem.cs
+index 53ff82088f53..173f66f94be1 100644
+--- a/Content.Server/Body/Systems/BodySystem.cs
++++ b/Content.Server/Body/Systems/BodySystem.cs
+@@ -201,8 +201,8 @@ public override HashSet<EntityUid> GibBody(
+         List<string>? allowedContainers = null,
+         List<string>? excludedContainers = null)
+     {
+-        var beforeEvent = new BeforeBodyDestructionEvent();
+-        RaiseLocalEvent(bodyId, ref beforeEvent);  //Stores the body damages inside of the entity MindComponent
++        //var beforeEvent = new BeforeBodyDestructionEvent();
++        //RaiseLocalEvent(bodyId, ref beforeEvent);
+ 
+         if (!Resolve(bodyId, ref body, logMissing: false)
+             || TerminatingOrDeleted(bodyId)
+diff --git a/Content.Server/Destructible/DestructibleSystem.cs b/Content.Server/Destructible/DestructibleSystem.cs
+index 14c070424cf1..a4ce4e20ddc4 100644
+--- a/Content.Server/Destructible/DestructibleSystem.cs
++++ b/Content.Server/Destructible/DestructibleSystem.cs
+@@ -91,9 +91,6 @@ public void Execute(EntityUid uid, DestructibleComponent component, DamageChange
+                 {
+                     RaiseLocalEvent(uid, new DamageThresholdReached(component, threshold), true);
+ 
+-                    var beforeEvent = new BeforeBodyDestructionEvent();  //Stores the body damages inside of the entity MindComponent
+-                    RaiseLocalEvent(uid, ref beforeEvent);
+-
+                     var logImpact = LogImpact.Low;
+                     // Convert behaviors into string for logs
+                     var triggeredBehaviors = string.Join(", ", threshold.Behaviors.Select(b =>
+diff --git a/Content.Server/GhostTypes/BeforeBodyDestructionEvent.cs b/Content.Server/GhostTypes/BeforeBodyDestructionEvent.cs
+deleted file mode 100644
+index 5f7ef497ee56..000000000000
+--- a/Content.Server/GhostTypes/BeforeBodyDestructionEvent.cs
++++ /dev/null
+@@ -1,8 +0,0 @@
+-namespace Content.Server.GhostTypes;
+-
+-/// <summary>
+-/// Raised right before a body is deleted (gibbed or otherwise)
+-/// </summary>
+-[ByRefEvent]
+-public readonly record struct BeforeBodyDestructionEvent;
+-
+diff --git a/Content.Server/GhostTypes/MindRememberBodySystem.cs b/Content.Server/GhostTypes/MindRememberBodySystem.cs
+index 72c7d41c9d28..cbe7e9ceb684 100644
+--- a/Content.Server/GhostTypes/MindRememberBodySystem.cs
++++ b/Content.Server/GhostTypes/MindRememberBodySystem.cs
+@@ -1,23 +1,27 @@
+ using Content.Shared.Damage;
++using Content.Shared.Gibbing.Events;
+ using Content.Shared.Mind;
+ using Content.Shared.Mind.Components;
++using Robust.Server.Containers;
+ 
+ namespace Content.Server.GhostTypes;
+ 
+ public sealed class MindRememberBodySystem : EntitySystem
+ {
++    [Dependency] private readonly ContainerSystem _container = default!;
+     public override void Initialize()
+     {
+-        SubscribeLocalEvent<MindRememberBodyComponent, BeforeBodyDestructionEvent>(SaveBody);
++        SubscribeLocalEvent<MindRememberBodyComponent, AttemptEntityGibEvent>(SaveBody);
+     }
+ 
+     /// <summary>
+-    /// Saves the damage of a player's previous body inside their MindComponent
++    /// Saves the damage of a player body inside their MindComponent
+     /// </summary>
+-    private void SaveBody(EntityUid uid, MindRememberBodyComponent component, BeforeBodyDestructionEvent args)
++    private void SaveBody(EntityUid uid, MindRememberBodyComponent component, AttemptEntityGibEvent args)
+     {
+-        if (!TryComp<DamageableComponent>(uid, out var damageable)
+-            || !TryComp<MindContainerComponent>(uid, out var mindContainer)
++        if (!_container.TryGetContainingContainer(uid, out var container)
++            || !TryComp<DamageableComponent>(container.Owner, out var damageable)
++            || !TryComp<MindContainerComponent>(container.Owner, out var mindContainer)
+             || !TryComp<MindComponent>(mindContainer.Mind, out var mind))
+             return;
+ 
+diff --git a/Resources/Prototypes/Body/Parts/base.yml b/Resources/Prototypes/Body/Parts/base.yml
+index b0ab3dd324f0..c9be516443e4 100644
+--- a/Resources/Prototypes/Body/Parts/base.yml
++++ b/Resources/Prototypes/Body/Parts/base.yml
+@@ -40,6 +40,7 @@
+     endSound:
+       path: /Audio/_Shitmed/Medical/Surgery/organ2.ogg
+   - type: Gibbable
++  - type: MindRememberBody
+   - type: ContainerContainer
+     containers:
+       bodypart: !type:Container
+diff --git a/Resources/Prototypes/Entities/Mobs/base.yml b/Resources/Prototypes/Entities/Mobs/base.yml
+index f70ca7fb873e..f4f6f48a2a52 100644
+--- a/Resources/Prototypes/Entities/Mobs/base.yml
++++ b/Resources/Prototypes/Entities/Mobs/base.yml
+@@ -204,7 +204,6 @@
+     - Caustic
+     - Asphyxiation
+     - Radiation
+-  - type: MindRememberBody
+   - type: DamageOnHighSpeedImpact
+     damage:
+       types:
+
+From 513264048670adecd3ac1308d908711df727ccf9 Mon Sep 17 00:00:00 2001
+From: Thinbug <ringingsince1997@gmail.com>
+Date: Sat, 16 Aug 2025 08:42:40 -0300
+Subject: [PATCH 19/29] adding spaces to comments before i forget
+
+---
+ Content.Server/GhostTypes/GhostSpriteStateSystem.cs  | 12 ++++++------
+ .../Prototypes/Entities/Mobs/Player/observer.yml     |  2 +-
+ 2 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+index 7a9884b6129c..feee3119c44b 100644
+--- a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
++++ b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+@@ -15,7 +15,7 @@ public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateCo
+         if (!TryComp<AppearanceComponent>(ent, out var appearance))
+             return;
+ 
+-        var highestType = new List<string>();  //set up damage list and try to find the entity damage
++        var highestType = new List<string>();  // set up damage list and try to find the entity damage
+         if (TryComp<DamageableComponent>(mind.CurrentEntity, out var damageComp))
+         {
+             highestType = _damageable.GetHighestDamageTypes(damageComp.DamagePerGroup, damageComp.Damage);
+@@ -30,12 +30,12 @@ public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateCo
+         if (highestType.Count == 0)
+             return;
+ 
+-        highestType.Sort();  //sort if alphabetically
++        highestType.Sort();  // sort if alphabetically
+ 
+         string spriteState;
+-        if (highestType is ["Blunt", "Heat", "Piercing"])  //special case for explosions
++        if (highestType is ["Blunt", "Heat", "Piercing"])  // special case for explosions
+         {
+-            spriteState = "explosion" + _random.Next(1, 4);  //Chooses between 3 possible sprites
++            spriteState = "explosion" + _random.Next(1, 4);  // Chooses between 3 possible sprites
+         }
+         else
+         {
+@@ -43,11 +43,11 @@ public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateCo
+                 || highestType[0] == "Slash"
+                 || highestType[0] == "Piercing")
+             {
+-                spriteState = highestType[0] + _random.Next(1, 4); //Chooses between 3 possible sprites
++                spriteState = highestType[0] + _random.Next(1, 4); // Chooses between 3 possible sprites
+             }
+             else
+             {
+-                spriteState = highestType[_random.Next(0, highestType.Count)]; //Uses the 1 possible sprite
++                spriteState = highestType[_random.Next(0, highestType.Count)]; // Uses the 1 possible sprite
+             }
+         }
+         _appearance.SetData(ent, GhostVisuals.Damage, (state.Prefix + spriteState).ToLower(), appearance);
+diff --git a/Resources/Prototypes/Entities/Mobs/Player/observer.yml b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+index e313ad2d88ef..2e073f0fe46c 100644
+--- a/Resources/Prototypes/Entities/Mobs/Player/observer.yml
++++ b/Resources/Prototypes/Entities/Mobs/Player/observer.yml
+@@ -172,7 +172,7 @@
+     visuals:
+       enum.GhostVisuals.Damage:
+         ghostVariant:
+-          ghost_blunt1: { state: ghost_blunt1 } #this is an icki way of doing this u.u -Thinbug
++          ghost_blunt1: { state: ghost_blunt1 } # this is an icki way of doing this u.u -Thinbug
+           ghost_blunt2: { state: ghost_blunt2 }
+           ghost_blunt3: { state: ghost_blunt3 }
+           ghost_slash1: { state: ghost_slash1 }
+
+From d074128c1407c13f106edbc86131b58518a0c9b9 Mon Sep 17 00:00:00 2001
+From: Thinbug <ringingsince1997@gmail.com>
+Date: Thu, 21 Aug 2025 09:42:19 -0300
+Subject: [PATCH 20/29] handling ashing
+
+---
+ .../GhostTypes/MindRememberBodySystem.cs      | 22 ++++++++++++++++---
+ Resources/Prototypes/Entities/Mobs/base.yml   |  1 +
+ .../Mobs/Ghosts/ghost_human.rsi/meta.json     |  2 +-
+ 3 files changed, 21 insertions(+), 4 deletions(-)
+
+diff --git a/Content.Server/GhostTypes/MindRememberBodySystem.cs b/Content.Server/GhostTypes/MindRememberBodySystem.cs
+index cbe7e9ceb684..566d03fb8a4b 100644
+--- a/Content.Server/GhostTypes/MindRememberBodySystem.cs
++++ b/Content.Server/GhostTypes/MindRememberBodySystem.cs
+@@ -1,3 +1,4 @@
++using Content.Server.Destructible;
+ using Content.Shared.Damage;
+ using Content.Shared.Gibbing.Events;
+ using Content.Shared.Mind;
+@@ -11,13 +12,14 @@ public sealed class MindRememberBodySystem : EntitySystem
+     [Dependency] private readonly ContainerSystem _container = default!;
+     public override void Initialize()
+     {
+-        SubscribeLocalEvent<MindRememberBodyComponent, AttemptEntityGibEvent>(SaveBody);
++        SubscribeLocalEvent<MindRememberBodyComponent, AttemptEntityGibEvent>(SaveBodyOnGib);
++        SubscribeLocalEvent<MindRememberBodyComponent, DamageThresholdReached>(SaveBodyOnThreshold);
+     }
+ 
+     /// <summary>
+-    /// Saves the damage of a player body inside their MindComponent
++    /// Saves the damage of a player body inside their MindComponent after an attempted gib event
+     /// </summary>
+-    private void SaveBody(EntityUid uid, MindRememberBodyComponent component, AttemptEntityGibEvent args)
++    private void SaveBodyOnGib(EntityUid uid, MindRememberBodyComponent component, AttemptEntityGibEvent args)
+     {
+         if (!_container.TryGetContainingContainer(uid, out var container)
+             || !TryComp<DamageableComponent>(container.Owner, out var damageable)
+@@ -28,4 +30,18 @@ private void SaveBody(EntityUid uid, MindRememberBodyComponent component, Attemp
+         mind.DamagePerGroup = damageable.DamagePerGroup;
+         mind.Damage = damageable.Damage;
+     }
++
++    /// <summary>
++    /// Saves the damage of a player body inside their MindComponent after a damage threshold event
++    /// </summary>
++    private void SaveBodyOnThreshold(EntityUid uid, MindRememberBodyComponent comp, DamageThresholdReached args)
++    {
++        if (!TryComp<DamageableComponent>(uid, out var damageable)
++            || !TryComp<MindContainerComponent>(uid, out var mindContainer)
++            || !TryComp<MindComponent>(mindContainer.Mind, out var mind))
++            return;
++
++        mind.DamagePerGroup = damageable.DamagePerGroup;
++        mind.Damage = damageable.Damage;
++    }
+ }
+diff --git a/Resources/Prototypes/Entities/Mobs/base.yml b/Resources/Prototypes/Entities/Mobs/base.yml
+index f4f6f48a2a52..ed6709afdce7 100644
+--- a/Resources/Prototypes/Entities/Mobs/base.yml
++++ b/Resources/Prototypes/Entities/Mobs/base.yml
+@@ -192,6 +192,7 @@
+       - ActionCritSuccumb
+       - ActionCritFakeDeath
+       - ActionCritLastWords
++  - type: MindRememberBody
+   - type: Deathgasp
+   - type: HealthExaminable
+     examinableTypes:
+diff --git a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+index 0142e7e24618..1c39c310c4ac 100644
+--- a/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
++++ b/Resources/Textures/Mobs/Ghosts/ghost_human.rsi/meta.json
+@@ -1,7 +1,7 @@
+ {
+     "version": 1,
+     "license": "CC-BY-SA-3.0",
+-    "copyright": "https://github.com/tgstation/tgstation/blob/f80e7ba62d27c77cfeac709dd71033744d0015c4/icons/mob/mob.dmi, inhand sprites by TiniestShark (github)",
++    "copyright": "https://github.com/tgstation/tgstation/blob/f80e7ba62d27c77cfeac709dd71033744d0015c4/icons/mob/mob.dmi, inhand sprites by TiniestShark (github), damage sprites by Thinbug (github)",
+     "size": {
+         "x": 32,
+         "y": 32
+
+From 56787b2f33e5628ebeeaa05d21be5d3b171f6d51 Mon Sep 17 00:00:00 2001
+From: Thinbug <ringingsince1997@gmail.com>
+Date: Tue, 26 Aug 2025 11:39:41 -0300
+Subject: [PATCH 21/29] small fixies
+
+---
+ Content.Server/Ghost/GhostSystem.cs                 |  2 +-
+ Content.Server/GhostTypes/GhostSpriteStateSystem.cs | 10 +++++++---
+ 2 files changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/Content.Server/Ghost/GhostSystem.cs b/Content.Server/Ghost/GhostSystem.cs
+index e5496cfb35e5..df2b0c9e78e4 100644
+--- a/Content.Server/Ghost/GhostSystem.cs
++++ b/Content.Server/Ghost/GhostSystem.cs
+@@ -589,7 +589,7 @@ private bool IsValidSpawnPosition(EntityCoordinates? spawnPosition)
+ 
+             if (TryComp<GhostSpriteStateComponent>(ghost, out var state))
+             {
+-                _ghostState.SetGhostSprite(ghost, mind.Comp, state);  //Assings the ghost a sprite according to the damage taken
++                _ghostState.SetGhostSprite((ghost, state), mind.Comp);
+             }
+ 
+             // Try setting the ghost entity name to either the character name or the player name.
+diff --git a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+index feee3119c44b..1f786b7df49d 100644
+--- a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
++++ b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+@@ -1,5 +1,6 @@
+ using Content.Shared.Damage;
+ using Content.Shared.Mind;
++using Content.Shared.Mind.Components;
+ using Robust.Shared.Random;
+ 
+ namespace Content.Server.GhostTypes;
+@@ -10,12 +11,15 @@ public sealed class GhostSpriteStateSystem : EntitySystem
+     [Dependency] private readonly IRobustRandom _random = default!;
+     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+ 
+-    public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateComponent state)
++    /// <summary>
++    /// It goes trough an entity damage and assigns them a sprite according to the highest damage type/s
++    /// </summary>
++    public void SetGhostSprite(Entity<GhostSpriteStateComponent> ent, MindComponent mind)
+     {
+         if (!TryComp<AppearanceComponent>(ent, out var appearance))
+             return;
+ 
+-        var highestType = new List<string>();  // set up damage list and try to find the entity damage
++        List<string> highestType;
+         if (TryComp<DamageableComponent>(mind.CurrentEntity, out var damageComp))
+         {
+             highestType = _damageable.GetHighestDamageTypes(damageComp.DamagePerGroup, damageComp.Damage);
+@@ -50,6 +54,6 @@ public void SetGhostSprite(EntityUid ent, MindComponent mind, GhostSpriteStateCo
+                 spriteState = highestType[_random.Next(0, highestType.Count)]; // Uses the 1 possible sprite
+             }
+         }
+-        _appearance.SetData(ent, GhostVisuals.Damage, (state.Prefix + spriteState).ToLower(), appearance);
++        _appearance.SetData(ent, GhostVisuals.Damage, (ent.Comp.Prefix + spriteState).ToLower(), appearance);
+     }
+ }
+
+From 61047a92b4dc678055a0ac53add3650a98014253 Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Sat, 11 Oct 2025 00:00:54 +0100
+Subject: [PATCH 22/29] #37949 chery pick 9
+
+---
+ Content.Server/Destructible/DestructibleSystem.cs   | 1 +
+ Content.Server/GhostTypes/GhostSpriteStateSystem.cs | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Content.Server/Destructible/DestructibleSystem.cs b/Content.Server/Destructible/DestructibleSystem.cs
+index a4ce4e20ddc4..a60315970930 100644
+--- a/Content.Server/Destructible/DestructibleSystem.cs
++++ b/Content.Server/Destructible/DestructibleSystem.cs
+@@ -27,6 +27,7 @@
+ // SPDX-License-Identifier: AGPL-3.0-or-later
+ 
+ using System.Diagnostics.CodeAnalysis;
++using System.Linq;
+ using Content.Server.Administration.Logs;
+ using Content.Server.Atmos.EntitySystems;
+ using Content.Server.Body.Systems;
+diff --git a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+index 1f786b7df49d..e1144e6664fd 100644
+--- a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
++++ b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+@@ -54,6 +54,6 @@ public void SetGhostSprite(Entity<GhostSpriteStateComponent> ent, MindComponent
+                 spriteState = highestType[_random.Next(0, highestType.Count)]; // Uses the 1 possible sprite
+             }
+         }
+-        _appearance.SetData(ent, GhostVisuals.Damage, (ent.Comp.Prefix + spriteState).ToLower(), appearance);
++        _appearance.SetData(ent, GhostVisuals.Damage, ent.Comp.Prefix + spriteState.ToLower(), appearance);
+     }
+ }
+
+From de80987d016471ec1833e2890b861c64db5b8939 Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Sat, 11 Oct 2025 00:02:02 +0100
+Subject: [PATCH 23/29] #37949 cherry pick 10
+
+---
+ Content.Server/GhostTypes/GhostSpriteStateSystem.cs |  4 ++--
+ Content.Server/GhostTypes/MindRememberBodySystem.cs | 10 +++++-----
+ Content.Shared/Ghost/GhostComponent.cs              | 11 +++++++++++
+ Content.Shared/Ghost/GhostVisuals.cs                |  9 ---------
+ 4 files changed, 18 insertions(+), 16 deletions(-)
+ delete mode 100644 Content.Shared/Ghost/GhostVisuals.cs
+
+diff --git a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+index e1144e6664fd..84083513680f 100644
+--- a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
++++ b/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+@@ -1,6 +1,6 @@
+ using Content.Shared.Damage;
++using Content.Shared.Ghost;
+ using Content.Shared.Mind;
+-using Content.Shared.Mind.Components;
+ using Robust.Shared.Random;
+ 
+ namespace Content.Server.GhostTypes;
+@@ -54,6 +54,6 @@ public void SetGhostSprite(Entity<GhostSpriteStateComponent> ent, MindComponent
+                 spriteState = highestType[_random.Next(0, highestType.Count)]; // Uses the 1 possible sprite
+             }
+         }
+-        _appearance.SetData(ent, GhostVisuals.Damage, ent.Comp.Prefix + spriteState.ToLower(), appearance);
++        _appearance.SetData(ent, GhostComponent.GhostVisuals.Damage, ent.Comp.Prefix + spriteState.ToLower(), appearance);
+     }
+ }
+diff --git a/Content.Server/GhostTypes/MindRememberBodySystem.cs b/Content.Server/GhostTypes/MindRememberBodySystem.cs
+index 566d03fb8a4b..22ac9ef8ce44 100644
+--- a/Content.Server/GhostTypes/MindRememberBodySystem.cs
++++ b/Content.Server/GhostTypes/MindRememberBodySystem.cs
+@@ -19,9 +19,9 @@ public override void Initialize()
+     /// <summary>
+     /// Saves the damage of a player body inside their MindComponent after an attempted gib event
+     /// </summary>
+-    private void SaveBodyOnGib(EntityUid uid, MindRememberBodyComponent component, AttemptEntityGibEvent args)
++    private void SaveBodyOnGib(Entity<MindRememberBodyComponent> ent, ref AttemptEntityGibEvent args)
+     {
+-        if (!_container.TryGetContainingContainer(uid, out var container)
++        if (!_container.TryGetContainingContainer(ent.Owner, out var container)
+             || !TryComp<DamageableComponent>(container.Owner, out var damageable)
+             || !TryComp<MindContainerComponent>(container.Owner, out var mindContainer)
+             || !TryComp<MindComponent>(mindContainer.Mind, out var mind))
+@@ -34,10 +34,10 @@ private void SaveBodyOnGib(EntityUid uid, MindRememberBodyComponent component, A
+     /// <summary>
+     /// Saves the damage of a player body inside their MindComponent after a damage threshold event
+     /// </summary>
+-    private void SaveBodyOnThreshold(EntityUid uid, MindRememberBodyComponent comp, DamageThresholdReached args)
++    private void SaveBodyOnThreshold(Entity<MindRememberBodyComponent> ent, ref DamageThresholdReached args)
+     {
+-        if (!TryComp<DamageableComponent>(uid, out var damageable)
+-            || !TryComp<MindContainerComponent>(uid, out var mindContainer)
++        if (!TryComp<DamageableComponent>(ent.Owner, out var damageable)
++            || !TryComp<MindContainerComponent>(ent.Owner, out var mindContainer)
+             || !TryComp<MindComponent>(mindContainer.Mind, out var mind))
+             return;
+ 
+diff --git a/Content.Shared/Ghost/GhostComponent.cs b/Content.Shared/Ghost/GhostComponent.cs
+index dc9b745b3147..7ee6a897a563 100644
+--- a/Content.Shared/Ghost/GhostComponent.cs
++++ b/Content.Shared/Ghost/GhostComponent.cs
+@@ -16,6 +16,7 @@
+ using Content.Shared.Actions;
+ using Robust.Shared.GameStates;
+ using Robust.Shared.Prototypes;
++using Robust.Shared.Serialization;
+ 
+ namespace Content.Shared.Ghost;
+ 
+@@ -116,6 +117,16 @@ public sealed partial class GhostComponent : Component
+     [DataField]
+     public bool CanTakeGhostRoles = true;
+     // Goobstation end
++
++    /// <summary>
++    /// Ghost sprites dependent on damage by the player body
++    /// </summary>
++    /// <remarks>Used to change a ghost sprite to better visually represent their cause of death</remarks>
++    [Serializable, NetSerializable]
++    public enum GhostVisuals : byte
++    {
++        Damage
++    }
+ }
+ 
+ public sealed partial class ToggleFoVActionEvent : InstantActionEvent { }
+diff --git a/Content.Shared/Ghost/GhostVisuals.cs b/Content.Shared/Ghost/GhostVisuals.cs
+deleted file mode 100644
+index 6ff195e0b35f..000000000000
+--- a/Content.Shared/Ghost/GhostVisuals.cs
++++ /dev/null
+@@ -1,9 +0,0 @@
+-using Robust.Shared.Serialization;
+-
+-namespace Content.Server.GhostTypes;
+-
+-[Serializable, NetSerializable]
+-public enum GhostVisuals : byte
+-{
+-    Damage
+-}
+
+From 33c293db5c0aa212ea4b8ffcffc62a6996e991c5 Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Sat, 11 Oct 2025 00:04:07 +0100
+Subject: [PATCH 24/29] #37949 cherry pick 11
+
+---
+ Content.Shared/Damage/Systems/DamageableSystem.cs    |  4 +---
+ .../GhostSpriteStateComponent.cs                     |  3 ++-
+ Content.Shared/Mind/MindComponent.cs                 | 12 ++++++++++++
+ 3 files changed, 15 insertions(+), 4 deletions(-)
+
+diff --git a/Content.Shared/Damage/Systems/DamageableSystem.cs b/Content.Shared/Damage/Systems/DamageableSystem.cs
+index 1911f38567da..8c3bdb3cf28d 100644
+--- a/Content.Shared/Damage/Systems/DamageableSystem.cs
++++ b/Content.Shared/Damage/Systems/DamageableSystem.cs
+@@ -971,9 +971,7 @@ private void DamageableHandleState(EntityUid uid, DamageableComponent component,
+         /// <summary>
+         /// Returns a string list containing the type/s of the highest damage value
+         /// </summary>
+-        /// <param name="component"></param>
+-        /// <returns></returns>
+-        public List<string> GetHighestDamageTypes(DamageableComponent component)
++        public List<string> GetHighestDamageTypes(Dictionary<string, FixedPoint2> damagePerGroup, DamageSpecifier damage)
+         {
+             var highestType = new List<string>();
+             var highestValue = FixedPoint2.Zero;
+diff --git a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
+index e581b70a4702..acb861fc7365 100644
+--- a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
++++ b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
+@@ -7,7 +7,8 @@ namespace Content.Shared.Ghost.GhostSpriteStateSelection;
+ public sealed partial class GhostSpriteStateComponent : Component
+ {
+     /// <summary>
+-    /// Prefix the system will add to the damage name it's using
++    /// Prefix the GhostSpriteStateSystem will add to the name of the damage type it chooses.
++    /// It should be identical to the prefix of the entity optional damage sprites.
+     /// </summary>
+     [DataField]
+     public string prefix = "";
+diff --git a/Content.Shared/Mind/MindComponent.cs b/Content.Shared/Mind/MindComponent.cs
+index 8c42dbd4eaf4..9c624313cc6b 100644
+--- a/Content.Shared/Mind/MindComponent.cs
++++ b/Content.Shared/Mind/MindComponent.cs
+@@ -166,4 +166,16 @@ public sealed partial class MindComponent : Component
+     /// </summary>
+     [DataField]
+     public LocId? Subtype;
++
++    /// <summary>
++    /// Entity damage stored by the MindRememberBodySystem, indexed by the DamageableSystem.
++    /// </summary>
++    [DataField]
++    public Dictionary<string, FixedPoint2>? DamagePerGroup;
++
++    /// <summary>
++    /// Collection of possible damage types, stored by the MindRememberBodySystem.
++    /// </summary>
++    [DataField]
++    public DamageSpecifier? Damage;
+ }
+
+From c654b88a6c07211d76e3e6e49c2fd01063f487be Mon Sep 17 00:00:00 2001
+From: Thinbug <ringingsince1997@gmail.com>
+Date: Wed, 24 Sep 2025 16:07:58 -0300
+Subject: [PATCH 25/29] small bit of progress yknow may as well yeah
+
+---
+ Content.Server/Body/Systems/BodySystem.cs | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/Content.Server/Body/Systems/BodySystem.cs b/Content.Server/Body/Systems/BodySystem.cs
+index 173f66f94be1..ed459cb60fcf 100644
+--- a/Content.Server/Body/Systems/BodySystem.cs
++++ b/Content.Server/Body/Systems/BodySystem.cs
+@@ -77,8 +77,6 @@
+ using Content.Server.Body.Components;
+ using System.Numerics;
+ using Content.Server.Ghost;
+-using Content.Server.GhostTypes;
+-using Content.Server.Body.Components;
+ using Content.Server.Humanoid;
+ using Content.Shared._Shitmed.Body.Part;
+ using Content.Shared.Body.Components;
+@@ -201,9 +199,6 @@ public override HashSet<EntityUid> GibBody(
+         List<string>? allowedContainers = null,
+         List<string>? excludedContainers = null)
+     {
+-        //var beforeEvent = new BeforeBodyDestructionEvent();
+-        //RaiseLocalEvent(bodyId, ref beforeEvent);
+-
+         if (!Resolve(bodyId, ref body, logMissing: false)
+             || TerminatingOrDeleted(bodyId)
+             || EntityManager.IsQueuedForDeletion(bodyId))
+
+From 2385b252e4906a6decd67b5782f737c8680be19c Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Sat, 11 Oct 2025 00:06:27 +0100
+Subject: [PATCH 26/29] #37949 cherry pick 11
+
+---
+ Content.Server/Ghost/GhostSystem.cs                   |  2 +-
+ .../GhostTypes/MindRememberBodyComponent.cs           |  7 -------
+ ...rBodySystem.cs => StoreDamageTakenOnMindSystem.cs} | 11 ++++++-----
+ .../GhostSpriteStateComponent.cs                      |  8 +++++++-
+ .../GhostTypes/GhostSpriteStateSystem.cs              |  2 +-
+ .../GhostTypes/StoreDamageTakenOnMindComponent.cs     |  9 +++++++++
+ Content.Shared/Mind/MindComponent.cs                  |  4 ++--
+ Resources/Prototypes/Body/Parts/base.yml              |  2 +-
+ Resources/Prototypes/Entities/Mobs/base.yml           |  2 +-
+ 9 files changed, 28 insertions(+), 19 deletions(-)
+ delete mode 100644 Content.Server/GhostTypes/MindRememberBodyComponent.cs
+ rename Content.Server/GhostTypes/{MindRememberBodySystem.cs => StoreDamageTakenOnMindSystem.cs} (73%)
+ rename Content.Shared/{Ghost/GhostSpriteStateSelection => GhostTypes}/GhostSpriteStateComponent.cs (59%)
+ rename {Content.Server => Content.Shared}/GhostTypes/GhostSpriteStateSystem.cs (98%)
+ create mode 100644 Content.Shared/GhostTypes/StoreDamageTakenOnMindComponent.cs
+
+diff --git a/Content.Server/Ghost/GhostSystem.cs b/Content.Server/Ghost/GhostSystem.cs
+index df2b0c9e78e4..7aefc8924294 100644
+--- a/Content.Server/Ghost/GhostSystem.cs
++++ b/Content.Server/Ghost/GhostSystem.cs
+@@ -108,7 +108,7 @@
+ using Content.Goobstation.Maths.FixedPoint;
+ using Content.Shared.Follower;
+ using Content.Shared.Ghost;
+-using Content.Server.GhostTypes;
++using Content.Shared.GhostTypes;
+ using Content.Shared.Mind;
+ using Content.Shared.Mind.Components;
+ using Content.Shared.Mobs;
+diff --git a/Content.Server/GhostTypes/MindRememberBodyComponent.cs b/Content.Server/GhostTypes/MindRememberBodyComponent.cs
+deleted file mode 100644
+index 6a4f170762d8..000000000000
+--- a/Content.Server/GhostTypes/MindRememberBodyComponent.cs
++++ /dev/null
+@@ -1,7 +0,0 @@
+-namespace Content.Server.GhostTypes;
+-
+-/// <summary>
+-/// Stores the damage an entity took before that body is destroyed in their mind component
+-/// </summary>
+-[RegisterComponent]
+-public sealed partial class MindRememberBodyComponent : Component;
+diff --git a/Content.Server/GhostTypes/MindRememberBodySystem.cs b/Content.Server/GhostTypes/StoreDamageTakenOnMindSystem.cs
+similarity index 73%
+rename from Content.Server/GhostTypes/MindRememberBodySystem.cs
+rename to Content.Server/GhostTypes/StoreDamageTakenOnMindSystem.cs
+index 22ac9ef8ce44..6357128aa3e1 100644
+--- a/Content.Server/GhostTypes/MindRememberBodySystem.cs
++++ b/Content.Server/GhostTypes/StoreDamageTakenOnMindSystem.cs
+@@ -1,5 +1,6 @@
+ using Content.Server.Destructible;
+ using Content.Shared.Damage;
++using Content.Shared.GhostTypes;
+ using Content.Shared.Gibbing.Events;
+ using Content.Shared.Mind;
+ using Content.Shared.Mind.Components;
+@@ -7,19 +8,19 @@
+ 
+ namespace Content.Server.GhostTypes;
+ 
+-public sealed class MindRememberBodySystem : EntitySystem
++public sealed class StoreDamageTakenOnMindSystem : EntitySystem
+ {
+     [Dependency] private readonly ContainerSystem _container = default!;
+     public override void Initialize()
+     {
+-        SubscribeLocalEvent<MindRememberBodyComponent, AttemptEntityGibEvent>(SaveBodyOnGib);
+-        SubscribeLocalEvent<MindRememberBodyComponent, DamageThresholdReached>(SaveBodyOnThreshold);
++        SubscribeLocalEvent<StoreDamageTakenOnMindComponent, AttemptEntityGibEvent>(SaveBodyOnGib);
++        SubscribeLocalEvent<StoreDamageTakenOnMindComponent, DamageThresholdReached>(SaveBodyOnThreshold);
+     }
+ 
+     /// <summary>
+     /// Saves the damage of a player body inside their MindComponent after an attempted gib event
+     /// </summary>
+-    private void SaveBodyOnGib(Entity<MindRememberBodyComponent> ent, ref AttemptEntityGibEvent args)
++    private void SaveBodyOnGib(Entity<StoreDamageTakenOnMindComponent> ent, ref AttemptEntityGibEvent args)
+     {
+         if (!_container.TryGetContainingContainer(ent.Owner, out var container)
+             || !TryComp<DamageableComponent>(container.Owner, out var damageable)
+@@ -34,7 +35,7 @@ private void SaveBodyOnGib(Entity<MindRememberBodyComponent> ent, ref AttemptEnt
+     /// <summary>
+     /// Saves the damage of a player body inside their MindComponent after a damage threshold event
+     /// </summary>
+-    private void SaveBodyOnThreshold(Entity<MindRememberBodyComponent> ent, ref DamageThresholdReached args)
++    private void SaveBodyOnThreshold(Entity<StoreDamageTakenOnMindComponent> ent, ref DamageThresholdReached args)
+     {
+         if (!TryComp<DamageableComponent>(ent.Owner, out var damageable)
+             || !TryComp<MindContainerComponent>(ent.Owner, out var mindContainer)
+diff --git a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs b/Content.Shared/GhostTypes/GhostSpriteStateComponent.cs
+similarity index 59%
+rename from Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
+rename to Content.Shared/GhostTypes/GhostSpriteStateComponent.cs
+index acb861fc7365..f200f5cca30c 100644
+--- a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
++++ b/Content.Shared/GhostTypes/GhostSpriteStateComponent.cs
+@@ -1,9 +1,15 @@
++<<<<<<<< HEAD:Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
+ namespace Content.Shared.Ghost.GhostSpriteStateSelection;
++========
++using Robust.Shared.GameStates;
++
++namespace Content.Shared.GhostTypes;
++>>>>>>>> 75fca03bb1 (renaming and moving stuff to shared):Content.Shared/GhostTypes/GhostSpriteStateComponent.cs
+ 
+ /// <summary>
+ /// Changes the entity sprite according to damage taken
+ /// </summary>
+-[RegisterComponent]
++[RegisterComponent, NetworkedComponent]
+ public sealed partial class GhostSpriteStateComponent : Component
+ {
+     /// <summary>
+diff --git a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs b/Content.Shared/GhostTypes/GhostSpriteStateSystem.cs
+similarity index 98%
+rename from Content.Server/GhostTypes/GhostSpriteStateSystem.cs
+rename to Content.Shared/GhostTypes/GhostSpriteStateSystem.cs
+index 84083513680f..5e4eb3f16a25 100644
+--- a/Content.Server/GhostTypes/GhostSpriteStateSystem.cs
++++ b/Content.Shared/GhostTypes/GhostSpriteStateSystem.cs
+@@ -3,7 +3,7 @@
+ using Content.Shared.Mind;
+ using Robust.Shared.Random;
+ 
+-namespace Content.Server.GhostTypes;
++namespace Content.Shared.GhostTypes;
+ 
+ public sealed class GhostSpriteStateSystem : EntitySystem
+ {
+diff --git a/Content.Shared/GhostTypes/StoreDamageTakenOnMindComponent.cs b/Content.Shared/GhostTypes/StoreDamageTakenOnMindComponent.cs
+new file mode 100644
+index 000000000000..d1b2682e17ec
+--- /dev/null
++++ b/Content.Shared/GhostTypes/StoreDamageTakenOnMindComponent.cs
+@@ -0,0 +1,9 @@
++using Robust.Shared.GameStates;
++
++namespace Content.Shared.GhostTypes;
++
++/// <summary>
++/// Stores the damage an entity took before that body is destroyed in their mind component
++/// </summary>
++[RegisterComponent, NetworkedComponent]
++public sealed partial class StoreDamageTakenOnMindComponent : Component;
+diff --git a/Content.Shared/Mind/MindComponent.cs b/Content.Shared/Mind/MindComponent.cs
+index 9c624313cc6b..d27ee18f8a90 100644
+--- a/Content.Shared/Mind/MindComponent.cs
++++ b/Content.Shared/Mind/MindComponent.cs
+@@ -168,13 +168,13 @@ public sealed partial class MindComponent : Component
+     public LocId? Subtype;
+ 
+     /// <summary>
+-    /// Entity damage stored by the MindRememberBodySystem, indexed by the DamageableSystem.
++    /// Entity damage stored by the StoreDamageTakenOnMind, indexed by the DamageableSystem.
+     /// </summary>
+     [DataField]
+     public Dictionary<string, FixedPoint2>? DamagePerGroup;
+ 
+     /// <summary>
+-    /// Collection of possible damage types, stored by the MindRememberBodySystem.
++    /// Collection of possible damage types, stored by the StoreDamageTakenOnMind.
+     /// </summary>
+     [DataField]
+     public DamageSpecifier? Damage;
+diff --git a/Resources/Prototypes/Body/Parts/base.yml b/Resources/Prototypes/Body/Parts/base.yml
+index c9be516443e4..2b65fd288bad 100644
+--- a/Resources/Prototypes/Body/Parts/base.yml
++++ b/Resources/Prototypes/Body/Parts/base.yml
+@@ -40,7 +40,7 @@
+     endSound:
+       path: /Audio/_Shitmed/Medical/Surgery/organ2.ogg
+   - type: Gibbable
+-  - type: MindRememberBody
++  - type: StoreDamageTakenOnMind
+   - type: ContainerContainer
+     containers:
+       bodypart: !type:Container
+diff --git a/Resources/Prototypes/Entities/Mobs/base.yml b/Resources/Prototypes/Entities/Mobs/base.yml
+index ed6709afdce7..06cd217e7624 100644
+--- a/Resources/Prototypes/Entities/Mobs/base.yml
++++ b/Resources/Prototypes/Entities/Mobs/base.yml
+@@ -192,7 +192,7 @@
+       - ActionCritSuccumb
+       - ActionCritFakeDeath
+       - ActionCritLastWords
+-  - type: MindRememberBody
++  - type: StoreDamageTakenOnMind
+   - type: Deathgasp
+   - type: HealthExaminable
+     examinableTypes:
+
+From 1f7c1f647b610d9d223a4fd6e169cfc639032284 Mon Sep 17 00:00:00 2001
+From: Thinbug <ringingsince1997@gmail.com>
+Date: Fri, 26 Sep 2025 23:28:25 -0300
+Subject: [PATCH 27/29] comment fixiees
+
+---
+ Content.Shared/GhostTypes/GhostSpriteStateComponent.cs | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Content.Shared/GhostTypes/GhostSpriteStateComponent.cs b/Content.Shared/GhostTypes/GhostSpriteStateComponent.cs
+index f200f5cca30c..9a760fb91aff 100644
+--- a/Content.Shared/GhostTypes/GhostSpriteStateComponent.cs
++++ b/Content.Shared/GhostTypes/GhostSpriteStateComponent.cs
+@@ -8,6 +8,7 @@ namespace Content.Shared.GhostTypes;
+ 
+ /// <summary>
+ /// Changes the entity sprite according to damage taken
++/// Slash may be shown by cuts and slashes on the ghost, Heat as flames, Cold as frostbite and ice, Radiation as a green glow, etc.
+ /// </summary>
+ [RegisterComponent, NetworkedComponent]
+ public sealed partial class GhostSpriteStateComponent : Component
+@@ -15,6 +16,7 @@ public sealed partial class GhostSpriteStateComponent : Component
+     /// <summary>
+     /// Prefix the GhostSpriteStateSystem will add to the name of the damage type it chooses.
+     /// It should be identical to the prefix of the entity optional damage sprites.
++    /// (Example) Ghosts sprites currently use a "ghost_" prefix for their optional damage states.
+     /// </summary>
+     [DataField]
+     public string prefix = "";
+
+From e9893db5ce2578456c8cc6bc4bbba4ae1c920395 Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Sat, 11 Oct 2025 00:26:09 +0100
+Subject: [PATCH 28/29] #37949 final cherry pick
+
+---
+ Content.Server/Ghost/GhostSystem.cs           |  2 +-
+ .../StoreDamageTakenOnMindSystem.cs           | 14 +++---
+ .../GhostSpriteStateSystem.cs                 | 50 -------------------
+ .../GhostTypes/GhostSpriteStateComponent.cs   |  6 +--
+ .../GhostTypes/GhostSpriteStateSystem.cs      | 14 +++---
+ .../GhostTypes/LastBodyDamageComponent.cs     | 23 +++++++++
+ Content.Shared/Mind/MindComponent.cs          | 12 -----
+ 7 files changed, 40 insertions(+), 81 deletions(-)
+ delete mode 100644 Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateSystem.cs
+ create mode 100644 Content.Shared/GhostTypes/LastBodyDamageComponent.cs
+
+diff --git a/Content.Server/Ghost/GhostSystem.cs b/Content.Server/Ghost/GhostSystem.cs
+index 7aefc8924294..818bb52def3a 100644
+--- a/Content.Server/Ghost/GhostSystem.cs
++++ b/Content.Server/Ghost/GhostSystem.cs
+@@ -589,7 +589,7 @@ private bool IsValidSpawnPosition(EntityCoordinates? spawnPosition)
+ 
+             if (TryComp<GhostSpriteStateComponent>(ghost, out var state))
+             {
+-                _ghostState.SetGhostSprite((ghost, state), mind.Comp);
++                _ghostState.SetGhostSprite((ghost, state), mind);
+             }
+ 
+             // Try setting the ghost entity name to either the character name or the player name.
+diff --git a/Content.Server/GhostTypes/StoreDamageTakenOnMindSystem.cs b/Content.Server/GhostTypes/StoreDamageTakenOnMindSystem.cs
+index 6357128aa3e1..6d734955396c 100644
+--- a/Content.Server/GhostTypes/StoreDamageTakenOnMindSystem.cs
++++ b/Content.Server/GhostTypes/StoreDamageTakenOnMindSystem.cs
+@@ -25,11 +25,12 @@ private void SaveBodyOnGib(Entity<StoreDamageTakenOnMindComponent> ent, ref Atte
+         if (!_container.TryGetContainingContainer(ent.Owner, out var container)
+             || !TryComp<DamageableComponent>(container.Owner, out var damageable)
+             || !TryComp<MindContainerComponent>(container.Owner, out var mindContainer)
+-            || !TryComp<MindComponent>(mindContainer.Mind, out var mind))
++            || !TryComp<MindComponent>(mindContainer.Mind, out _))
+             return;
+ 
+-        mind.DamagePerGroup = damageable.DamagePerGroup;
+-        mind.Damage = damageable.Damage;
++        EnsureComp<LastBodyDamageComponent>(mindContainer.Mind.Value, out var storedDamage);
++        storedDamage.DamagePerGroup = damageable.DamagePerGroup;
++        storedDamage.Damage = damageable.Damage;
+     }
+ 
+     /// <summary>
+@@ -39,10 +40,11 @@ private void SaveBodyOnThreshold(Entity<StoreDamageTakenOnMindComponent> ent, re
+     {
+         if (!TryComp<DamageableComponent>(ent.Owner, out var damageable)
+             || !TryComp<MindContainerComponent>(ent.Owner, out var mindContainer)
+-            || !TryComp<MindComponent>(mindContainer.Mind, out var mind))
++            || !TryComp<MindComponent>(mindContainer.Mind, out _))
+             return;
+ 
+-        mind.DamagePerGroup = damageable.DamagePerGroup;
+-        mind.Damage = damageable.Damage;
++        EnsureComp<LastBodyDamageComponent>(mindContainer.Mind.Value, out var storedDamage);
++        storedDamage.DamagePerGroup = damageable.DamagePerGroup;
++        storedDamage.Damage = damageable.Damage;
+     }
+ }
+diff --git a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateSystem.cs b/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateSystem.cs
+deleted file mode 100644
+index c90ab41395d6..000000000000
+--- a/Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateSystem.cs
++++ /dev/null
+@@ -1,50 +0,0 @@
+-using Content.Shared.Damage;
+-using Robust.Shared.Random;
+-using Robust.Shared.Timing;
+-
+-namespace Content.Shared.Ghost.GhostSpriteStateSelection;
+-
+-public sealed class GhostSpriteStateSystem : EntitySystem
+-{
+-    [Dependency] private readonly DamageableSystem _damageable = default!;
+-    [Dependency] private readonly IGameTiming _timing = default!;
+-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+-
+-    public override void Initialize()
+-    {
+-        base.Initialize();
+-
+-        SubscribeLocalEvent<GhostSpriteStateComponent, GhostSpriteEvent>(SetGhostSprite);
+-    }
+-
+-    private void SetGhostSprite(Entity<GhostSpriteStateComponent> ent, ref GhostSpriteEvent args)
+-    {
+-        if(!TryComp<AppearanceComponent>(ent, out var appearance))
+-            return;
+-
+-        var spriteState = "";
+-        var random = new System.Random((int)_timing.CurTick.Value);
+-
+-        if (TryComp<DamageableComponent>(args.Uid, out var damageComp))
+-        {
+-            var highestType = _damageable.GetHighestDamageTypes(damageComp);
+-            highestType.Sort();
+-            //check length
+-            if (highestType.Count == 1) // if its 1, just use that sprite
+-            {
+-                spriteState = highestType[0];
+-            }
+-            else if (highestType is ["Blunt", "Heat", "Piercing"])  // specific case for explosions
+-            {
+-                spriteState = "Explosion";
+-            }
+-            else // if it doesn't fall into any specific category, choose randomly
+-            {
+-                spriteState = highestType[random.Next(0, highestType.Count - 1)];
+-            }
+-        }
+-
+-        var properStateName = (ent.Comp.prefix + spriteState).ToLower();
+-        _appearance.SetData(ent, GhostVisuals.Damage, properStateName, appearance);
+-    }
+-}
+diff --git a/Content.Shared/GhostTypes/GhostSpriteStateComponent.cs b/Content.Shared/GhostTypes/GhostSpriteStateComponent.cs
+index 9a760fb91aff..6210eb9e32a2 100644
+--- a/Content.Shared/GhostTypes/GhostSpriteStateComponent.cs
++++ b/Content.Shared/GhostTypes/GhostSpriteStateComponent.cs
+@@ -1,10 +1,6 @@
+-<<<<<<<< HEAD:Content.Shared/Ghost/GhostSpriteStateSelection/GhostSpriteStateComponent.cs
+-namespace Content.Shared.Ghost.GhostSpriteStateSelection;
+-========
+ using Robust.Shared.GameStates;
+ 
+ namespace Content.Shared.GhostTypes;
+->>>>>>>> 75fca03bb1 (renaming and moving stuff to shared):Content.Shared/GhostTypes/GhostSpriteStateComponent.cs
+ 
+ /// <summary>
+ /// Changes the entity sprite according to damage taken
+@@ -19,5 +15,5 @@ public sealed partial class GhostSpriteStateComponent : Component
+     /// (Example) Ghosts sprites currently use a "ghost_" prefix for their optional damage states.
+     /// </summary>
+     [DataField]
+-    public string prefix = "";
++    public string Prefix;
+ }
+diff --git a/Content.Shared/GhostTypes/GhostSpriteStateSystem.cs b/Content.Shared/GhostTypes/GhostSpriteStateSystem.cs
+index 5e4eb3f16a25..5ac773d6553f 100644
+--- a/Content.Shared/GhostTypes/GhostSpriteStateSystem.cs
++++ b/Content.Shared/GhostTypes/GhostSpriteStateSystem.cs
+@@ -12,21 +12,21 @@ public sealed class GhostSpriteStateSystem : EntitySystem
+     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+ 
+     /// <summary>
+-    /// It goes trough an entity damage and assigns them a sprite according to the highest damage type/s
++    /// It goes through an entity damage and assigns them a sprite according to the highest damage type/s
+     /// </summary>
+-    public void SetGhostSprite(Entity<GhostSpriteStateComponent> ent, MindComponent mind)
++    public void SetGhostSprite(Entity<GhostSpriteStateComponent> ent, EntityUid mind)
+     {
+-        if (!TryComp<AppearanceComponent>(ent, out var appearance))
++        if (!TryComp<AppearanceComponent>(ent, out var appearance) || !TryComp<MindComponent>(mind, out var mindComp))
+             return;
+ 
+         List<string> highestType;
+-        if (TryComp<DamageableComponent>(mind.CurrentEntity, out var damageComp))
++        if (TryComp<DamageableComponent>(mindComp.CurrentEntity, out var damageComp))
+         {
+             highestType = _damageable.GetHighestDamageTypes(damageComp.DamagePerGroup, damageComp.Damage);
+         }
+-        else if (mind.DamagePerGroup != null && mind.Damage != null)
++        else if (TryComp<LastBodyDamageComponent>(mind, out var storedDamage) && storedDamage.DamagePerGroup != null && storedDamage.Damage != null)
+         {
+-            highestType = _damageable.GetHighestDamageTypes(mind.DamagePerGroup, mind.Damage);
++            highestType = _damageable.GetHighestDamageTypes(storedDamage.DamagePerGroup, storedDamage.Damage);
+         }
+         else
+             return;
+@@ -34,7 +34,7 @@ public void SetGhostSprite(Entity<GhostSpriteStateComponent> ent, MindComponent
+         if (highestType.Count == 0)
+             return;
+ 
+-        highestType.Sort();  // sort if alphabetically
++        highestType.Sort();
+ 
+         string spriteState;
+         if (highestType is ["Blunt", "Heat", "Piercing"])  // special case for explosions
+diff --git a/Content.Shared/GhostTypes/LastBodyDamageComponent.cs b/Content.Shared/GhostTypes/LastBodyDamageComponent.cs
+new file mode 100644
+index 000000000000..a6c2773611da
+--- /dev/null
++++ b/Content.Shared/GhostTypes/LastBodyDamageComponent.cs
+@@ -0,0 +1,23 @@
++using Content.Shared.Damage;
++using Content.Goobstation.Maths.FixedPoint;
++
++namespace Content.Shared.GhostTypes;
++
++/// <summary>
++/// Added to the Mind of an entity by the StoreDamageTakenOnMindSystem, allowing storage of the damage values their body had.
++/// </summary>
++[RegisterComponent]
++public sealed partial class LastBodyDamageComponent : Component
++{
++    /// <summary>
++    /// Entity damage stored by the StoreDamageTakenOnMind, indexed by the DamageableSystem.
++    /// </summary>
++    [DataField]
++    public Dictionary<string, FixedPoint2>? DamagePerGroup;
++
++    /// <summary>
++    /// Collection of possible damage types, stored by the StoreDamageTakenOnMind.
++    /// </summary>
++    [DataField]
++    public DamageSpecifier? Damage;
++}
+diff --git a/Content.Shared/Mind/MindComponent.cs b/Content.Shared/Mind/MindComponent.cs
+index d27ee18f8a90..8c42dbd4eaf4 100644
+--- a/Content.Shared/Mind/MindComponent.cs
++++ b/Content.Shared/Mind/MindComponent.cs
+@@ -166,16 +166,4 @@ public sealed partial class MindComponent : Component
+     /// </summary>
+     [DataField]
+     public LocId? Subtype;
+-
+-    /// <summary>
+-    /// Entity damage stored by the StoreDamageTakenOnMind, indexed by the DamageableSystem.
+-    /// </summary>
+-    [DataField]
+-    public Dictionary<string, FixedPoint2>? DamagePerGroup;
+-
+-    /// <summary>
+-    /// Collection of possible damage types, stored by the StoreDamageTakenOnMind.
+-    /// </summary>
+-    [DataField]
+-    public DamageSpecifier? Damage;
+ }
+
+From 41a408e27e122d28292e3058e87f3e56965949b9 Mon Sep 17 00:00:00 2001
+From: Murphy Ibbs <Murphyibbs@gmail.com>
+Date: Sun, 12 Oct 2025 22:55:00 +0100
+Subject: [PATCH 29/29] Goobstation namespace award
+
+---
+ .../GhostTypes/StoreDamageTakenOnMindSystem.cs                | 4 ++--
+ .../GhostTypes/GhostSpriteStateComponent.cs                   | 2 +-
+ .../GhostTypes/GhostSpriteStateSystem.cs                      | 2 +-
+ .../GhostTypes/LastBodyDamageComponent.cs                     | 2 +-
+ .../GhostTypes/StoreDamageTakenOnMindComponent.cs             | 2 +-
+ Content.Server/Ghost/GhostSystem.cs                           | 2 +-
+ 6 files changed, 7 insertions(+), 7 deletions(-)
+ rename {Content.Server => Content.Goobstation.Server}/GhostTypes/StoreDamageTakenOnMindSystem.cs (95%)
+ rename {Content.Shared => Content.Goobstation.Shared}/GhostTypes/GhostSpriteStateComponent.cs (93%)
+ rename {Content.Shared => Content.Goobstation.Shared}/GhostTypes/GhostSpriteStateSystem.cs (97%)
+ rename {Content.Shared => Content.Goobstation.Shared}/GhostTypes/LastBodyDamageComponent.cs (93%)
+ rename {Content.Shared => Content.Goobstation.Shared}/GhostTypes/StoreDamageTakenOnMindComponent.cs (84%)
+
+diff --git a/Content.Server/GhostTypes/StoreDamageTakenOnMindSystem.cs b/Content.Goobstation.Server/GhostTypes/StoreDamageTakenOnMindSystem.cs
+similarity index 95%
+rename from Content.Server/GhostTypes/StoreDamageTakenOnMindSystem.cs
+rename to Content.Goobstation.Server/GhostTypes/StoreDamageTakenOnMindSystem.cs
+index 6d734955396c..36f0fcabdd1a 100644
+--- a/Content.Server/GhostTypes/StoreDamageTakenOnMindSystem.cs
++++ b/Content.Goobstation.Server/GhostTypes/StoreDamageTakenOnMindSystem.cs
+@@ -1,12 +1,12 @@
+ using Content.Server.Destructible;
+ using Content.Shared.Damage;
+-using Content.Shared.GhostTypes;
++using Content.Goobstation.Shared.GhostTypes;
+ using Content.Shared.Gibbing.Events;
+ using Content.Shared.Mind;
+ using Content.Shared.Mind.Components;
+ using Robust.Server.Containers;
+ 
+-namespace Content.Server.GhostTypes;
++namespace Content.Goobstation.Server.GhostTypes;
+ 
+ public sealed class StoreDamageTakenOnMindSystem : EntitySystem
+ {
+diff --git a/Content.Shared/GhostTypes/GhostSpriteStateComponent.cs b/Content.Goobstation.Shared/GhostTypes/GhostSpriteStateComponent.cs
+similarity index 93%
+rename from Content.Shared/GhostTypes/GhostSpriteStateComponent.cs
+rename to Content.Goobstation.Shared/GhostTypes/GhostSpriteStateComponent.cs
+index 6210eb9e32a2..da011275d8fd 100644
+--- a/Content.Shared/GhostTypes/GhostSpriteStateComponent.cs
++++ b/Content.Goobstation.Shared/GhostTypes/GhostSpriteStateComponent.cs
+@@ -1,6 +1,6 @@
+ using Robust.Shared.GameStates;
+ 
+-namespace Content.Shared.GhostTypes;
++namespace Content.Goobstation.Shared.GhostTypes;
+ 
+ /// <summary>
+ /// Changes the entity sprite according to damage taken
+diff --git a/Content.Shared/GhostTypes/GhostSpriteStateSystem.cs b/Content.Goobstation.Shared/GhostTypes/GhostSpriteStateSystem.cs
+similarity index 97%
+rename from Content.Shared/GhostTypes/GhostSpriteStateSystem.cs
+rename to Content.Goobstation.Shared/GhostTypes/GhostSpriteStateSystem.cs
+index 5ac773d6553f..990ca9cbbfd9 100644
+--- a/Content.Shared/GhostTypes/GhostSpriteStateSystem.cs
++++ b/Content.Goobstation.Shared/GhostTypes/GhostSpriteStateSystem.cs
+@@ -3,7 +3,7 @@
+ using Content.Shared.Mind;
+ using Robust.Shared.Random;
+ 
+-namespace Content.Shared.GhostTypes;
++namespace Content.Goobstation.Shared.GhostTypes;
+ 
+ public sealed class GhostSpriteStateSystem : EntitySystem
+ {
+diff --git a/Content.Shared/GhostTypes/LastBodyDamageComponent.cs b/Content.Goobstation.Shared/GhostTypes/LastBodyDamageComponent.cs
+similarity index 93%
+rename from Content.Shared/GhostTypes/LastBodyDamageComponent.cs
+rename to Content.Goobstation.Shared/GhostTypes/LastBodyDamageComponent.cs
+index a6c2773611da..3820f4bebf74 100644
+--- a/Content.Shared/GhostTypes/LastBodyDamageComponent.cs
++++ b/Content.Goobstation.Shared/GhostTypes/LastBodyDamageComponent.cs
+@@ -1,7 +1,7 @@
+ using Content.Shared.Damage;
+ using Content.Goobstation.Maths.FixedPoint;
+ 
+-namespace Content.Shared.GhostTypes;
++namespace Content.Goobstation.Shared.GhostTypes;
+ 
+ /// <summary>
+ /// Added to the Mind of an entity by the StoreDamageTakenOnMindSystem, allowing storage of the damage values their body had.
+diff --git a/Content.Shared/GhostTypes/StoreDamageTakenOnMindComponent.cs b/Content.Goobstation.Shared/GhostTypes/StoreDamageTakenOnMindComponent.cs
+similarity index 84%
+rename from Content.Shared/GhostTypes/StoreDamageTakenOnMindComponent.cs
+rename to Content.Goobstation.Shared/GhostTypes/StoreDamageTakenOnMindComponent.cs
+index d1b2682e17ec..bf4fd203b345 100644
+--- a/Content.Shared/GhostTypes/StoreDamageTakenOnMindComponent.cs
++++ b/Content.Goobstation.Shared/GhostTypes/StoreDamageTakenOnMindComponent.cs
+@@ -1,6 +1,6 @@
+ using Robust.Shared.GameStates;
+ 
+-namespace Content.Shared.GhostTypes;
++namespace Content.Goobstation.Shared.GhostTypes;
+ 
+ /// <summary>
+ /// Stores the damage an entity took before that body is destroyed in their mind component
+diff --git a/Content.Server/Ghost/GhostSystem.cs b/Content.Server/Ghost/GhostSystem.cs
+index 818bb52def3a..11cb3189b4cb 100644
+--- a/Content.Server/Ghost/GhostSystem.cs
++++ b/Content.Server/Ghost/GhostSystem.cs
+@@ -91,6 +91,7 @@
+ using System.Linq;
+ using System.Numerics;
+ using Content.Server._Goobstation.Wizard.Systems;
++using Content.Goobstation.Shared.GhostTypes;
+ using Content.Server.Administration.Logs;
+ using Content.Server.Chat.Managers;
+ using Content.Server.GameTicking;
+@@ -108,7 +109,6 @@
+ using Content.Goobstation.Maths.FixedPoint;
+ using Content.Shared.Follower;
+ using Content.Shared.Ghost;
+-using Content.Shared.GhostTypes;
+ using Content.Shared.Mind;
+ using Content.Shared.Mind.Components;
+ using Content.Shared.Mobs;

@@ -22,10 +22,10 @@
 
 - type: customGhost
   id: duga-ghost
-  ckey: Duga
+  ckey: suziford
   sprite: /Textures/_Reserve/CustomGhosts/duga-ghost.rsi
   alpha: 0.9
-  ghostName: Duga
+  ghostName: сузи
   ghostDescription: Порядок направлений сохранён намеренно. Это метаирония. Он наблюдает сквозь стены, но не туда.
 
 - type: customGhost
@@ -38,8 +38,8 @@
 
 - type: customGhost
   id: already-taken-ghost
-  ckey: is_already_taken
+  ckey: moloyvaxa
   sprite: /Textures/_Reserve/CustomGhosts/already-taken-ghost.rsi
   alpha: 0.8
-  ghostName: Раймонд Роберт (Is_already_taken)
+  ghostName: маляха
   ghostDescription: РП Аллах
