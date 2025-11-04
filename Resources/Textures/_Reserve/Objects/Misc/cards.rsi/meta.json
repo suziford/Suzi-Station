@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "copyright": "EvacPod card backs from White Dream",
+  "license": "CC-BY-SA-3.0",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "singlecard_down_ep_baggage"
+    },
+    {
+      "name": "singlecard_down_ep_biology"
+    },
+    {
+      "name": "singlecard_down_ep_catastrophe"
+    },
+    {
+      "name": "singlecard_down_ep_danger"
+    },
+    {
+      "name": "singlecard_down_ep_fact"
+    },
+    {
+      "name": "singlecard_down_ep_health"
+    },
+    {
+      "name": "singlecard_down_ep_hobby"
+    },
+    {
+      "name": "singlecard_down_ep_profession"
+    },
+    {
+      "name": "singlecard_down_ep_shuttle"
+    },
+    {
+      "name": "singlecard_down_ep_special"
+    }
+  ]
+}
