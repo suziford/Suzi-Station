@@ -6,7 +6,7 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     layers:
     - state: EvacPod_profession_box
     - state: EvacPod_profession_box_open
@@ -26,7 +26,7 @@
   name: deck of EvacPod cards (Profession)
   components:
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     layers:
     - state: deck_ep_profession_full
   - type: CardStack
@@ -93,7 +93,7 @@
   - type: Card
     name: card-ep_profession_agent
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_agent
 
 - type: entity
@@ -104,7 +104,7 @@
   - type: Card
     name: card-ep_profession_archaeologist
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_archaeologist
 
 - type: entity
@@ -115,7 +115,7 @@
   - type: Card
     name: card-ep_profession_autoMechanic
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_autoMechanic
 
 - type: entity
@@ -126,7 +126,7 @@
   - type: Card
     name: card-ep_profession_biologist
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_biologist
 
 - type: entity
@@ -137,7 +137,7 @@
   - type: Card
     name: card-ep_profession_builder
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_builder
 
 - type: entity
@@ -148,7 +148,7 @@
   - type: Card
     name: card-ep_profession_chef
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_chef
 
 - type: entity
@@ -159,7 +159,7 @@
   - type: Card
     name: card-ep_profession_chemist
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_chemist
 
 - type: entity
@@ -170,7 +170,7 @@
   - type: Card
     name: card-ep_profession_coach
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_coach
 
 - type: entity
@@ -181,7 +181,7 @@
   - type: Card
     name: card-ep_profession_dental
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_dental
 
 - type: entity
@@ -192,7 +192,7 @@
   - type: Card
     name: card-ep_profession_designer
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_designer
 
 - type: entity
@@ -203,7 +203,7 @@
   - type: Card
     name: card-ep_profession_detective
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_detective
 
 - type: entity
@@ -214,7 +214,7 @@
   - type: Card
     name: card-ep_profession_ecologist
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_ecologist
 
 - type: entity
@@ -225,7 +225,7 @@
   - type: Card
     name: card-ep_profession_electric
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_electric
 
 - type: entity
@@ -236,7 +236,7 @@
   - type: Card
     name: card-ep_profession_ethnographer
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_ethnographer
 
 - type: entity
@@ -247,7 +247,7 @@
   - type: Card
     name: card-ep_profession_farmer
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_farmer
 
 - type: entity
@@ -258,7 +258,7 @@
   - type: Card
     name: card-ep_profession_firefighter
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_firefighter
 
 - type: entity
@@ -269,7 +269,7 @@
   - type: Card
     name: card-ep_profession_guide
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_guide
 
 - type: entity
@@ -280,7 +280,7 @@
   - type: Card
     name: card-ep_profession_hacker
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_hacker
 
 - type: entity
@@ -291,7 +291,7 @@
   - type: Card
     name: card-ep_profession_handyman
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_handyman
 
 - type: entity
@@ -302,7 +302,7 @@
   - type: Card
     name: card-ep_profession_historian
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_historian
 
 - type: entity
@@ -313,7 +313,7 @@
   - type: Card
     name: card-ep_profession_homeopathist
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_homeopathist
 
 - type: entity
@@ -324,7 +324,7 @@
   - type: Card
     name: card-ep_profession_housewife
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_housewife
 
 - type: entity
@@ -335,7 +335,7 @@
   - type: Card
     name: card-ep_profession_journalist
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_journalist
 
 - type: entity
@@ -346,7 +346,7 @@
   - type: Card
     name: card-ep_profession_judge
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_judge
 
 - type: entity
@@ -357,7 +357,7 @@
   - type: Card
     name: card-ep_profession_lawyer
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_lawyer
 
 - type: entity
@@ -368,7 +368,7 @@
   - type: Card
     name: card-ep_profession_marketer
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_marketer
 
 - type: entity
@@ -379,7 +379,7 @@
   - type: Card
     name: card-ep_profession_military
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_military
 
 - type: entity
@@ -390,7 +390,7 @@
   - type: Card
     name: card-ep_profession_model
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_model
 
 - type: entity
@@ -401,7 +401,7 @@
   - type: Card
     name: card-ep_profession_nurse
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_nurse
 
 - type: entity
@@ -412,7 +412,7 @@
   - type: Card
     name: card-ep_profession_paparazzi
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_paparazzi
 
 - type: entity
@@ -423,7 +423,7 @@
   - type: Card
     name: card-ep_profession_philosopher
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_philosopher
 
 - type: entity
@@ -434,7 +434,7 @@
   - type: Card
     name: card-ep_profession_physicist
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_physicist
 
 - type: entity
@@ -445,7 +445,7 @@
   - type: Card
     name: card-ep_profession_pilotEngineer
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_pilotEngineer
 
 - type: entity
@@ -456,7 +456,7 @@
   - type: Card
     name: card-ep_profession_poacher
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_poacher
 
 - type: entity
@@ -467,7 +467,7 @@
   - type: Card
     name: card-ep_profession_police
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_police
 
 - type: entity
@@ -478,7 +478,7 @@
   - type: Card
     name: card-ep_profession_programmer
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_programmer
 
 - type: entity
@@ -489,7 +489,7 @@
   - type: Card
     name: card-ep_profession_psychic
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_psychic
 
 - type: entity
@@ -500,7 +500,7 @@
   - type: Card
     name: card-ep_profession_psychologist
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_psychologist
 
 - type: entity
@@ -511,7 +511,7 @@
   - type: Card
     name: card-ep_profession_quack
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_quack
 
 - type: entity
@@ -522,7 +522,7 @@
   - type: Card
     name: card-ep_profession_roboticist
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_roboticist
 
 - type: entity
@@ -533,7 +533,7 @@
   - type: Card
     name: card-ep_profession_seller
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_seller
 
 - type: entity
@@ -544,7 +544,7 @@
   - type: Card
     name: card-ep_profession_sexologist
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_sexologist
 
 - type: entity
@@ -555,7 +555,7 @@
   - type: Card
     name: card-ep_profession_surgeon
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_surgeon
 
 - type: entity
@@ -566,7 +566,7 @@
   - type: Card
     name: card-ep_profession_tattoo
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_tattoo
 
 - type: entity
@@ -577,7 +577,7 @@
   - type: Card
     name: card-ep_profession_thief
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_thief
 
 - type: entity
@@ -588,7 +588,7 @@
   - type: Card
     name: card-ep_profession_translator
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_translator
 
 - type: entity
@@ -599,7 +599,7 @@
   - type: Card
     name: card-ep_profession_videoEngineer
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_videoEngineer
 
 - type: entity
@@ -610,7 +610,7 @@
   - type: Card
     name: card-ep_profession_virologist
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_virologist
 
 - type: entity
@@ -621,7 +621,7 @@
   - type: Card
     name: card-ep_profession_woodman
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_woodman
 
 - type: entity
@@ -632,5 +632,5 @@
   - type: Card
     name: card-ep_profession_writer
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_profession_writer

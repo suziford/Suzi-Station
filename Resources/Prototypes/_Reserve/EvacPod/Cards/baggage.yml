@@ -6,7 +6,7 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     layers:
     - state: EvacPod_baggage_box
     - state: EvacPod_baggage_box_open
@@ -26,7 +26,7 @@
   name: deck of EvacPod cards (Baggage)
   components:
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     layers:
     - state: deck_ep_baggage_full
   - type: CardStack
@@ -73,7 +73,7 @@
   - type: Card
     name: card-ep_baggage_3golds
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_3golds
 
 - type: entity
@@ -84,7 +84,7 @@
   - type: Card
     name: card-ep_baggage_beartrap
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_beartrap
 
 - type: entity
@@ -95,7 +95,7 @@
   - type: Card
     name: card-ep_baggage_bookAzimov
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_bookAzimov
 
 - type: entity
@@ -106,7 +106,7 @@
   - type: Card
     name: card-ep_baggage_bookMashroom
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_bookMashroom
 
 - type: entity
@@ -117,7 +117,7 @@
   - type: Card
     name: card-ep_baggage_bow
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_bow
 
 - type: entity
@@ -128,7 +128,7 @@
   - type: Card
     name: card-ep_baggage_carpentryTools
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_carpentryTools
 
 - type: entity
@@ -139,7 +139,7 @@
   - type: Card
     name: card-ep_baggage_compas
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_compas
 
 - type: entity
@@ -150,7 +150,7 @@
   - type: Card
     name: card-ep_baggage_defib
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_defib
 
 - type: entity
@@ -161,7 +161,7 @@
   - type: Card
     name: card-ep_baggage_doll
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_doll
 
 - type: entity
@@ -172,7 +172,7 @@
   - type: Card
     name: card-ep_baggage_electric
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_electric
 
 - type: entity
@@ -183,7 +183,7 @@
   - type: Card
     name: card-ep_baggage_generator
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_generator
 
 - type: entity
@@ -194,7 +194,7 @@
   - type: Card
     name: card-ep_baggage_grain
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_grain
 
 - type: entity
@@ -205,7 +205,7 @@
   - type: Card
     name: card-ep_baggage_guitar
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_guitar
 
 - type: entity
@@ -216,7 +216,7 @@
   - type: Card
     name: card-ep_baggage_incubator
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_incubator
 
 - type: entity
@@ -227,7 +227,7 @@
   - type: Card
     name: card-ep_baggage_knifes
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_knifes
 
 - type: entity
@@ -238,7 +238,7 @@
   - type: Card
     name: card-ep_baggage_laptop
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_laptop
 
 - type: entity
@@ -249,7 +249,7 @@
   - type: Card
     name: card-ep_baggage_medicine
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_medicine
 
 - type: entity
@@ -260,7 +260,7 @@
   - type: Card
     name: card-ep_baggage_paramedic
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_paramedic
 
 - type: entity
@@ -271,7 +271,7 @@
   - type: Card
     name: card-ep_baggage_picklock
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_picklock
 
 - type: entity
@@ -282,7 +282,7 @@
   - type: Card
     name: card-ep_baggage_pistol
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_pistol
 
 - type: entity
@@ -293,7 +293,7 @@
   - type: Card
     name: card-ep_baggage_pnv
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_pnv
 
 - type: entity
@@ -304,7 +304,7 @@
   - type: Card
     name: card-ep_baggage_potato
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_potato
 
 - type: entity
@@ -315,7 +315,7 @@
   - type: Card
     name: card-ep_baggage_saplings
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_saplings
 
 - type: entity
@@ -326,7 +326,7 @@
   - type: Card
     name: card-ep_baggage_sniperRifle
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_sniperRifle
 
 - type: entity
@@ -337,7 +337,7 @@
   - type: Card
     name: card-ep_baggage_sonicScrewdriver
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_sonicScrewdriver
 
 - type: entity
@@ -348,7 +348,7 @@
   - type: Card
     name: card-ep_baggage_specos
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_specos
 
 - type: entity
@@ -359,7 +359,7 @@
   - type: Card
     name: card-ep_baggage_spiritTabletop
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_spiritTabletop
 
 - type: entity
@@ -370,7 +370,7 @@
   - type: Card
     name: card-ep_baggage_tabletop
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_tabletop
 
 - type: entity
@@ -381,7 +381,7 @@
   - type: Card
     name: card-ep_baggage_tinfoil
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_tinfoil
 
 - type: entity
@@ -392,5 +392,5 @@
   - type: Card
     name: card-ep_baggage_voodoo
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_baggage_voodoo

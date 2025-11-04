@@ -70,10 +70,12 @@ public sealed class CardSpriteSystem : EntitySystem
 
         var i = 0;
         var cards = stack.Cards.TakeLast(cardCount).ToList();
+        List<SpriteComponent> cardSprites = [];
         foreach (var card in cards)
         {
             if (!TryComp(card, out SpriteComponent? cardSprite))
                 return false;
+            cardSprites.Add(cardSprite);
             layers.AddRange(cardSprite.AllLayers.Select(layer => (i, layer)));
             i++;
         }
@@ -82,8 +84,12 @@ public sealed class CardSpriteSystem : EntitySystem
         foreach (var obj in layers)
         {
             var (cardIndex, layer) = obj;
+            var cardSprite = cardSprites[cardIndex];
             sprite.LayerSetVisible(j, true);
             sprite.LayerSetTexture(j, layer.Texture);
+            sprite.LayerSetAutoAnimated(j, layer.AutoAnimated);
+            if (cardSprite.BaseRSI != null)
+                sprite.LayerSetRSI(j, cardSprite.BaseRSI);
             sprite.LayerSetState(j, layer.RsiState.Name);
             layerFunc.Invoke((uid, sprite), cardIndex, j);
             j++;

@@ -6,7 +6,7 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     layers:
     - state: EvacPod_danger_box
     - state: EvacPod_danger_box_open
@@ -26,7 +26,7 @@
   name: deck of EvacPod cards (Danger)
   components:
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     layers:
     - state: deck_ep_danger_full
   - type: CardStack
@@ -53,7 +53,7 @@
   - type: Card
     name: card-ep_danger_flood
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_danger
 
 - type: entity
@@ -64,7 +64,7 @@
   - type: Card
     name: card-ep_danger_AI
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_danger
 
 - type: entity
@@ -75,7 +75,7 @@
   - type: Card
     name: card-ep_danger_chill
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_danger
 
 - type: entity
@@ -86,7 +86,7 @@
   - type: Card
     name: card-ep_danger_asteroid
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_danger
 
 - type: entity
@@ -97,7 +97,7 @@
   - type: Card
     name: card-ep_danger_mouse
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_danger
 
 - type: entity
@@ -108,7 +108,7 @@
   - type: Card
     name: card-ep_danger_kitchen
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_danger
 
 - type: entity
@@ -119,7 +119,7 @@
   - type: Card
     name: card-ep_danger_carps
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_danger
 
 - type: entity
@@ -130,7 +130,7 @@
   - type: Card
     name: card-ep_danger_psi
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_danger
 
 - type: entity
@@ -141,7 +141,7 @@
   - type: Card
     name: card-ep_danger_ghosts
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_danger
 
 - type: entity
@@ -152,5 +152,5 @@
   - type: Card
     name: card-ep_danger_virus
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_danger

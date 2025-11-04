@@ -6,7 +6,7 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     layers:
     - state: EvacPod_health_box
     - state: EvacPod_health_box_open
@@ -26,7 +26,7 @@
   name: deck of EvacPod cards (Health)
   components:
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     layers:
     - state: deck_ep_health_full
   - type: CardStack
@@ -73,7 +73,7 @@
   - type: Card
     name: card-ep_health_healthy
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_healthy
 
 - type: entity
@@ -84,7 +84,7 @@
   - type: Card
     name: card-ep_health_alcoholism
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_alcoholism
 
 - type: entity
@@ -95,7 +95,7 @@
   - type: Card
     name: card-ep_health_blind
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_blind
 
 - type: entity
@@ -106,7 +106,7 @@
   - type: Card
     name: card-ep_health_coffeeAddiction
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_coffeeAddiction
 
 - type: entity
@@ -117,7 +117,7 @@
   - type: Card
     name: card-ep_health_deaf
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_deaf
 
 - type: entity
@@ -128,7 +128,7 @@
   - type: Card
     name: card-ep_health_depression
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_depression
 
 - type: entity
@@ -139,7 +139,7 @@
   - type: Card
     name: card-ep_health_diarrhea
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_diarrhea
 
 - type: entity
@@ -150,7 +150,7 @@
   - type: Card
     name: card-ep_health_drugAddiction
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_drugAddiction
 
 - type: entity
@@ -161,7 +161,7 @@
   - type: Card
     name: card-ep_health_dwarf
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_dwarf
 
 - type: entity
@@ -172,7 +172,7 @@
   - type: Card
     name: card-ep_health_gamingAddiction
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_gamingAddiction
 
 - type: entity
@@ -183,7 +183,7 @@
   - type: Card
     name: card-ep_health_giga
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_giga
 
 - type: entity
@@ -194,7 +194,7 @@
   - type: Card
     name: card-ep_health_hairiness
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_hairiness
 
 - type: entity
@@ -205,7 +205,7 @@
   - type: Card
     name: card-ep_health_hallucinations
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_hallucinations
 
 - type: entity
@@ -216,7 +216,7 @@
   - type: Card
     name: card-ep_health_horny
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_horny
 
 - type: entity
@@ -227,7 +227,7 @@
   - type: Card
     name: card-ep_health_impotence
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_impotence
 
 - type: entity
@@ -238,7 +238,7 @@
   - type: Card
     name: card-ep_health_infertility
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_infertility
 
 - type: entity
@@ -249,7 +249,7 @@
   - type: Card
     name: card-ep_health_kleptomania
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_kleptomania
 
 - type: entity
@@ -260,7 +260,7 @@
   - type: Card
     name: card-ep_health_lossOfSmell
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_lossOfSmell
 
 - type: entity
@@ -271,7 +271,7 @@
   - type: Card
     name: card-ep_health_migraine
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_migraine
 
 - type: entity
@@ -282,7 +282,7 @@
   - type: Card
     name: card-ep_health_noHand
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_noHand
 
 - type: entity
@@ -293,7 +293,7 @@
   - type: Card
     name: card-ep_health_noLeg
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_noLeg
 
 - type: entity
@@ -304,7 +304,7 @@
   - type: Card
     name: card-ep_health_persecution
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_persecution
 
 - type: entity
@@ -315,7 +315,7 @@
   - type: Card
     name: card-ep_health_sclerosis
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_sclerosis
 
 - type: entity
@@ -326,7 +326,7 @@
   - type: Card
     name: card-ep_health_somnambulism
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_somnambulism
 
 - type: entity
@@ -337,7 +337,7 @@
   - type: Card
     name: card-ep_health_split
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_split
 
 - type: entity
@@ -348,7 +348,7 @@
   - type: Card
     name: card-ep_health_stutterer
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_stutterer
 
 - type: entity
@@ -359,7 +359,7 @@
   - type: Card
     name: card-ep_health_suicidal
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_suicidal
 
 - type: entity
@@ -370,7 +370,7 @@
   - type: Card
     name: card-ep_health_tail
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_tail
 
 - type: entity
@@ -381,7 +381,7 @@
   - type: Card
     name: card-ep_health_tremor
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_tremor
 
 - type: entity
@@ -392,5 +392,5 @@
   - type: Card
     name: card-ep_health_unknown
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_health_unknown

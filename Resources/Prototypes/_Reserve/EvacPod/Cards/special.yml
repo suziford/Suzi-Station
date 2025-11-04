@@ -6,7 +6,7 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     layers:
     - state: EvacPod_special_box
     - state: EvacPod_special_box_open
@@ -26,7 +26,7 @@
   name: deck of EvacPod cards (Special)
   components:
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     layers:
     - state: deck_ep_special_full
   - type: CardStack
@@ -72,7 +72,7 @@
   - type: Card
     name: card-ep_special_takeIt
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -83,7 +83,7 @@
   - type: Card
     name: card-ep_special_friend
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -94,7 +94,7 @@
   - type: Card
     name: card-ep_special_lights
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -105,7 +105,7 @@
   - type: Card
     name: card-ep_special_loud
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -116,7 +116,7 @@
   - type: Card
     name: card-ep_special_baggage
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -127,7 +127,7 @@
   - type: Card
     name: card-ep_special_biology
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -138,7 +138,7 @@
   - type: Card
     name: card-ep_special_protectLeft
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -149,7 +149,7 @@
   - type: Card
     name: card-ep_special_sabotage
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -160,7 +160,7 @@
   - type: Card
     name: card-ep_special_discredit
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -171,7 +171,7 @@
   - type: Card
     name: card-ep_special_hobby
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -182,7 +182,7 @@
   - type: Card
     name: card-ep_special_health
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -193,7 +193,7 @@
   - type: Card
     name: card-ep_special_fact
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -204,7 +204,7 @@
   - type: Card
     name: card-ep_special_protectBrave
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -215,7 +215,7 @@
   - type: Card
     name: card-ep_special_protectRigth
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -226,7 +226,7 @@
   - type: Card
     name: card-ep_special_protectYoung
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -237,7 +237,7 @@
   - type: Card
     name: card-ep_special_swapBaggage
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -248,7 +248,7 @@
   - type: Card
     name: card-ep_special_swapBiology
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -259,7 +259,7 @@
   - type: Card
     name: card-ep_special_takeBaggage
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -270,7 +270,7 @@
   - type: Card
     name: card-ep_special_protectOld
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -281,7 +281,7 @@
   - type: Card
     name: card-ep_special_compro
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -292,7 +292,7 @@
   - type: Card
     name: card-ep_special_swapHobby
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -303,7 +303,7 @@
   - type: Card
     name: card-ep_special_swapHealth
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -314,7 +314,7 @@
   - type: Card
     name: card-ep_special_swapFact
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -325,7 +325,7 @@
   - type: Card
     name: card-ep_special_pirates
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -336,7 +336,7 @@
   - type: Card
     name: card-ep_special_badPills
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -347,7 +347,7 @@
   - type: Card
     name: card-ep_special_question
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -358,7 +358,7 @@
   - type: Card
     name: card-ep_special_goodPills
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -369,7 +369,7 @@
   - type: Card
     name: card-ep_special_planB
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special
 
 - type: entity
@@ -380,5 +380,5 @@
   - type: Card
     name: card-ep_special_fake
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_special

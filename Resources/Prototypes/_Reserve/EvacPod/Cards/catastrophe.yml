@@ -6,7 +6,7 @@
   - type: Item
     size: Small
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     layers:
     - state: EvacPod_catastrophe_box
     - state: EvacPod_catastrophe_box_open
@@ -26,7 +26,7 @@
   name: deck of EvacPod cards (Catastrophe)
   components:
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     layers:
     - state: deck_ep_catastrophe_full
   - type: CardStack
@@ -59,7 +59,7 @@
   - type: Card
     name: card-ep_catastrophe_aesthetic
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_aesthetic
 
 - type: entity
@@ -70,7 +70,7 @@
   - type: Card
     name: card-ep_catastrophe_ahelp
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_ahelp
 
 - type: entity
@@ -81,7 +81,7 @@
   - type: Card
     name: card-ep_catastrophe_ai
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_ai
 
 - type: entity
@@ -92,7 +92,7 @@
   - type: Card
     name: card-ep_catastrophe_atmos
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_atmos
 
 - type: entity
@@ -103,7 +103,7 @@
   - type: Card
     name: card-ep_catastrophe_borg
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_borg
 
 - type: entity
@@ -114,7 +114,7 @@
   - type: Card
     name: card-ep_catastrophe_cat
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_cat
 
 - type: entity
@@ -125,7 +125,7 @@
   - type: Card
     name: card-ep_catastrophe_dino
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_dino
 
 - type: entity
@@ -136,7 +136,7 @@
   - type: Card
     name: card-ep_catastrophe_ghost
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_ghost
 
 - type: entity
@@ -147,7 +147,7 @@
   - type: Card
     name: card-ep_catastrophe_mutant
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_mutant
 
 - type: entity
@@ -158,7 +158,7 @@
   - type: Card
     name: card-ep_catastrophe_narsi
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_narsi
 
 - type: entity
@@ -169,7 +169,7 @@
   - type: Card
     name: card-ep_catastrophe_news
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_news
 
 - type: entity
@@ -180,7 +180,7 @@
   - type: Card
     name: card-ep_catastrophe_pandemic
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_pandemic
 
 - type: entity
@@ -191,7 +191,7 @@
   - type: Card
     name: card-ep_catastrophe_stars
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_stars
 
 - type: entity
@@ -202,7 +202,7 @@
   - type: Card
     name: card-ep_catastrophe_suicidal
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_suicidal
 
 - type: entity
@@ -213,7 +213,7 @@
   - type: Card
     name: card-ep_catastrophe_war
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_war
 
 - type: entity
@@ -224,5 +224,5 @@
   - type: Card
     name: card-ep_catastrophe_zombie
   - type: Sprite
-    sprite: _White/Objects/Misc/cards.rsi
+    sprite: _Reserve/Objects/Misc/cards.rsi
     state: ep_catastrophe_zombie
