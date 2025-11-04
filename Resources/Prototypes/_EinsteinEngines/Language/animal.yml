@@ -6,10 +6,11 @@
     minSyllables: 1
     maxSyllables: 2
     replacement:
-    - murr
-    - meow
-    - purr
-    - mrow
+    # reserve edit
+    - мур
+    - мяу
+    - мрр
+    - мряу
 
 - type: language
   id: Dog
@@ -18,12 +19,13 @@
     minSyllables: 1
     maxSyllables: 2
     replacement:
-    - woof
-    - bark
-    - ruff
-    - bork
-    - raff
-    - garr
+    # reserve edit
+    - вух
+    - гав
+    - ррр
+    - гаф
+    - рафф
+    - грр
 
 - type: language
   id: Fox
@@ -32,12 +34,13 @@
     minSyllables: 1
     maxSyllables: 2
     replacement:
-    - ruff
-    - raff
-    - garr
-    - yip
-    - yap
-    - myah
+    # reserve edit
+    - уфф
+    - рафф
+    - грр
+    - йип
+    - йап
+    - мях
 
 - type: language
   id: Xeno
@@ -46,8 +49,9 @@
     minSyllables: 1
     maxSyllables: 8 # I was crazy once
     replacement:
-    - s
-    - S
+    # reserve edit
+    - с
+    - С
 
 - type: language
   id: Monkey
@@ -56,8 +60,9 @@
     minSyllables: 1
     maxSyllables: 8 # They locked me in a room...
     replacement:
-    - o
-    - k
+    # reserve edit
+    - у
+    - к
 
 - type: language
   id: Mouse
@@ -66,14 +71,15 @@
     minSyllables: 2
     maxSyllables: 3
     replacement:
-    - squ
-    - eak
-    - pi
-    - ep
-    - chuu
-    - ee
-    - fwi
-    - he
+    # reserve edit
+    - скви
+    - ик
+    - пи
+    - ип
+    - чуу
+    - ее
+    - фви
+    - хе
 
 - type: language
   id: Chicken
@@ -82,9 +88,10 @@
     minSyllables: 1
     maxSyllables: 3
     replacement:
-    - co
-    - coo
-    - ot
+    # reserve edit
+    - ку
+    - куу
+    - кар
 
 - type: language
   id: Duck
@@ -93,9 +100,10 @@
     minSyllables: 1
     maxSyllables: 3
     replacement:
-    - qu
-    - ack
-    - quack
+    # reserve edit
+    - к
+    - ак
+    - квак
 
 - type: language
   id: Cow
@@ -104,8 +112,9 @@
     minSyllables: 1
     maxSyllables: 3
     replacement:
-    - moo
-    - mooo
+    # reserve edit
+    - муу
+    - мууу
 
 - type: language
   id: Sheep
@@ -114,9 +123,10 @@
     minSyllables: 1
     maxSyllables: 3
     replacement:
-    - ba
-    - baa
-    - aa
+    # reserve edit
+    - ба
+    - баа
+    - аа
 
 - type: language
   id: Kangaroo
@@ -125,10 +135,11 @@
     minSyllables: 1
     maxSyllables: 3
     replacement:
-    - shre
-    - ack
-    - chuu
-    - choo
+    # reserve edit
+    - шре
+    - ачк
+    - чуу
+    - чооо
 
 - type: language
   id: Pig
@@ -137,7 +148,8 @@
     minSyllables: 1
     maxSyllables: 3
     replacement:
-    - oink # Please someone come up with something better
+    # reserve edit
+    - хрю # Please someone come up with something better
 
 - type: language
   id: Crab
@@ -146,13 +158,10 @@
     minSyllables: 1
     maxSyllables: 3
     replacement:
-    - click
-    - clack
-    - ti
-    - pi
-    - tap
-    - cli
-    - ick
+    # reserve edit
+    - клиц
+    - клац
+    - щелк
 
 - type: language
   id: Kobold
@@ -161,17 +170,18 @@
     minSyllables: 2
     maxSyllables: 4
     replacement:
-    - yip
-    - yap
-    - gar
-    - grr
-    - ar
-    - scre
-    - et
-    - gronk
-    - hiss
-    - ss
-    - ee
+    # reserve edit
+    - йип
+    - йап
+    - гар
+    - грр
+    - ар
+    - скре
+    - ет
+    - гронк
+    - хисс
+    - сс
+    - ее
 
 - type: language
   id: Hissing
@@ -180,10 +190,11 @@
     minSyllables: 2
     maxSyllables: 4
     replacement:
-    - hss
-    - iss
-    - ss
-    - is
+    # reserve edit
+    - хсс
+    - исс
+    - сс
+    - ис
 
 - type: language
   id: Penguin
@@ -192,11 +203,12 @@
     minSyllables: 2
     maxSyllables: 3
     replacement: # I'm out of ideas
-    - pen
-    - peng
-    - won
-    - wonk
-    - wong
+    # reserve edit
+    - пен
+    - пенг
+    - вон
+    - вонк
+    - вонг
 
 - type: language # Goobstation - For Deer
   id: Deer
@@ -205,6 +217,7 @@
     minSyllables: 1
     maxSyllables: 3
     replacement:
-    - neigh
-    - ni
-    - brr
+    # reserve edit
+    - нгх
+    - ни
+    - брр

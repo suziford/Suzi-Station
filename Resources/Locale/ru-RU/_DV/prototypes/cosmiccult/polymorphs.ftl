@@ -1,4 +1,4 @@
-ent-CosmicPolymorphEnt = Неизвестный
+ent-CosmicPolymorphEnt = неизвестный
     .desc = Пойманный в ловушку между здесь и там.
 ent-CosmicPolymorphEntHuman = { ent-CosmicPolymorphEnt }
     .desc = { ent-CosmicPolymorphEnt.desc }

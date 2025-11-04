@@ -1,2 +1,2 @@
-ent-HeadOfSecurityWeaponUndetermined = Коробка серии X-00
+ent-HeadOfSecurityWeaponUndetermined = коробка серии X-00
     .desc = Небольшой пульт дистанционного управления, использующий технологию блюспейс, для передачи вам оружия серии X-00. Выбирайте с умом.

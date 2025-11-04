@@ -7,16 +7,18 @@
     minSyllables: 1
     maxSyllables: 3
     replacement:
-    - mi
-    - mimi
-    - mimi
-    - yoyo
-    - iyo
-    - me
-    - memimimi
-    - mimimi
-    - mi
-    - bibi
-    - bi
-    - mi
-    - yo
+    # reserve edit start
+    - ми
+    - мими
+    - мими
+    - йойо
+    - ийо
+    - ме
+    - мемимими
+    - мимими
+    - ми
+    - биби
+    - би
+    - ми
+    - йо
+    # reserve edit end

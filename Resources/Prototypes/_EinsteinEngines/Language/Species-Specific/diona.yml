@@ -17,8 +17,9 @@
     minSyllables: 1
     maxSyllables: 5
     replacement:
-    - hs
-    - zt
-    - kr
-    - st
-    - sh
+    # reserve edit
+    - хс
+    - зт
+    - кр
+    - ст
+    - ш

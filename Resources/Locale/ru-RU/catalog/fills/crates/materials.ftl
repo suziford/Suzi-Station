@@ -18,3 +18,7 @@ ent-CrateMaterialCardboard = ящик картона
     .desc = 60 единиц картона.
 ent-CrateMaterialPaper = ящик бумаги
     .desc = 90 листов бумаги.
+ent-CrateMaterialRandom = ящик припасенных материалов
+    .desc = Припасенные кем-то материалы откуда-то.
+ent-CrateMaterialBasicResource = ящик базовых материалов
+    .desc = 30 листов стали, стекла и пластика.

@@ -9,7 +9,6 @@ mapping-template-antags = Антагонисты
 mapping-template-jobs = Роли
 mapping-template-silicons = Силиконы
 mapping-template-other = Другие
-
 mapping-template-systems = _Общие Системы
 mapping-template-atmosphere = Атмосфера И Трубы
 mapping-template-pipes = Трубы
@@ -18,7 +17,6 @@ mapping-template-externalinteraction = Внешнее Взаимодействи
 mapping-template-cables = Кабели
 mapping-template-disposal = Мусоропровод
 mapping-template-lighting = Освещение
-
 mapping-template-service = Сервис
 mapping-template-servicecommon = Сервис Общее
 mapping-template-bar = Бар
@@ -30,7 +28,7 @@ mapping-template-hydroponics = Гидропоника
 mapping-template-hydroponicsairlocks = Шлюзы Гидропоники
 mapping-template-cattlepen = Загон
 mapping-template-fencerailing = Перила
-mapping-template-fencemetal= Забор Из Сетки
+mapping-template-fencemetal = Забор Из Сетки
 mapping-template-fencewoodsmall = Низкий Забор Из Дерева
 mapping-template-fencewoodhigh = Высокий Забор Из Дерева
 mapping-template-janitorscloset = Комната Уборщика
@@ -43,7 +41,6 @@ mapping-template-reportersoffice = Кабинет Репортёра
 mapping-template-church = Церковь
 mapping-template-chapelairlocks = Шлюзы Церкви
 mapping-template-library = Библиотека
-
 mapping-template-cargo = Карго
 mapping-template-cargoairlocks = Шлюзы Карго
 mapping-template-qmroom = Каюта КМа
@@ -52,7 +49,6 @@ mapping-template-salvageairlocks = Шлюзы Утилизационной
 mapping-template-cargobay = Карго
 mapping-template-mailroom = Почта
 mapping-template-mailairlocks = Шлюзы Почты
-
 mapping-template-command = Командование
 mapping-template-bridge = Мостик
 mapping-template-bridgeairlocks = Шлюзы Мостика
@@ -66,7 +62,6 @@ mapping-template-vault = Хранилище
 mapping-template-eva = ЕВА
 mapping-template-bsoquarters = Каюта ОСЩ
 mapping-template-ntrquarters = Каюта ПНТ
-
 mapping-template-medical = Медицинский
 mapping-template-medicalairlocks = Шлюзы Медблока
 mapping-template-chemistry = Химия
@@ -82,7 +77,6 @@ mapping-template-operatingroom = Операционная
 mapping-template-virology = Вирусология
 mapping-template-cloning = Клонирование
 mapping-template-psychologist = Психолог
-
 mapping-template-science = Научный отдел
 mapping-template-scienceairlocks = Шлюзы РНД
 mapping-template-rndbay = РНД
@@ -93,7 +87,6 @@ mapping-template-artifactlab = Лаборатория Артефактов
 mapping-template-rdroom = Комната НР
 mapping-template-rndcanisters = Канистры НР
 mapping-template-rnd = Иследования И Разработки
-
 mapping-template-engineering = Инженерия
 mapping-template-engineeringairlocks = Шлюзы Инженерии
 mapping-template-ceroom = Комната СИ
@@ -115,7 +108,6 @@ mapping-template-unfinished = Незакончено
 mapping-template-disassembled = Разобрано
 mapping-template-engine = Двигатель
 mapping-template-supermatterroom = Комната Суперматерии
-
 mapping-template-security = Служба Безопасности
 mapping-template-securityairlocks = Шлюзы Службы Безопасности
 mapping-template-hosroom = Комната ГСБ
@@ -127,7 +119,6 @@ mapping-template-permabrig = Пермабриг / Генпоп
 mapping-template-detectiveroom = Комната Детектива
 mapping-template-gunnery = Стрельбище
 mapping-template-brigmedic = Бригмедик
-
 mapping-template-justicedepartment = Юстиция
 mapping-template-lawyer = Офис Адвоката
 mapping-template-courtroom = Суд

@@ -1,8 +1,8 @@
 ent-BaseMobGhoul = { ent-SimpleMobBase }
     .desc = { ent-SimpleMobBase.desc }
-ent-MobGhoulStalker = Сталкер
+ent-MobGhoulStalker = сталкер
     .desc = Мерзость, собранная из разнообразных останков. Ее внешний вид слегка меняется каждый раз, когда вы моргаете.
-ent-MobGhoulProphet = Пророк
+ent-MobGhoulProphet = пророк
     .desc = Мерзость, сшитая из нескольких отрубленных рук и одного опухшего глаза.
 ent-MobGhoulRustWalker = ржавый ходок
     .desc = Скрежещущая, лязгающая конструкция, которая с каждым шагом в доспехах вымывает жизнь из окружающей среды.

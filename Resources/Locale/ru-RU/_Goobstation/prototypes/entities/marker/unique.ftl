@@ -1,4 +1,4 @@
-ent-UniqueMarkerBlueshieldLocker = уникальный маркер шкафчика blueshield
+ent-UniqueMarkerBlueshieldLocker = уникальный маркер шкафчика офицера синего щита
     .desc = { ent-MarkerBase.desc }
-ent-UniqueMarkerNanorepLocker = уникальный маркер для шкафчика nanorep locker
+ent-UniqueMarkerNanorepLocker = уникальный маркер шкафчика ПНТ
     .desc = { ent-MarkerBase.desc }

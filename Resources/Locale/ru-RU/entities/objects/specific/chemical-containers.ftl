@@ -72,3 +72,6 @@ ent-JugPlantBGone = { ent-Jug }
 ent-JugWeldingFuel = { ent-Jug }
     .desc = { ent-Jug.desc }
     .suffix = сварочное топливо
+ent-JugHolyWater = { ent-Jug }
+    .desc = { ent-Jug.desc }
+    .suffix = святая вода

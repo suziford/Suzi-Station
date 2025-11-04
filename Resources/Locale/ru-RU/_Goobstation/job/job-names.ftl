@@ -1,39 +1,42 @@
-job-name-futureagent = Агент будущего
-job-name-salvagediver = Утилизатор Десантник
-job-name-ntr = Представитель НаноТразен
-job-name-bs = Офицер Синиего Щита
-job-name-overall = Общий
-job-name-exec = Исполнительный доступ
+job-name-futureagent = агент будущего
+job-name-salvagediver = утилизатор-десантинк
+job-name-ntr = представитель Nanotrasen
+job-name-bs = офицер Синего Щита
+job-name-overall = общий
+job-name-exec = исполнительный доступ
 
 # Флот
 
-job-name-navyofficer = Офицер военно-морского флота
-job-name-navy-officer-undercover = Офицер военно-морского флота под прикрытием
-job-name-navycaptain = Капитан флота
-job-name-diplomat = Дипломат
-job-name-inspector = Аудитор Центрального Командования
-job-name-nct = Карьерный тренер Нанотрейзен
+job-name-navyofficer = офицер ВКФ
+job-name-navy-officer-undercover = офицер ВКФ под прикрытием
+job-name-navycaptain = капитан ВКФ
+job-name-diplomat = дипломат
+job-name-inspector = аудитор Центрального Командования
+job-name-nct = карьерный тренер Nanotrasen
 
 # Half Life
 
-job-name-hecu = Оперативник ХЕКУ
-job-name-gman = Джи-Мен
+job-name-hecu = оперативник HECU
+job-name-highcommander = верховный главнокомандующий
+job-name-gman = джи-мен
+job-name-governmentman = джи-мэн
 
 # Misc
 
-job-name-conquest = Конквест
-job-name-greytide = Грейтайдер
+job-name-conquest = завоеватель
+job-name-mercenarycaptain = капитан наёмников
 
 # Таймеры ролей - сделайте их в алфавитном порядке или я вас порежу (не слушайте апстрим, я скопировал и вставил это, сделайте их не в алфавитном порядке :godo:)
 
-JobBlueshieldOfficer = Офицер "Синий Щит"
-JobNanotrasenRepresentative = Представитель НаноТрейзен
-JobHecuOperative = Оперативник ХЕКУ
-JobNanotrasenCareerTrainer = Профессиональный тренер НаноТрейзен
-JobNavyOfficer = Офицер военно-морского флота
-JobNavyOfficerUndercover = Офицер флота под прикрытием
-JobNavyCaptain = Капитан флота
+JobBlueshieldOfficer = Офицер Синего Щита
+JobNanotrasenRepresentative = Представитель Nanotrasen
+JobHecuOperative = Оперативник HECU
+JobNanotrasenCareerTrainer = Карьерный тренер Nanotrasen
+JobNavyOfficer = Офицер ВКФ
+JobNavyOfficerUndercover = Офицер ВКФ под прикрытием
+JobNavyCaptain = Капитан ВКФ
 JobDiplomat = Дипломат
-JobGovernmentMan = Джи-Мен
-JobConquest = Конквест
+JobGovernmentMan = Джи-мэн
+JobConquest = Завоеватель
 JobInspector = Аудитор Центрального Командования
+JobMercenaryCaptain = Капитан наёмников
