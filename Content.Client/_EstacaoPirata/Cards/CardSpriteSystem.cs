@@ -2,6 +2,10 @@
 // SPDX-FileCopyrightText: 2024 RadsammyT <32146976+RadsammyT@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2024 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Kutosss <162154227+Kutosss@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
+// SPDX-FileCopyrightText: 2025 nazrin <tikufaev@outlook.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -70,10 +74,12 @@ public sealed class CardSpriteSystem : EntitySystem
 
         var i = 0;
         var cards = stack.Cards.TakeLast(cardCount).ToList();
+        List<SpriteComponent> cardSprites = [];
         foreach (var card in cards)
         {
             if (!TryComp(card, out SpriteComponent? cardSprite))
                 return false;
+            cardSprites.Add(cardSprite);
             layers.AddRange(cardSprite.AllLayers.Select(layer => (i, layer)));
             i++;
         }
@@ -82,8 +88,12 @@ public sealed class CardSpriteSystem : EntitySystem
         foreach (var obj in layers)
         {
             var (cardIndex, layer) = obj;
+            var cardSprite = cardSprites[cardIndex];
             sprite.LayerSetVisible(j, true);
             sprite.LayerSetTexture(j, layer.Texture);
+            sprite.LayerSetAutoAnimated(j, layer.AutoAnimated);
+            if (cardSprite.BaseRSI != null)
+                sprite.LayerSetRSI(j, cardSprite.BaseRSI);
             sprite.LayerSetState(j, layer.RsiState.Name);
             layerFunc.Invoke((uid, sprite), cardIndex, j);
             j++;

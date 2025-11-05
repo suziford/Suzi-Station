@@ -41,3 +41,47 @@ artifact-trigger-hint-plasma = Газообразная плазма
 artifact-trigger-hint-land = Активное замедление
 artifact-trigger-hint-examine = Внимательное изучение
 artifact-trigger-hint-medical = Терапевтические химикаты
+
+xenoarch-trigger-tip-music = Гармоничные звуковые колебания
+xenoarch-trigger-tip-heat = Высокотемпературный гах
+xenoarch-trigger-tip-cold = Низкотемпературный газ
+xenoarch-trigger-tip-no-oxygen = Бескислородная среда
+xenoarch-trigger-tip-water = Вода
+xenoarch-trigger-tip-co2 = Диоксид углерода
+xenoarch-trigger-tip-plasma = Нетвердая плазма
+xenoarch-trigger-tip-tritium = Тритий
+xenoarch-trigger-tip-ammonia = Аммиак
+xenoarch-trigger-tip-n2o = Оксид азота
+xenoarch-trigger-tip-frezon = Фрезон
+xenoarch-trigger-tip-radiation = Радиация
+xenoarch-trigger-tip-brute-damage = Физический урон
+xenoarch-trigger-tip-interaction = Физическое взаимодействие
+xenoarch-trigger-tip-wrenching = Затягивание
+xenoarch-trigger-tip-prying = Отрывание
+xenoarch-trigger-tip-screwing = Завинчивание
+xenoarch-trigger-tip-pulsing = Пульсация
+xenoarch-trigger-tip-pressure-low = Низкое давление
+xenoarch-trigger-tip-pressure-high = Высокое давление
+xenoarch-trigger-tip-examine = Осмотр вблизи
+xenoarch-trigger-tip-timer = Регулярная самоактивация
+xenoarch-trigger-tip-blood = Кровь
+xenoarch-trigger-tip-throw = Метание
+xenoarch-trigger-tip-death = Смерть
+xenoarch-trigger-tip-magnet = Магнитные волны
+
+## Goob stuff
+xenoarch-trigger-tip-bz = БЗ
+xenoarch-trigger-tip-nitrium = Нитриум
+xenoarch-trigger-tip-healium = Хилиум
+xenoarch-trigger-tip-pluoxium = Плюоксиум
+
+### Description hints
+xenoarch-trigger-examine-wrenching = Там что-то не так крутится.
+xenoarch-trigger-examine-prying = С поверхности поднимается панель.
+xenoarch-trigger-examine-screwing = На нем есть выступающая часть с небольшой вставкой.
+xenoarch-trigger-examine-pulsing = Из поверхности артефакта торчит открытый диод.
+xenoarch-trigger-examine-timer = Поверхность покрыта резьбой и царапинами... Вы едва можете разобрать номер: [italic]{$time}[/italic]
+
+### Effects hints
+xenoarch-effect-puddle = Образует лужу из следующих реагентов: {$reagent}
+xenoarch-effect-foam = Образует пену из следующих реагентов: {$reagent}

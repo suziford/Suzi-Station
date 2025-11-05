@@ -1,10 +1,10 @@
-ent-ActionCreateContract = Призови адский контракт
+ent-ActionCreateContract = Призвать адский контракт
     .desc = Создает адский контракт в руках дьявола.
-ent-ActionCreateRevivalContract = Контракт на призыв к возрождению
+ent-ActionCreateRevivalContract = Контракт на возрождение
     .desc = Создает контракт на возрождение в руках дьявола.
 ent-ActionShadowJaunt = Теневая прогулка
     .desc = Раствориться в тени.
-ent-ActionDevilPossess = Обладать целью
+ent-ActionDevilPossess = Завладеть целью
     .desc = Временно завладеть целью.
 ent-ActionEndPossession = Покончить с одержимостью
     .desc = Отмените это владение досрочно.

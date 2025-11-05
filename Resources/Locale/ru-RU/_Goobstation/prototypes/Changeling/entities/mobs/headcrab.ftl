@@ -1,2 +1,2 @@
-ent-MobHeadcrab = Головной слизняк
+ent-MobHeadcrab = головной слизняк
     .desc = Контролирует твой разум.

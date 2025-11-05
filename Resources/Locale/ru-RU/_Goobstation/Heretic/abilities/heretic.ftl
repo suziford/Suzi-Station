@@ -35,14 +35,26 @@ heretic-manselink-start-target = Вы чувствуете, что ваш раз
 ## living heart
 
 heretic-livingheart-notargets = Нет доступных целей, посетите руну.
-heretic-livingheart-offstation = Оно { $state }, вне станции, { $direction }!
-heretic-livingheart-onstation = Оно { $state }, { $direction }!
+heretic-livingheart-offstation = Оно { $state ->
+    [dead] мертво
+    [alive] живо
+    *[other] в неизвестном состоянии
+    }, вне станции, { $direction }!
+heretic-livingheart-onstation = Оно { $state ->
+    [dead] мертво
+    [alive] живо
+    *[other] в неизвестном состоянии
+    }, на станции, { $direction }!
 heretic-livingheart-unknown = Оно... не на этой равнине реальности.
-heretic-livingheart-faraway = Оно { $state }, очень далеко отсюда!
+heretic-livingheart-faraway = Оно { $state ->
+    [dead] мертво
+    [alive] живо
+    *[other] в неизвестном состоянии
+}, очень далеко отсюда!
 
 ## speech
 
-heretic-speech-mansusgrasp = УЗ'И ПР'ВДУ!
+heretic-speech-mansusgrasp = УЗ'И И'Т'НУ!
 heretic-speech-ash-jaunt = ПЕП'Н ПЕ'ЕХОД
 heretic-speech-ash-volcano = В'ЛК'Н!
 heretic-speech-ash-rebirth = СЛА'А Н'ЧН'МУ НАБ'Л'ДАТ'ЛЮ
@@ -51,15 +63,12 @@ heretic-speech-ash-cascade = К'СК'АД!!
 heretic-speech-blade-furioussteel = С'ЕРК'ЮЩ'Е СЕР'БРО!
 heretic-speech-flesh-surgery = ПРИ'И Л'НУ!
 heretic-speech-flesh-worm = РЕ'ЛЬ'О'ТЬ РАЗ'ОР'ЧИВ'ТС'!!
-
 heretic-speech-rust-spread = ЯР'ОСТН'Е РАС'ПР'Р'ЕНИ'!
 heretic-speech-rust-wave = НАС'Т'ГНИ 'ИХ!
 heretic-speech-rust-plume = РА'СС'Л'ИСЬ!
-
 heretic-speech-void-blast = З'СТЫ'НЬ!
 heretic-speech-void-phase = РЕК'ЛТ'ВЫЙ СД'В'Г!
 heretic-speech-void-pull = БР'СЬ ИХ К' МН'!!
-
 heretic-speech-cleave = ОС'РИЁ!
 heretic-speech-bloodsiphon = ГОР'ИЛ'О ВЕЧ'ОС'И!
 heretic-speech-mansuslink = ПРО'З' РА'УМ!

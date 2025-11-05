@@ -1,12 +1,12 @@
-ent-ClothingModsuitResponsorySecurity =  управление модульным костюмом Службы Безопасности
+ent-ClothingModsuitResponsorySecurity = управление модульным костюмом Службы Безопасности
     .desc = Специальное управление модульным костюмом, содержащее все части модульного .
-ent-ClothingModsuitGauntletsResponsorySecurity = Защитные рукавицы для модульного костюма Службы Безопасности
+ent-ClothingModsuitGauntletsResponsorySecurity = защитные рукавицы модульного костюма Службы Безопасности
     .desc = Пара перчаток, сшитых для модсьюта службы безопасности.
-ent-ClothingModsuitHelmetResponsorySecurity = Шлем модсьюта Службы Безопасности
+ent-ClothingModsuitHelmetResponsorySecurity = шлем модульного костюма Службы Безопасности
     .desc = Ультрасовременный шлем, разработанный компанией NanoTrasen для модульного костюма Службы Безопасности. Он оснащен встроенным дисплеем HUD.
-ent-ClothingModsuitChestplateResponsorySecurity = Нагрудный щиток модного  службы безопасности
+ent-ClothingModsuitChestplateResponsorySecurity = нагрудный щиток модульного костюма службы безопасности
     .desc = Современный нагрудный щиток, разработанный компанией NanoTrasen для модульного костюма Службы Безопасности. Он оснащен приводимыми в действие сервоприводами для снижения нагрузки на оборудование.
-ent-ClothingModsuitBootsResponsorySecurity = Защитные сапоги модульного костюма Службы Безопасности
+ent-ClothingModsuitBootsResponsorySecurity = защитные сапоги модульного костюма Службы Безопасности
     .desc = Ультрасовременная пара ботинок для модульного костюма Службы Безопасности
 ent-SuitStorageResponsorySecurity = { ent-SuitStorageBase }
     .suffix = Защитный костюм для обеспечения безопасности

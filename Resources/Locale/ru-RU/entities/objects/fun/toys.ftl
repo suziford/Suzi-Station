@@ -1,3 +1,5 @@
+ent-CardSword = картонный меч
+    .desc = Картонная трубка, превращённая в меч.
 ent-BasePlushie = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
 ent-PlushieThrongler = плюшевый Нагибатор

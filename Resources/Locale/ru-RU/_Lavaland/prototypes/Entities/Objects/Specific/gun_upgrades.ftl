@@ -7,3 +7,4 @@ gun-upgrade-examine-text-reload = Содержит улучшение [color=#bb
 gun-upgrade-examine-text-light = Содержит улучшение [color=#bbf134][bold]света.[/bold][/color].
 gun-upgrade-examine-text-vampirism = Содержит улучшение [color=crimson][bold]вампиризма.[/bold][/color].
 gun-upgrade-examine-text-capacity-cost = Требуется { $value } место.
+gun-upgrade-examine-text-pressure = Содержит нелегальное улучшение [color=orangered][bold]давления[/bold][/color].

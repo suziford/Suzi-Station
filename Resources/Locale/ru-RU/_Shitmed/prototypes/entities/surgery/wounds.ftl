@@ -1,6 +1,5 @@
 ent-WoundBase = { "" }
     .desc = { "" }
-
 ent-Piercing = { ent-WoundBase }
     .desc = { ent-WoundBase.desc }
 ent-ArmorPiercing = { ent-WoundBase }

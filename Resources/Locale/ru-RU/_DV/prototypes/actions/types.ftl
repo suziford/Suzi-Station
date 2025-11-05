@@ -1,4 +1,4 @@
-ent-ActionOpenRadioImplant = Открыть радиоимплантат
+ent-ActionOpenRadioImplant = Открыть радиоимплант
     .desc = Открывает отсек для ключей шифрований радиоимпланта, встроенного в ваш череп.
 ent-ActionOpenMouthStorage = Открыть хранилище в щеках
     .desc = Позволяет хранить предметы в щеках.

@@ -1,5 +1,7 @@
 ent-ClothingNeckCloakHelldiver = накидка полной лояльности
     .desc = Символ благодарности той бесконечной команды, чье богатое существование мы стремимся обеспечить.
+ent-ClothingNeckCloakResonant = резонансный плащ
+    .desc = Сцена зовет нас. Мы должны с радостью подыграть.
 ent-ClothingNeckCloakCarp = карповый плащ
     .desc = Мы затеваем какое-то сомнительное дело, не так ли?
 ent-ClothingNeckCloakCarpAlt = карповый плащ

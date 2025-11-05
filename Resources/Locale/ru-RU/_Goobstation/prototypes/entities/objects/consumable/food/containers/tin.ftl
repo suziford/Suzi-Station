@@ -1,5 +1,5 @@
-ent-FoodBlackCaviar = черная икра
-    .desc = Баночка черной икры с удобным язычком. Выглядит дорого.
+ent-FoodBlackCaviar = чёрная икра
+    .desc = Баночка чёрной икры с удобным язычком. Выглядит дорого.
 ent-FoodBlackCaviarTrash = черная икра
     .desc = Это мусор.
 ent-FoodRedCaviar = красная икра

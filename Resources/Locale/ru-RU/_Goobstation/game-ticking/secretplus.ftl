@@ -1,6 +1,10 @@
-secretplus-low-title = Турбулентность
+secretplus-low-title = Секрет+ малый
 secretplus-low-description = Относительно спокойно. Но не всегда.
-secretplus-mid-title = Энтропия
+secretplus-mid-title = Секрет+ средний
 secretplus-mid-description = У вас не так много времени, чтобы расслабиться. Случиться может все, что угодно.
-secretplus-high-title = Хаос
+secretplus-admeme-title = Секрет+ адмем
+secretplus-admeme-description = Если это может случиться, то так и будет.
+survivalplus-title = Выживание+
+survivalplus-description = Начинается довольно спокойно. Заканчивается не совсем.
+secretplus-high-title = Секрет+ высокий
 secretplus-high-description = Если это может случиться, то так и будет.

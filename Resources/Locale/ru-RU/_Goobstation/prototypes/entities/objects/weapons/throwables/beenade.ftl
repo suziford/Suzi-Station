@@ -1,2 +1,2 @@
-ent-BeeGrenade = Беенаде
-    .desc = Только не пчелы!!!
+ent-BeeGrenade = пчелонада
+    .desc = ТОЛЬКО НЕ ПЧЁЛЫ!!!

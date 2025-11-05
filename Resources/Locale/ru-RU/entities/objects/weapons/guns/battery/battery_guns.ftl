@@ -1,3 +1,4 @@
+
 ent-BaseWeaponBattery = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
 ent-BaseWeaponPowerCell = { ent-BaseItem }
@@ -65,3 +66,7 @@ ent-WeaponBehonkerLaser = око бехонкера
     .desc = Глаз бехонкера, при сжатии выстреливает лазером.
 ent-WeaponEnergyShotgun = энергетический дробовик
     .desc = Единственный в своём роде прототип энергетического оружия, использующий различные конфигурации дробовика. Оно позволяет совершать как смертельные, так и несмертельные выстрелы, что делает его универсальным оружием.
+ent-XenoborgLaserGun = лазерная винтовка ксеноборга
+    .desc = { ent-WeaponAdvancedLaser.desc }
+ent-XenoborgHeavyLaserGun = тяжёлая лазерная винтовка ксеноборга
+    .desc = { ent-WeaponAdvancedLaser.desc }

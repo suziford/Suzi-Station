@@ -4,5 +4,5 @@ ent-MobBinglePrime = { ent-MobBingle }
     .suffix = Прайм
     .desc = { ent-MobBingle.desc }
 ent-MobBingleUpgraded = { ent-MobBingle }
-    .suffix = Модернизированный
+    .suffix = Улучшенный
     .desc = { ent-MobBingle.desc }
