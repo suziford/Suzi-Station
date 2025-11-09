@@ -3128,8 +3128,10 @@
       reagents:
       - ReagentId: JuiceCherry
         Quantity: 5
+  # Reserve-Start
   - type: Item
     size: Tiny
+  # Reserve-End
   - type: Tag
     tags:
     - Fruit
