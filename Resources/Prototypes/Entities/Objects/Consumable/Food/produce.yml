@@ -3132,7 +3132,7 @@
         - ReagentId: Vitamin
           Quantity: 3
   - type: Sprite
-    sprite: _Goobstation/Objects/Specific/Hydroponics/cherry.rsi
+    sprite: _Reserve/Objects/Specific/Hydroponics/cherry.rsi # Reserve edit
   - type: Produce
     seedId: cherry
   - type: Extractable
