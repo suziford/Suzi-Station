@@ -1,0 +1,82 @@
+# SPDX-FileCopyrightText: 2025 Hero010h <163765999+Hero010h@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: reagent
+  id: Carpozine
+  name: reagent-name-carpozine
+  group: Special
+  desc: reagent-desc-carpozine
+  physicalDesc: reagent-physical-desc-gloopy
+  flavor: bitter
+  color: "#483d8b"
+  metabolisms:
+    Poison:
+      metabolismRate: 1
+      effects:
+      - !type:Polymorph
+        prototype: ForcedCarpSentient
+        conditions:
+        - !type:ReagentThreshold
+          min: 50
+      - !type:SpaceAdaptation
+        conditions:
+        - !type:ReagentThreshold
+          min: 20
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+      - !type:Drunk
+        boozePower: 2
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSeeingRainbow
+        type: Add
+        time: 5
+        refresh: false
+      - !type:SatiateHunger
+        factor: -6
+      - !type:MovespeedModifier
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Carpozine
+          min: 15
+      - !type:Paralyze
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        probability: 0.5
+        paralyzeTime: 4
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Carpozine
+          min: 50
+        reagent: Carpozine
+        amount: -20
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Carpozine
+          min: 15
+        reagent: UnstableMutagen
+        amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Carpozine
+          min: 15
+        reagent: Pendetide
+        amount: 0.5
