@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseItem
+  id: SuziBoomBox
+  name: Бумбокс
+  description: Музыкальный Бумбокс (колонка для шкіляр)
+  components:
+  - type: Sprite
+    sprite: _Suziford/Devices/boombox.rsi
+    state: icon
+  - type: Item
+    sprite: _Suziford/Devices/boombox.rsi
+    size: Normal
+  - type: Jukebox
+  - type: ActivatableUI
+    key: enum.JukeboxUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.JukeboxUiKey.Key:
+          type: JukeboxBoundUserInterface

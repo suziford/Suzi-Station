@@ -22,7 +22,7 @@
 
 - type: customGhost
   id: duga-ghost
-  ckey: suziford
+  ckey: 1234s
   sprite: /Textures/_Reserve/CustomGhosts/duga-ghost.rsi
   alpha: 0.9
   ghostName: сузи
