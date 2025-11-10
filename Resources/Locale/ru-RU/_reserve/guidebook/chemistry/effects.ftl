@@ -5,3 +5,4 @@ reagent-effect-guidebook-plant-clear-mutations =
     } все мутации растения, кроме неспособности к жизни
 
 plant-attribute-mutations = мутации
+reagent-effect-guidebook-space-adaptation = Адаптирует к космосу

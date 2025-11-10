@@ -90,7 +90,14 @@
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
 # SPDX-FileCopyrightText: 2025 ImWeax <59857479+ImWeax@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Kutosss <162154227+Kutosss@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 NazrinNya <macrohard@macrohard.localhost>
+# SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Svarshik <96281939+lexaSvarshik@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 TurboTracker <130304754+TurboTrackerss14@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Weax <59857479+ImWeax@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 echotry <48294642+echotry-ss14@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 echotry <xippl1@mail.ru>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Accents that work off of word replacements.
@@ -844,6 +851,6 @@
     reserve-chatsan-word-130: reserve-chatsan-replacement-130
     reserve-chatsan-word-131: reserve-chatsan-replacement-131
     reserve-chatsan-word-132: reserve-chatsan-replacement-132
-    reserve-chatsan-word-131: reserve-chatsan-replacement-133
-    reserve-chatsan-word-132: reserve-chatsan-replacement-134
-    reserve-chatsan-word-132: reserve-chatsan-replacement-135
+    reserve-chatsan-word-133: reserve-chatsan-replacement-133
+    reserve-chatsan-word-134: reserve-chatsan-replacement-134
+    reserve-chatsan-word-135: reserve-chatsan-replacement-135

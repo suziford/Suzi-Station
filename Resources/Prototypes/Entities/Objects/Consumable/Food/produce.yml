@@ -160,13 +160,25 @@
 # SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
 # SPDX-FileCopyrightText: 2025 Fishbait <Fishbait@git.ml>
 # SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+# SPDX-FileCopyrightText: 2025 Hero010h <163765999+Hero010h@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 James <40279265+ViceEmargo@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Kutosss <162154227+Kutosss@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Lumminal <81829924+Lumminal@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Minty642 <42335609+Minty642@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 MissKay1994 <15877268+MissKay1994@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 NazrinNya <137837419+NazrinNya@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 PunishedJoe <PunishedJoeseph@proton.me>
 # SPDX-FileCopyrightText: 2025 RatherUncreative <RatherUncreativeName@proton.me>
+# SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 SX_7 <sn1.test.preria.2002@gmail.com>
+# SPDX-FileCopyrightText: 2025 Svarshik <96281939+lexaSvarshik@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Wolfkey-SomeoneElseTookMyUsername <wolfkey75@gmail.com>
+# SPDX-FileCopyrightText: 2025 aliser <20380250+murolem@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 fishbait <gnesse@gmail.com>
 # SPDX-FileCopyrightText: 2025 mubururu_ <139181059+muburu@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 nazrin <tikufaev@outlook.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # When adding new food also add to random spawner located in Resources\Prototypes\Entities\Markers\Spawners\Random\Food_Drinks\food_produce.yml
@@ -3120,7 +3132,7 @@
         - ReagentId: Vitamin
           Quantity: 3
   - type: Sprite
-    sprite: _Goobstation/Objects/Specific/Hydroponics/cherry.rsi
+    sprite: _Reserve/Objects/Specific/Hydroponics/cherry.rsi # Reserve edit
   - type: Produce
     seedId: cherry
   - type: Extractable
@@ -3128,6 +3140,10 @@
       reagents:
       - ReagentId: JuiceCherry
         Quantity: 5
+  # Reserve-Start
+  - type: Item
+    size: Tiny
+  # Reserve-End
   - type: Tag
     tags:
     - Fruit
