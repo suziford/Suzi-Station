@@ -1,0 +1,155 @@
+- type: jukebox
+  id: beyondthesea
+  name: Beyond The Sea
+  path:
+    path: /Audio/_Suziford/Jukebox/beyondthesea.ogg
+
+- type: jukebox
+  id: fortunateMusic
+  name: Fortunate
+  path:
+    path: /Audio/_Suziford/Jukebox/fortunate.ogg
+
+- type: jukebox
+  id: highfleetMusic
+  name: Tanc A Lelek (highfleet)
+  path:
+    path: /Audio/_Suziford/Jukebox/highfleet.ogg
+
+- type: jukebox
+  id: whosoldtheworld
+  name: Who Sold The World
+  path:
+    path: /Audio/_Suziford/Jukebox/whosoldtheworld.ogg
+
+- type: jukebox
+  id: travestyHullrot
+  name: travesty (Hullrot)
+  path:
+    path: /Audio/_Suziford/Jukebox/travesty.ogg
+
+- type: jukebox
+  id: degeneracyHullrot
+  name: degeneracy (Hullrot)
+  path:
+    path: /Audio/_Suziford/Jukebox/degeneracy.ogg
+
+- type: jukebox
+  id: hullrotCombatMusic1
+  name: Hullrot Combat 1
+  path:
+    path: /Audio/_Suziford/Jukebox/GS_3.ogg
+
+- type: jukebox
+  id: hullrotCombatMusic2
+  name: Hullrot Combat 2
+  path:
+    path: /Audio/_Suziford/Jukebox/GS_1.ogg
+
+- type: jukebox
+  id: hullrotCombatMusic3
+  name: Hullrot Combat 3
+  path:
+    path: /Audio/_Suziford/Jukebox/GS_2.ogg
+
+- type: jukebox
+  id: balreskaHullrot
+  name: balreska_1 (Hullrot)
+  path:
+    path: /Audio/_Suziford/Jukebox/balreska_1.ogg
+
+- type: jukebox
+  id: BichYaBarat
+  name: Бич я Борат
+  path:
+    path: /Audio/_Suziford/Jukebox/BichYaBarat.ogg
+
+- type: jukebox
+  id: bhopMusic
+  name: bhop
+  path:
+    path: /Audio/_Suziford/Jukebox/bhop.ogg
+
+- type: jukebox
+  id: chinaRep
+  name: Китайский рэп
+  path:
+    path: /Audio/_Suziford/Jukebox/chinaRep.ogg
+
+- type: jukebox
+  id: flowersTemniy
+  name: Цветы - Тёмный Принц
+  path:
+    path: /Audio/_Suziford/Jukebox/flowers.ogg
+
+- type: jukebox
+  id: looseCannon
+  name: Loose Cannon
+  path:
+    path: /Audio/_Suziford/Jukebox/LooseCannon.ogg
+
+- type: jukebox
+  id: BritanskiMarshal
+  name: БРИТАНСКИЙ МАРШАЛ
+  path:
+    path: /Audio/_Suziford/Jukebox/MARSHAL.ogg
+
+- type: jukebox
+  id: mexicanSongLol
+  name: Mexican Song
+  path:
+    path: /Audio/_Suziford/Jukebox/MexicanSong.ogg
+
+- type: jukebox
+  id: nightcallMusic
+  name: NightCall
+  path:
+    path: /Audio/_Suziford/Jukebox/Nightcall.ogg
+
+- type: jukebox
+  id: overdoz
+  name: Овердоз - Тёмный принц
+  path:
+    path: /Audio/_Suziford/Jukebox/overdoz.ogg
+
+- type: jukebox
+  id: shboom
+  name: Sh-boom
+  path:
+    path: /Audio/_Suziford/Jukebox/shBoom.ogg
+
+- type: jukebox
+  id: supermarketMadk1d
+  name: Супермаркет - MadK1d
+  path:
+    path: /Audio/_Suziford/Jukebox/supermarket.ogg
+
+- type: jukebox
+  id: thecatMusic
+  name: The Cat Music
+  path:
+    path: /Audio/_Suziford/Jukebox/theCat.ogg
+
+- type: jukebox
+  id: TobuCandyland
+  name: Tobu Candyland
+  path:
+    path: /Audio/_Suziford/Jukebox/TobuCandyland.ogg
+
+- type: jukebox
+  id: TomTomMusic
+  name: TomTom
+  path:
+    path: /Audio/_Suziford/Jukebox/TomTom.ogg
+
+- type: jukebox
+  id: web2Music
+  name: web2.0 - Тёмный принц
+  path:
+    path: /Audio/_Suziford/Jukebox/web2.ogg
+
+- type: jukebox
+  id: WaitC418
+  name: Wait - C418
+  path:
+    path: /Audio/_Suziford/Jukebox/WaitC418.ogg
