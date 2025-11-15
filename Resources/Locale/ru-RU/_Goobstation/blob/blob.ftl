@@ -126,7 +126,7 @@ blob-was-a-blob-with-objectives-named = [color=white]{ $name }[/color] был б
 # Objectivies
 objective-condition-blob-capture-title = Захватить станцию
 objective-condition-blob-capture-description = Ваша единственная цель - захватить всю станцию. У вас должно быть не менее { $count } блобов.
-objective-condition-success = { $condition } | [color={ $markupColor }]Успех![/color]
-objective-condition-fail = { $condition } | [color={ $markupColor }]Неудача![/color] ({ $progress }%)
+objective-condition-success = { $condition } | [color=green]Успех![/color]
+objective-condition-fail = { $condition } | [color=red]Неудача![/color] ({ $progress }%)
 admin-verb-make-blob = Превратить цель в носителя Блоба.
 admin-verb-text-make-blob = Создать переносчик блоба
