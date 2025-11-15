@@ -1,5 +1,8 @@
 // SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
 // SPDX-FileCopyrightText: 2025 Princess Cheeseballs <66055347+Pronana@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Svarshik <96281939+lexaSvarshik@users.noreply.github.com>
 //
 // SPDX-License-Identifier: MIT
 
@@ -109,6 +112,15 @@ public sealed partial class StaminaSystem : SharedStaminaSystem
 
     private void PlayAnimation(Entity<StaminaComponent, SpriteComponent> entity)
     {
+        // Goobstation start
+        // Last-stand sanity check to prevent clients from dying from dividing by 0
+        if (entity.Comp1.CritThreshold <= entity.Comp1.AnimationThreshold)
+        {
+            Log.Warning($"Entity {ToPrettyString(entity)} has invalid StaminaComponent: it's {nameof(StaminaComponent.CritThreshold)} lower or equal to {nameof(StaminaComponent.AnimationThreshold)}. Canceling playing the animation.");
+            return;
+        }
+        // Goobstation end
+
         var step = Math.Clamp((entity.Comp1.StaminaDamage - entity.Comp1.AnimationThreshold) /
                               (entity.Comp1.CritThreshold - entity.Comp1.AnimationThreshold),
             0f,
