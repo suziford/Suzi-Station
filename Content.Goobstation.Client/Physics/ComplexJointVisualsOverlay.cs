@@ -3,8 +3,12 @@
 // SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
 // SPDX-FileCopyrightText: 2024 Plykiya <58439124+Plykiya@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Roudenn <romabond091@gmail.com>
+// SPDX-FileCopyrightText: 2025 Svarshik <96281939+lexaSvarshik@users.noreply.github.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -71,7 +75,8 @@ public sealed class ComplexJointVisualsOverlay : Overlay
                 var ourPos = coords.Position;
 
                 var dir = targetCoords.Position - ourPos;
-                var length = dir.Length();
+                var dirLength = dir.Length();
+                var length = dirLength / data.Scale.Y;
                 if (length <= 0.01f)
                     continue;
 
@@ -99,17 +104,19 @@ public sealed class ComplexJointVisualsOverlay : Overlay
                 if (trueLength <= 0.01f)
                     continue;
 
-                var avg = trueLength / segments;
-                segments = (int) MathF.Ceiling(trueLength / avg);
+                segments = (int) MathF.Ceiling(trueLength / realY);
 
                 var ratio = length / trueLength;
-                var normalized = dir / length;
+                var normalized = dir / dirLength;
                 var angle = normalized.ToWorldAngle() + Angle.FromDegrees(180);
                 var modifiedY = realY * ratio;
                 var size = new Vector2(realX, modifiedY);
                 var extraLen = 0f;
 
-                handle.SetTransform(Matrix3Helpers.CreateTranslation(ourPos));
+                var scaleMatrix = Matrix3Helpers.CreateScale(data.Scale);
+                var worldMatrix = Matrix3Helpers.CreateTranslation(ourPos);
+                var scaledWorld = Matrix3x2.Multiply(scaleMatrix, worldMatrix);
+                handle.SetTransform(scaledWorld);
                 for (var i = 0; i < segments; i++)
                 {
                     Texture? tex = null;
